@@ -51,7 +51,3 @@ export const NavbarPrincipal = () => {
     </div>
   );
 };
-
-{
-  /* <Link to="/"></Link> */
-}
