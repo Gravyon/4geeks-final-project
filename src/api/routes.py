@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint, json 
-from api.models import db, User
+from api.models import db, User, Products, Comments, Favorites, Shopping, OrderHistory
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 
@@ -17,7 +17,7 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
-    
+
 ###########################
 # Login function
 ###########################
@@ -44,3 +44,17 @@ def login():
             "user": user.serialize()
         }
         return jsonify(response_body), 200
+
+###########################
+# Products GET query
+###########################
+
+@api.route('/product', methods=['GET'])
+def get_products():
+    ###########################
+    # Get all products
+    ###########################
+    products = Products.query.all()
+    print(products)
+    results = list(map(lambda x: x.serialize(), products))
+    return jsonify(results), 200
