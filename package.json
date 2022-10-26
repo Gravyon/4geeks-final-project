@@ -79,6 +79,7 @@
 		"react": "^16.8.4",
 		"react-bootstrap": "^2.5.0",
 		"react-dom": "^16.8.4",
+		"react-google-login": "^5.2.2",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0"
 	}
