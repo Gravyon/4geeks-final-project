@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -13,9 +14,6 @@ export const NavbarPrincipal = () => {
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand href="/">Icono de Casa Arte</Navbar.Brand>
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="#action2">Products</Nav.Link>
-          <Nav.Link href="#action2">Contact</Nav.Link>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -24,6 +22,9 @@ export const NavbarPrincipal = () => {
               navbarScroll
             >
               <Nav.Link href="#action2">Favorites</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="#action2">Products</Nav.Link>
+              <Nav.Link href="#action2">Contact</Nav.Link>
               <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3"></NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
