@@ -58,3 +58,13 @@ def get_products():
     print(products)
     results = list(map(lambda x: x.serialize(), products))
     return jsonify(results), 200
+
+@api.route('/product/<int:product_id>', methods=['GET'])
+def get_product(product_id):
+    ###########################
+    # Get one product
+    ###########################
+    product = Products.query.filter_by(id=product_id).first()
+    print(product)
+    results = product.serialize()
+    return jsonify(results), 200
