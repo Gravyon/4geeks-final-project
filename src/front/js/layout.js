@@ -9,7 +9,10 @@ import injectContext from "./store/appContext";
 import { ProductDetail } from "./pages/details.jsx";
 import { Login } from "./pages/login.jsx";
 import { SignUp } from "./pages/signup.jsx";
+<<<<<<< HEAD
 import { Profile } from "./pages/profile.jsx";
+=======
+>>>>>>> 8812f217af3383efcae98cc20f580d8c0eb39b19
 
 import { NavbarPrincipal } from "./component/navbar.jsx";
 import { Footer } from "./component/footer.jsx";
