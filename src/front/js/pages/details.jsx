@@ -18,49 +18,51 @@ export const ProductDetail = (props) => {
   return (
     <div className="container mt-5">
       <div className=" col-9 central-content d-flex justify-content-center">
-        <div className="row">
-          <Button variant="info">Previus</Button>
-          <div className="col-5">
-            <Card style={{ width: "18rem", height: "400px" }}>
-              <Card.Img variant="top" src="" />
-              <Card.Body>
-                <Card.Title>{store.ProductDetail?.name}</Card.Title>
-                <Card.Text>Price $</Card.Text>
-                <Button variant="primary">Add to cart</Button>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className="col-7">
-            <Card style={{ width: "18rem", height: "400px" }}>
-              <Card.Body>
-                <Card.Title>{store.ProductDetail?.name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  {store.ProductDetail?.category}
-                </Card.Subtitle>
-                <Card.Text>Detalles de la obra</Card.Text>
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">
-                  Price: $ {store.ProductDetail?.price}
-                </Card.Link>
-              </Card.Body>
-            </Card>
-          </div>
-        </div>
-        <div className="input-container">
-          <form action="">
-            <Form.Label>Comment</Form.Label>
+        <Carousel variant="dark">
+          <Carousel.Item>
             <div className="row">
-              <Form.Control
-                type="text"
-                placeholder="Leave your comments here please"
-              />
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
+              <div className="col-5">
+                <Card style={{ width: "18rem", height: "400px" }}>
+                  <Card.Img variant="top" src="" />
+                  <Card.Body>
+                    <Card.Title>{store.productDetail?.name}</Card.Title>
+                    <Card.Text>Price $</Card.Text>
+                    <Button variant="primary">Add to cart</Button>
+                  </Card.Body>
+                </Card>
+              </div>
+              <div className="col-7">
+                <Card style={{ width: "18rem", height: "400px" }}>
+                  <Card.Body>
+                    <Card.Title>{store.productDetail?.name}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                      {store.productDetail?.category}
+                    </Card.Subtitle>
+                    <Card.Text>Detalles de la obra</Card.Text>
+                    <Card.Link href="#">Card Link</Card.Link>
+                    <Card.Link href="#">
+                      Price: $ {store.productDetail?.price}
+                    </Card.Link>
+                  </Card.Body>
+                </Card>
+              </div>
             </div>
-          </form>
-        </div>
-        <Button variant="info">Next</Button>
+            <div className="input-container">
+              <form action="">
+                <Form.Label>Comment</Form.Label>
+                <div className="row">
+                  <Form.Control
+                    type="text"
+                    placeholder="Leave your comments here please"
+                  />
+                  <Button variant="primary" type="submit">
+                    Submit
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </Carousel.Item>
+        </Carousel>
       </div>
       <div className="col-3 nav"></div>
       <div className="col-9 comments"></div>

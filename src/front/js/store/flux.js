@@ -8,7 +8,7 @@ const getState = ({
     return {
         store: {
             product: [],
-            productDetail: {},
+            productDetail: {}
         },
         actions: {
             // fecht de los cuadros
@@ -40,6 +40,7 @@ const getState = ({
                     setStore({
                         productDetail: data,
                     });
+
                 } catch (err) {
                     console.log(err);
                 }
