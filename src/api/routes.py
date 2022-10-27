@@ -158,6 +158,10 @@ def get_shopping_by_user(id_user):
     print(results)
     return jsonify(results), 200
 
+###########################
+# Order History queries
+###########################
+
 @api.route('/order', methods=['GET'])
 def get_order():
     ###########################
