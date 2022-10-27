@@ -131,4 +131,3 @@ def get_favorite(id_user):
     print(favorites)
     # results = favorites
     return jsonify(results), 200
-    # return "ok"
