@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
@@ -10,30 +10,17 @@ import Form from "react-bootstrap/Form";
 export const ProductDetail = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
-  let [index, setIndex] = useState(0);
 
   useEffect(() => {
     actions.getProductDetail(params.id);
-  }, [setIndex]);
-
-  let handleSelect = (selectedIndex, e) => {
-    selectedIndex = actions.getProductDetail(params.id + 1);
-    // const products = actions.getProduct;
-    // console.log(products);
-    setIndex(selectedIndex);
-  };
+  }, []);
 
   return (
     <div className="container mt-5">
       <div className=" col-9 central-content d-flex justify-content-center">
-        {store.product.map((item, index) => (
-          <Carousel
-            activeIndex={index}
-            onSelect={handleSelect(index)}
-            variant="dark"
-            key={item.id}
-          >
-            <Carousel.Item>
+        <Carousel variant="dark">
+          {store.product.map((item) => (
+            <Carousel.Item key={item.id}>
               <div className="row">
                 <div className="col-5">
                   <Card style={{ width: "18rem", height: "400px" }}>
@@ -74,8 +61,8 @@ export const ProductDetail = (props) => {
                 </form>
               </div>
             </Carousel.Item>
-          </Carousel>
-        ))}
+          ))}
+        </Carousel>
       </div>
       <div className="col-3 nav"></div>
       <div className="col-9 comments"></div>
