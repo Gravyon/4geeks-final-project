@@ -131,3 +131,60 @@ def get_favorite(id_user):
     print(favorites)
     # results = favorites
     return jsonify(results), 200
+
+###########################
+# Shopping GET queries
+###########################
+
+@api.route('/shopping', methods=['GET'])
+def get_shopping():
+    ###########################
+    # Get all shopping
+    ###########################
+    shopping = Shopping.query.all()
+    print(shopping)
+    results = list(map(lambda x: x.serialize(), shopping))
+    print(results)
+    return jsonify(results), 200
+
+@api.route('/user/<int:id_user>/shopping', methods=['GET'])
+def get_shopping_by_user(id_user):
+    ###########################
+    # Get user shopping list
+    ###########################
+    shopping = Shopping.query.filter_by(id_user=id_user).all()
+    print(shopping)
+    results = list(map(lambda x: x.serialize(), shopping))
+    print(results)
+    return jsonify(results), 200
+
+@api.route('/order', methods=['GET'])
+def get_order():
+    ###########################
+    # Get all orders
+    ###########################
+    order = OrderHistory.query.all()
+    print(order)
+    results = list(map(lambda x: x.serialize(), order))
+    print(results)
+    return jsonify(results), 200
+
+@api.route('/order', methods=['POST'])
+def create_order():
+    ###########################
+    # Create order
+    ###########################
+    # Load data from postman or input
+    body = json.loads(request.data)
+    print(body)
+    new_order= OrderHistory(id_shopping=body["id_shopping"],
+    id_user=body["id_user"])
+    # Flask command to add a new entry
+    db.session.add(new_order)
+    # Flask command to commit the database, saving the changes
+    db.session.commit()
+    # Standard response to request with error code 200 (success)
+    response_body = {
+        "msg": "New order created"
+    }
+    return jsonify(response_body), 200
