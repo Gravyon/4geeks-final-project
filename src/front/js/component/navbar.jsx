@@ -9,6 +9,8 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Login } from "./pages/login.jsx";
+import { SignUp } from "./pages/signup.jsx";
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
@@ -36,10 +38,10 @@ export const NavbarPrincipal = () => {
                   </button>
                 ) : null}
               </Link>
-              <Link to={"/signin"}>
+              <Link to={"/signup"}>
                 {!store.auth ? (
                   <button type="button" className="btn btn-primary">
-                    Sign In
+                    Sign Up
                   </button>
                 ) : null}
               </Link>

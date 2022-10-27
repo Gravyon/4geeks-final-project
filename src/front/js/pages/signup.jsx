@@ -6,7 +6,7 @@ import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export const SignIn = () => {
+export const Signup = () => {
   //definimos los estados
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +18,7 @@ export const SignIn = () => {
 
   const doSubmit = (e) => {
     e.preventDefault();
-    let onSignIn = actions.signIn(
+    let onSignup = actions.Signup(
       email,
       password,
       username,
@@ -30,7 +30,7 @@ export const SignIn = () => {
     setUsername("");
     setFirstName("");
     setLastName("");
-    onSignIn ? navigate("/") : null;
+    onSignup ? navigate("/") : null;
   };
 
   return (
