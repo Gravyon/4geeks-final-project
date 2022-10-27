@@ -7,13 +7,13 @@ import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
 import Form from "react-bootstrap/Form";
 
-export const ProductDetail = () => {
-  //   const { store, actions } = useContext(Context);
-  //   const params = useParams();
+export const ProductDetail = (props) => {
+  const { store, actions } = useContext(Context);
+  const params = useParams();
 
-  //   useEffect(() => {
-  //     actions.getProductDetail(params.id);
-  //   }, []);
+  useEffect(() => {
+    actions.getProductDetail(params.id);
+  }, []);
 
   return (
     <div className="container mt-5">
