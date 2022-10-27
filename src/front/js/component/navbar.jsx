@@ -25,6 +25,7 @@ export const NavbarPrincipal = () => {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="#action2">Products</Nav.Link>
               <Nav.Link href="#action2">Contact</Nav.Link>
+              <Nav.Link href="/login">Login</Nav.Link>
               <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3"></NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
