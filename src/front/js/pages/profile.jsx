@@ -31,12 +31,12 @@ export const Profile = (props) => {
                 <Nav.Item>
                   <Nav.Link eventKey="second">Order history</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="second">Your favorites</Nav.Link>
+                {/* <Nav.Item>
+                  <Nav.Link eventKey="third">Your favorites</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="second">Preferences</Nav.Link>
-                </Nav.Item>
+                  <Nav.Link eventKey="fourth">Preferences</Nav.Link>
+                </Nav.Item> */}
               </Nav>
             </Col>
             <Col sm={9}>
@@ -60,6 +60,32 @@ export const Profile = (props) => {
                     </ListGroup>
                   </div>
                 </Tab.Pane>
+                {/* <Tab.Pane eventKey="third">
+                  <div>
+                    <ListGroup>
+                      <ListGroup.Item>Product Name: Equilibrio</ListGroup.Item>
+                      <ListGroup.Item>Product Name: Atardecer</ListGroup.Item>
+                      <ListGroup.Item>Product Name: Danza</ListGroup.Item>
+                      <ListGroup.Item>Product Name: Texturas</ListGroup.Item>
+                      <ListGroup.Item>
+                        Product Name: Retrato sin pincel
+                      </ListGroup.Item>
+                    </ListGroup>
+                  </div>
+                </Tab.Pane>
+                <Tab.Pane eventKey="fourth">
+                  <div>
+                    <ListGroup>
+                      <ListGroup.Item>Product Name: Equilibrio</ListGroup.Item>
+                      <ListGroup.Item>Product Name: Atardecer</ListGroup.Item>
+                      <ListGroup.Item>Product Name: Danza</ListGroup.Item>
+                      <ListGroup.Item>Product Name: Texturas</ListGroup.Item>
+                      <ListGroup.Item>
+                        Product Name: Retrato sin pincel
+                      </ListGroup.Item>
+                    </ListGroup>
+                  </div>
+                </Tab.Pane> */}
               </Tab.Content>
             </Col>
           </Row>
