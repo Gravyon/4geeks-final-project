@@ -69,16 +69,31 @@ export const NavbarPrincipal = () => {
                   </button>
                 ) : null}{" "}
               </Link>
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3"></NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Something else here
-                </NavDropdown.Item>
-              </NavDropdown>
+              <button
+                className="btn btn-outline-primary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="fa fa-cart-shopping"></i>{" "}
+                <span className="badge bg-danger rounded-circle">
+                  {store.products.length}
+                </span>
+              </button>
+              <ul className="dropdown-menu">
+                {store.products.map((item, id) => (
+                  <li className="p-2" key={id}>
+                    {item}
+                    <button
+                      type="button"
+                      onClick={() => actions.removeProduct(item)}
+                      className="btn "
+                      style={{ float: "right" }}
+                    >
+                      <i className="fa fa-trash"></i>
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </Nav>
             <Form className="d-flex">
               <Form.Control
