@@ -105,3 +105,30 @@ def create_user():
     }
     # Ends the function by sending the error code 400 (data already exists)
     return jsonify(response_body), 400
+
+###########################
+# Favorites GET queries
+###########################
+
+@api.route('/favorites', methods=['GET'])
+def get_favorites():
+    ###########################
+    # Get all favorites
+    ###########################
+    favorites = Favorites.query.all()
+    print(favorites)
+    results = list(map(lambda x: x.serialize(), favorites))
+    print(results)
+    return jsonify(results), 200
+
+@api.route('/user/<int:id_user>/favorite', methods=['GET'])
+def get_favorite(id_user):
+    ###########################
+    # Get user favorites
+    ###########################
+    favorites = Favorites.query.filter_by(id_user=id_user).all()
+    results = list(map(lambda x: x.serialize(), favorites))
+    print(favorites)
+    # results = favorites
+    return jsonify(results), 200
+    # return "ok"

@@ -28,6 +28,7 @@ class Products(db.Model):
     name = db.Column(db.String(250), nullable=False)
     category = db.Column(db.String(250), nullable=False)
     price = db.Column(db.Integer, nullable=False)
+
     favorite = db.relationship('Favorites', backref='products', cascade="all, delete-orphan", lazy=True)
     comments = db.relationship('Comments', backref='products', cascade="all, delete-orphan", lazy=True)
     
@@ -102,6 +103,6 @@ class OrderHistory(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "id_user": self.id_user,
+            "id_shopping": self.id_shopping,
             "id_products": self.id_products
         }
