@@ -11,6 +11,7 @@ class User(db.Model):
     favorites = db.relationship('Favorites', backref='user', cascade="all, delete-orphan", lazy=True)
     comments = db.relationship('Comments', backref='user', cascade="all, delete-orphan", lazy=True)
     shopping = db.relationship('Shopping', backref='user', cascade="all, delete-orphan", lazy=True)
+    orders = db.relationship('OrderHistory', backref='user', cascade="all, delete-orphan", lazy=True)
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -28,7 +29,9 @@ class Products(db.Model):
     name = db.Column(db.String(250), nullable=False)
     category = db.Column(db.String(250), nullable=False)
     price = db.Column(db.Integer, nullable=False)
-
+    products = db.Column(db.Integer, db.ForeignKey('shopping.id') , nullable=True)
+    # order = db.Column(db.Integer, db.ForeignKey('orderhistory.id') , nullable=True)
+    # order = db.relationship('OrderHistory', backref='products', cascade="all, delete-orphan", lazy=True)
     favorite = db.relationship('Favorites', backref='products', cascade="all, delete-orphan", lazy=True)
     comments = db.relationship('Comments', backref='products', cascade="all, delete-orphan", lazy=True)
     
@@ -79,7 +82,7 @@ class Comments(db.Model):
 class Shopping(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_user = db.Column(db.Integer,  db.ForeignKey('user.id'), nullable=False )
-    items = db.relationship('OrderHistory', backref='shopping', cascade="all, delete-orphan", lazy=True)
+    products = db.relationship('Products', backref='shopping', cascade="all, delete-orphan", lazy=True)
 
     def __repr__(self):
         return f'<Shopping {self.id}>'
@@ -88,14 +91,17 @@ class Shopping(db.Model):
         return {
             "id": self.id,
             "id_user": self.id_user,
-            "items": self.items
+            "id_products": list(map(lambda item: item.serialize(),self.products))
         }
 
 
 class OrderHistory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    id_shopping = db.Column(db.Integer,  db.ForeignKey('shopping.id'), nullable=False )
-    id_products = db.Column(db.Integer, db.ForeignKey('products.id') , nullable=True)
+    id_shopping = db.Column(db.Integer,  db.ForeignKey('shopping.id'), nullable=False)
+    # id_products = db.Column(db.Integer, db.ForeignKey('products.id') , nullable=False)
+    id_user = db.Column(db.Integer, db.ForeignKey('user.id') , nullable=False)
+
+    # products = db.relationship('Products', backref='orderhistory', cascade="all, delete-orphan", lazy=True)
 
     def __repr__(self):
         return f'<OrderHistory {self.id}>'
@@ -104,5 +110,6 @@ class OrderHistory(db.Model):
         return {
             "id": self.id,
             "id_shopping": self.id_shopping,
-            "id_products": self.id_products
+            # "id_products": self.id_products,
+            "id_user": self.id_user
         }
