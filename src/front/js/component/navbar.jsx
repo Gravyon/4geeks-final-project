@@ -36,6 +36,13 @@ export const NavbarPrincipal = () => {
                   </button>
                 ) : null}
               </Link>
+              <Link to={"/signin"}>
+                {!store.auth ? (
+                  <button type="button" className="btn btn-primary">
+                    Sign In
+                  </button>
+                ) : null}
+              </Link>
               <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3"></NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
