@@ -32,10 +32,16 @@ export const LandingPage = () => {
             <button
               type="button"
               onClick={() => actions.getProducts(item.name)}
-              class="btn btn-primary mx-1"
+              className="btn btn-primary mx-1"
             >
               Comprar ahora
             </button>
+            <Link to="" className="btn btn-danger">
+              <i
+                className="far fa-heart"
+                onClick={() => actions.marcarFavoritos(item)}
+              ></i>
+            </Link>
           </Card.Body>
         </Card>
       ))}

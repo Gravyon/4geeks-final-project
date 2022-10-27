@@ -10,6 +10,7 @@ import { ProductDetail } from "./pages/details.jsx";
 import { Login } from "./pages/login.jsx";
 import { SignUp } from "./pages/signup.jsx";
 import { Profile } from "./pages/profile.jsx";
+import { Favorites } from "./pages/favorites.jsx";
 
 import { NavbarPrincipal } from "./component/navbar.jsx";
 import { Footer } from "./component/footer.jsx";
@@ -31,6 +32,7 @@ const Layout = () => {
           <Routes>
             {" "}
             <Route element={<Home />} path="/" />{" "}
+            <Route element={<Favorites />} path="/favorites" />{" "}
             <Route element={<Login />} path="/login" />{" "}
             <Route element={<SignUp />} path="/signup" />{" "}
             <Route element={<Demo />} path="/demo" />{" "}

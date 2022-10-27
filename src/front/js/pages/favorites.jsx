@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
 import Form from "react-bootstrap/Form";
 
-export const ProductDetail = (props) => {
+export const Favorites = () => {
   const { store, actions } = useContext(Context);
 
   return (
@@ -21,7 +21,7 @@ export const ProductDetail = (props) => {
       >
         Favorites {store.listaFavoritos.length}
       </Link>
-      <ul>
+      <ol>
         <li>
           <button className="dropdown-item">
             {store.listaFavoritos.map((item, id) => (
@@ -37,7 +37,7 @@ export const ProductDetail = (props) => {
             ))}
           </button>
         </li>
-      </ul>
+      </ol>
     </div>
   );
 };

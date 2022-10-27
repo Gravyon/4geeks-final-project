@@ -37,7 +37,7 @@ export const NavbarPrincipal = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action2">Favorites</Nav.Link>
+              <Nav.Link href="/favorites">Favorites</Nav.Link>
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="#action2">Products</Nav.Link>
               <Nav.Link href="#action2">Contact</Nav.Link>
@@ -74,7 +74,7 @@ export const NavbarPrincipal = () => {
                 type="button"
                 data-bs-toggle="dropdown"
               >
-                <i class="fa fa-cart-shopping"></i>{" "}
+                <i className="fa fa-cart-shopping"></i>{" "}
                 <span className="badge bg-danger rounded-circle">
                   {store.products.length}
                 </span>
