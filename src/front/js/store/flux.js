@@ -29,10 +29,10 @@ const getState = ({
                 // fecht de los detalles
             },
             // funcion para obtener detalles de los cuadros
-            getDetallePersonaje: async (id) => {
+            getProductDetail: async (id) => {
                 try {
                     const response = await fetch(
-                        "https://3001-gravyon-4geeksfinalproj-agrddi0204s.ws-us72.gitpod.io/api/product" +
+                        "https://3001-gravyon-4geeksfinalproj-agrddi0204s.ws-us72.gitpod.io/api/product/" +
                         id
                     );
                     const data = await response.json();
