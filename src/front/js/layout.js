@@ -8,7 +8,7 @@ import {Single} from "./pages/single";
 import injectContext from "./store/appContext";
 import {ProductDetail} from "./pages/details.jsx";
 import {Login} from "./pages/login.jsx";
-import {SignIn} from "./pages/signin.jsx";
+import {SignUp} from "./pages/signup.jsx";
 
 import {NavbarPrincipal} from "./component/navbar.jsx";
 import {Footer} from "./component/footer.jsx";
@@ -19,31 +19,30 @@ const Layout = () => {
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    return (<div>
-        <BrowserRouter basename={basename}>
-            <ScrollToTop>
-                <NavbarPrincipal/>
-                <Routes>
+    return (<div> {" "}
+        <BrowserRouter basename={basename}> {" "}
+            <ScrollToTop> {" "}
+                <NavbarPrincipal/>{" "}
+                <Routes> {" "}
                     <Route element={<Home/>}
-                        path="/"/>
+                        path="/"/>{" "}
                     <Route element={<Login/>}
-                        path="/login"/>
-                    <Route element={<SignIn/>}
-                        path="/signin"/>
+                        path="/login"/>{" "}
+                    <Route element={<SignUp/>}
+                        path="/signup"/>{" "}
                     <Route element={<Demo/>}
-                        path="/demo"/>
+                        path="/demo"/>{" "}
                     <Route element={<Single/>}
-                        path="/single/:theid"/>
+                        path="/single/:theid"/>{" "}
                     <Route element={<ProductDetail/>}
-                        path="/product-detail/:id"/>
+                        path="/product-detail/:id"/>{" "}
                     <Route element={
                         <h1>Not found !</h1>
-                    }/>
-                </Routes>
-                <Footer/>
-            </ScrollToTop>
-        </BrowserRouter>
-    </div>);
+                    }/>{" "} </Routes>
+                {" "}
+                <Footer/>{" "} </ScrollToTop>
+            {" "} </BrowserRouter>
+        {" "} </div>);
 };
 
 export default injectContext(Layout);
