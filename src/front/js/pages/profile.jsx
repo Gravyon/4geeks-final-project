@@ -11,14 +11,14 @@ export const Profile = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
 
-  useEffect(() => {
-    actions.getUserInfo(params.id);
-  }, []);
+  //   useEffect(() => {
+  //     actions.getUserInfo(params.id);
+  //   }, []);
 
   return (
     <div className="container">
       <h1>Welcome to your profile</h1>
-      <div col-12>
+      <div className="col-12">
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
             <Col sm={3}>
@@ -33,12 +33,8 @@ export const Profile = (props) => {
             </Col>
             <Col sm={9}>
               <Tab.Content>
-                <Tab.Pane eventKey="first">
-                  <Sonnet />
-                </Tab.Pane>
-                <Tab.Pane eventKey="second">
-                  <Sonnet />
-                </Tab.Pane>
+                <Tab.Pane eventKey="first"></Tab.Pane>
+                <Tab.Pane eventKey="second"></Tab.Pane>
               </Tab.Content>
             </Col>
           </Row>
