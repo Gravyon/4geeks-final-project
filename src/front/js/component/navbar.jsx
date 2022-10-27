@@ -12,6 +12,18 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
+  let navigate = useNavigate();
+
+  const doLogout = () => {
+    //false
+    let onLogged = actions.logout();
+
+    if (!onLogged) {
+      //true
+      navigate("/login");
+    }
+  };
+  // es lo mismo a poner !onLogged ? history.push("/login"):null;
 
   return (
     <div>
@@ -37,6 +49,17 @@ export const NavbarPrincipal = () => {
                     Login
                   </button>
                 ) : null}{" "}
+              </Link>
+              <Link to={"/"}>
+                {store.auth ? (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={doLogout}
+                  >
+                    Log out
+                  </button>
+                ) : null}
               </Link>
               <Link to={"/signup"}>
                 {" "}
