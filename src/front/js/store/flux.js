@@ -15,7 +15,7 @@ const getState = ({
             getProduct: async () => {
                 try {
                     const response = await fetch(
-                        "https://3001-gravyon-4geeksfinalproj-agrddi0204s.ws-us72.gitpod.io/api/product"
+                        process.env.BACKEND_URL + "/api/product"
                     ); //ir a buscar
                     const data = await response.json();
                     console.log(data);
@@ -32,8 +32,7 @@ const getState = ({
             getProductDetail: async (id) => {
                 try {
                     const response = await fetch(
-                        "https://3001-gravyon-4geeksfinalproj-agrddi0204s.ws-us72.gitpod.io/api/product/" +
-                        id
+                        process.env.BACKEND_URL + "/api/product/" + id
                     );
                     const data = await response.json();
                     console.log(data);
