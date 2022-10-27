@@ -9,6 +9,7 @@ import injectContext from "./store/appContext";
 import { ProductDetail } from "./pages/details.jsx";
 import { Login } from "./pages/login.jsx";
 import { SignUp } from "./pages/signup.jsx";
+import { Profile } from "./pages/profile.jsx";
 
 import { NavbarPrincipal } from "./component/navbar.jsx";
 import { Footer } from "./component/footer.jsx";
@@ -35,6 +36,7 @@ const Layout = () => {
             <Route element={<Demo />} path="/demo" />{" "}
             <Route element={<Single />} path="/single/:theid" />{" "}
             <Route element={<ProductDetail />} path="/product-detail/:id" />{" "}
+            <Route element={<Profile />} path="/profile" />{" "}
             <Route element={<h1>Not found !</h1>} />{" "}
           </Routes>{" "}
           <Footer />{" "}
