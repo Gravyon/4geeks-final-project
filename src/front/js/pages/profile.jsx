@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
 
 export const Profile = (props) => {
   const { store, actions } = useContext(Context);
@@ -18,7 +19,7 @@ export const Profile = (props) => {
   //   }, []);
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <h1>Welcome to your profile</h1>
       <div className="col-12">
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -31,21 +32,21 @@ export const Profile = (props) => {
                 <Nav.Item>
                   <Nav.Link eventKey="second">Order history</Nav.Link>
                 </Nav.Item>
-                {/* <Nav.Item>
+                <Nav.Item>
                   <Nav.Link eventKey="third">Your favorites</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="fourth">Preferences</Nav.Link>
-                </Nav.Item> */}
+                  <Nav.Link eventKey="fourth">Admin personal info</Nav.Link>
+                </Nav.Item>
               </Nav>
             </Col>
             <Col sm={9}>
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   <div>
-                    <h4>Username: user1</h4>
-                    <h4>Email: 123</h4>
-                    <h4>Password: ********</h4>
+                    <h5>Username: user1</h5>
+                    <h5>Email: 123</h5>
+                    <h5>Password: ********</h5>
                     <Button variant="warning">Delete account</Button>
                   </div>
                 </Tab.Pane>
@@ -60,7 +61,7 @@ export const Profile = (props) => {
                     </ListGroup>
                   </div>
                 </Tab.Pane>
-                {/* <Tab.Pane eventKey="third">
+                <Tab.Pane eventKey="third">
                   <div>
                     <ListGroup>
                       <ListGroup.Item>Product Name: Equilibrio</ListGroup.Item>
@@ -76,16 +77,37 @@ export const Profile = (props) => {
                 <Tab.Pane eventKey="fourth">
                   <div>
                     <ListGroup>
-                      <ListGroup.Item>Product Name: Equilibrio</ListGroup.Item>
-                      <ListGroup.Item>Product Name: Atardecer</ListGroup.Item>
-                      <ListGroup.Item>Product Name: Danza</ListGroup.Item>
-                      <ListGroup.Item>Product Name: Texturas</ListGroup.Item>
                       <ListGroup.Item>
-                        Product Name: Retrato sin pincel
+                        Change email:{" "}
+                        <Form.Control
+                          type="email"
+                          placeholder="Change your email"
+                        />
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        Address:{" "}
+                        <Form.Control
+                          type="text"
+                          placeholder="Change your address"
+                        />
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        Phone number:{" "}
+                        <Form.Control
+                          type="text"
+                          placeholder="Change your phone number"
+                        />
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        Passport:{" "}
+                        <Form.Control
+                          type="text"
+                          placeholder="Change your passport"
+                        />
                       </ListGroup.Item>
                     </ListGroup>
                   </div>
-                </Tab.Pane> */}
+                </Tab.Pane>
               </Tab.Content>
             </Col>
           </Row>
