@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 
 const getState = ({
     getStore,
@@ -8,7 +8,9 @@ const getState = ({
     return {
         store: {
             product: [],
-            productDetail: {}
+            productDetail: {},
+
+            auth: false,
         },
         actions: {
             // fecht de los cuadros
@@ -23,7 +25,7 @@ const getState = ({
                         product: data,
                     }); //promesa 2
                 } catch (err) {
-                    console.log(err);
+                    // console.log(err);
                 }
 
                 // fecht de los detalles
@@ -40,9 +42,31 @@ const getState = ({
                     setStore({
                         productDetail: data,
                     });
-
                 } catch (err) {
                     console.log(err);
+                }
+            },
+            // funcion para Login
+            login: async (email, password) => {
+                try {
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/login", {
+                            email: email,
+                            password: password,
+                        }
+                    );
+
+                    localStorage.setItem("token", response.data.msg);
+                    console.log(response.data.msg);
+                    setStore({
+                        auth: true,
+                    });
+                    return true;
+                } catch (error) {
+                    console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        alert(error.response.data.msg);
+                    }
                 }
             },
         },

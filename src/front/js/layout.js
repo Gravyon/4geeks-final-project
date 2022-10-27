@@ -7,6 +7,7 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import { ProductDetail } from "./pages/details.jsx";
+import { Login } from "./pages/login.jsx";
 
 import { NavbarPrincipal } from "./component/navbar.jsx";
 import { Footer } from "./component/footer.jsx";
@@ -24,6 +25,7 @@ const Layout = () => {
           <NavbarPrincipal />
           <Routes>
             <Route element={<Home />} path="/" />
+            <Route element={<Login />} path="/login" />
             <Route element={<Demo />} path="/demo" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<ProductDetail />} path="/product-detail/:id" />
