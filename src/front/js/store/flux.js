@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 
 const getState = ({
     getStore,
@@ -8,7 +8,9 @@ const getState = ({
     return {
         store: {
             product: [],
-            productDetail: {}
+            productDetail: {},
+
+            auth: false,
         },
         actions: {
             // fecht de los cuadros
@@ -23,7 +25,7 @@ const getState = ({
                         product: data,
                     }); //promesa 2
                 } catch (err) {
-                    console.log(err);
+                    // console.log(err);
                 }
 
                 // fecht de los detalles
@@ -40,9 +42,36 @@ const getState = ({
                     setStore({
                         productDetail: data,
                     });
-
                 } catch (err) {
                     console.log(err);
+                }
+            },
+            // funcion para Login
+            login: async (email, password) => {
+                try {
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/login", {
+                            email: email,
+                            password: password,
+                        }
+                    );
+
+                    if (response.status === 200) {
+                        const data = await response.json();
+                        localStorage.setItem("token", response.data.msg);
+                        console.log(response.data);
+                        setStore({
+                            auth: true,
+                        });
+                        return true;
+                    }
+                } catch (error) {
+                    console.log(error);
+                    if (error.response.status === 404) {
+                        alert(error.response.data);
+                    } else if (error.response.status === 401) {
+                        alert(error.response.data);
+                    }
                 }
             },
         },

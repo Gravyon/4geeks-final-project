@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import { useHistory } from "react-router-dom";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  let history = useHistory();
+  let navigate = useNavigate();
 
   const doSubmit = (e) => {
     e.preventDefault();
     let onLogged = actions.login(email, password);
     setEmail("");
     setPassword("");
-    onLogged ? history.push("/") : null;
+    onLogged ? navigate("/") : null;
   };
 
   return (
