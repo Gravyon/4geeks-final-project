@@ -29,7 +29,6 @@ export const NavbarPrincipal = () => {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="#action2">Products</Nav.Link>
               <Nav.Link href="#action2">Contact</Nav.Link>
-              {/* <Nav.Link href="/login">Login</Nav.Link> */}
               <Link to={"/login"}>
                 {!store.auth ? (
                   <button type="button" className="btn btn-primary">

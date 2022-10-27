@@ -56,21 +56,16 @@ const getState = ({
                         }
                     );
 
-                    if (response.status === 200) {
-                        const data = await response.json();
-                        localStorage.setItem("token", response.data.msg);
-                        console.log(response.data);
-                        setStore({
-                            auth: true,
-                        });
-                        return true;
-                    }
+                    localStorage.setItem("token", response.data.msg);
+                    console.log(response.data.msg);
+                    setStore({
+                        auth: true,
+                    });
+                    return true;
                 } catch (error) {
                     console.log(error);
-                    if (error.response.status === 404) {
-                        alert(error.response.data);
-                    } else if (error.response.status === 401) {
-                        alert(error.response.data);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        alert(error.response.data.msg);
                     }
                 }
             },
