@@ -8,13 +8,14 @@ const getState = ({
     return {
         store: {
             product: [],
+            productDetail: {}
         },
         actions: {
             // fecht de los cuadros
             getProduct: async () => {
                 try {
                     const response = await fetch(
-                        "https://3001-gravyon-4geeksfinalproj-agrddi0204s.ws-us72.gitpod.io/api/product"
+                        process.env.BACKEND_URL + "/api/product"
                     ); //ir a buscar
                     const data = await response.json();
                     console.log(data);
@@ -26,6 +27,23 @@ const getState = ({
                 }
 
                 // fecht de los detalles
+            },
+            // funcion para obtener detalles de los cuadros
+            getProductDetail: async (id) => {
+                try {
+                    const response = await fetch(
+                        process.env.BACKEND_URL + "/api/product/" + id
+                    );
+                    const data = await response.json();
+                    console.log(data);
+
+                    setStore({
+                        productDetail: data,
+                    });
+
+                } catch (err) {
+                    console.log(err);
+                }
             },
         },
     };

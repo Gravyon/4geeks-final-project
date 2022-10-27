@@ -14,7 +14,8 @@
         "name": "Alejandro Sanchez",
         "url": "http://alesanchezr.com/"
     },
-    "contributors": [{
+    "contributors": [
+        {
             "name": "Alejandro Sanchez",
             "url": "http://alesanchezr.com/"
         },
@@ -74,6 +75,8 @@
     "dependencies": {
         "bootstrap": "^5.2.2",
         "bootstrap-icons": "^1.9.1",
+        "cloudinary-react": "^1.8.1",
+        "cors": "^2.8.5",
         "prop-types": "^15.6.1",
         "react": "^16.8.4",
         "react-bootstrap": "^2.5.0",
