@@ -28,6 +28,7 @@ class Products(db.Model):
     name = db.Column(db.String(250), nullable=False)
     category = db.Column(db.String(250), nullable=False)
     description = db.Column(db.String(250), nullable=False)
+    url = db.Column(db.String(250), nullable=False)
     price = db.Column(db.Integer, nullable=False)
     products = db.Column(db.Integer, db.ForeignKey('shopping.id') , nullable=True)
     favorite = db.relationship('Favorites', backref='products', cascade="all, delete-orphan", lazy=True)
@@ -42,7 +43,9 @@ class Products(db.Model):
             "id": self.id,
             "name": self.name,
             "category": self.category,
-            "price": self.price
+            "price": self.price,
+            "description": self.description,
+            "url": self.url
         }
 
 class Favorites(db.Model):
