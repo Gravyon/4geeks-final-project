@@ -48,21 +48,21 @@ export const NavbarPrincipal = () => {
                   Login
                 </Nav.Link>
               ) : null}{" "}
-              <Nav.Link href="/" className="text-primary">
-                {store.auth ? (
-                  <Button type="button" onClick={doLogout}>
-                    Log out
-                  </Button>
-                ) : null}
-              </Nav.Link>
-              <Link to={"/signup"}>
-                {" "}
-                {!store.auth ? (
-                  <button type="button" className="btn btn-primary">
-                    Sign Up
-                  </button>
-                ) : null}{" "}
-              </Link>
+              {store.auth ? (
+                <Nav.Link
+                  href="/"
+                  className="text-primary"
+                  type="button"
+                  onClick={doLogout}
+                >
+                  Log out
+                </Nav.Link>
+              ) : null}
+              {!store.auth ? (
+                <Nav.Link href="/signup" className="text-primary">
+                  Sign Up
+                </Nav.Link>
+              ) : null}{" "}
               <button
                 className="btn btn-outline-primary dropdown-toggle"
                 type="button"
@@ -97,7 +97,7 @@ export const NavbarPrincipal = () => {
                 aria-label="Search"
               />
               <Button variant="outline-success">
-                <i class="bi bi-search"></i>
+                <i className="bi bi-search"></i>
               </Button>
             </Form>
           </Navbar.Collapse>
