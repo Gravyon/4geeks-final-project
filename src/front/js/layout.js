@@ -9,6 +9,7 @@ import injectContext from "./store/appContext";
 import { ProductDetail } from "./pages/details.jsx";
 import { Login } from "./pages/login.jsx";
 import { SignUp } from "./pages/signup.jsx";
+import { Favorites } from "./pages/favorites.jsx";
 import { Profile } from "./pages/profile.jsx";
 import { SubirImagenes } from "./pages/images.jsx";
 import { DownloadImages } from "./pages/download-imgs.jsx";
@@ -35,6 +36,7 @@ const Layout = () => {
             <Route element={<Home />} path="/" />{" "}
             <Route element={<Login />} path="/login" />{" "}
             <Route element={<SignUp />} path="/signup" />{" "}
+            <Route element={<Favorites />} path="/favorites" />{" "}
             <Route element={<Demo />} path="/demo" />{" "}
             <Route element={<Single />} path="/single/:theid" />{" "}
             <Route element={<ProductDetail />} path="/product-detail/:id" />{" "}
