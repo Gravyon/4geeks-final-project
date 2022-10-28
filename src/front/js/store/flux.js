@@ -125,7 +125,7 @@ const getState = ({
             createProduct: async (name, description, category, url, price) => {
                 try {
 
-                    const response = await axios.post("url-de-crear-producto", {
+                    const response = await axios.post(process.env.BACKEND_URL + "/api/product", {
                         name: name,
                         description: description,
                         category: category,

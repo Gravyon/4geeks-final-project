@@ -1,15 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
 import { useState } from "react";
+import { Context } from "../store/appContext";
 
 export const SubirImagenes = () => {
 
+    const { store, actions } = useContext(Context);
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
     const[name, setName] = useState("");
     const[category, setCategory] = useState("");
     const[description, setDescription] = useState("");
     const[price, setPrice] = useState("");
+    let[url, setUrl] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -19,6 +22,7 @@ export const SubirImagenes = () => {
         setImage("")
         setName("")
         setCategory("")
+        setUrl("")
         setDescription("")
         setPrice("")
     }
@@ -35,12 +39,15 @@ export const SubirImagenes = () => {
             {
                 method: "POST",
                 body: data
+                
             }
         )
         const file = await res.json();
         console.log(res);
         setImage(file.secure_url);
-        setLoading(false)
+        setUrl(file.secure_url);
+        console.log(file.secure_url);
+        setLoading(false);
     }
 
     return (
@@ -55,6 +62,8 @@ export const SubirImagenes = () => {
                     id="exampleName"
                     name="name"
                     type="text"
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
                 />
                  <Label for="exampleCategory">
                     Category
@@ -63,6 +72,8 @@ export const SubirImagenes = () => {
                     id="exampleCategory"
                     name="category"
                     type="text"
+                    onChange={(e) => setCategory(e.target.value)}
+                    value={category}
                 />
                   <Label for="examplePrice">
                     Price
@@ -71,6 +82,8 @@ export const SubirImagenes = () => {
                     id="examplePrice"
                     name="price"
                     type="number"
+                    onChange={(e) => setPrice(e.target.value)}
+                    value={price}
                 />
                 <Label for="exampleFile">
                     File
@@ -80,6 +93,9 @@ export const SubirImagenes = () => {
                     name="file"
                     type="file"
                     onChange={uploadImage}
+                    
+                    // onChange={(e) => setUrl(e.target.value)}
+                    // value={url}
                 />
                 <Button color="info" type="submit">
     Submit
