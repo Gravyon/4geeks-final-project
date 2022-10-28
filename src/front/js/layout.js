@@ -44,8 +44,13 @@ const Layout = () => {
             <Route element={<ProductDetail />} path="/product-detail/:id" />{" "}
             <Route element={<Profile />} path="/profile" />{" "}
             <Route element={<SubirImagenes />} path="/subir-img" />{" "}
+<<<<<<< HEAD
             <Route element={<DownloadImages />} path="/download-img" />{" "}
             <Route element={<h1> Not found! </h1>} />{" "}
+=======
+            {/* <Route element={<DownloadImages />} path="/download-img" />{" "} */}
+            <Route element={<h1>Not found !</h1>} />{" "}
+>>>>>>> 330bdeac16b93b0cffb48eabf8fe797d53ea94f4
           </Routes>{" "}
           <Footer />{" "}
         </ScrollToTop>{" "}
