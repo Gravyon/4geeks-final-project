@@ -15,7 +15,8 @@ export const Home = () => {
         actions.getProduct(params.id);
     }, []);
 
-    return (<div className="container text-center mt-5 d-flex">
+    return (
+    <div className="container text-center ">
         <LandingPage/>
-    </div>);
+</div>);
 };
