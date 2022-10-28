@@ -46,7 +46,7 @@ def login():
         return jsonify(response_body), 200
 
 ###########################
-# Products GET query
+# Products queries
 ###########################
 
 @api.route('/product', methods=['GET'])
@@ -68,6 +68,28 @@ def get_product(product_id):
     print(product)
     results = product.serialize()
     return jsonify(results), 200
+
+@api.route('/product', methods=['POST'])
+def create_product():
+    # Load data from postman or input
+    body = json.loads(request.data)
+    print(body)
+    new_product = Products(
+    name=body["name"],
+    category=body["category"],
+    description=body["description"],
+    url=body["url"],
+    price=body["price"])
+    print(new_product)
+    # Flask command to add a new entry
+    db.session.add(new_product)
+    # Flask command to commit the database, saving the changes
+    db.session.commit()
+    # Standard response to request with error code 200 (success)
+    response_body = {
+        "msg": "New product created"
+    }
+    return jsonify(response_body), 200
 
 ###########################
 # User POST query
