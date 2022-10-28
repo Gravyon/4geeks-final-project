@@ -38,13 +38,26 @@ export const NavbarPrincipal = () => {
               navbarScroll
             >
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="#action2">Contact us</Nav.Link>
+              <Nav.Link href="/contactus">Contact us</Nav.Link>
               <Nav.Link href="/profile">My profile</Nav.Link>
               <Nav.Link href="/carrito">Carrito</Nav.Link>
               <Nav.Link href="/favorites">Favorites</Nav.Link>
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
-              {!store.auth ? (
-                <Nav.Link href="/login" className="text-primary">
+              
+            </Nav>
+            <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+              />
+              <Button variant="outline-success">
+                <i className="bi bi-search"></i>
+              </Button>
+            </Form>
+            {!store.auth ? (
+                <Nav.Link href="/login" className="text-warning">
                   Login
                 </Nav.Link>
               ) : null}{" "}
@@ -59,12 +72,12 @@ export const NavbarPrincipal = () => {
                 </Nav.Link>
               ) : null}
               {!store.auth ? (
-                <Nav.Link href="/signup" className="text-primary">
+                <Nav.Link href="/signup" className="text-warning">
                   Sign Up
                 </Nav.Link>
               ) : null}{" "}
               <button
-                className="btn btn-outline-primary dropdown-toggle"
+                className="btn btn-outline-warning dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
               >
@@ -88,18 +101,6 @@ export const NavbarPrincipal = () => {
                   </li>
                 ))}
               </ul>
-            </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">
-                <i className="bi bi-search"></i>
-              </Button>
-            </Form>
           </Navbar.Collapse>
         </Container>
       </Navbar>
