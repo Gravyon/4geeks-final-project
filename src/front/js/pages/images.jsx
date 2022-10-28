@@ -29,8 +29,32 @@ export const SubirImagenes = () => {
 
     return (
         <div className="container mt-5">
-            <h1>Subir archivos para la web</h1>
+            <h1>Upload your work of art</h1>
             <FormGroup>
+                <Label for="exampleName">
+                    Name
+                </Label>
+                <Input
+                    id="exampleName"
+                    name="name"
+                    type="text"
+                />
+                 <Label for="exampleCategory">
+                    Category
+                </Label>
+                <Input
+                    id="exampleCategory"
+                    name="category"
+                    type="text"
+                />
+                  <Label for="examplePrice">
+                    Price
+                </Label>
+                <Input
+                    id="examplePrice"
+                    name="price"
+                    type="number"
+                />
                 <Label for="exampleFile">
                     File
                 </Label>
