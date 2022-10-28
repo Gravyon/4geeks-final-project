@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       products: [],
 
       listaFavoritos: [],
+      // listaCarrito: [],
 
       auth: false,
       register: false,
@@ -106,7 +107,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             listaFavoritos: [...store.listaFavoritos, i],
           });
         }
-        // setListaFavoritos(filtroFavoritos)
       },
 
       // constante eliminar favoritos
