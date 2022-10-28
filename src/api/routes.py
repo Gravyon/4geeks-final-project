@@ -142,6 +142,27 @@ def create_product():
     }
     return jsonify(response_body), 200
 
+@api.route('/product/<int:product_id>', methods=["DELETE"])
+def delete_product(product_id):
+
+    ###########################
+    # Create product
+    ###########################
+    product = Products.query.filter_by(id=product_id).first()
+    print(product)
+    # If user exists, deletes it
+    if product:
+        db.session.delete(product)
+        db.session.commit()
+        response_body = {
+            "msg": "Product deleted successfully"
+            }
+        return jsonify(response_body), 200
+
+    elif product is None:
+        raise APIException('Product not found', status_code=404)
+        return jsonify(product)
+
 ###########################
 # User POST query
 ###########################
