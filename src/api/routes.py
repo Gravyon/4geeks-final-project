@@ -46,7 +46,7 @@ def login():
         return jsonify(response_body), 200
 
 ###########################
-# Products queries
+# Product queries
 ###########################
 
 @api.route('/product', methods=['GET'])
@@ -71,6 +71,9 @@ def get_product(product_id):
 
 @api.route('/product', methods=['POST'])
 def create_product():
+    ###########################
+    # Create product
+    ###########################
     # Load data from postman or input
     body = json.loads(request.data)
     print(body)
@@ -127,6 +130,42 @@ def create_user():
     }
     # Ends the function by sending the error code 400 (data already exists)
     return jsonify(response_body), 400
+    
+###########################
+# User GET query
+###########################
+
+@api.route('/user', methods=['GET'])
+def get_users():
+    ###########################
+    # Get all users
+    ###########################
+    users = User.query.all()
+    print(users)
+    results = list(map(lambda x: x.serialize(), users))
+    return jsonify(results), 200
+
+###########################
+# User DELETE query
+###########################
+
+@api.route('/user/<int:user_id>', methods=["DELETE"])
+def delete_user(user_id):
+
+    user = User.query.filter_by(id=user_id).first()
+    print(user)
+    # If user exists, deletes it
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        response_body = {
+            "msg": "User deleted successfully"
+            }
+        return jsonify(response_body), 200
+
+    elif user is None:
+        raise APIException('User not found', status_code=404)
+        return jsonify(user)
 
 ###########################
 # Favorites GET queries
@@ -214,39 +253,3 @@ def create_order():
         "msg": "New order created"
     }
     return jsonify(response_body), 200
-
-###########################
-# User GET query
-###########################
-
-@api.route('/user', methods=['GET'])
-def get_users():
-    ###########################
-    # Get all users
-    ###########################
-    users = User.query.all()
-    print(users)
-    results = list(map(lambda x: x.serialize(), users))
-    return jsonify(results), 200
-
-###########################
-# User DELETE query
-###########################
-
-@api.route('/user/<int:user_id>', methods=["DELETE"])
-def delete_user(user_id):
-
-    user = User.query.filter_by(id=user_id).first()
-    print(user)
-    # If user exists, deletes it
-    if user:
-        db.session.delete(user)
-        db.session.commit()
-        response_body = {
-            "msg": "User deleted successfully"
-            }
-        return jsonify(response_body), 200
-
-    elif user is None:
-        raise APIException('User not found', status_code=404)
-        return jsonify(user)
