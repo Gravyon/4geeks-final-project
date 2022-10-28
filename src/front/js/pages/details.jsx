@@ -24,7 +24,7 @@ export const ProductDetail = (props) => {
               <div className="row">
                 <div className="col-5">
                   <Card style={{ width: "18rem", height: "400px" }}>
-                    <Card.Img variant="top" src="" />
+                    <Card.Img variant="top" src={item?.url} />
                     <Card.Body>
                       <Card.Title>{item?.name}</Card.Title>
                       <Card.Text>Price $</Card.Text>
@@ -39,7 +39,7 @@ export const ProductDetail = (props) => {
                       <Card.Subtitle className="mb-2 text-muted">
                         {item?.category}
                       </Card.Subtitle>
-                      <Card.Text>Detalles de la obra</Card.Text>
+                      <Card.Text>{item?.description}</Card.Text>
                       <Card.Link href="#">Card Link</Card.Link>
                       <Card.Link href="#">Price: $ {item?.price}</Card.Link>
                     </Card.Body>
