@@ -10,7 +10,7 @@ export const LandingPage = () => {
 
   return (
     <div className="card-group">
-      <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+      <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
         {store.product.map((item, id) => (
           <Card key={id} style={{ width: "18rem" }}>
             <Card.Body>
