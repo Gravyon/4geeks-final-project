@@ -15,9 +15,7 @@ export const LandingPage = () => {
           <Card className="m-3" key={id} style={{ width: "18rem" }}>
             <Card.Body>
               <img
-                src={
-                  "https://uruguayeduca.anep.edu.uy/sites/default/files/2018-05/Imagen%20del%20recurso_0.jpg"
-                }
+                src={item.url}
                 className="img-fluid rounded p-1"
                 alt="..."
               />
