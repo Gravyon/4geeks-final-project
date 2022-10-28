@@ -85,6 +85,16 @@ export const SubirImagenes = () => {
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
                 />
+                <Label for="exampleDescription">
+                    Description
+                </Label>
+                <Input
+                    id="exampleDescription"
+                    name="price"
+                    type="text"
+                    onChange={(e) => setDescription(e.target.value)}
+                    value={description}
+                />
                 <Label for="exampleFile">
                     File
                 </Label>
@@ -92,7 +102,7 @@ export const SubirImagenes = () => {
                     id="exampleFile"
                     name="file"
                     type="file"
-                    onChange={uploadImage}
+                    onChange={(e) => {uploadImage(e); setUrl(e.target.value)}}
                     
                     // onChange={(e) => setUrl(e.target.value)}
                     // value={url}
