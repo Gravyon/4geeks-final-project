@@ -18,7 +18,7 @@ export const LandingPage = () => {
             <Card.Text> {item.category}</Card.Text>
             <Card.Text> {item.price}</Card.Text>
             <Link to={"/product-detail/" + (id + 1)} className="btn btn-primary">Leer mas...</Link>
-            <button type="button" onClick={()=>actions.getProducts(item.name)} class="btn btn-primary mx-1">Comprar ahora</button>
+            <button type="button" onClick={()=>actions.getProducts(item.name)} className="btn btn-primary mx-1">Comprar ahora</button>
           </Card.Body>
         </Card>
       ))}

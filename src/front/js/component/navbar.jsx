@@ -74,7 +74,7 @@ export const NavbarPrincipal = () => {
                 type="button"
                 data-bs-toggle="dropdown"
               >
-                <i class="fa fa-cart-shopping"></i>{" "}
+                <i className="fa fa-cart-shopping"></i>{" "}
                 <span className="badge bg-danger rounded-circle">
                   {store.products.length}
                 </span>
