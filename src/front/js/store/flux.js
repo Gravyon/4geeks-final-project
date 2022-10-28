@@ -7,6 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       productDetail: {},
       products: [],
 
+      listaFavoritos: [],
+
       auth: false,
       register: false,
     },
@@ -92,6 +94,26 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         setStore({
           products: store.products.filter((item) => item !== product),
+        });
+      },
+      // constante marcar favoritos
+      marcarFavoritos: (i) => {
+        let store = getStore();
+        if (store.listaFavoritos.includes(i)) {
+          getActions().eliminarFavoritos(i);
+        } else {
+          setStore({
+            listaFavoritos: [...store.listaFavoritos, i],
+          });
+        }
+        // setListaFavoritos(filtroFavoritos)
+      },
+
+      // constante eliminar favoritos
+      eliminarFavoritos: (i) => {
+        let store = getStore();
+        setStore({
+          listaFavoritos: store.listaFavoritos.filter((item) => item !== i),
         });
       },
     },
