@@ -2,13 +2,13 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Carousel from "react-bootstrap/Carousel";
-import Form from "react-bootstrap/Form";
 
 export const Favorites = () => {
   const { store, actions } = useContext(Context);
+
+  if (store.listaFavoritos.length === "") {
+    ("No tienes ningun favorito");
+  }
 
   return (
     <div className="container mt-5">
@@ -27,6 +27,10 @@ export const Favorites = () => {
             {store.listaFavoritos.map((item, id) => (
               <li className="list-group-item border border-1" key={id}>
                 {item.name}
+                <p>Precio: {item.price}</p>
+                <i className="bi bi-star-fill"></i>
+                <i className="bi bi-star-half"></i>
+                <i className="bi bi-star"></i>
                 <span
                   className="close btn btn-danger"
                   onClick={() => actions.eliminarFavoritos(item)}
@@ -38,6 +42,9 @@ export const Favorites = () => {
           </button>
         </li>
       </ol>
+      <button className="btn btn-danger">
+        <Link to={"/"}>Home</Link>
+      </button>
     </div>
   );
 };
