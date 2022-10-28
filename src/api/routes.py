@@ -45,6 +45,54 @@ def login():
         }
         return jsonify(response_body), 200
 
+# Protect a route with jwt_required, which will kick out requests
+# without a valid JWT present.
+
+###########################
+# Profile function
+###########################
+
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def protected():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(email=current_user).first()
+    # Same as login, if the query brings nothing then it doesn't exist
+    if user is None:
+        return jsonify({"msg":"User doesn't exist"}), 404
+    # If user is correct then it shows the user's info
+    response_body = {
+    "user": user.serialize()
+        
+    }
+    return jsonify(response_body), 200
+
+# Endpoint for revoking the current users access token. Saved the unique
+# identifier (jti) for the JWT into our database.
+
+###########################
+# Logout function
+###########################
+
+
+@api.route("/valid-token", methods=["GET"])
+@jwt_required()
+def valid_token():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(email=current_user).first()
+    # Same as login, if the query brings nothing then it doesn't exist
+    if user is None:
+        return jsonify({"status":False}), 404
+    # If user is correct then it shows the user's info
+    response_body = {
+        "status": True,
+        "user": user.serialize()
+        
+    }
+    return jsonify(response_body), 200
+
 ###########################
 # Product queries
 ###########################
