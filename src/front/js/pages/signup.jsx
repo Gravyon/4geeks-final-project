@@ -37,6 +37,36 @@ export const SignUp = () => {
     <div className="text-center mt-5 container">
       <form onSubmit={doSubmit}>
         <div className="mb-3">
+          <label
+            htmlFor="exampleInputPassword1"
+            className="form-label opacity-50"
+          >
+            First Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="exampleInputPassword1"
+            onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
+          />
+        </div>
+        <div className="mb-3">
+          <label
+            htmlFor="exampleInputPassword1"
+            className="form-label opacity-50"
+          >
+            Last Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="exampleInputPassword1"
+            onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
+          />
+        </div>
+        <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label opacity-50">
             Email address
           </label>
@@ -77,36 +107,6 @@ export const SignUp = () => {
             id="exampleInputPassword1"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
-          />
-        </div>
-        <div className="mb-3">
-          <label
-            htmlFor="exampleInputPassword1"
-            className="form-label opacity-50"
-          >
-            First Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputPassword1"
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
-          />
-        </div>
-        <div className="mb-3">
-          <label
-            htmlFor="exampleInputPassword1"
-            className="form-label opacity-50"
-          >
-            Last Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputPassword1"
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
           />
         </div>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
