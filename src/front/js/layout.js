@@ -3,14 +3,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home.jsx";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+// import { Demo } from "./pages/demo";
+// import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import { ProductDetail } from "./pages/details.jsx";
 import { Login } from "./pages/login.jsx";
 import { SignUp } from "./pages/signup.jsx";
 import { Favorites } from "./pages/favorites.jsx";
 import { Profile } from "./pages/profile.jsx";
+import { Carrito } from "./pages/carrito.jsx";
 import { SubirImagenes } from "./pages/images.jsx";
 import { DownloadImages } from "./pages/download-imgs.jsx";
 
@@ -37,13 +38,14 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />{" "}
             <Route element={<SignUp />} path="/signup" />{" "}
             <Route element={<Favorites />} path="/favorites" />{" "}
-            <Route element={<Demo />} path="/demo" />{" "}
-            <Route element={<Single />} path="/single/:theid" />{" "}
+            <Route element={<Carrito />} path="/carrito" />{" "}
+            {/* <Route element={<Demo />} path="/demo" />{" "}
+                            <Route element={<Single />} path="/single/:theid" />{" "} */}{" "}
             <Route element={<ProductDetail />} path="/product-detail/:id" />{" "}
             <Route element={<Profile />} path="/profile" />{" "}
             <Route element={<SubirImagenes />} path="/subir-img" />{" "}
             <Route element={<DownloadImages />} path="/download-img" />{" "}
-            <Route element={<h1>Not found !</h1>} />{" "}
+            <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}
           <Footer />{" "}
         </ScrollToTop>{" "}

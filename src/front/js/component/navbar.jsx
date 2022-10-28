@@ -37,30 +37,24 @@ export const NavbarPrincipal = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/favorites">Favorites</Nav.Link>
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="#action2">Products</Nav.Link>
-              <Nav.Link href="#action2">Contact</Nav.Link>
-              {/* <Nav.Link href="/login">Login</Nav.Link> */}
-              <Link to={"/login"}>
-                {" "}
-                {!store.auth ? (
-                  <button type="button" className="btn btn-primary">
-                    Login
-                  </button>
-                ) : null}{" "}
-              </Link>
-              <Link to={"/"}>
+              <Nav.Link href="#action2">Contact us</Nav.Link>
+              <Nav.Link href="/profile">My profile</Nav.Link>
+              <Nav.Link href="/carrito">Carrito</Nav.Link>
+              <Nav.Link href="/favorites">Favorites</Nav.Link>
+              {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
+              {!store.auth ? (
+                <Nav.Link href="/login" className="text-primary">
+                  Login
+                </Nav.Link>
+              ) : null}{" "}
+              <Nav.Link href="/" className="text-primary">
                 {store.auth ? (
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={doLogout}
-                  >
+                  <Button type="button" onClick={doLogout}>
                     Log out
-                  </button>
+                  </Button>
                 ) : null}
-              </Link>
+              </Nav.Link>
               <Link to={"/signup"}>
                 {" "}
                 {!store.auth ? (
@@ -74,7 +68,7 @@ export const NavbarPrincipal = () => {
                 type="button"
                 data-bs-toggle="dropdown"
               >
-                <i className="fa fa-cart-shopping"></i>{" "}
+                <i className="fa fa-cart-shopping"></i>
                 <span className="badge bg-danger rounded-circle">
                   {store.products.length}
                 </span>
@@ -102,7 +96,9 @@ export const NavbarPrincipal = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-success">
+                <i class="bi bi-search"></i>
+              </Button>
             </Form>
           </Navbar.Collapse>
         </Container>
