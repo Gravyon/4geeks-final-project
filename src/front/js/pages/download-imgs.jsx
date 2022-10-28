@@ -1,7 +1,7 @@
 import React from "react";
 import { FormGroup, Label, Input, FormText } from "reactstrap";
 import { useState, useEffect } from "react";
-import { Buffer } from "buffer";
+// import { Buffer } from "buffer";
 
 
 export const DownloadImages = (props) => {
@@ -16,7 +16,7 @@ export const DownloadImages = (props) => {
         // const files = e.target.files;
         const results = await fetch("https://api.cloudinary.com/v1_1/"+ process.env.CLOUDINARY_CLOUD_NAME +"/resources/image", {
             headers: {
-                Authorization: `Basic ${Buffer.from(process.env.CLOUDINARY_API_KEY + ":" + process.env.CLOUDINARY_API_SECRET).toString('base64')}`
+                // Authorization: `Basic ${Buffer.from(process.env.CLOUDINARY_API_KEY + ":" + process.env.CLOUDINARY_API_SECRET).toString('base64')}`
             }
         })
         .then((response)=>response.json())

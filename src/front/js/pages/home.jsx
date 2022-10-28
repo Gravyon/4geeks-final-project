@@ -16,7 +16,7 @@ export const Home = () => {
     }, []);
 
     return (
-    <div className="container text-center ">
+    <div className="container text-center">
         <LandingPage/>
 </div>);
 };
