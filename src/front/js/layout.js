@@ -10,11 +10,7 @@ import { ProductDetail } from "./pages/details.jsx";
 import { Login } from "./pages/login.jsx";
 import { SignUp } from "./pages/signup.jsx";
 import { Profile } from "./pages/profile.jsx";
-<<<<<<< HEAD
-import { Favorites } from "./pages/favorites.jsx";
-=======
 import { SubirImagenes } from "./pages/images.jsx";
->>>>>>> 9d8f97151fb99a158e3556e10bbab3fee51f3381
 
 import { NavbarPrincipal } from "./component/navbar.jsx";
 import { Footer } from "./component/footer.jsx";
@@ -36,7 +32,6 @@ const Layout = () => {
           <Routes>
             {" "}
             <Route element={<Home />} path="/" />{" "}
-            <Route element={<Favorites />} path="/favorites" />{" "}
             <Route element={<Login />} path="/login" />{" "}
             <Route element={<SignUp />} path="/signup" />{" "}
             <Route element={<Demo />} path="/demo" />{" "}
@@ -44,7 +39,7 @@ const Layout = () => {
             <Route element={<ProductDetail />} path="/product-detail/:id" />{" "}
             <Route element={<Profile />} path="/profile" />{" "}
             <Route element={<SubirImagenes />} path="/subir-img" />{" "}
-            <Route element={<h1>Not found !</h1>} />{" "}
+            <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}
           <Footer />{" "}
         </ScrollToTop>{" "}
