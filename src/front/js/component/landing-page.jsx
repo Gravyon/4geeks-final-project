@@ -23,6 +23,7 @@ export const LandingPage = () => {
             <Card.Title> {item.name}</Card.Title>
             <Card.Text> {item.category}</Card.Text>
             <Card.Text> {item.price}</Card.Text>
+<<<<<<< HEAD
             <Link
               to={"/product-detail/" + (id + 1)}
               className="btn btn-primary"
@@ -42,6 +43,10 @@ export const LandingPage = () => {
                 onClick={() => actions.marcarFavoritos(item)}
               ></i>
             </Link>
+=======
+            <Link to={"/product-detail/" + (id + 1)} className="btn btn-primary">Leer mas...</Link>
+            <button type="button" onClick={()=>actions.getProducts(item.name)} className="btn btn-primary mx-1">Comprar ahora</button>
+>>>>>>> ec553ecbf3158955f236fc853d5e10b8b00256ca
           </Card.Body>
         </Card>
       ))}

@@ -12,6 +12,7 @@ import { SignUp } from "./pages/signup.jsx";
 import { Favorites } from "./pages/favorites.jsx";
 import { Profile } from "./pages/profile.jsx";
 import { SubirImagenes } from "./pages/images.jsx";
+import { DownloadImages } from "./pages/download-imgs.jsx";
 
 import { NavbarPrincipal } from "./component/navbar.jsx";
 import { Footer } from "./component/footer.jsx";
@@ -41,7 +42,8 @@ const Layout = () => {
             <Route element={<ProductDetail />} path="/product-detail/:id" />{" "}
             <Route element={<Profile />} path="/profile" />{" "}
             <Route element={<SubirImagenes />} path="/subir-img" />{" "}
-            <Route element={<h1> Not found! </h1>} />{" "}
+            <Route element={<DownloadImages />} path="/download-img" />{" "}
+            <Route element={<h1>Not found !</h1>} />{" "}
           </Routes>{" "}
           <Footer />{" "}
         </ScrollToTop>{" "}
