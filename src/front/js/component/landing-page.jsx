@@ -13,7 +13,13 @@ export const LandingPage = () => {
       {store.product.map((item, id) => (
         <Card key={id} style={{ width: "18rem" }}>
           <Card.Body>
-            <img src={"https://uruguayeduca.anep.edu.uy/sites/default/files/2018-05/Imagen%20del%20recurso_0.jpg"}className="img-fluid"alt="..."/>
+            <img
+              src={
+                "https://uruguayeduca.anep.edu.uy/sites/default/files/2018-05/Imagen%20del%20recurso_0.jpg"
+              }
+              className="img-fluid"
+              alt="..."
+            />
             <Card.Title> {item.name}</Card.Title>
             <Card.Text> {item.category}</Card.Text>
             <Card.Text> {item.price}</Card.Text>
