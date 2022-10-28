@@ -9,15 +9,15 @@ import Form from "react-bootstrap/Form";
 
 export const Footer = () => {
   return (
-    <div>
+    <div >
       <Navbar
-        className="text-align-center fixed-bottom"
+        className="d-flex position-relative"
         bg="dark"
         variant="dark"
         expand="lg"
       >
         <Container fluid>
-          <Navbar.Brand href="#">Copyright 2022 - Casa Arte</Navbar.Brand>
+          <Navbar.Brand href="#" className="text-center">Copyright 2022 - Casa Arte</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
