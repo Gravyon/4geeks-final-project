@@ -136,6 +136,21 @@ const getState = ({
                 } catch (error) {
                     console.log(error)
                 }
+            },
+
+            signup: async (username, email, password) => {
+                try {
+
+                    const response = await axios.post("https://3001-gravyon-4geeksfinalproj-ddmu1o4sofb.ws-us73.gitpod.io/api/user", {
+                        username: username,
+                        email: email,
+                        password: password
+                    })
+
+                } catch (error) {
+                    console.log(error)
+
+                }
             }
         },
     };
