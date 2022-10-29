@@ -9,7 +9,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import logo from "../../img/logo-1.png";
+import logo from "../../img/logo1.png";
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
@@ -30,7 +30,7 @@ export const NavbarPrincipal = () => {
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
-          <Navbar.Brand href="/"><img src={logo} alt="" className="rounded-circle" style={{width:"80px", height:"80px"}}/></Navbar.Brand>
+          <Navbar.Brand href="/"><img src={logo} alt=""  style={{width:"100px", height:"100px"}}/></Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
