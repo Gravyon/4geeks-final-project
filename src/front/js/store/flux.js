@@ -102,22 +102,22 @@ const getState = ({
                 });
             },
             // constante marcar favoritos
-            marcarFavoritos: (i) => {
+            marcarFavoritos: (favorito) => {
                 let store = getStore();
-                if (store.listaFavoritos.includes(i)) {
-                    getActions().eliminarFavoritos(i);
+                if (store.listaFavoritos.includes(favorito)) {
+                    getActions().eliminarFavoritos(favorito);
                 } else {
                     setStore({
-                        listaFavoritos: [...store.listaFavoritos, i],
+                        listaFavoritos: [...store.listaFavoritos, favorito],
                     });
                 }
             },
 
             // constante eliminar favoritos
-            eliminarFavoritos: (i) => {
+            eliminarFavoritos: (favorito) => {
                 let store = getStore();
                 setStore({
-                    listaFavoritos: store.listaFavoritos.filter((item) => item !== i),
+                    listaFavoritos: store.listaFavoritos.filter((item) => item !== favorito),
                 });
             },
 
@@ -181,7 +181,7 @@ const getState = ({
                     return;
 
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                     if (error.code === "ERR_BAD_REQUEST") {
                         setStore({
                             auth: false

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { useState, useEffect, useContext } from "react";
+import React from "react";
+import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
@@ -38,10 +38,10 @@ export const LandingPage = () => {
                 Comprar ahora
               </button>
             </Card.Body>
-            <Link to="" className="btn btn-danger">
+            <Link to="/" className="btn btn-danger">
               <i
                 className="far fa-heart"
-                onClick={() => actions.marcarFavoritos(item)}
+                onClick={() => {actions.marcarFavoritos(item)}}
               ></i>
             </Link>
           </Card>
