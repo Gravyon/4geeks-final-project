@@ -26,7 +26,7 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
 
   return (
-    <div>
+    <div style={{background: "#B73E3E"}}>
       {" "}
       <BrowserRouter basename={basename}>
         {" "}
@@ -49,7 +49,9 @@ const Layout = () => {
            
             <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}
-          <Footer />{" "}
+          
+          <Footer/>{" "}
+         
         </ScrollToTop>{" "}
       </BrowserRouter>{" "}
     </div>
