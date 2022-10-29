@@ -26,7 +26,7 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
 
   return (
-    <div>
+    <div style={{background: "#B73E3E"}}>
       {" "}
       <BrowserRouter basename={basename}>
         {" "}
