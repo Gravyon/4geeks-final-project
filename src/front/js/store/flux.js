@@ -63,6 +63,7 @@ const getState = ({
 
                     localStorage.setItem("token", response.data.msg);
                     console.log(response.data.msg);
+                    console.log(response)
                     setStore({
                         auth: true,
                     });
@@ -167,13 +168,16 @@ const getState = ({
                 try {
                     const response = await axios.get(process.env.BACKEND_URL + "/api/valid-token", {
                         headers: {
-                            Authorization: "Bearer" + accessToken
+                            Authorization: "Bearer " + accessToken
                         }
                     })
+                    console.log(accessToken)
 
                     setStore({
                         auth: response.data.status
+
                     })
+                    console.log(auth)
                     return;
 
                 } catch (error) {
