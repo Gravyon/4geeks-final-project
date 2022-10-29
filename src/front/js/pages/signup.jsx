@@ -11,8 +11,7 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  
   const { actions } = useContext(Context);
   let navigate = useNavigate();
 

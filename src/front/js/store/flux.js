@@ -15,7 +15,7 @@ const getState = ({
             // listaCarrito: [],
 
             auth: false,
-            register: false,
+            registered: false,
         },
         actions: {
             // fecht de los cuadros
@@ -146,6 +146,13 @@ const getState = ({
                         email: email,
                         password: password
                     })
+
+                    if (response.status === 200) {
+                        getActions().login(email, password)
+                        setStore({
+                            registered: true
+                        })
+                    }
 
                 } catch (error) {
                     console.log(error)

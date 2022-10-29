@@ -9,6 +9,7 @@ export const LandingPage = () => {
   const { store, actions } = useContext(Context);
 
   return (
+  
     <div className="card-group">
       <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
         {store.product.map((item, id) => (
