@@ -63,6 +63,7 @@ const getState = ({
 
                     localStorage.setItem("token", response.data.msg);
                     console.log(response.data.msg);
+                    console.log(response)
                     setStore({
                         auth: true,
                     });
@@ -141,7 +142,7 @@ const getState = ({
             signup: async (username, email, password) => {
                 try {
 
-                    const response = await axios.post("https://3001-gravyon-4geeksfinalproj-ddmu1o4sofb.ws-us73.gitpod.io/api/user", {
+                    const response = await axios.post(process.env.BACKEND_URL + "/api/user", {
                         username: username,
                         email: email,
                         password: password
@@ -157,6 +158,36 @@ const getState = ({
                 } catch (error) {
                     console.log(error)
 
+                }
+            },
+
+            //Funcion para validar el Token y mantener al usuario registrado
+
+            validToken: async () => {
+                let accessToken = localStorage.getItem('token')
+                try {
+                    const response = await axios.get(process.env.BACKEND_URL + "/api/valid-token", {
+                        headers: {
+                            Authorization: "Bearer " + accessToken
+                        }
+                    })
+                    console.log(accessToken)
+
+                    setStore({
+                        auth: response.data.status
+
+                    })
+                    console.log(auth)
+                    return;
+
+                } catch (error) {
+                    console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        setStore({
+                            auth: false
+                        })
+                    }
+                    return false
                 }
             }
         },
