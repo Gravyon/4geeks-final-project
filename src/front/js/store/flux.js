@@ -30,7 +30,7 @@ const getState = ({
                         product: data,
                     }); //promesa 2
                 } catch (err) {
-                    // console.log(err);
+                    console.log(err);
                 }
 
                 // fecht de los detalles
@@ -63,7 +63,7 @@ const getState = ({
 
                     localStorage.setItem("token", response.data.msg);
                     console.log(response.data.msg);
-                    console.log(response)
+                    console.log(response);
                     setStore({
                         auth: true,
                     });
@@ -117,7 +117,9 @@ const getState = ({
             eliminarFavoritos: (favorito) => {
                 let store = getStore();
                 setStore({
-                    listaFavoritos: store.listaFavoritos.filter((item) => item !== favorito),
+                    listaFavoritos: store.listaFavoritos.filter(
+                        (item) => item !== favorito
+                    ),
                 });
             },
 
@@ -125,71 +127,70 @@ const getState = ({
 
             createProduct: async (name, description, category, url, price) => {
                 try {
-
-                    const response = await axios.post(process.env.BACKEND_URL + "/api/product", {
-                        name: name,
-                        description: description,
-                        category: category,
-                        url: url,
-                        price: price
-                    })
-
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/product", {
+                            name: name,
+                            description: description,
+                            category: category,
+                            url: url,
+                            price: price,
+                        }
+                    );
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
             },
 
             signup: async (username, email, password) => {
                 try {
-
-                    const response = await axios.post(process.env.BACKEND_URL + "/api/user", {
-                        username: username,
-                        email: email,
-                        password: password
-                    })
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/user", {
+                            username: username,
+                            email: email,
+                            password: password,
+                        }
+                    );
 
                     if (response.status === 200) {
-                        getActions().login(email, password)
+                        getActions().login(email, password);
                         setStore({
-                            registered: true
-                        })
+                            registered: true,
+                        });
                     }
-
                 } catch (error) {
-                    console.log(error)
-
+                    console.log(error);
                 }
             },
 
             //Funcion para validar el Token y mantener al usuario registrado
 
             validToken: async () => {
-                let accessToken = localStorage.getItem('token')
+                let accessToken = localStorage.getItem("token");
                 try {
-                    const response = await axios.get(process.env.BACKEND_URL + "/api/valid-token", {
-                        headers: {
-                            Authorization: "Bearer " + accessToken
+                    const response = await axios.get(
+                        process.env.BACKEND_URL + "/api/valid-token", {
+                            headers: {
+                                Authorization: "Bearer " + accessToken,
+                            },
                         }
-                    })
-                    console.log(accessToken)
+                    );
+                    console.log(accessToken);
 
                     setStore({
-                        auth: response.data.status
-
-                    })
-                    console.log(auth)
+                        auth: response.data.status,
+                    });
+                    console.log(auth);
                     return;
-
                 } catch (error) {
                     // console.log(error);
                     if (error.code === "ERR_BAD_REQUEST") {
                         setStore({
-                            auth: false
-                        })
+                            auth: false,
+                        });
                     }
-                    return false
+                    return false;
                 }
-            }
+            },
         },
     };
 };

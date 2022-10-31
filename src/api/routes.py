@@ -1,22 +1,15 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint, json 
+from flask import Flask, request, jsonify, url_for, Blueprint, json, current_app
 from api.models import db, User, Products, Comments, Favorites, Shopping, OrderHistory
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
+from flask_mail import Mail, Message
+from threading import Thread
+import random, string
 
 api = Blueprint('api', __name__)
-
-
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
 
 ###########################
 # Login function
@@ -163,35 +156,36 @@ def delete_product(product_id):
         raise APIException('Product not found', status_code=404)
         return jsonify(product)
 
-# ###########################
-# # Product PUT (MODIFY) query
-# ###########################
+###########################
+# Product PUT (MODIFY) query
+###########################
 
-# @api.route('/product/<int:product_id>', methods=['PUT'])
-# def modify_product(product_id):
-#     body = json.loads(request.data)
-#     name = request.json['username']
-#     password = request.json['password']
-#     email = request.json['email']
-#     product = Products.query.filter_by(id=product_id).first()
-#     # print(user, body)
-#     # print("user: " +user.username, "password: "+user.password, "email: "+user.email)
-#     # If user exists, modifies it with new inputs
-#     if product:
-#         user.username = username
-#         user.password = password
-#         user.email = email
-#         db.session
-#         db.session.commit()
-#         response_body = {
-#             "msg": "User updated successfully"
-#             }
-#         return jsonify(response_body), 200
+@api.route('/product/<int:product_id>', methods=['PUT'])
+def modify_product(product_id):
+    body = json.loads(request.data)
+    name = request.json['name']
+    category = request.json['category']
+    description = request.json['description']
+    url = request.json['url']
+    price = request.json['price']
+    product = Products.query.filter_by(id=product_id).first()
+    # If product exists, modifies it with new inputs
+    if product:
+        product.name = name
+        product.category = category
+        product.description = description
+        product.url = url
+        product.price = price
+        db.session
+        db.session.commit()
+        response_body = {
+            "msg": "Product updated successfully"
+            }
+        return jsonify(response_body), 200
 
-#     elif user is None:
-#         raise APIException('User not found', status_code=404)
-#         return jsonify(user)
-
+    elif product is None:
+        raise APIException('Product not found', status_code=404)
+        return jsonify(product)
 
 ###########################
 # User POST query
@@ -299,25 +293,26 @@ def modify_user(user_id):
 # User password PUT (MODIFY) query
 ###########################
 
-@api.route('/password/<int:user_id>', methods=['PUT'])
+@api.route('/user/password/<int:user_id>', methods=['POST'])
 def modify_user_password(user_id):
-    password = request.json['password']
-    user = User.query.filter_by(id=user_id).first()
-    print(user)
-    print("user: " +user.username, "password: "+user.password, "email: "+user.email)
-    # If user exists, modifies it with new inputs
-    if user:
-        user.password = password
-        db.session
-        db.session.commit()
-        response_body = {
-            "msg": "User password updated successfully"
-            }
-        return jsonify(response_body), 200
+    recover_email = request.json['email']
+    #Random password
+    recover_password = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(8)) 
+    # If there's no input
+    if not recover_email:
+        return jsonify({"msg": "You must type an email address"}), 401
+    user = User.query.filter_by(email=recover_email).first()
+    # If user email doesn't exist
+    if recover_email != user.email:
+        return jsonify({"msg": "User email doesn't exist"}), 404
+    # Modifies user passowrd with new random password
+    user.password = recover_password
+    db.session.commit()
+    msg = Message("Hello", recipients=[recover_email])
+    msg.html = f"""<h1>Your new password is: {recover_password}</h1>"""
+    current_app.mail.send(msg)
+    return jsonify("Your password has been sent to your email"), 200
 
-    elif user is None:
-        raise APIException('User not found', status_code=404)
-        return jsonify(user)
 ###########################
 # Favorites GET queries
 ###########################
