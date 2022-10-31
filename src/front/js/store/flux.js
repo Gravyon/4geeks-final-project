@@ -12,7 +12,6 @@ const getState = ({
             products: [],
 
             listaFavoritos: [],
-            // listaCarrito: [],
 
             auth: false,
             register: false,
@@ -124,19 +123,19 @@ const getState = ({
 
             createProduct: async (name, description, category, url, price) => {
                 try {
-
-                    const response = await axios.post(process.env.BACKEND_URL + "/api/product", {
-                        name: name,
-                        description: description,
-                        category: category,
-                        url: url,
-                        price: price
-                    })
-
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/product", {
+                            name: name,
+                            description: description,
+                            category: category,
+                            url: url,
+                            price: price,
+                        }
+                    );
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
-            }
+            },
         },
     };
 };

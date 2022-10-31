@@ -7,12 +7,11 @@ import Navbar from "react-bootstrap/Navbar";
 
 export const Carrito = () => {
   const { store, actions } = useContext(Context);
+  // let compraTotal = {item.price} + {item.price};
 
   if (store.products.length === "") {
     ("No tienes ninguna compra");
   }
-
-  // store.compraTotal.map((item, id) => <p>{item.price + item.price} </p>);}
 
   return (
     <div className="container mt-5">
@@ -22,7 +21,7 @@ export const Carrito = () => {
       <div>
         <ol>
           <li>
-            <button className="dropdown-item">
+            <h5>
               {store.products.map((item, id) => (
                 <li className="list-group-item border border-1" key={id}>
                   {item.name}
@@ -35,14 +34,18 @@ export const Carrito = () => {
                   </span>
                 </li>
               ))}
-            </button>
+            </h5>
           </li>
         </ol>
       </div>
-      {/* <p>Total: {item.price}</p> */}
-      {/* <button className="btn btn-danger">
+      <div>
+        {store.products.map((item, id) => (
+          <p key={id}>Total: {item.price + item.price} </p>
+        ))}
+        {/* <button className="btn btn-danger">
         <Link to={"/"}>Comprar</Link>
       </button> */}
+      </div>
       <button className="btn btn-dark">
         <Nav.Link className="text-warning" href="/">
           Home
