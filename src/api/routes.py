@@ -163,6 +163,36 @@ def delete_product(product_id):
         raise APIException('Product not found', status_code=404)
         return jsonify(product)
 
+# ###########################
+# # Product PUT (MODIFY) query
+# ###########################
+
+# @api.route('/product/<int:product_id>', methods=['PUT'])
+# def modify_product(product_id):
+#     body = json.loads(request.data)
+#     name = request.json['username']
+#     password = request.json['password']
+#     email = request.json['email']
+#     product = Products.query.filter_by(id=product_id).first()
+#     # print(user, body)
+#     # print("user: " +user.username, "password: "+user.password, "email: "+user.email)
+#     # If user exists, modifies it with new inputs
+#     if product:
+#         user.username = username
+#         user.password = password
+#         user.email = email
+#         db.session
+#         db.session.commit()
+#         response_body = {
+#             "msg": "User updated successfully"
+#             }
+#         return jsonify(response_body), 200
+
+#     elif user is None:
+#         raise APIException('User not found', status_code=404)
+#         return jsonify(user)
+
+
 ###########################
 # User POST query
 ###########################
@@ -247,8 +277,8 @@ def modify_user(user_id):
     password = request.json['password']
     email = request.json['email']
     user = User.query.filter_by(id=user_id).first()
-    print(user, body)
-    print("user: " +user.username, "password: "+user.password, "email: "+user.email)
+    # print(user, body)
+    # print("user: " +user.username, "password: "+user.password, "email: "+user.email)
     # If user exists, modifies it with new inputs
     if user:
         user.username = username
