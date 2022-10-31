@@ -9,30 +9,28 @@ export const LandingPage = () => {
   const { store, actions } = useContext(Context);
 
   return (
-
-    <div className="card-group mb-5" >
+    <div className="card-group mb-5">
       <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        {store.product.length > 0 ? store.product.map((item, id) => (
-
-          <Card className="m-3" key={id} style={{ width: "18rem", background: "#212529" }}>
-            <Link
-              to={"/product-detail/" + (id + 1)}
-
+        {store.product.length > 0 ? (
+          store.product.map((item, id) => (
+            <Card
+              className="m-3"
+              key={id}
+              style={{ width: "18rem", background: "#212529" }}
             >
-              <Card.Body>
-                
-                <img
-                  src={item.url}
-                  className="img-fluid rounded p-1"
-                  alt="..."
-                  
-                />
-                
-                <Card.Title> {item.name}</Card.Title>
-                <Card.Text> {item.category}</Card.Text>
-                <Card.Text> {item.price}</Card.Text>
-                <div className="col d-flex justify-content-xxl-between d-flex align-items-end">
-                  {/* <div className="col-6 d-flex justify-content-between">
+              <Link to={"/product-detail/" + (id + 1)}>
+                <Card.Body>
+                  <img
+                    src={item.url}
+                    className="img-fluid rounded p-1"
+                    alt="..."
+                  />
+
+                  <Card.Title> {item.name}</Card.Title>
+                  <Card.Text> {item.category}</Card.Text>
+                  <Card.Text> {item.price}</Card.Text>
+                  <div className="col d-flex justify-content-xxl-between d-flex align-items-end">
+                    {/* <div className="col-6 d-flex justify-content-between">
                     <Link
                       to={"/product-detail/" + (id + 1)}
                       className="btn btn-primary"
@@ -47,7 +45,7 @@ export const LandingPage = () => {
                       className="btn btn-primary"
                       style={{ float: "right" }}
                     >
-                      <i class="fa fa-cart-plus"></i>
+                      <i className="fa fa-cart-plus"></i>
                     </button>
                   </div>
                   <div className="col-6 ">
@@ -63,7 +61,7 @@ export const LandingPage = () => {
             </Link>
 
           </Card>
-        )): <p>No hay cartas</p>}
+        ))): (<p>No hay cartas</p>)}
       </div>
     </div>
   );

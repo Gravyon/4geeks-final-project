@@ -14,7 +14,7 @@ import { Profile } from "./pages/profile.jsx";
 import { Carrito } from "./pages/carrito.jsx";
 import { ContactUs } from "./pages/contactus.jsx";
 import { SubirImagenes } from "./pages/images.jsx";
-
+import { Checkout } from "./pages/checkout.jsx";
 
 import { NavbarPrincipal } from "./component/navbar.jsx";
 import { Footer } from "./component/footer.jsx";
@@ -26,7 +26,7 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
 
   return (
-    <div style={{background: "#B73E3E"}}>
+    <div style={{ background: "#B73E3E" }}>
       {" "}
       <BrowserRouter basename={basename}>
         {" "}
@@ -41,17 +41,15 @@ const Layout = () => {
             <Route element={<ContactUs />} path="/contactus" />{" "}
             <Route element={<Favorites />} path="/favorites" />{" "}
             <Route element={<Carrito />} path="/carrito" />{" "}
+            <Route element={<Checkout />} path="/checkout" />{" "}
             {/* <Route element={<Demo />} path="/demo" />{" "}
                                                                                                                                             <Route element={<Single />} path="/single/:theid" />{" "} */}{" "}
             <Route element={<ProductDetail />} path="/product-detail/:id" />{" "}
             <Route element={<Profile />} path="/profile" />{" "}
             <Route element={<SubirImagenes />} path="/subir-img" />{" "}
-           
             <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}
-          
-          <Footer/>{" "}
-         
+          <Footer />{" "}
         </ScrollToTop>{" "}
       </BrowserRouter>{" "}
     </div>
