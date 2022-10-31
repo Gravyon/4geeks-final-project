@@ -30,7 +30,13 @@ export const NavbarPrincipal = () => {
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
-          <Navbar.Brand href="/"><img src={logo} alt=""  style={{width:"100px", height:"100px"}}/></Navbar.Brand>
+          <Navbar.Brand href="/">
+            <img
+              src={logo}
+              alt=""
+              style={{ width: "100px", height: "100px" }}
+            />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -44,7 +50,6 @@ export const NavbarPrincipal = () => {
               <Nav.Link href="/carrito">Carrito</Nav.Link>
               <Nav.Link href="/favorites">Favorites</Nav.Link>
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
-              
             </Nav>
             <Form className="d-flex">
               <Form.Control
@@ -58,50 +63,50 @@ export const NavbarPrincipal = () => {
               </Button>
             </Form>
             {!store.auth ? (
-                <Nav.Link href="/login" className="text-warning">
-                  Login
-                </Nav.Link>
-              ) : null}{" "}
-              {store.auth ? (
-                <Nav.Link
-                  href="/"
-                  className="text-primary"
-                  type="button"
-                  onClick={doLogout}
-                >
-                  Log out
-                </Nav.Link>
-              ) : null}
-              {!store.auth ? (
-                <Nav.Link href="/signup" className="text-warning">
-                  Sign Up
-                </Nav.Link>
-              ) : null}{" "}
-              <button
-                className="btn btn-outline-warning dropdown-toggle"
+              <Nav.Link href="/login" className="text-warning">
+                Login
+              </Nav.Link>
+            ) : null}{" "}
+            {store.auth ? (
+              <Nav.Link
+                href="/"
+                className="text-primary"
                 type="button"
-                data-bs-toggle="dropdown"
+                onClick={doLogout}
               >
-                <i className="fa fa-cart-shopping"></i>
-                <span className="badge bg-danger rounded-circle">
-                  {store.products.length}
-                </span>
-              </button>
-              <ul className="dropdown-menu">
-                {store.products.map((item, id) => (
-                  <li className="p-2" key={id}>
-                    {item}
-                    <button
-                      type="button"
-                      onClick={() => actions.removeProduct(item)}
-                      className="btn "
-                      style={{ float: "right" }}
-                    >
-                      <i className="fa fa-trash"></i>
-                    </button>
-                  </li>
-                ))}
-              </ul>
+                Log out
+              </Nav.Link>
+            ) : null}
+            {!store.auth ? (
+              <Nav.Link href="/signup" className="text-warning">
+                Sign Up
+              </Nav.Link>
+            ) : null}{" "}
+            <button
+              className="btn btn-outline-warning dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              <i className="fa fa-cart-shopping"></i>
+              <span className="badge bg-danger rounded-circle">
+                <i className="fa fa-cart-plus"></i>__{store.products.length}
+              </span>
+            </button>
+            <ul className="dropdown-menu">
+              {store.products.map((item, id) => (
+                <li className="p-2" key={id}>
+                  {item}
+                  <button
+                    type="button"
+                    onClick={() => actions.removeProduct(item)}
+                    className="btn "
+                    style={{ float: "right" }}
+                  >
+                    <i className="fa fa-trash"></i>
+                  </button>
+                </li>
+              ))}
+            </ul>
           </Navbar.Collapse>
         </Container>
       </Navbar>

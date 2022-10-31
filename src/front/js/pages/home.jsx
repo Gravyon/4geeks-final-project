@@ -16,15 +16,17 @@ export const Home = () => {
   }, []);
 
   return (
-    <>
-    <div className="jumbotron jumbotron-fluid mb-3 mt-5">
-    <div className="container">
-      <h1 className="display-4"><strong>Check out these amazing pieces of art!</strong></h1>
-    </div>
-  </div>
+    <div className="w-100 p-3">
+      <div className="jumbotron jumbotron-fluid mb-3 mt-5">
+        <div className="container">
+          <h1 className="display-4">
+            <strong>Check out these amazing pieces of art!</strong>
+          </h1>
+        </div>
+      </div>
       <div className="container text-center">
         <LandingPage />
       </div>
-    </>
+    </div>
   );
 };

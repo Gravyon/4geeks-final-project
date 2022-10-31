@@ -29,7 +29,7 @@ const getState = ({
                         product: data,
                     }); //promesa 2
                 } catch (err) {
-                    // console.log(err);
+                    console.log(err);
                 }
 
                 // fecht de los detalles
@@ -173,7 +173,7 @@ const getState = ({
                             },
                         }
                     );
-                    console.log(accessToken);
+                    // console.log(accessToken);
 
                     setStore({
                         auth: response.data.status,

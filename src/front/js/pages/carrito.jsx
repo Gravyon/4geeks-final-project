@@ -39,9 +39,9 @@ export const Carrito = () => {
         </ol>
       </div>
       <div>
-        {store.products.map((item, id) => (
+        {/* {store.products.map((item, id) => (
           <p key={id}>Total: {item.price + item.price} </p>
-        ))}
+        ))} */}
         {/* <button className="btn btn-danger">
         <Link to={"/"}>Comprar</Link>
       </button> */}
@@ -49,6 +49,11 @@ export const Carrito = () => {
       <button className="btn btn-dark">
         <Nav.Link className="text-warning" href="/">
           Home
+        </Nav.Link>
+      </button>
+      <button className="btn btn-dark">
+        <Nav.Link className="text-warning" href="/checkout">
+          Check out
         </Nav.Link>
       </button>
     </div>
