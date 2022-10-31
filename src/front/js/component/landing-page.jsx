@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
-  console.log(store.product);
+
   return (
     <div className="card-group mb-5">
       <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
@@ -46,7 +46,7 @@ export const LandingPage = () => {
                           className="btn btn-primary"
                           style={{ float: "right" }}
                         >
-                          <i className="fa fa-cart-plus"></i>
+                          <i class="fa fa-cart-plus"></i>
                         </button>
                       </Link>
                     </div>
@@ -60,16 +60,6 @@ export const LandingPage = () => {
                         ></i>
                       </Link>
                     </div>
-                  </div>
-                  <div className="col-6 ">
-                    <Link to="/" className="btn btn-danger ">
-                      <i
-                        className="far fa-heart"
-                        onClick={() => {
-                          actions.marcarFavoritos(item);
-                        }}
-                      ></i>
-                    </Link>
                   </div>
                 </Card.Body>
               </Link>

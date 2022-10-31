@@ -44,9 +44,9 @@ export const Checkout = () => {
           <label htmlFor="exampleInputEmail1" className="form-label opacity-50">
             Departamento
           </label>
-          <div class="input-group mb-3">
+          <div className="input-group mb-3">
             <select
-              class="form-select"
+              className="form-select"
               id="inputGroupSelect01"
               aria-describedby="emailHelp"
               onChange={(e) => setDepartamento(e.target.value)}
@@ -111,7 +111,7 @@ export const Checkout = () => {
             htmlFor="exampleInputPassword1"
             className="form-label opacity-50"
           >
-            Numbero de Telefono
+            Numero de Telefono
           </label>
           <input
             type="text"
@@ -121,13 +121,104 @@ export const Checkout = () => {
             value={cellphone}
           />
         </div>
+
+        <div className="input-group">
+          <div className="input-group-text">
+            <input
+              className="form-check-input mt-0"
+              type="radio"
+              //   value={}
+              aria-label="Radio button for following text input"
+            />
+          </div>
+          <label
+            htmlFor="exampleInputRadious1"
+            className="form-control"
+            aria-label="Text input with radio button"
+          >
+            Recibir la compra en mi casa
+          </label>
+        </div>
+        <br />
+        <div className="input-group">
+          <div className="input-group-text">
+            <input
+              className="form-check-input mt-0"
+              type="radio"
+              //   value={}
+              aria-label="Radio button for following text input"
+            />
+          </div>
+          <label
+            htmlFor="exampleInputRadious1"
+            className="form-control"
+            aria-label="Text input with radio button"
+          >
+            Retirar la compra en el local
+          </label>
+        </div>
+        <h5>¿Como vas a pagar?</h5>
+        <div className="input-group">
+          <div className="input-group-text">
+            <input
+              className="form-check-input mt-0"
+              type="radio"
+              //   value={}
+              aria-label="Radio button for following text input"
+            />
+          </div>
+          <label
+            htmlFor="exampleInputRadious1"
+            className="form-control"
+            aria-label="Text input with radio button"
+          >
+            Tarjeta de Credito
+          </label>
+        </div>
+        <br />
+        <div className="input-group">
+          <div className="input-group-text">
+            <input
+              className="form-check-input mt-0"
+              type="radio"
+              //   value={}
+              aria-label="Radio button for following text input"
+            />
+          </div>
+          <label
+            htmlFor="exampleInputRadious1"
+            className="form-control"
+            aria-label="Text input with radio button"
+          >
+            Tarjeta de Debito
+          </label>
+        </div>
+        <hr />
+        <div className="input-group">
+          <div className="input-group-text">
+            <input
+              className="form-check-input mt-0"
+              type="radio"
+              //   value={}
+              aria-label="Radio button for following text input"
+            />
+          </div>
+          <label
+            htmlFor="exampleInputRadious1"
+            className="form-control"
+            aria-label="Text input with radio button"
+          >
+            Efectivo en redes de cobranza
+          </label>
+        </div>
+
         <Link to={""}>
           <button
             //   onClick={}
             type="button"
             className="btn btn-dark text-warning"
           >
-            Continue
+            Submit
           </button>
         </Link>
       </form>
