@@ -46,7 +46,7 @@ export const LandingPage = () => {
                           className="btn btn-primary"
                           style={{ float: "right" }}
                         >
-                          <i class="fa fa-cart-plus"></i>
+                          <i className="fa fa-cart-plus"></i>
                         </button>
                       </Link>
                     </div>
