@@ -43,7 +43,7 @@ export const LandingPage = () => {
                   <div className="col-4 d-flex">
                     <button
                       type="button"
-                      onClick={() => actions.getProducts(item.name)}
+                      onClick={() => actions.addProducts(item.name)}
                       className="btn btn-primary"
                       style={{ float: "right" }}
                     >

@@ -85,7 +85,7 @@ const getState = ({
                 });
                 return false;
             },
-            getProducts: (product) => {
+            addProducts: (product) => {
                 const store = getStore();
                 if (store.products.includes(product)) {
                     getActions().removeProduct(product);
@@ -110,6 +110,20 @@ const getState = ({
                     setStore({
                         listaFavoritos: [...store.listaFavoritos, favorito],
                     });
+                }
+            },
+
+            createFavorite: async (product_id, user_id) => {
+                try {
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/user/id/favorite", {
+                            product_id: product_id,
+                            user_id: user_id
+                        }
+                    );
+                    getActions().marcarFavoritos(product_id)
+                } catch (error) {
+                    console.log(error);
                 }
             },
 
