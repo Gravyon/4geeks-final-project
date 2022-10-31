@@ -12,7 +12,6 @@ const getState = ({
             products: [],
 
             listaFavoritos: [],
-            // listaCarrito: [],
 
             auth: false,
             registered: false,
@@ -174,7 +173,7 @@ const getState = ({
                             },
                         }
                     );
-                    console.log(accessToken);
+                    // console.log(accessToken);
 
                     setStore({
                         auth: response.data.status,

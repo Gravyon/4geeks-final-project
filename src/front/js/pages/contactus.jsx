@@ -31,7 +31,7 @@ export const ContactUs = () => {
       <div>
         <i className="bi bi-envelope"></i>
         <h5 className="pb-5">example@domain.com</h5>
-        <i class="bi bi-geo-alt"></i>
+        <i className="bi bi-geo-alt"></i>
         <h5 className="pb-5">
           Av. de las leyes 1234 <br />
           Montevideo-Uruguay

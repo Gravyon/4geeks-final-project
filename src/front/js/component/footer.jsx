@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 
 export const Footer = () => {
   return (
-    <div className="fixed-bottom" >
+    <div className="fixed-bottom">
       <Navbar
         className="d-flex position-relative"
         bg="dark"
@@ -17,7 +17,9 @@ export const Footer = () => {
         expand="lg"
       >
         <Container fluid>
-          <Navbar.Brand href="#" className="text-center fixed-bottom">Copyright 2022 - Casa Arte</Navbar.Brand>
+          <Navbar.Brand href="#" className="text-center fixed-bottom">
+            Copyright 2022 - Casa Arte
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
