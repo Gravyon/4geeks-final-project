@@ -10,7 +10,7 @@ export const LandingPage = () => {
 
   return (
 
-    <div className="card-group mb-5">
+    <div className="card-group mb-5" width={"100%"} height={"100%"}>
       <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
         {store.product.map((item, id) => (
 

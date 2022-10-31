@@ -237,6 +237,58 @@ def delete_user(user_id):
         return jsonify(user)
 
 ###########################
+# User PUT (MODIFY) query
+###########################
+
+@api.route('/user/<int:user_id>', methods=['PUT'])
+def modify_user(user_id):
+    body = json.loads(request.data)
+    username = request.json['username']
+    password = request.json['password']
+    email = request.json['email']
+    user = User.query.filter_by(id=user_id).first()
+    print(user, body)
+    print("user: " +user.username, "password: "+user.password, "email: "+user.email)
+    # If user exists, modifies it with new inputs
+    if user:
+        user.username = username
+        user.password = password
+        user.email = email
+        db.session
+        db.session.commit()
+        response_body = {
+            "msg": "User updated successfully"
+            }
+        return jsonify(response_body), 200
+
+    elif user is None:
+        raise APIException('User not found', status_code=404)
+        return jsonify(user)
+
+###########################
+# User password PUT (MODIFY) query
+###########################
+
+@api.route('/password/<int:user_id>', methods=['PUT'])
+def modify_user_password(user_id):
+    password = request.json['password']
+    user = User.query.filter_by(id=user_id).first()
+    print(user)
+    print("user: " +user.username, "password: "+user.password, "email: "+user.email)
+    # If user exists, modifies it with new inputs
+    if user:
+        user.password = password
+        db.session
+        db.session.commit()
+        response_body = {
+            "msg": "User password updated successfully"
+            }
+        return jsonify(response_body), 200
+
+    elif user is None:
+        raise APIException('User not found', status_code=404)
+        return jsonify(user)
+###########################
 # Favorites GET queries
 ###########################
 
