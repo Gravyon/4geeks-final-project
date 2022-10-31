@@ -9,7 +9,7 @@ export const LandingPage = () => {
   const { store, actions } = useContext(Context);
   console.log(store.product);
   return (
-    <div className="card-group mb-5" width={"100%"} height={"100%"}>
+    <div className="card-group mb-5">
       <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
         {store.product.length > 0 ? (
           store.product.map((item, id) => (
@@ -61,12 +61,22 @@ export const LandingPage = () => {
                       </Link>
                     </div>
                   </div>
+                  <div className="col-6 ">
+                    <Link to="/" className="btn btn-danger ">
+                      <i
+                        className="far fa-heart"
+                        onClick={() => {
+                          actions.marcarFavoritos(item);
+                        }}
+                      ></i>
+                    </Link>
+                  </div>
                 </Card.Body>
               </Link>
             </Card>
           ))
         ) : (
-          <p>No hay productos</p>
+          <p>No hay cartas</p>
         )}
       </div>
     </div>

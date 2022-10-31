@@ -12,6 +12,8 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail, Message
+from threading import Thread
 #from models import Person
 
 ENV = os.getenv("FLASK_ENV")
@@ -36,6 +38,30 @@ CORS(app)
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 jwt = JWTManager(app)
+#CONFIGURATION EMAIL
+# mail_settings = {
+#     'MAIL_SERVER': 'smtp.gmail.com',
+#     'MAIL_PORT': 465,
+#     'MAIL_USE_TLS': False,
+#     'MAIL_USE_SSL': True,
+#     'MAIL_USERNAME': "example@gmail.com",
+#     'MAIL_PASSWORD': "example",
+#     'MAIL_DEFAULT_SENDER': 'example@gmail.com'
+# }
+mail_settings = {
+    'MAIL_SERVER':'smtp.mailtrap.io',
+    'MAIL_PORT': 2525,
+    'MAIL_USERNAME': os.getenv('MAIL_USERNAME'),
+    'MAIL_PASSWORD': os.getenv('MAIL_PASSWORD'),
+    'MAIL_USE_TLS': True,
+    'MAIL_USE_SSL': False,
+    'MAIL_DEFAULT_SENDER': os.getenv('MAIL_USERNAME')
+}
+
+app.config.update(mail_settings)
+#Adds mail to app and it can be called as current_app from routes.py
+mail = Mail(app)
+app.mail = mail
 
 # add the admin
 setup_admin(app)

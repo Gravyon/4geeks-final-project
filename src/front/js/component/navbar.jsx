@@ -87,9 +87,9 @@ export const NavbarPrincipal = () => {
               type="button"
               data-bs-toggle="dropdown"
             >
-              <i className="fa fa-cart-shopping"></i>
+              <i className="fa fa-cart-plus"></i>
               <span className="badge bg-danger rounded-circle">
-                <i className="fa fa-cart-plus"></i>__{store.products.length}
+                {store.products.length}
               </span>
             </button>
             <ul className="dropdown-menu">
