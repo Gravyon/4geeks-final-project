@@ -10,9 +10,9 @@ export const LandingPage = () => {
 
   return (
 
-    <div className="card-group mb-5" width={"100%"} height={"100%"}>
+    <div className="card-group mb-5" >
       <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        {store.product.map((item, id) => (
+        {store.product.length > 0 ? store.product.map((item, id) => (
 
           <Card className="m-3" key={id} style={{ width: "18rem", background: "#212529" }}>
             <Link
@@ -63,7 +63,7 @@ export const LandingPage = () => {
             </Link>
 
           </Card>
-        ))}
+        )): <p>No hay cartas</p>}
       </div>
     </div>
   );
