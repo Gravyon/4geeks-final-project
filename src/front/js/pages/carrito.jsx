@@ -15,7 +15,7 @@ export const Carrito = () => {
   // store.compraTotal.map((item, id) => <p>{item.price + item.price} </p>);}
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 vh-100">
       <div className="w-25">
         <h1>Carrito {store.products.length}</h1>
       </div>

@@ -31,7 +31,7 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="text-center mt-5 container">
+    <div className="text-center mt-5 container vh-100">
       <form onSubmit={doSubmit}>
         <div className="mb-3">
           <label

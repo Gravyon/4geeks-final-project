@@ -54,7 +54,7 @@ export const LandingPage = () => {
                     <Link to="/" className="btn btn-danger ">
                       <i
                         className="far fa-heart"
-                        onClick={() => { actions.marcarFavoritos(item) }}
+                        onClick={() => { actions.createFavorite(item.id) }}
                       ></i>
                     </Link>
                   </div>
