@@ -8,9 +8,13 @@ import Navbar from "react-bootstrap/Navbar";
 export const Favorites = () => {
   const { store, actions } = useContext(Context);
 
-  if (store.listaFavoritos.length === "") {
-    ("No tienes ningun favorito");
-  }
+  // useEffect(() => {
+  //   actions.marcarFavoritos(favorito)
+  // })
+
+  // if (store.listaFavoritos.length === "") {
+  //   ("No tienes ningun favorito");
+  // }
 
   return (
     <div className="container mt-5">
@@ -23,8 +27,8 @@ export const Favorites = () => {
             <button className="dropdown-item">
               {store.listaFavoritos.map((item, id) => (
                 <li className="list-group-item border border-1" key={id}>
-                  {item.name}
-                  <p>Precio: {item.price}</p>
+                  {item?.name}
+                  <p>Precio: {item?.price}</p>
                   <i className="bi bi-star-fill"></i>
                   <i className="bi bi-star-half"></i>
                   <i className="bi bi-star"></i>

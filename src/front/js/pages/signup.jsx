@@ -11,25 +11,22 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  
   const { actions } = useContext(Context);
   let navigate = useNavigate();
 
   const doSubmit = (e) => {
     e.preventDefault();
-    let onSignUp = actions.SignUp(
-      email,
-      password,
+    let onSignUp = actions.signup(
       username,
-      firstName,
-      lastName
+      email,
+      password    
+      
     );
     setEmail("");
     setPassword("");
     setUsername("");
-    setFirstName("");
-    setLastName("");
+    
     onSignUp ? navigate("/") : null;
   };
 
@@ -38,34 +35,20 @@ export const SignUp = () => {
       <form onSubmit={doSubmit}>
         <div className="mb-3">
           <label
-            htmlFor="exampleInputPassword1"
+            htmlFor="exampleName"
             className="form-label opacity-50"
           >
-            First Name
+            Username
           </label>
           <input
             type="text"
             className="form-control"
-            id="exampleInputPassword1"
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
+            id="exampleName"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
           />
         </div>
-        <div className="mb-3">
-          <label
-            htmlFor="exampleInputPassword1"
-            className="form-label opacity-50"
-          >
-            Last Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputPassword1"
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
-          />
-        </div>
+        
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label opacity-50">
             Email address
@@ -79,21 +62,7 @@ export const SignUp = () => {
             value={email}
           />
         </div>
-        <div className="mb-3">
-          <label
-            htmlFor="exampleInputPassword1"
-            className="form-label opacity-50"
-          >
-            Username
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputPassword1"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-        </div>
+        
         <div className="mb-3">
           <label
             htmlFor="exampleInputPassword1"

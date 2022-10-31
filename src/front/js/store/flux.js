@@ -14,7 +14,7 @@ const getState = ({
             listaFavoritos: [],
 
             auth: false,
-            register: false,
+            registered: false,
         },
         actions: {
             // fecht de los cuadros
@@ -62,6 +62,7 @@ const getState = ({
 
                     localStorage.setItem("token", response.data.msg);
                     console.log(response.data.msg);
+                    console.log(response);
                     setStore({
                         auth: true,
                     });
@@ -100,22 +101,24 @@ const getState = ({
                 });
             },
             // constante marcar favoritos
-            marcarFavoritos: (i) => {
+            marcarFavoritos: (favorito) => {
                 let store = getStore();
-                if (store.listaFavoritos.includes(i)) {
-                    getActions().eliminarFavoritos(i);
+                if (store.listaFavoritos.includes(favorito)) {
+                    getActions().eliminarFavoritos(favorito);
                 } else {
                     setStore({
-                        listaFavoritos: [...store.listaFavoritos, i],
+                        listaFavoritos: [...store.listaFavoritos, favorito],
                     });
                 }
             },
 
             // constante eliminar favoritos
-            eliminarFavoritos: (i) => {
+            eliminarFavoritos: (favorito) => {
                 let store = getStore();
                 setStore({
-                    listaFavoritos: store.listaFavoritos.filter((item) => item !== i),
+                    listaFavoritos: store.listaFavoritos.filter(
+                        (item) => item !== favorito
+                    ),
                 });
             },
 
@@ -134,6 +137,57 @@ const getState = ({
                     );
                 } catch (error) {
                     console.log(error);
+                }
+            },
+
+            signup: async (username, email, password) => {
+                try {
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/user", {
+                            username: username,
+                            email: email,
+                            password: password,
+                        }
+                    );
+
+                    if (response.status === 200) {
+                        getActions().login(email, password);
+                        setStore({
+                            registered: true,
+                        });
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+
+            //Funcion para validar el Token y mantener al usuario registrado
+
+            validToken: async () => {
+                let accessToken = localStorage.getItem("token");
+                try {
+                    const response = await axios.get(
+                        process.env.BACKEND_URL + "/api/valid-token", {
+                            headers: {
+                                Authorization: "Bearer " + accessToken,
+                            },
+                        }
+                    );
+                    console.log(accessToken);
+
+                    setStore({
+                        auth: response.data.status,
+                    });
+                    console.log(auth);
+                    return;
+                } catch (error) {
+                    // console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        setStore({
+                            auth: false,
+                        });
+                    }
+                    return false;
                 }
             },
         },
