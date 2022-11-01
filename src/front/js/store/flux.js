@@ -13,7 +13,7 @@ const getState = ({
 
             listaFavoritos: [],
             // listaCarrito: [],
-            productId: [],
+            // productId: [],
             // productId: "",
             userId: null,
             auth: false,
@@ -119,30 +119,12 @@ const getState = ({
             //funcion para crear favorito en la base de datos
             createFavorite: async (product_id) => {
 
-
-                // console.log(product_id); //bien 
                 let store = getStore();
-                // setStore({
-                //     productId: [...store.productId, product_id],
 
-                // });
-                // console.log(product_id); //bien                
                 let user_id = store.userId
                 console.log(user_id);
 
                 try {
-                    // let store = getStore();
-                    // if (store.auth === true) {
-                    //     if (store.productId.includes(product_id)) {
-                    //         getActions().eliminarFavoritos(product_id);
-                    //     } else {
-                    //         setStore({
-                    //             productId: [...store.productId, product_id],
-                    //             // productId: product_id,
-                    //             // listaFavoritos: [...store.listaFavoritos, favorito]
-
-                    //         });
-                    // }
 
                     const response = await axios.post(
                         process.env.BACKEND_URL + "/api/favorites", {
@@ -152,23 +134,33 @@ const getState = ({
                     )
                     console.log(response);
                     return response;
-                    // }
 
-                    // getActions().marcarFavoritos(favorito)
                 } catch (error) {
                     console.log(error);
 
                 }
             },
 
-            // constante eliminar favoritos
-            eliminarFavoritos: (favorito) => {
-                let store = getStore();
-                setStore({
-                    listaFavoritos: store.listaFavoritos.filter(
-                        (item) => item !== favorito
-                    ),
-                });
+            // Funcion para eliminar favoritos en la base
+            eliminarFavoritos: async (product_id) => {
+                // let store = getStore();
+                // setStore({
+                //     listaFavoritos: store.listaFavoritos.filter(
+                //         (item) => item !== favorito
+                //     ),
+                // });
+                try {
+                    const response = await axios.delete(
+                        process.env.BACKEND_URL + "/api/favorites", {
+                            id_products: product_id,
+                            id_user: user_id
+                        }
+                    )
+                    console.log(response);
+                    return response;
+                } catch (error) {
+                    console.log(error)
+                }
             },
 
             // funcion para crear productos
