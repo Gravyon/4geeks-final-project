@@ -22,7 +22,7 @@ export const ChangePassword = () => {
 
   return (
     <div>
-      <h1>Repair your count</h1>
+      <h1>Reset password</h1>
       <div className="text-center mt-5 container vh-100">
         <form
         // onSubmit={doSubmit}

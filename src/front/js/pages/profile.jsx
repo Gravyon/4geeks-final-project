@@ -27,16 +27,36 @@ export const Profile = (props) => {
             <Col sm={3}>
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
-                  <Nav.Link eventKey="first">Your info</Nav.Link>
+                  <Nav.Link
+                    eventKey="first"
+                    className="btn btn-dark text-warning"
+                  >
+                    Your info
+                  </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="second">Order history</Nav.Link>
+                  <Nav.Link
+                    eventKey="second"
+                    className="btn btn-dark text-warning"
+                  >
+                    Order history
+                  </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="third">Your favorites</Nav.Link>
+                  <Nav.Link
+                    eventKey="third"
+                    className="btn btn-dark text-warning"
+                  >
+                    Your favorites
+                  </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="fourth">Admin personal info</Nav.Link>
+                  <Nav.Link
+                    eventKey="fourth"
+                    className="btn btn-dark text-warning"
+                  >
+                    Admin personal info
+                  </Nav.Link>
                 </Nav.Item>
               </Nav>
             </Col>
