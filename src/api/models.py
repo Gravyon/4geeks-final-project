@@ -79,7 +79,7 @@ class Comments(db.Model):
 
     def serialize(self):
         return {
-            # "id": self.id,
+            "id": self.id,
             "id_user": self.id_user,
             "id_products": self.id_products,
             "content": self.content
