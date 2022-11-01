@@ -28,7 +28,14 @@ export const ProductDetail = (props) => {
                     <Card.Body>
                       <Card.Title>{item?.name}</Card.Title>
                       <Card.Text>Price $</Card.Text>
-                      <Button variant="primary">Add to cart</Button>
+                      <Button
+                        onClick={() => actions.addProducts(item.name)}
+                        variant="primary"
+                        className="btn btn-dark"
+                        style={{ color: "#bdb284" }}
+                      >
+                        Add to cart
+                      </Button>
                     </Card.Body>
                   </Card>
                 </div>
@@ -54,7 +61,11 @@ export const ProductDetail = (props) => {
                       type="text"
                       placeholder="Leave your comments here please"
                     />
-                    <Button variant="primary" type="submit">
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      className="btn btn-warning text-dark"
+                    >
                       Submit
                     </Button>
                   </div>

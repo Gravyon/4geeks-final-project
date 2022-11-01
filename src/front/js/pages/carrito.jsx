@@ -46,14 +46,14 @@ export const Carrito = () => {
         <Link to={"/"}>Comprar</Link>
       </button> */}
       </div>
-      <div class="d-flex justify-content-between">
+      <div className="d-flex justify-content-between">
         <button className="btn btn-dark">
-          <Nav.Link className="text-warning" href="/">
+          <Nav.Link style={{ color: "#bdb284" }} href="/">
             Home
           </Nav.Link>
         </button>
         <button className="btn btn-dark">
-          <Nav.Link className="text-warning" href="/checkout">
+          <Nav.Link style={{ color: "#bdb284" }} href="/checkout">
             Check out
           </Nav.Link>
         </button>

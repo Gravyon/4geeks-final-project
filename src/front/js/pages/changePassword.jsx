@@ -43,13 +43,21 @@ export const ChangePassword = () => {
               value={email}
             />
           </div>
-          <div class="d-flex justify-content-between">
+          <div className="d-flex justify-content-between">
             <Link to={"/"}>
-              <button type="button" className="btn btn-dark text-warning">
+              <button
+                type="button"
+                className="btn btn-dark"
+                style={{ color: "#bdb284" }}
+              >
                 Back
               </button>
             </Link>
-            <button type="submit" className="btn btn-dark text-warning">
+            <button
+              type="submit"
+              className="btn btn-dark"
+              style={{ color: "#bdb284" }}
+            >
               Send password to email
             </button>
           </div>

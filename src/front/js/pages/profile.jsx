@@ -25,11 +25,12 @@ export const Profile = (props) => {
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
             <Col sm={3}>
-              <Nav variant="pills" className="flex-column">
+              <Nav className="flex-column">
                 <Nav.Item>
                   <Nav.Link
                     eventKey="first"
-                    className="btn btn-dark text-warning"
+                    className="btn btn-dark m-2"
+                    style={{ color: "#bdb284" }}
                   >
                     Your info
                   </Nav.Link>
@@ -37,7 +38,8 @@ export const Profile = (props) => {
                 <Nav.Item>
                   <Nav.Link
                     eventKey="second"
-                    className="btn btn-dark text-warning"
+                    className="btn btn-dark m-2"
+                    style={{ color: "#bdb284" }}
                   >
                     Order history
                   </Nav.Link>
@@ -45,7 +47,8 @@ export const Profile = (props) => {
                 <Nav.Item>
                   <Nav.Link
                     eventKey="third"
-                    className="btn btn-dark text-warning"
+                    className="btn btn-dark m-2"
+                    style={{ color: "#bdb284" }}
                   >
                     Your favorites
                   </Nav.Link>
@@ -53,7 +56,8 @@ export const Profile = (props) => {
                 <Nav.Item>
                   <Nav.Link
                     eventKey="fourth"
-                    className="btn btn-dark text-warning"
+                    className="btn btn-dark m-2"
+                    style={{ color: "#bdb284" }}
                   >
                     Admin personal info
                   </Nav.Link>
@@ -67,7 +71,55 @@ export const Profile = (props) => {
                     <h5>Username: user1</h5>
                     <h5>Email: 123</h5>
                     <h5>Password: ********</h5>
-                    <Button variant="warning">Delete account</Button>
+                    <Button
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      onClick={() => actions.eliminarFavoritos(item)}
+                      variant="dark"
+                      style={{ color: "#bdb284" }}
+                    >
+                      Delete account
+                    </Button>
+
+                    <div
+                      className="modal fade"
+                      id="exampleModal"
+                      tabIndex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h1
+                              className="modal-title fs-5"
+                              id="exampleModalLabel"
+                            >
+                              Deseas borrar tu cuenta?
+                            </h1>
+                          </div>
+                          <div className="modal-body">...</div>
+                          <div className="modal-footer">
+                            <button
+                              type="button"
+                              className="btn btn-dark"
+                              style={{ color: "#bdb284" }}
+                              data-bs-dismiss="modal"
+                            >
+                              Si
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-dark"
+                              style={{ color: "#bdb284" }}
+                            >
+                              No
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
