@@ -166,25 +166,20 @@ const getState = ({
             //funcion para obtener todos los favoritos de un usuario
 
             getFavorites: async () => {
-
                 let store = getStore();
-                let user_id = store.userId
+                let user_id = store.userId;
                 // console.log(user_id)
-
                 try {
                     const response = await axios.get(
                         process.env.BACKEND_URL + "/api/user/" + user_id + "/favorites"
-                    )
+                    );
                     // console.log(response.data.results)
-
                     setStore({
-
-                        listaFavoritos: response.data.results
+                        listaFavoritos: response.data.results,
                         // userId: response.user_id
-                    })
-
+                    });
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
             },
 
@@ -257,20 +252,23 @@ const getState = ({
                 }
             },
 
-            // modify_user_password: async () => {
-            //     let accessToken = localStorage.getItem("token");
+            // ChangePassword: async (email) => {
             //     try {
-            //         const response = await axios.get(
-            //             process.env.BACKEND_URL + "/api/valid-token", {
-            //                 headers: {
-            //                     Authorization: "Bearer " + accessToken,
-            //                 },
+            //         const response = await axios.put(
+            //             process.env.BACKEND_URL + "/api/user/password/" + user_id, {
+            //                 email: email,
+            //                 password: password,
             //             }
             //         );
-            //         // console.log(accessToken);
-            //         /user/password / < int: user_id >
+
+            //         if (response.status === 200) {
+            //             setStore({
+            //             });
+            //         }
+            //     } catch (error) {
+            //         console.log(error);
             //     }
-            // }
+            // },
         },
     };
 };
