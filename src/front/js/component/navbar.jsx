@@ -84,13 +84,13 @@ export const NavbarPrincipal = () => {
               </Nav.Link>
             ) : null}{" "}
             <button
-              className="btn btn-outline-warning dropdown-toggle"
+              className="btn btn-outline-ligth dropdown-toggle"
               style={{color: "#bdb284"}}
               type="button"
               data-bs-toggle="dropdown"
             >
               <i className="fa fa-cart-plus"></i>
-              <span className="badge bg-danger rounded-circle">
+              <span className="badge">
                 {store.products.length}
               </span>
             </button>
