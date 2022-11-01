@@ -370,6 +370,7 @@ def create_shopping():
     body = json.loads(request.data)
     print(body)
     user_query = User.query.filter_by(id=body["id_user"]).first()
+    products_query = Products.query.filter_by(id_products=body["id_products"]).first()
     
     print(user_query)
     if user_query: 
@@ -418,9 +419,13 @@ def get_shopping_by_user(id_user):
     ###########################
     shopping = Shopping.query.filter_by(id_user=id_user).all()
     print(shopping)
-    results = list(map(lambda x: x.serialize(), shopping))
+    results = list(map(lambda x: x.serialize2(), shopping))
+    response_body = {
+        "user_id": shopping[0].id_user,
+        "results": results
+    }
     print(results)
-    return jsonify(results), 200
+    return jsonify(response_body), 200
 
 ###########################
 # Order History queries

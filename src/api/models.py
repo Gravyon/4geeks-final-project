@@ -95,6 +95,10 @@ class Shopping(db.Model):
             "id_user": self.id_user,
             "id_products": self.id_products
         }
+    def serialize2(self):
+        product = Products.query.filter_by(id=self.id_products).first()
+        return product.serialize()
+        
 
 
 class OrderHistory(db.Model):
