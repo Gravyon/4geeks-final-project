@@ -19,8 +19,8 @@ export const Favorites = () => {
   
   
   // console.log(store.listaFavoritos)
-  // if (store.listaFavoritos.length === "") {
-  //   ("No tienes ningun favorito");
+  // if (store.listaFavoritos.length === 0) {
+  //   alert("No tienes ningun favorito");
   // }
 
   return (
@@ -46,7 +46,7 @@ export const Favorites = () => {
                     <b>X</b>
                   </span>
                 </li>
-              )) : <p>cargando</p>}
+              )) : <p>No tienes ningun favorito</p>}
             </button>
           </li>
         </ol>
