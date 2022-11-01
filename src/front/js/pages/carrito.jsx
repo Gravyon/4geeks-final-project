@@ -11,7 +11,7 @@ export const Carrito = () => {
   useEffect(() => {
     if (store.userId != null){
 
-      console.log(store.userId)
+      // console.log(store.userId)
       actions.getShopping();
     }
 	}, [store.userId, store.shoppingList]);
