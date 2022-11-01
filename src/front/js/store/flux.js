@@ -13,9 +13,9 @@ const getState = ({
 
             listaFavoritos: [],
             // listaCarrito: [],
-            // productId: [],
-            productId: "",
-            userId: "",
+            productId: [],
+            // productId: "",
+            userId: null,
             auth: false,
             registered: false,
         },
@@ -117,42 +117,42 @@ const getState = ({
             //     }
             // },
             //funcion para crear favorito en la base de datos
-            createFavorite: async (product_id, user_id) => {
+            createFavorite: async (product_id) => {
 
 
                 // console.log(product_id); //bien 
                 let store = getStore();
-                setStore({
-                    productId: [...store.productId, product_id],
+                // setStore({
+                //     productId: [...store.productId, product_id],
 
-                });
-                console.log(product_id); //bien                
-                user_id = store.userId
+                // });
+                // console.log(product_id); //bien                
+                let user_id = store.userId
                 console.log(user_id);
 
                 try {
-                    let store = getStore();
-                    if (store.auth === true) {
-                        if (store.productId.includes(product_id)) {
-                            getActions().eliminarFavoritos(product_id);
-                        } else {
-                            setStore({
-                                // productId: [...store.productId, product_id],
-                                productId: product_id,
-                                // listaFavoritos: [...store.listaFavoritos, favorito]
+                    // let store = getStore();
+                    // if (store.auth === true) {
+                    //     if (store.productId.includes(product_id)) {
+                    //         getActions().eliminarFavoritos(product_id);
+                    //     } else {
+                    //         setStore({
+                    //             productId: [...store.productId, product_id],
+                    //             // productId: product_id,
+                    //             // listaFavoritos: [...store.listaFavoritos, favorito]
 
-                            });
+                    //         });
+                    // }
+
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/favorites", {
+                            id_products: product_id,
+                            id_user: user_id
                         }
-
-                        const response = await axios.post(
-                            process.env.BACKEND_URL + "/api/favorites", {
-                                product_id: product_id,
-                                user_id: user_id
-                            }
-                        )
-                        console.log(response);
-                        return response;
-                    }
+                    )
+                    console.log(response);
+                    return response;
+                    // }
 
                     // getActions().marcarFavoritos(favorito)
                 } catch (error) {
