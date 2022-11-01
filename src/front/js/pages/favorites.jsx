@@ -14,15 +14,9 @@ export const Favorites = () => {
       console.log(store.userId)
       actions.getFavorites();
     }
-	}, [store.userId]);
+	}, [store.userId, store.listaFavoritos]);
   
-  useEffect(() => {
-    if (store.userId != null){
-
-      console.log(store.userId)
-      actions.getFavorites();
-    }
-	}, [store.listaFavoritos]);
+  
   
   // console.log(store.listaFavoritos)
   // if (store.listaFavoritos.length === "") {
