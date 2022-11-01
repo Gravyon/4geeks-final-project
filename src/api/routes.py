@@ -328,9 +328,25 @@ def get_favorites():
     print(results)
     return jsonify(results), 200
 
+@api.route('/user/<int:id_user>/favorites', methods=['GET'])
+def get_favorites_by_user(id_user):
+    ###########################
+    # Get user favorites list
+    ###########################
+    favorites = Favorites.query.filter_by(id_user=id_user).all()
+    print(favorites)
+    results = list(map(lambda x: x.serialize2(), favorites))
+    response_body = {
+        "user_id": favorites[0].id_user,
+        "results": results
+    }
+    print(results)
+    return jsonify(response_body), 200
+
 ###########################
 # Favorites POST query
 ###########################
+
 @api.route('/favorites', methods=['POST'])
 def create_favorites():
     # Load data from postman or input
@@ -450,7 +466,8 @@ def create_order():
     # Load data from postman or input
     body = json.loads(request.data)
     print(body)
-    new_order= OrderHistory(id_shopping=body["id_shopping"],
+    new_order= OrderHistory(
+    id_shopping=body["id_shopping"],
     id_user=body["id_user"])
     # Flask command to add a new entry
     db.session.add(new_order)
@@ -497,4 +514,53 @@ def delete_favorites():
             return jsonify(product)    
             
 
-    
+###########################
+# Comments GET queries
+###########################
+
+@api.route('/comments', methods=['GET'])
+def get_comments():
+    ###########################
+    # Get all comments
+    ###########################
+    comments = Comments.query.all()
+    print(comments)
+    results = list(map(lambda x: x.serialize(), comments))
+    print(results)
+    return jsonify(results), 200
+
+@api.route('/user/<int:id_user>/comments', methods=['GET'])
+def get_comments_by_user(id_user):
+    ###########################
+    # Get user comments list
+    ###########################
+    comments = Comments.query.filter_by(id_user=id_user).all()
+    print(comments)
+    results = list(map(lambda x: x.serialize(), comments))
+    response_body = {
+        "results": results
+    }
+    print(results)
+    return jsonify(response_body), 200
+
+@api.route('/comment', methods=['POST'])
+def create_comment():
+    # Load data from postman or input
+    body = json.loads(request.data)
+    print(body)
+    user_query = User.query.filter_by(id=body["id_user"]).first()
+    print(user_query)
+    print(user_query)
+    if user_query: 
+        new_comment = Comments(
+        content=body["content"],
+        id_user=body["id_user"],
+        id_products=body["id_products"])
+        # Flask command to add a new entry
+        db.session.add(new_comment)
+        # Flask command to commit the database, saving the changes
+        db.session.commit()
+        # Standard response to request with error code 200 (success)
+        return jsonify({"msg": "New comment created on that product by that user"}), 200
+
+    return jsonify({"msg": "Something went bad"}), 404
