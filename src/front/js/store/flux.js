@@ -12,6 +12,7 @@ const getState = ({
             products: [],
 
             listaFavoritos: [],
+            shoppingList: [],
             // listaCarrito: [],
             // productId: [],
             // productId: "",
@@ -277,16 +278,13 @@ const getState = ({
                     console.log(error);
                     console.log(error.response.status)
                     console.log(product_id)
-                    if (error.response.status === 404) {
-                        getActions().eliminateShopping(product_id)
-                    }
 
                 }
             },
 
             //funcion para eliminar productos del carrito
 
-            eliminateShopping: async (product_id) => {
+            deleteShopping: async (product_id) => {
                 let store = getStore();
                 let user_id = store.userId
 
@@ -305,6 +303,31 @@ const getState = ({
                 } catch (error) {
                     console.log(error)
 
+                }
+            },
+
+            // funcion para obtener todos los productos agregados al carrito
+
+            getShopping: async () => {
+
+                let store = getStore();
+                let user_id = store.userId
+                // console.log(user_id)
+
+                try {
+                    const response = await axios.get(
+                        process.env.BACKEND_URL + "/api/user/" + user_id + "/shopping"
+                    )
+                    // console.log(response.data.results)
+
+                    setStore({
+
+                        shoppingList: response.data.results
+                        // userId: response.user_id
+                    })
+
+                } catch (error) {
+                    console.log(error)
                 }
             },
         },
