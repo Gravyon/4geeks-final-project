@@ -222,7 +222,8 @@ export const Checkout = () => {
           <button
             //   onClick={}
             type="button"
-            className="btn btn-dark text-warning"
+            className="btn btn-dark"
+            style={{ color: "#bdb284" }}
           >
             Submit
           </button>

@@ -15,6 +15,7 @@ import { Carrito } from "./pages/carrito.jsx";
 import { ContactUs } from "./pages/contactus.jsx";
 import { SubirImagenes } from "./pages/images.jsx";
 import { Checkout } from "./pages/checkout.jsx";
+import { ChangePassword } from "./pages/changePassword.jsx";
 
 import { NavbarPrincipal } from "./component/navbar.jsx";
 import { Footer } from "./component/footer.jsx";
@@ -42,6 +43,7 @@ const Layout = () => {
             <Route element={<Favorites />} path="/favorites" />{" "}
             <Route element={<Carrito />} path="/carrito" />{" "}
             <Route element={<Checkout />} path="/checkout" />{" "}
+            <Route element={<ChangePassword />} path="/changePassword" />{" "}
             {/* <Route element={<Demo />} path="/demo" />{" "}
                                                                                                                                             <Route element={<Single />} path="/single/:theid" />{" "} */}{" "}
             <Route element={<ProductDetail />} path="/product-detail/:id" />{" "}
