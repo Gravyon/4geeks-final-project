@@ -69,7 +69,7 @@ const getState = ({
                     console.log(response.data.user.id);
                     setStore({
                         auth: true,
-                        userId: response.data.user.id
+                        userId: response.data.user.id,
                     });
                     return true;
                 } catch (error) {
@@ -118,54 +118,48 @@ const getState = ({
             // },
             //funcion para crear favorito en la base de datos
             createFavorite: async (product_id) => {
-
                 let store = getStore();
 
-                let user_id = store.userId
+                let user_id = store.userId;
                 console.log(user_id);
 
                 try {
-
                     const response = await axios.post(
                         process.env.BACKEND_URL + "/api/favorites", {
                             id_products: product_id,
-                            id_user: user_id
+                            id_user: user_id,
                         }
-                    )
+                    );
                     console.log(response);
                     return response;
-
                 } catch (error) {
                     console.log(error);
-                    console.log(error.response.status)
-                    console.log(product_id)
+                    console.log(error.response.status);
+                    console.log(product_id);
                     if (error.response.status === 404) {
-                        getActions().eliminarFavoritos(product_id)
+                        getActions().eliminarFavoritos(product_id);
                     }
-
                 }
             },
 
             // Funcion para eliminar favoritos en la base
             eliminarFavoritos: async (product_id) => {
                 let store = getStore();
-                let user_id = store.userId
+                let user_id = store.userId;
 
                 try {
                     const response = await axios.delete(
                         process.env.BACKEND_URL + "/api/favorites", {
                             data: {
-
                                 id_products: product_id,
-                                id_user: user_id
-                            }
+                                id_user: user_id,
+                            },
                         }
-                    )
+                    );
                     alert(response.data.msg);
                     return response;
                 } catch (error) {
-                    console.log(error)
-
+                    console.log(error);
                 }
             },
 
@@ -221,12 +215,9 @@ const getState = ({
                         }
                     );
                     // console.log(accessToken);
-
-
-
                     setStore({
                         auth: response.data.status,
-                        userId: response.data.user.id
+                        userId: response.data.user.id,
                     });
                     console.log(auth);
                     return;
@@ -240,6 +231,21 @@ const getState = ({
                     return false;
                 }
             },
+
+            // modify_user_password: async () => {
+            //     let accessToken = localStorage.getItem("token");
+            //     try {
+            //         const response = await axios.get(
+            //             process.env.BACKEND_URL + "/api/valid-token", {
+            //                 headers: {
+            //                     Authorization: "Bearer " + accessToken,
+            //                 },
+            //             }
+            //         );
+            //         // console.log(accessToken);
+            //         /user/password / < int: user_id >
+            //     }
+            // }
         },
     };
 };
