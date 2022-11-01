@@ -564,3 +564,31 @@ def create_comment():
         return jsonify({"msg": "New comment created on that product by that user"}), 200
 
     return jsonify({"msg": "Something went bad"}), 404
+
+
+###########################
+# Comment DELETE query
+###########################
+
+@api.route('/comments/<int:id_user>/<int:id_comment>', methods=['DELETE'])
+def delete_comment(id_user, id_comment):
+    # Load data from postman or input
+    # user_query = User.query.filter_by(id_user=body["id_user"]).first()
+    # product_query = Products.query.filter_by(id_products=body["id_products"]).first()
+    # print(user, content)
+    # favorite_query = Favorites.query.filter_by(id=body["id"]).first()
+    comment_query= Comments.query.filter_by(id_user=id_user).filter_by(id=id_comment).first()
+    print(comment_query)
+    if comment_query:
+        db.session.delete(comment_query)
+        db.session.commit()
+        response_body = {
+        "msg": "Comment deleted successfully"
+        }
+        return jsonify(response_body), 200
+            
+    elif comment_query is None:
+        raise APIException('Content not found', status_code=404)
+        return jsonify(comment_query)  
+
+    return jsonify({"msg": "Something went wrong"}), 400
