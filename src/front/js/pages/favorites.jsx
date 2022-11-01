@@ -45,7 +45,7 @@ export const Favorites = () => {
         </ol>
       </div>
       <button className="btn btn-dark">
-        <Nav.Link className="text-warning" href="/">
+        <Nav.Link style={{ color: "#bdb284" }} href="/">
           Home
         </Nav.Link>
       </button>

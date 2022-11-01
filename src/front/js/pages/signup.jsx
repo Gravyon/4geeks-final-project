@@ -11,22 +11,17 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  
+
   const { actions } = useContext(Context);
   let navigate = useNavigate();
 
   const doSubmit = (e) => {
     e.preventDefault();
-    let onSignUp = actions.signup(
-      username,
-      email,
-      password    
-      
-    );
+    let onSignUp = actions.signup(username, email, password);
     setEmail("");
     setPassword("");
     setUsername("");
-    
+
     onSignUp ? navigate("/") : null;
   };
 
@@ -34,10 +29,7 @@ export const SignUp = () => {
     <div className="text-center mt-5 container vh-100">
       <form onSubmit={doSubmit}>
         <div className="mb-3">
-          <label
-            htmlFor="exampleName"
-            className="form-label opacity-50"
-          >
+          <label htmlFor="exampleName" className="form-label opacity-50">
             Username
           </label>
           <input
@@ -48,7 +40,7 @@ export const SignUp = () => {
             value={username}
           />
         </div>
-        
+
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label opacity-50">
             Email address
@@ -62,7 +54,7 @@ export const SignUp = () => {
             value={email}
           />
         </div>
-        
+
         <div className="mb-3">
           <label
             htmlFor="exampleInputPassword1"
@@ -81,14 +73,24 @@ export const SignUp = () => {
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="I am not a robot" />
         </Form.Group>
-        <Link to={"/"}>
-          <button type="button" className="btn btn-primary">
-            Back
+        <div className="d-flex justify-content-between">
+          <Link to={"/"}>
+            <button
+              type="button"
+              className="btn btn-dark"
+              style={{ color: "#bdb284" }}
+            >
+              Back
+            </button>
+          </Link>
+          <button
+            type="submit"
+            className="btn btn-dark"
+            style={{ color: "#bdb284" }}
+          >
+            Sign Up
           </button>
-        </Link>
-        <button type="submit" className="btn btn-primary">
-          Sign Up
-        </button>
+        </div>
       </form>
     </div>
   );
