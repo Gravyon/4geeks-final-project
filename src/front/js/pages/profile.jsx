@@ -19,7 +19,11 @@ export const Profile = (props) => {
   //   }, []);
 
   return (
+<<<<<<< HEAD
     <div className="vh-100 container mt-5">
+=======
+    <div className="container mt-5 vh-100">
+>>>>>>> 419fe6637a0b5d81ebe35903b465fcfc50af970c
       <h1>Welcome to your profile</h1>
       <div className="col-12">
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">

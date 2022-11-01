@@ -12,7 +12,10 @@ const getState = ({
             products: [],
 
             listaFavoritos: [],
-
+            // listaCarrito: [],
+            productId: [],
+            // productId: "",
+            userId: null,
             auth: false,
             registered: false,
         },
@@ -63,8 +66,10 @@ const getState = ({
                     localStorage.setItem("token", response.data.msg);
                     console.log(response.data.msg);
                     console.log(response);
+                    console.log(response.data.user.id);
                     setStore({
                         auth: true,
+                        userId: response.data.user.id
                     });
                     return true;
                 } catch (error) {
@@ -84,7 +89,7 @@ const getState = ({
                 });
                 return false;
             },
-            getProducts: (product) => {
+            addProducts: (product) => {
                 const store = getStore();
                 if (store.products.includes(product)) {
                     getActions().removeProduct(product);
@@ -101,14 +106,58 @@ const getState = ({
                 });
             },
             // constante marcar favoritos
-            marcarFavoritos: (favorito) => {
+            // marcarFavoritos: (favorito) => {
+            //     let store = getStore();
+            //     if (store.listaFavoritos.includes(favorito)) {
+            //         getActions().eliminarFavoritos(favorito);
+            //     } else {
+            //         setStore({
+            //             listaFavoritos: [...store.listaFavoritos, favorito],
+            //         });
+            //     }
+            // },
+            //funcion para crear favorito en la base de datos
+            createFavorite: async (product_id) => {
+
+
+                // console.log(product_id); //bien 
                 let store = getStore();
-                if (store.listaFavoritos.includes(favorito)) {
-                    getActions().eliminarFavoritos(favorito);
-                } else {
-                    setStore({
-                        listaFavoritos: [...store.listaFavoritos, favorito],
-                    });
+                // setStore({
+                //     productId: [...store.productId, product_id],
+
+                // });
+                // console.log(product_id); //bien                
+                let user_id = store.userId
+                console.log(user_id);
+
+                try {
+                    // let store = getStore();
+                    // if (store.auth === true) {
+                    //     if (store.productId.includes(product_id)) {
+                    //         getActions().eliminarFavoritos(product_id);
+                    //     } else {
+                    //         setStore({
+                    //             productId: [...store.productId, product_id],
+                    //             // productId: product_id,
+                    //             // listaFavoritos: [...store.listaFavoritos, favorito]
+
+                    //         });
+                    // }
+
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/favorites", {
+                            id_products: product_id,
+                            id_user: user_id
+                        }
+                    )
+                    console.log(response);
+                    return response;
+                    // }
+
+                    // getActions().marcarFavoritos(favorito)
+                } catch (error) {
+                    console.log(error);
+
                 }
             },
 
@@ -175,8 +224,11 @@ const getState = ({
                     );
                     // console.log(accessToken);
 
+
+
                     setStore({
                         auth: response.data.status,
+                        userId: response.data.user.id
                     });
                     console.log(auth);
                     return;

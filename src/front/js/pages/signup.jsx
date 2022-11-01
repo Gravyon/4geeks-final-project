@@ -31,7 +31,11 @@ export const SignUp = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="vh-100 text-center mt-5 container">
+=======
+    <div className="text-center mt-5 container vh-100">
+>>>>>>> 419fe6637a0b5d81ebe35903b465fcfc50af970c
       <form onSubmit={doSubmit}>
         <div className="mb-3">
           <label
