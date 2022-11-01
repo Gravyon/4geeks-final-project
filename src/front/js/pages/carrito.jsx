@@ -14,7 +14,7 @@ export const Carrito = () => {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="vh-100 container mt-5">
       <div className="w-25">
         <h1>Carrito {store.products.length}</h1>
       </div>

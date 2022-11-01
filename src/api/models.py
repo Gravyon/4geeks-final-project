@@ -30,7 +30,7 @@ class Products(db.Model):
     description = db.Column(db.String(250), nullable=False)
     url = db.Column(db.String(250), nullable=False)
     price = db.Column(db.Integer, nullable=False)
-    products = db.Column(db.Integer, db.ForeignKey('shopping.id') , nullable=True)
+    shopping = db.relationship('Shopping', backref='products', cascade="all, delete-orphan", lazy=True)
     favorite = db.relationship('Favorites', backref='products', cascade="all, delete-orphan", lazy=True)
     comments = db.relationship('Comments', backref='products', cascade="all, delete-orphan", lazy=True)
     
@@ -58,7 +58,7 @@ class Favorites(db.Model):
 
     def serialize(self):
         return {
-            "id": self.id,
+            # "id": self.id,
             "id_user": self.id_user,
             "id_products": self.id_products
         }
@@ -75,24 +75,25 @@ class Comments(db.Model):
 
     def serialize(self):
         return {
-            "id": self.id,
+            # "id": self.id,
             "id_user": self.id_user,
-            "id_products": self.id_products
+            "id_products": self.id_products,
+            "content": self.content
         }
 
 class Shopping(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_user = db.Column(db.Integer,  db.ForeignKey('user.id'), nullable=False )
-    products = db.relationship('Products', backref='shopping', cascade="all, delete-orphan", lazy=True)
+    id_products = db.Column(db.Integer,  db.ForeignKey('products.id'), nullable=False )
 
     def __repr__(self):
         return f'<Shopping {self.id}>'
 
     def serialize(self):
         return {
-            "id": self.id,
+            # "id": self.id,
             "id_user": self.id_user,
-            "id_products": list(map(lambda item: item.serialize(),self.products))
+            "id_products": self.id_products
         }
 
 

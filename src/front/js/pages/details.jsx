@@ -16,7 +16,7 @@ export const ProductDetail = (props) => {
   }, []);
 
   return (
-    <div className="container mt-5">
+    <div className="vh-100 container mt-5">
       <div className=" col-9 central-content d-flex justify-content-center">
         <Carousel variant="dark">
           {store.product.map((item) => (

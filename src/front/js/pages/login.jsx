@@ -24,7 +24,7 @@ export const Login = () => {
 
   return (
     <div>
-      <div className="text-center mt-5 container">
+      <div className="vh-100 text-center mt-5 container">
         <form onSubmit={doSubmit}>
           <div className="mb-3">
             <label

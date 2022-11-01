@@ -336,9 +336,6 @@ def create_favorites():
     # Load data from postman or input
     body = json.loads(request.data)
     print(body)
-    # user_query = User.query.filter_by(id_user=body["id_user"]).first()
-    # product_query = Products.query.filter_by(id_products=body["id_products"]).first()
-
     user = request.json['id_user']
     product = request.json['id_products']
     print(user, product)
@@ -360,13 +357,33 @@ def create_favorites():
             # Flask command to commit the database, saving the changes
             db.session.commit()
             # Standard response to request with error code 200 (success)
-            # response_body = {
-            #     "msg": "New favorite list created"
-            # }
             return jsonify({"msg": "New favorite list created"}), 200
 
     return "Something went bad"
 
+###########################
+# Shopping POST query
+###########################
+@api.route('/shopping', methods=['POST'])
+def create_shopping():
+    # Load data from postman or input
+    body = json.loads(request.data)
+    print(body)
+    user_query = User.query.filter_by(id=body["id_user"]).first()
+    
+    print(user_query)
+    if user_query: 
+        new_shopping = Shopping(
+        id_user=body["id_user"],
+        id_products=body["id_products"])
+        # Flask command to add a new entry
+        db.session.add(new_shopping)
+        # Flask command to commit the database, saving the changes
+        db.session.commit()
+        # Standard response to request with error code 200 (success)
+        return jsonify({"msg": "New shopping list created"}), 200
+
+    return jsonify({"msg": "Something went bad"}), 404
 
 @api.route('/user/<int:id_user>/favorite', methods=['GET'])
 def get_favorite(id_user):
