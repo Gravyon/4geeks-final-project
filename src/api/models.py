@@ -63,6 +63,10 @@ class Favorites(db.Model):
             "id_products": self.id_products
         }
 
+    def serialize2(self):
+        product = Products.query.filter_by(id=self.id_products).first()
+        return product.serialize()
+
 
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -80,6 +84,10 @@ class Comments(db.Model):
             "id_products": self.id_products,
             "content": self.content
         }
+        
+    def serialize2(self):
+        product = Products.query.filter_by(id=self.id_products).first()
+        return product.serialize()
 
 class Shopping(db.Model):
     id = db.Column(db.Integer, primary_key=True)
