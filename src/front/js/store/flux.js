@@ -137,29 +137,35 @@ const getState = ({
 
                 } catch (error) {
                     console.log(error);
+                    console.log(error.response.status)
+                    console.log(product_id)
+                    if (error.response.status === 404) {
+                        getActions().eliminarFavoritos(product_id)
+                    }
 
                 }
             },
 
             // Funcion para eliminar favoritos en la base
             eliminarFavoritos: async (product_id) => {
-                // let store = getStore();
-                // setStore({
-                //     listaFavoritos: store.listaFavoritos.filter(
-                //         (item) => item !== favorito
-                //     ),
-                // });
+                let store = getStore();
+                let user_id = store.userId
+
                 try {
                     const response = await axios.delete(
                         process.env.BACKEND_URL + "/api/favorites", {
-                            id_products: product_id,
-                            id_user: user_id
+                            data: {
+
+                                id_products: product_id,
+                                id_user: user_id
+                            }
                         }
                     )
-                    console.log(response);
+                    alert(response.data.msg);
                     return response;
                 } catch (error) {
                     console.log(error)
+
                 }
             },
 
