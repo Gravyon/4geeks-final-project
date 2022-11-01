@@ -31,7 +31,7 @@ export const Checkout = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="vh-100 container mt-5">
       <h2>¿Donde quieres recibir tu compra?</h2>
       <form onSubmit={doSubmit}>
         <div className="mb-3">
