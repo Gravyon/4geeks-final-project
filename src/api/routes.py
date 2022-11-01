@@ -386,8 +386,7 @@ def create_shopping():
     body = json.loads(request.data)
     print(body)
     user_query = User.query.filter_by(id=body["id_user"]).first()
-    products_query = Products.query.filter_by(id_products=body["id_products"]).first()
-    
+
     print(user_query)
     if user_query: 
         new_shopping = Shopping(

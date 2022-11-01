@@ -45,10 +45,10 @@ export const NavbarPrincipal = () => {
               navbarScroll
             >
               <Nav.Link href="/" style={{color: "#bdb284"}}>Home</Nav.Link>
-              <Nav.Link href="/contactus" style={{color: "#bdb284"}}>Contact us</Nav.Link>
-              <Nav.Link href="/profile" style={{color: "#bdb284"}}>My profile</Nav.Link>
-              <Nav.Link href="/carrito" style={{color: "#bdb284"}}>Carrito</Nav.Link>
+              <Nav.Link href="/profile" style={{color: "#bdb284"}}>Profile</Nav.Link>
               <Nav.Link href="/favorites" style={{color: "#bdb284"}}>Favorites</Nav.Link>
+              <Nav.Link href="/carrito" style={{color: "#bdb284"}}>Shopping</Nav.Link>
+              <Nav.Link href="/contactus" style={{color: "#bdb284"}}>Contact us</Nav.Link>
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
             </Nav>
             <Form className="d-flex">
@@ -58,8 +58,8 @@ export const NavbarPrincipal = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">
-                <i className="bi bi-search"></i>
+              <Button variant="outline-warning">
+                <i className="fa fa-search"></i>
               </Button>
             </Form>
             {!store.auth ? (
