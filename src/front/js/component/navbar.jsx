@@ -28,7 +28,7 @@ export const NavbarPrincipal = () => {
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg" style={{color: "#bdb284"}}>
         <Container fluid>
           <Navbar.Brand href="/">
             <img
@@ -44,11 +44,11 @@ export const NavbarPrincipal = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/contactus">Contact us</Nav.Link>
-              <Nav.Link href="/profile">My profile</Nav.Link>
-              <Nav.Link href="/carrito">Carrito</Nav.Link>
-              <Nav.Link href="/favorites">Favorites</Nav.Link>
+              <Nav.Link href="/" style={{color: "#bdb284"}}>Home</Nav.Link>
+              <Nav.Link href="/contactus" style={{color: "#bdb284"}}>Contact us</Nav.Link>
+              <Nav.Link href="/profile" style={{color: "#bdb284"}}>My profile</Nav.Link>
+              <Nav.Link href="/carrito" style={{color: "#bdb284"}}>Carrito</Nav.Link>
+              <Nav.Link href="/favorites" style={{color: "#bdb284"}}>Favorites</Nav.Link>
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
             </Nav>
             <Form className="d-flex">
@@ -63,32 +63,34 @@ export const NavbarPrincipal = () => {
               </Button>
             </Form>
             {!store.auth ? (
-              <Nav.Link href="/login" className="text-warning">
+              <Nav.Link href="/login" style={{color: "#bdb284"}}>
                 Login
               </Nav.Link>
             ) : null}{" "}
             {store.auth ? (
               <Nav.Link
                 href="/"
-                className="text-primary"
+                
                 type="button"
                 onClick={doLogout}
+                style={{color: "#bdb284"}}
               >
                 Log out
               </Nav.Link>
             ) : null}
             {!store.auth ? (
-              <Nav.Link href="/signup" className="text-warning">
+              <Nav.Link href="/signup" style={{color: "#bdb284"}}>
                 Sign Up
               </Nav.Link>
             ) : null}{" "}
             <button
-              className="btn btn-outline-warning dropdown-toggle"
+              className="btn btn-outline-ligth dropdown-toggle"
+              style={{color: "#bdb284"}}
               type="button"
               data-bs-toggle="dropdown"
             >
               <i className="fa fa-cart-plus"></i>
-              <span className="badge bg-danger rounded-circle">
+              <span className="badge">
                 {store.products.length}
               </span>
             </button>

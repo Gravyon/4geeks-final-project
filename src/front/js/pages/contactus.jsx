@@ -27,7 +27,7 @@ export const ContactUs = () => {
   };
 
   return (
-    <div className="text-center mt-5 container d-flex justify-content-between">
+    <div className="text-center mt-5 container d-flex justify-content-between vh-100">
       <div>
         <i className="bi bi-envelope"></i>
         <h5 className="pb-5">example@domain.com</h5>
