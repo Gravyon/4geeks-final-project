@@ -27,7 +27,7 @@ const getState = ({
                         process.env.BACKEND_URL + "/api/product"
                     ); //ir a buscar
                     const data = await response.json();
-                    console.log(data);
+                    // console.log(data);
                     setStore({
                         product: data,
                     }); //promesa 2
@@ -166,6 +166,31 @@ const getState = ({
                 } catch (error) {
                     console.log(error)
 
+                }
+            },
+
+            //funcion para obtener todos los favoritos de un usuario
+
+            getFavorites: async () => {
+
+                let store = getStore();
+                let user_id = store.userId
+                // console.log(user_id)
+
+                try {
+                    const response = await axios.get(
+                        process.env.BACKEND_URL + "/api/user/" + user_id + "/favorites"
+                    )
+                    // console.log(response.data.results)
+
+                    setStore({
+
+                        listaFavoritos: response.data.results
+                        // userId: response.user_id
+                    })
+
+                } catch (error) {
+                    console.log(error)
                 }
             },
 
