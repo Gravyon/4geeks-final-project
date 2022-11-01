@@ -110,7 +110,7 @@ export const ContactUs = () => {
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="I am not a robot reCapcha" />
           </Form.Group>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-dark text-warning">
             Submit
           </button>
         </form>
