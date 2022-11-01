@@ -46,16 +46,18 @@ export const Carrito = () => {
         <Link to={"/"}>Comprar</Link>
       </button> */}
       </div>
-      <button className="btn btn-dark">
-        <Nav.Link className="text-warning" href="/">
-          Home
-        </Nav.Link>
-      </button>
-      <button className="btn btn-dark">
-        <Nav.Link className="text-warning" href="/checkout">
-          Check out
-        </Nav.Link>
-      </button>
+      <div class="d-flex justify-content-between">
+        <button className="btn btn-dark">
+          <Nav.Link className="text-warning" href="/">
+            Home
+          </Nav.Link>
+        </button>
+        <button className="btn btn-dark">
+          <Nav.Link className="text-warning" href="/checkout">
+            Check out
+          </Nav.Link>
+        </button>
+      </div>
     </div>
   );
 };

@@ -60,14 +60,16 @@ export const Login = () => {
           <Link to={"/changePassword"}>
             <p>¿Has olvidado tu contraseña?</p>
           </Link>
-          <Link to={"/"}>
-            <button type="button" className="btn btn-dark text-warning">
-              Back
+          <div class="d-flex justify-content-between">
+            <Link to={"/"}>
+              <button type="button" className="btn btn-dark text-warning">
+                Back
+              </button>
+            </Link>
+            <button type="submit" className="btn btn-dark text-warning">
+              Login
             </button>
-          </Link>
-          <button type="submit" className="btn btn-dark text-warning">
-            Login
-          </button>
+          </div>
         </form>
       </div>
     </div>

@@ -73,14 +73,16 @@ export const SignUp = () => {
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="I am not a robot" />
         </Form.Group>
-        <Link to={"/"}>
-          <button type="button" className="btn btn-dark text-warning">
-            Back
+        <div class="d-flex justify-content-between">
+          <Link to={"/"}>
+            <button type="button" className="btn btn-dark text-warning">
+              Back
+            </button>
+          </Link>
+          <button type="submit" className="btn btn-dark text-warning">
+            Sign Up
           </button>
-        </Link>
-        <button type="submit" className="btn btn-dark text-warning">
-          Sign Up
-        </button>
+        </div>
       </form>
     </div>
   );
