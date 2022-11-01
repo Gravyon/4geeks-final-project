@@ -48,7 +48,7 @@ const Layout = () => {
                                                                                                                                             <Route element={<Single />} path="/single/:theid" />{" "} */}{" "}
             <Route element={<ProductDetail />} path="/product-detail/:id" />{" "}
             <Route element={<Profile />} path="/profile" />{" "}
-            <Route element={<SubirImagenes />} path="/subir-img" />{" "}
+            <Route element={<SubirImagenes />} path="/upload-img" />{" "}
             <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}
           <Footer />{" "}
