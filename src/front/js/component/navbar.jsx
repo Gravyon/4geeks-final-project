@@ -14,7 +14,20 @@ import logo from "../../img/logo1.png";
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
   let navigate = useNavigate();
+  const { product, setProduct } = useState([]);
+  const { productTable, setProductTable } = useState([]);
+  const { search, setSearch } = useState("");
 
+  const queryGet = () => {
+    let products = store.product
+    setProduct(products)
+    console.log(product)
+  };
+
+  const handleInput = (e) =>{
+    console.log(e.target.value)
+
+  }
   const doLogout = () => {
     //false
     let onLogged = actions.logout();
@@ -28,7 +41,7 @@ export const NavbarPrincipal = () => {
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark" expand="lg" style={{color: "#bdb284"}}>
+      <Navbar bg="dark" variant="dark" expand="lg" style={{ color: "#bdb284" }}>
         <Container fluid>
           <Navbar.Brand href="/">
             <img
@@ -44,11 +57,21 @@ export const NavbarPrincipal = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/" style={{color: "#bdb284"}}>Home</Nav.Link>
-              <Nav.Link href="/profile" style={{color: "#bdb284"}}>Profile</Nav.Link>
-              <Nav.Link href="/favorites" style={{color: "#bdb284"}}>Favorites</Nav.Link>
-              <Nav.Link href="/carrito" style={{color: "#bdb284"}}>Shopping</Nav.Link>
-              <Nav.Link href="/contactus" style={{color: "#bdb284"}}>Contact us</Nav.Link>
+              <Nav.Link href="/" style={{ color: "#bdb284" }}>
+                Home
+              </Nav.Link>
+              <Nav.Link href="/profile" style={{ color: "#bdb284" }}>
+                Profile
+              </Nav.Link>
+              <Nav.Link href="/favorites" style={{ color: "#bdb284" }}>
+                Favorites
+              </Nav.Link>
+              <Nav.Link href="/carrito" style={{ color: "#bdb284" }}>
+                Shopping
+              </Nav.Link>
+              <Nav.Link href="/contactus" style={{ color: "#bdb284" }}>
+                Contact us
+              </Nav.Link>
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
             </Nav>
             <Form className="d-flex">
@@ -57,42 +80,40 @@ export const NavbarPrincipal = () => {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                value={search}
               />
               <Button variant="outline-warning">
                 <i className="fa fa-search"></i>
               </Button>
             </Form>
             {!store.auth ? (
-              <Nav.Link href="/login" style={{color: "#bdb284"}}>
+              <Nav.Link href="/login" style={{ color: "#bdb284" }}>
                 Login
               </Nav.Link>
             ) : null}{" "}
             {store.auth ? (
               <Nav.Link
                 href="/"
-                
                 type="button"
                 onClick={doLogout}
-                style={{color: "#bdb284"}}
+                style={{ color: "#bdb284" }}
               >
                 Log out
               </Nav.Link>
             ) : null}
             {!store.auth ? (
-              <Nav.Link href="/signup" style={{color: "#bdb284"}}>
+              <Nav.Link href="/signup" style={{ color: "#bdb284" }}>
                 Sign Up
               </Nav.Link>
             ) : null}{" "}
             <button
               className="btn btn-outline-ligth dropdown-toggle"
-              style={{color: "#bdb284"}}
+              style={{ color: "#bdb284" }}
               type="button"
               data-bs-toggle="dropdown"
             >
               <i className="fa fa-cart-plus"></i>
-              <span className="badge">
-                {store.products.length}
-              </span>
+              <span className="badge">{store.products.length}</span>
             </button>
             <ul className="dropdown-menu">
               {store.products.map((item, id) => (

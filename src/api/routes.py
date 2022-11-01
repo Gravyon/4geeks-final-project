@@ -482,6 +482,7 @@ def create_order():
 ###########################
 # Favorites DELETE query
 ###########################
+
 @api.route('/favorites', methods=['DELETE'])
 def delete_favorites():
     # Load data from postman or input
