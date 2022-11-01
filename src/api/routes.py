@@ -402,16 +402,16 @@ def create_shopping():
 
     return jsonify({"msg": "Something went bad"}), 404
 
-@api.route('/user/<int:id_user>/favorite', methods=['GET'])
-def get_favorite(id_user):
-    ###########################
-    # Get user favorites
-    ###########################
-    favorites = Favorites.query.filter_by(id_user=id_user).all()
-    results = list(map(lambda x: x.serialize(), favorites))
-    print(favorites)
-    # results = favorites
-    return jsonify(results), 200
+# @api.route('/user/<int:id_user>/favorite', methods=['GET'])
+# def get_favorite(id_user):
+#     ###########################
+#     # Get user favorites
+#     ###########################
+#     favorites = Favorites.query.filter_by(id_user=id_user).all()
+#     results = list(map(lambda x: x.serialize(), favorites))
+#     print(favorites)
+#     # results = favorites
+#     return jsonify(results), 200
 
 ###########################
 # Shopping GET queries
