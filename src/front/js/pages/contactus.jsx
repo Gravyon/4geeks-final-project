@@ -27,11 +27,7 @@ export const ContactUs = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="vh-100 text-center mt-5 container d-flex justify-content-between">
-=======
     <div className="text-center mt-5 container d-flex justify-content-between vh-100">
->>>>>>> 419fe6637a0b5d81ebe35903b465fcfc50af970c
       <div>
         <i className="bi bi-envelope"></i>
         <h5 className="pb-5">example@domain.com</h5>

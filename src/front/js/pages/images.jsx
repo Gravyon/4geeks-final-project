@@ -51,11 +51,7 @@ export const SubirImagenes = () => {
     }
 
     return (
-<<<<<<< HEAD
-        <div className="vh-100 container mt-5">
-=======
         <div className="container mt-5 vh-100">
->>>>>>> 419fe6637a0b5d81ebe35903b465fcfc50af970c
             <h1>Upload your work of art</h1>
             <Form onSubmit={handleSubmit}>
             <FormGroup>
