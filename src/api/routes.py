@@ -461,3 +461,40 @@ def create_order():
         "msg": "New order created"
     }
     return jsonify(response_body), 200
+
+    
+###########################
+# Favorites DELETE query
+###########################
+@api.route('/favorites', methods=['DELETE'])
+def delete_favorites():
+    # Load data from postman or input
+    body = json.loads(request.data)
+    print(body)
+    # user_query = User.query.filter_by(id_user=body["id_user"]).first()
+    # product_query = Products.query.filter_by(id_products=body["id_products"]).first()
+
+    user = request.json['id_user']
+    product = request.json['id_products']
+    print(user, product)
+    # favorite_query = Favorites.query.filter_by(id=body["id"]).first()
+    user_query = User.query.filter_by(id=body["id_user"]).first()
+    
+    print(user_query)
+    if user_query:
+        product_query = Favorites.query.filter_by(id_user=body["id_user"]).filter_by(id_products=body["id_products"]).first()
+        if product_query:
+            
+            db.session.delete(product_query)
+            db.session.commit()
+            response_body = {
+            "msg": "Favorite deleted successfully"
+            }
+            return jsonify(response_body), 200
+            
+        elif product is None:
+            raise APIException('Product not found', status_code=404)
+            return jsonify(product)    
+            
+
+    
