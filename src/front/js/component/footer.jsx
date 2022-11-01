@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 
 export const Footer = () => {
   return (
-    <div className="fixed-bottom">
+    <div className="vh-auto fixed-bottom">
       <Navbar
         className="d-flex position-relative"
         bg="dark"
