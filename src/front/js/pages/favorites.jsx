@@ -17,7 +17,7 @@ export const Favorites = () => {
   // }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 vh-100">
       <div className="w-25">
         <h1>Favorites {store.listaFavoritos.length}</h1>
       </div>

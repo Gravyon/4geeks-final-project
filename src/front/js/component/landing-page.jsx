@@ -24,12 +24,16 @@ export const LandingPage = () => {
                     src={item.url}
                     className="img-fluid rounded p-1"
                     alt="..."
+                    style={{maxHeight: "12rem"}}
                   />
 
                   <Card.Title> {item.name}</Card.Title>
                   <Card.Text> {item.category}</Card.Text>
                   <Card.Text> {item.price}</Card.Text>
-                  <div className="col d-flex justify-content-xxl-between d-flex align-items-end">
+                  </Card.Body>
+                  </Link>
+                  <Card.Body>
+                  <div className="d-flex align-bottom justify-content-between ">
                     {/* <div className="col-6 d-flex justify-content-between">
                     <Link
                       to={"/product-detail/" + (id + 1)}
@@ -38,30 +42,30 @@ export const LandingPage = () => {
                       Leer mas...
                     </Link>
                   </div> */}
-                  <div className="col-4 d-flex">
-                    <button
-                      type="button"
-                      onClick={() => actions.addProducts(item.name)}
-                      className="btn btn-primary"
-                      style={{ float: "right" }}
-                    >
-                      <i className="fa fa-cart-plus"></i>
-                    </button>
+                    
+                      <button
+                        type="button"
+                        onClick={() => actions.addProducts(item.name)}
+                        className="btn btn-primary d-flex align-bottom"
+                        style={{ float: "right"}}
+                      >
+                        <i className="fa fa-cart-plus"></i>
+                      </button>
+                    
+                    
+                      <Link to="/" className="btn btn-danger align-bottom">
+                        <i
+                          className="far fa-heart"
+                          onClick={() => { actions.createFavorite(item.id) }}
+                        ></i>
+                      </Link>
+                   
                   </div>
-                  <div className="col-6 ">
-                    <Link to="/" className="btn btn-danger ">
-                      <i
-                        className="far fa-heart"
-                        onClick={() => { actions.createFavorite(item.id) }}
-                      ></i>
-                    </Link>
-                  </div>
-                </div>
-              </Card.Body>
-            </Link>
+                </Card.Body>
+             
 
-          </Card>
-        ))): (<p>No hay cartas</p>)}
+            </Card>
+          ))) : (<p>No hay cartas</p>)}
       </div>
     </div>
   );
