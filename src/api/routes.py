@@ -297,8 +297,8 @@ def modify_user(user_id):
 # User password PUT (MODIFY) query
 ###########################
 
-@api.route('/user/password/<int:user_id>', methods=['POST'])
-def modify_user_password(user_id):
+@api.route('/user/password>', methods=['POST'])
+def modify_user_password():
     recover_email = request.json['email']
     #Random password
     recover_password = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(8)) 
