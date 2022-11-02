@@ -91,7 +91,7 @@ export const NavbarPrincipal = () => {
                 aria-label="Search"
                 
               />
-              <Button variant="outline-success">
+              <Button onClick={queryGet} variant="outline-success">
                 <i className="bi bi-search"></i>
               </Button>
             </Form>
