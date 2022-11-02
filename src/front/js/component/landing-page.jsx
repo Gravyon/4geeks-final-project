@@ -46,7 +46,7 @@ export const LandingPage = () => {
                     
                       <button
                         type="button"
-                        onClick={() => actions.addProducts(item.name)}
+                        onClick={() => actions.createShopping(item.id)}
                         className="btn btn-outline-light d-flex align-bottom"
                         style={{ float: "right", color: "#bdb284"}}
                       >
@@ -54,7 +54,7 @@ export const LandingPage = () => {
                       </button>
                     
                     
-                      <Link to="/" className="btn btn-outline-light align-bottom" style={{color: "#bdb284"}}>
+                      <Link to="/" className="btn btn-outline-light align-bottom" style={{color: "#bdb284"}} >
                         <i
                           className="far fa-heart"
                           onClick={() => { actions.createFavorite(item.id) }}

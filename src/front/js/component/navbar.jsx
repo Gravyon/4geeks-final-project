@@ -10,24 +10,23 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../img/logo1.png";
+import { BsSearch } from 'react-icons/bs';
+
+  
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
+  
+  useEffect(() => {
+    if (store.userId != null){
+
+      // console.log(store.userId)
+      actions.getShopping();
+    }
+	}, [store.userId, store.shoppingList]);
+  
   let navigate = useNavigate();
-  const { product, setProduct } = useState([]);
-  const { productTable, setProductTable } = useState([]);
-  const { search, setSearch } = useState("");
 
-  const queryGet = () => {
-    let products = store.product
-    setProduct(products)
-    console.log(product)
-  };
-
-  const handleInput = (e) =>{
-    console.log(e.target.value)
-
-  }
   const doLogout = () => {
     //false
     let onLogged = actions.logout();
@@ -82,8 +81,8 @@ export const NavbarPrincipal = () => {
                 aria-label="Search"
                 value={search}
               />
-              <Button variant="outline-warning">
-                <i className="fa fa-search"></i>
+              <Button variant="outline-success">
+                <i className="bi bi-search"></i>
               </Button>
             </Form>
             {!store.auth ? (
@@ -106,22 +105,25 @@ export const NavbarPrincipal = () => {
                 Sign Up
               </Nav.Link>
             ) : null}{" "}
-            <button
-              className="btn btn-outline-ligth dropdown-toggle"
-              style={{ color: "#bdb284" }}
+            <Link
+            to={"/carrito"}
+              className="btn btn-outline-ligth"
+              style={{color: "#bdb284"}}
               type="button"
-              data-bs-toggle="dropdown"
+              
             >
               <i className="fa fa-cart-plus"></i>
-              <span className="badge">{store.products.length}</span>
-            </button>
-            <ul className="dropdown-menu">
-              {store.products.map((item, id) => (
+              <span className="badge">
+                {store.shoppingList.length}
+              </span>
+            </Link>
+            {/* <ul className="dropdown-menu">
+              {store.shoppingList.map((item, id) => (
                 <li className="p-2" key={id}>
                   {item}
                   <button
                     type="button"
-                    onClick={() => actions.removeProduct(item)}
+                    onClick={() => actions.deleteShopping(item.id)}
                     className="btn "
                     style={{ float: "right" }}
                   >
@@ -129,7 +131,7 @@ export const NavbarPrincipal = () => {
                   </button>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
