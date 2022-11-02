@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const getState = ({
     getStore,
     getActions,
@@ -130,7 +129,7 @@ const getState = ({
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
-                        alert(error.response.data)
+                        alert(error.response.data);
                     }
                 }
             },
@@ -171,22 +170,17 @@ const getState = ({
                     // console.log(response.data.results)
 
                     setStore({
-
                         listaFavoritos: response.data.results,
                         // userId: response.user_id
-                    })
-
+                    });
                 } catch (error) {
                     // console.log(error);
-                    console.log(error.response.data.msg)
+                    console.log(error.response.data.msg);
                     if (error.response.status === 404) {
                         setStore({
-
                             listaFavoritos: [],
-
-                        })
+                        });
                     }
-
                 }
             },
 
@@ -242,7 +236,6 @@ const getState = ({
                                 Authorization: "Bearer " + accessToken,
                             },
                         }
-
                     );
                     // console.log(accessToken);
                     setStore({
@@ -299,7 +292,6 @@ const getState = ({
                                 id_user: user_id,
                             },
                         }
-
                     );
                     // alert(response.data.msg);
                     console.log(response);
@@ -307,10 +299,9 @@ const getState = ({
                     getActions().getShopping();
                     // console.log(store.shoppingList)
 
-                    return
+                    return;
                 } catch (error) {
                     console.log(error);
-
                 }
             },
 
@@ -328,42 +319,38 @@ const getState = ({
                     // console.log(response.data.results)
 
                     setStore({
-
                         shoppingList: response.data.results,
                         // userId: response.user_id
-                    })
-
+                    });
                 } catch (error) {
                     // console.log(error);
-                    console.log(error.response.data.msg)
+                    console.log(error.response.data.msg);
                     if (error.response.status === 404) {
                         setStore({
-
                             shoppingList: [],
-
-                        })
+                        });
                     }
-
                 }
             },
 
-            // ChangePassword: async (email) => {
-            //     try {
-            //         const response = await axios.put(
-            //             process.env.BACKEND_URL + "/api/user/password/" + user_id, {
-            //                 email: email,
-            //                 password: password,
-            //             }
-            //         );
+            changePassword: async (email) => {
+                try {
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/user/password", {
+                            email: email,
+                        }
+                    );
 
-            //         if (response.status === 200) {
-            //             setStore({
-            //             });
-            //         }
-            //     } catch (error) {
-            //         console.log(error);
-            //     }
-            // },
+                    if (response.status === 200) {
+                        alert("Your password was sended");
+                    }
+                } catch (error) {
+                    console.log(error);
+                    if (error.response.status === 405) {
+                        alert("Your email does not exist");
+                    }
+                }
+            },
         },
     };
 };
