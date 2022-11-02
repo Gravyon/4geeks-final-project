@@ -24,7 +24,7 @@ export const Carrito = () => {
   // }
 
   return (
-    <div className="container mt-5 vh-100">
+    <div className="container mt-5 vh-auto">
       <div className="w-25">
         <h1>My Cart </h1>
       </div>

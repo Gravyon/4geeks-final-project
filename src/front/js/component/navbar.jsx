@@ -10,6 +10,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../img/logo1.png";
+import { BsSearch } from 'react-icons/bs';
+
+  
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
@@ -67,8 +70,8 @@ export const NavbarPrincipal = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">
-                <i className="bi bi-search"></i>
+              <Button variant="outline-light" style={{color: "#bdb284"}}>
+              <BsSearch />
               </Button>
             </Form>
             {!store.auth ? (
