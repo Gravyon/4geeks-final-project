@@ -39,15 +39,6 @@ CORS(app)
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 jwt = JWTManager(app)
 #CONFIGURATION EMAIL
-# mail_settings = {
-#     'MAIL_SERVER': 'smtp.gmail.com',
-#     'MAIL_PORT': 465,
-#     'MAIL_USE_TLS': False,
-#     'MAIL_USE_SSL': True,
-#     'MAIL_USERNAME': "example@gmail.com",
-#     'MAIL_PASSWORD': "example",
-#     'MAIL_DEFAULT_SENDER': 'example@gmail.com'
-# }
 mail_settings = {
     'MAIL_SERVER':'smtp.mailtrap.io',
     'MAIL_PORT': 2525,
