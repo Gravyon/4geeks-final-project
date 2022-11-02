@@ -12,6 +12,7 @@ const getState = ({
             products: [],
 
             listaFavoritos: [],
+            shoppingList: [],
             // listaCarrito: [],
             // productId: [],
             // productId: "",
@@ -80,7 +81,7 @@ const getState = ({
                 }
             },
 
-            // logout
+            //  Funcion para logout
 
             logout: () => {
                 localStorage.removeItem("token");
@@ -105,18 +106,7 @@ const getState = ({
                     products: store.products.filter((item) => item !== product),
                 });
             },
-            // constante marcar favoritos
-            // marcarFavoritos: (favorito) => {
-            //     let store = getStore();
-            //     if (store.listaFavoritos.includes(favorito)) {
-            //         getActions().eliminarFavoritos(favorito);
-            //     } else {
-            //         setStore({
-            //             listaFavoritos: [...store.listaFavoritos, favorito],
-            //         });
-            //     }
-            // },
-            //funcion para crear favorito en la base de datos
+
             createFavorite: async (product_id) => {
 
                 let store = getStore();
@@ -263,6 +253,81 @@ const getState = ({
                         });
                     }
                     return false;
+                }
+            },
+            // funcion para agregar productos al carrito
+            createShopping: async (product_id) => {
+
+                let store = getStore();
+
+                let user_id = store.userId
+                console.log(user_id);
+
+                try {
+
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/shopping", {
+                            id_products: product_id,
+                            id_user: user_id
+                        }
+                    )
+                    console.log(response);
+                    return response;
+
+                } catch (error) {
+                    console.log(error);
+                    console.log(error.response.status)
+                    console.log(product_id)
+
+                }
+            },
+
+            //funcion para eliminar productos del carrito
+
+            deleteShopping: async (product_id) => {
+                let store = getStore();
+                let user_id = store.userId
+
+                try {
+                    const response = await axios.delete(
+                        process.env.BACKEND_URL + "/api/shopping", {
+                            data: {
+
+                                id_products: product_id,
+                                id_user: user_id
+                            }
+                        }
+                    )
+                    alert(response.data.msg);
+                    return response;
+                } catch (error) {
+                    console.log(error)
+
+                }
+            },
+
+            // funcion para obtener todos los productos agregados al carrito
+
+            getShopping: async () => {
+
+                let store = getStore();
+                let user_id = store.userId
+                // console.log(user_id)
+
+                try {
+                    const response = await axios.get(
+                        process.env.BACKEND_URL + "/api/user/" + user_id + "/shopping"
+                    )
+                    // console.log(response.data.results)
+
+                    setStore({
+
+                        shoppingList: response.data.results
+                        // userId: response.user_id
+                    })
+
+                } catch (error) {
+                    console.log(error)
                 }
             },
         },

@@ -1,63 +1,62 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, {useContext, useEffect} from "react";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 export const Carrito = () => {
   const { store, actions } = useContext(Context);
-  // let compraTotal = {item.price} + {item.price};
 
-  if (store.products.length === "") {
-    ("No tienes ninguna compra");
-  }
+  useEffect(() => {
+    if (store.userId != null){
+
+      // console.log(store.userId)
+      actions.getShopping();
+    }
+	}, [store.userId, store.shoppingList]);
+  
+  
+  
+  // console.log(store.listaFavoritos)
+  // if (store.listaFavoritos.length === 0) {
+  //   alert("No tienes ningun favorito");
+  // }
 
   return (
-    <div className="container mt-5 vh-100">
+    <div className="container mt-5 vh-auto">
       <div className="w-25">
-        <h1>Carrito {store.products.length}</h1>
+        <h1>My Cart </h1>
       </div>
       <div>
         <ol>
           <li>
-            <h5>
-              {store.products.map((item, id) => (
+            <button className="dropdown-item">
+              {store.shoppingList.length > 0 ? store.shoppingList.map((item, id) => (
                 <li className="list-group-item border border-1" key={id}>
-                  {item.name}
-                  <p>Precio: {item.price}</p>
+                  {item?.name}
+                  <p>Precio: {item?.price}</p>
+                  <i className="bi bi-star-fill"></i>
+                  <i className="bi bi-star-half"></i>
+                  <i className="bi bi-star"></i>
                   <span
                     className="close btn btn-danger"
-                    onClick={() => actions.removeProduct(item)}
+                    onClick={() => actions.deleteShopping(item.id)}
                   >
                     <b>X</b>
                   </span>
                 </li>
-              ))}
-            </h5>
+              )) : <p>Nothing to checkout</p>}
+            </button>
           </li>
         </ol>
       </div>
-      <div>
-        {/* {store.products.map((item, id) => (
-          <p key={id}>Total: {item.price + item.price} </p>
-        ))} */}
-        {/* <button className="btn btn-danger">
-        <Link to={"/"}>Comprar</Link>
-      </button> */}
-      </div>
-      <div className="d-flex justify-content-between">
-        <button className="btn btn-dark">
-          <Nav.Link style={{ color: "#bdb284" }} href="/">
-            Home
-          </Nav.Link>
-        </button>
-        <button className="btn btn-dark">
-          <Nav.Link style={{ color: "#bdb284" }} href="/checkout">
-            Check out
-          </Nav.Link>
-        </button>
-      </div>
+      <button className="btn btn-dark">
+        <Nav.Link style={{ color: "#bdb284" }} href="/">
+          Home
+        </Nav.Link>
+      </button>
     </div>
   );
 };
+
