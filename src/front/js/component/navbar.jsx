@@ -12,10 +12,20 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../img/logo1.png";
 import { BsSearch } from 'react-icons/bs';
 
-  
-
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
+  const { product, setProduct } = useState([]);
+  const { search, setSearch } = useState("");
+
+  const queryGet = () => {
+    let products = store.product;
+    setProduct(products);
+    console.log(product);
+  };
+
+  const handleInput = (e) => {
+    console.log(e.target.value);
+  };
   
   useEffect(() => {
     if (store.userId != null){
@@ -79,7 +89,7 @@ export const NavbarPrincipal = () => {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
-                value={search}
+                defaultValue={""}
               />
               <Button variant="outline-success">
                 <i className="bi bi-search"></i>
