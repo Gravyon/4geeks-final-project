@@ -129,12 +129,8 @@ const getState = ({
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
-<<<<<<< HEAD
                         alert(error.response.data + ". You'll be rediredted to the login page")
                         return error.response.data
-=======
-                        alert(error.response.data);
->>>>>>> 89bba5417bafff89eadd2cfe8469f3105bc74fda
                     }
                 }
             },
@@ -277,11 +273,11 @@ const getState = ({
                     getActions().getShopping();
                     return response;
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                     console.log(error.response.status);
-                    console.log(product_id);
+                    // console.log(product_id);
                     if (error.response.status === 404) {
-                        getActions().eliminarFavoritos(product_id);
+                        getActions().deleteShopping(product_id);
                     } else if (error.response.data === "User is not logged in") {
                         alert(error.response.data + ". You'll be rediredted to the login page")
                         return error.response.data
