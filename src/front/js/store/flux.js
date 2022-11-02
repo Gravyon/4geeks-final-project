@@ -327,9 +327,7 @@ const getState = ({
             changePassword: async (email) => {
                 try {
                     const response = await axios.post(
-                        process.env.BACKEND_URL + "/api/user/password",
-                        // "https://3001-gravyon-4geeksfinalproj-z8epmg4v641.ws-us73.gitpod.io/api/user/password"
-                        {
+                        process.env.BACKEND_URL + "/api/user/password", {
                             email: email,
                         }
                     );
@@ -339,8 +337,8 @@ const getState = ({
                     }
                 } catch (error) {
                     console.log(error);
-                    if (response.status === 405) {
-                        alert("Salio mal");
+                    if (error.response.status === 405) {
+                        alert("Your email does not exist");
                     }
                 }
             },
