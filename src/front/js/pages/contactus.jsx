@@ -17,13 +17,12 @@ export const ContactUs = () => {
 
   const doSubmit = (e) => {
     e.preventDefault();
-    let onSignUp = actions.SignUp(email, message, firstName, lastName);
+    let contactUs = actions.contactus(email, message, firstName, lastName);
     setEmail("");
-    setPassword("");
-    setUsername("");
     setFirstName("");
     setLastName("");
-    onSignUp ? navigate("/") : null;
+    setMessage("");
+    contactUs ? navigate("/") : null;
   };
 
   return (
