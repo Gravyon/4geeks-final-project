@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 
 export const Carrito = () => {
   const { store, actions } = useContext(Context);
@@ -14,15 +15,9 @@ export const Carrito = () => {
       // console.log(store.userId)
       actions.getShopping();
     }
-	}, [store.userId, store.shoppingList]);
+	}, [store.userId]);
   
   
-  
-  // console.log(store.listaFavoritos)
-  // if (store.listaFavoritos.length === 0) {
-  //   alert("No tienes ningun favorito");
-  // }
-
   return (
     <div className="container mt-5 vh-auto">
       <div className="w-25">
@@ -36,9 +31,11 @@ export const Carrito = () => {
                 <li className="list-group-item border border-1" key={id}>
                   {item?.name}
                   <p>Precio: {item?.price}</p>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-half"></i>
-                  <i className="bi bi-star"></i>
+                  <BsStarFill />
+                  <BsStarFill />
+                  <BsStarHalf />
+                  <BsStar />
+                  <BsStar />
                   <span
                     className="close btn btn-danger"
                     onClick={() => actions.deleteShopping(item.id)}
