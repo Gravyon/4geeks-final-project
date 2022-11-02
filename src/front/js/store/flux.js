@@ -170,7 +170,8 @@ const getState = ({
                         // userId: response.user_id
                     });
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
+                    console.log(error.response.data.msg)
                 }
             },
 
@@ -259,6 +260,7 @@ const getState = ({
                         }
                     );
                     console.log(response);
+                    getActions().getShopping();
                     return response;
                 } catch (error) {
                     console.log(error);
@@ -281,12 +283,18 @@ const getState = ({
                                 id_user: user_id,
                             },
                         }
+
                     );
-                    alert(response.data.msg);
+                    // alert(response.data.msg);
+                    console.log(response);
+
                     getActions().getShopping();
-                    return response;
+                    // console.log(store.shoppingList)
+
+                    return
                 } catch (error) {
                     console.log(error);
+
                 }
             },
 
@@ -304,11 +312,22 @@ const getState = ({
                     // console.log(response.data.results)
 
                     setStore({
+
                         shoppingList: response.data.results,
                         // userId: response.user_id
-                    });
+                    })
+
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
+                    console.log(error.response.data.msg)
+                    if (error.response.status === 404) {
+                        setStore({
+
+                            shoppingList: [],
+
+                        })
+                    }
+
                 }
             },
 

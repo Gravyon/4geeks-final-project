@@ -27,13 +27,13 @@ export const NavbarPrincipal = () => {
     console.log(e.target.value);
   };
   
-  useEffect(() => {
-    if (store.userId != null){
+  // useEffect(() => {
+  //   if (store.userId != null){
 
-      // console.log(store.userId)
-      actions.getShopping();
-    }
-	}, [store.userId, store.shoppingList]);
+  //     // console.log(store.userId)
+  //     actions.getShopping();
+  //   }
+	// }, [store.userId]);
   
   let navigate = useNavigate();
 
