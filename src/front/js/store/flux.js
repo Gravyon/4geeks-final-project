@@ -209,7 +209,9 @@ const getState = ({
                         });
                     }
                 } catch (error) {
-                    console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        alert(error.response.data.msg);
+                    }
                 }
             },
 
