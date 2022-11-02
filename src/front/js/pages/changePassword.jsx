@@ -11,22 +11,21 @@ export const ChangePassword = () => {
   const { store, actions } = useContext(Context);
 
   const [email, setEmail] = useState("");
-  //   let navigate = useNavigate();
+  let navigate = useNavigate();
 
-  //   const doSubmit = (e) => {
-  //     e.preventDefault();
-  //     let onLogged = actions.login(email);
-  //     setEmail("");
-  //     onLogged ? navigate("/") : null;
-  //   };
+  const doSubmit = (e) => {
+    e.preventDefault();
+    let changePassword = actions.changePassword(email);
+    setEmail("");
+    changePassword ? navigate("/") : null;
+  };
+  console.log(email);
 
   return (
     <div>
       <h1>Reset password</h1>
       <div className="text-center mt-5 container vh-100">
-        <form
-        // onSubmit={doSubmit}
-        >
+        <form onSubmit={doSubmit}>
           <div className="mb-3">
             <label
               htmlFor="exampleInputEmail1"
