@@ -69,6 +69,7 @@ export const NavbarPrincipal = () => {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                
               />
               <Button variant="outline-light" style={{color: "#bdb284"}}>
               <BsSearch />
