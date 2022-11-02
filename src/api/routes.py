@@ -383,7 +383,7 @@ def create_favorites():
             # Standard response to request with error code 200 (success)
             return jsonify({"msg": "New favorite list created"}), 200
 
-    return "Something went bad"
+    return "User is not logged in", 400
 
 ###########################
 # Shopping POST query
