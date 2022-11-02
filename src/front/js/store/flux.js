@@ -72,17 +72,11 @@ const getState = ({
                         auth: true,
                         userId: response.data.user.id,
                     });
-                    return response.data.msg;
+                    return true;
                 } catch (error) {
                     console.log(error);
-                    console.log(error.response.status);
-
-                    if (error.response.status === 404) {
-                        alert(error.response.data.msg + ". You'll be rediredted to the register page");
-                        return error.response.data.msg
-                    } else if (error.response.status === 401) {
-                        alert(error.response.data.msg)
-                        return error.response.data
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        alert(error.response.data.msg);
                     }
                 }
             },
