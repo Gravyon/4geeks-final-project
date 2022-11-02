@@ -128,6 +128,8 @@ const getState = ({
                     console.log(product_id);
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
+                    } else if (error.response.data === "User is not logged in") {
+                        alert(error.response.data)
                     }
                 }
             },
@@ -239,6 +241,7 @@ const getState = ({
                                 Authorization: "Bearer " + accessToken,
                             },
                         }
+
                     );
                     // console.log(accessToken);
                     setStore({
