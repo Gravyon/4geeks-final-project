@@ -18,23 +18,27 @@ export const NavbarPrincipal = () => {
   const [ search, setSearch ] = useState("");
 
   const queryGet = () => {
-    setProduct(store.product);
-    console.log(product);
+    // setProduct();
+    console.log(store.product);
   };
 
   const handleInput = (e) => {
+    e.preventDefault()
     setSearch(e.target.value)
-   filterSearch(e.target.value);
+    console.log(e.target.value);
+    filterSearch(e.target.value);
   };
 
   const filterSearch = (searchValue)=>{
-    let results = product.filter((item)=>{
+    let results = store.product.filter((item)=>{
       if (item.name.toString().toLowerCase().includes(searchValue.toLowerCase())
       || item.description.toString().toLowerCase().includes(searchValue.toLowerCase()))
       {
+        console.log(item, results)
         return item; 
       }
     });
+    console.log(results)
     setProduct(results)
   }
   useEffect(() => {
@@ -99,8 +103,10 @@ export const NavbarPrincipal = () => {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
-                
               />
+              <ul>
+                <li>{product.name}</li>
+              </ul>
               <Button onClick={queryGet} variant="outline-ligth" style={{ color: "#bdb284" }}>
                 <BsSearch />
               </Button>
