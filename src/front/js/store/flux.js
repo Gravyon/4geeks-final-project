@@ -241,7 +241,72 @@ const getState = ({
                     return false;
                 }
             },
-<<<<<<< HEAD
+            // funcion para agregar productos al carrito
+            createShopping: async (product_id) => {
+                let store = getStore();
+
+                let user_id = store.userId;
+                console.log(user_id);
+
+                try {
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/shopping", {
+                            id_products: product_id,
+                            id_user: user_id,
+                        }
+                    );
+                    console.log(response);
+                    return response;
+                } catch (error) {
+                    console.log(error);
+                    console.log(error.response.status);
+                    console.log(product_id);
+                }
+            },
+
+            //funcion para eliminar productos del carrito
+
+            deleteShopping: async (product_id) => {
+                let store = getStore();
+                let user_id = store.userId;
+
+                try {
+                    const response = await axios.delete(
+                        process.env.BACKEND_URL + "/api/shopping", {
+                            data: {
+                                id_products: product_id,
+                                id_user: user_id,
+                            },
+                        }
+                    );
+                    alert(response.data.msg);
+                    return response;
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+
+            // funcion para obtener todos los productos agregados al carrito
+
+            getShopping: async () => {
+                let store = getStore();
+                let user_id = store.userId;
+                // console.log(user_id)
+
+                try {
+                    const response = await axios.get(
+                        process.env.BACKEND_URL + "/api/user/" + user_id + "/shopping"
+                    );
+                    // console.log(response.data.results)
+
+                    setStore({
+                        shoppingList: response.data.results,
+                        // userId: response.user_id
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
+            },
 
             // ChangePassword: async (email) => {
             //     try {
@@ -260,83 +325,6 @@ const getState = ({
             //         console.log(error);
             //     }
             // },
-=======
-            // funcion para agregar productos al carrito
-            createShopping: async (product_id) => {
-
-                let store = getStore();
-
-                let user_id = store.userId
-                console.log(user_id);
-
-                try {
-
-                    const response = await axios.post(
-                        process.env.BACKEND_URL + "/api/shopping", {
-                            id_products: product_id,
-                            id_user: user_id
-                        }
-                    )
-                    console.log(response);
-                    return response;
-
-                } catch (error) {
-                    console.log(error);
-                    console.log(error.response.status)
-                    console.log(product_id)
-
-                }
-            },
-
-            //funcion para eliminar productos del carrito
-
-            deleteShopping: async (product_id) => {
-                let store = getStore();
-                let user_id = store.userId
-
-                try {
-                    const response = await axios.delete(
-                        process.env.BACKEND_URL + "/api/shopping", {
-                            data: {
-
-                                id_products: product_id,
-                                id_user: user_id
-                            }
-                        }
-                    )
-                    alert(response.data.msg);
-                    return response;
-                } catch (error) {
-                    console.log(error)
-
-                }
-            },
-
-            // funcion para obtener todos los productos agregados al carrito
-
-            getShopping: async () => {
-
-                let store = getStore();
-                let user_id = store.userId
-                // console.log(user_id)
-
-                try {
-                    const response = await axios.get(
-                        process.env.BACKEND_URL + "/api/user/" + user_id + "/shopping"
-                    )
-                    // console.log(response.data.results)
-
-                    setStore({
-
-                        shoppingList: response.data.results
-                        // userId: response.user_id
-                    })
-
-                } catch (error) {
-                    console.log(error)
-                }
-            },
->>>>>>> 8eab3af37ad230185f604edf78a222abe83771a3
         },
     };
 };
