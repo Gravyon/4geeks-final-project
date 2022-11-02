@@ -17,6 +17,7 @@ export const Carrito = () => {
     }
 	}, [store.userId]);
   
+  console.log(store.shoppingList);
   
   return (
     <div className="container mt-5 vh-auto">
@@ -43,7 +44,8 @@ export const Carrito = () => {
                     <b>X</b>
                   </span>
                 </li>
-              )) : <p>Nothing to checkout</p>}
+              // )) : <p>Nothing to checkout</p>}
+              )) : <p>Cart is empty</p> }
             </button>
           </li>
         </ol>

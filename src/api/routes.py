@@ -433,7 +433,7 @@ def get_shopping_by_user(id_user):
     print(shopping)
     results = list(map(lambda x: x.serialize2(), shopping))
 
-    if (results == []):
+    if results == []:
       return  jsonify({"msg": "Your cart is empty"}), 404
 
     response_body = {
