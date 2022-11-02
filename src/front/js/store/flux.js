@@ -130,7 +130,8 @@ const getState = ({
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
-                        alert(error.response.data)
+                        alert(error.response.data + ". You'll be rediredted to the login page")
+                        return error.response.data
                     }
                 }
             },
@@ -282,6 +283,12 @@ const getState = ({
                     console.log(error);
                     console.log(error.response.status);
                     console.log(product_id);
+                    if (error.response.status === 404) {
+                        getActions().eliminarFavoritos(product_id);
+                    } else if (error.response.data === "User is not logged in") {
+                        alert(error.response.data + ". You'll be rediredted to the login page")
+                        return error.response.data
+                    }
                 }
             },
 
