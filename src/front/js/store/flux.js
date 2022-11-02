@@ -70,7 +70,7 @@ const getState = ({
                     console.log(response.data.user.id);
                     setStore({
                         auth: true,
-                        userId: response.data.user.id
+                        userId: response.data.user.id,
                     });
                     return true;
                 } catch (error) {
@@ -108,80 +108,69 @@ const getState = ({
             // },
             //Funcion para crear favoritos
             createFavorite: async (product_id) => {
-
                 let store = getStore();
 
-                let user_id = store.userId
+                let user_id = store.userId;
                 console.log(user_id);
 
                 try {
-
                     const response = await axios.post(
                         process.env.BACKEND_URL + "/api/favorites", {
                             id_products: product_id,
-                            id_user: user_id
+                            id_user: user_id,
                         }
-                    )
+                    );
                     console.log(response);
                     return response;
-
                 } catch (error) {
                     console.log(error);
-                    console.log(error.response.status)
-                    console.log(product_id)
+                    console.log(error.response.status);
+                    console.log(product_id);
                     if (error.response.status === 404) {
-                        getActions().eliminarFavoritos(product_id)
+                        getActions().eliminarFavoritos(product_id);
                     }
-
                 }
             },
 
             // Funcion para eliminar favoritos en la base de datos
             eliminarFavoritos: async (product_id) => {
                 let store = getStore();
-                let user_id = store.userId
+                let user_id = store.userId;
 
                 try {
                     const response = await axios.delete(
                         process.env.BACKEND_URL + "/api/favorites", {
                             data: {
-
                                 id_products: product_id,
-                                id_user: user_id
-                            }
+                                id_user: user_id,
+                            },
                         }
-                    )
+                    );
                     alert(response.data.msg);
                     getActions().getFavorites();
                     return response;
                 } catch (error) {
-                    console.log(error)
-
+                    console.log(error);
                 }
             },
 
             //funcion para obtener todos los favoritos de un usuario
 
             getFavorites: async () => {
-
                 let store = getStore();
-                let user_id = store.userId
+                let user_id = store.userId;
                 // console.log(user_id)
-
                 try {
                     const response = await axios.get(
                         process.env.BACKEND_URL + "/api/user/" + user_id + "/favorites"
-                    )
+                    );
                     // console.log(response.data.results)
-
                     setStore({
-
-                        listaFavoritos: response.data.results
+                        listaFavoritos: response.data.results,
                         // userId: response.user_id
-                    })
-
+                    });
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
             },
 
@@ -220,7 +209,9 @@ const getState = ({
                         });
                     }
                 } catch (error) {
-                    console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        alert(error.response.data.msg);
+                    }
                 }
             },
 
@@ -237,12 +228,9 @@ const getState = ({
                         }
                     );
                     // console.log(accessToken);
-
-
-
                     setStore({
                         auth: response.data.status,
-                        userId: response.data.user.id
+                        userId: response.data.user.id,
                     });
                     console.log(auth);
                     return;
@@ -258,28 +246,24 @@ const getState = ({
             },
             // funcion para agregar productos al carrito
             createShopping: async (product_id) => {
-
                 let store = getStore();
 
-                let user_id = store.userId
+                let user_id = store.userId;
                 console.log(user_id);
 
                 try {
-
                     const response = await axios.post(
                         process.env.BACKEND_URL + "/api/shopping", {
                             id_products: product_id,
-                            id_user: user_id
+                            id_user: user_id,
                         }
-                    )
+                    );
                     console.log(response);
                     return response;
-
                 } catch (error) {
                     console.log(error);
-                    console.log(error.response.status)
-                    console.log(product_id)
-
+                    console.log(error.response.status);
+                    console.log(product_id);
                 }
             },
 
@@ -287,51 +271,64 @@ const getState = ({
 
             deleteShopping: async (product_id) => {
                 let store = getStore();
-                let user_id = store.userId
+                let user_id = store.userId;
 
                 try {
                     const response = await axios.delete(
                         process.env.BACKEND_URL + "/api/shopping", {
                             data: {
-
                                 id_products: product_id,
-                                id_user: user_id
-                            }
+                                id_user: user_id,
+                            },
                         }
-                    )
+                    );
                     alert(response.data.msg);
                     getActions().getShopping();
                     return response;
                 } catch (error) {
-                    console.log(error)
-
+                    console.log(error);
                 }
             },
 
             // funcion para obtener todos los productos agregados al carrito
 
             getShopping: async () => {
-
                 let store = getStore();
-                let user_id = store.userId
+                let user_id = store.userId;
                 // console.log(user_id)
 
                 try {
                     const response = await axios.get(
                         process.env.BACKEND_URL + "/api/user/" + user_id + "/shopping"
-                    )
+                    );
                     // console.log(response.data.results)
 
                     setStore({
-
-                        shoppingList: response.data.results
+                        shoppingList: response.data.results,
                         // userId: response.user_id
-                    })
-
+                    });
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
             },
+
+            // ChangePassword: async (email) => {
+            //     try {
+            //         const response = await axios.put(
+            //             process.env.BACKEND_URL + "/api/user/password/" + user_id, {
+            //                 email: email,
+            //                 password: password,
+            //             }
+            //         );
+
+            //         if (response.status === 200) {
+            //             setStore({
+            //             });
+            //         }
+            //     } catch (error) {
+            //         console.log(error);
+            //     }
+            // },
         },
     };
 };

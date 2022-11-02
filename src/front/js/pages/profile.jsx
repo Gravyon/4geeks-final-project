@@ -96,7 +96,7 @@ export const Profile = (props) => {
                               className="modal-title fs-5"
                               id="exampleModalLabel"
                             >
-                              Deseas borrar tu cuenta?
+                              ¿Deseas borrar tu cuenta?
                             </h1>
                           </div>
                           <div className="modal-body">...</div>
