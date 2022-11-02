@@ -4,9 +4,27 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+
+  let handleAddFavorites = async (id) => {  //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
+   let msj = await actions.createFavorite(id) 
+   console.log(msj)
+    if(msj === "User is not logged in"){
+      navigate("/login")
+    }
+  };
+
+  let handleAddShopping = async (id) => {  //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
+    let msj = await actions.createShopping(id) 
+    console.log(msj)
+     if(msj === "User is not logged in"){
+       navigate("/login")
+     }
+   }
 
   return (
     <div className="card-group mb-5 mt-5">
@@ -46,7 +64,7 @@ export const LandingPage = () => {
                     
                       <button
                         type="button"
-                        onClick={() => actions.createShopping(item.id)}
+                        onClick={() => handleAddShopping(item.id)}
                         className="btn btn-outline-light d-flex align-bottom"
                         style={{ float: "right", color: "#bdb284"}}
                       >
@@ -57,7 +75,7 @@ export const LandingPage = () => {
                       <Link to="/" className="btn btn-outline-light align-bottom" style={{color: "#bdb284"}} >
                         <i
                           className="far fa-heart"
-                          onClick={() => { actions.createFavorite(item.id) }}
+                          onClick={() => { handleAddFavorites(item.id) }}
                         ></i>
                       </Link>
                    

@@ -407,7 +407,7 @@ def create_shopping():
         # Standard response to request with error code 200 (success)
         return jsonify({"msg": "New shopping list created"}), 200
 
-    return jsonify({"msg": "Something went bad"}), 404
+    return "User is not logged in", 400
 
 ###########################
 # Shopping GET queries
