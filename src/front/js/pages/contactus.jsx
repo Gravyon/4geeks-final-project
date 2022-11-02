@@ -37,7 +37,11 @@ export const ContactUs = () => {
       <input id="email" type="email" name="email" />
       <ValidationError prefix="Email" field="email" errors={state.errors} />
       <textarea id="message" name="message" />
-      <ValidationError prefix="Message" field="message" errors={state.errors} />
+      <ValidationError
+        prefix="FirstName"
+        field="firstName"
+        errors={state.errors}
+      />
       <button type="submit" disabled={state.submitting}>
         Submit
       </button>
@@ -74,7 +78,7 @@ export const ContactUs = () => {
     //           onChange={(e) => setFirstName(e.target.value)}
     //           value={firstName}
     //         />
-    // <ValidationError prefix="Message" field="message" errors={state.errors} />
+    // <ValidationError prefix="FirstName" field="firstName" errors={state.errors} />
     //       </div>
     //       <div className="mb-3">
     //         <label
@@ -90,7 +94,7 @@ export const ContactUs = () => {
     //           onChange={(e) => setLastName(e.target.value)}
     //           value={lastName}
     //         />
-    // <ValidationError prefix="Message" field="message" errors={state.errors} />
+    // <ValidationError prefix="LastName" field="lastName" errors={state.errors} />
     //       </div>
     //       <div className="mb-3">
     //         <label
@@ -133,6 +137,7 @@ export const ContactUs = () => {
     //         type="submit"
     //         className="btn btn-dark"
     //         style={{ color: "#bdb284" }}
+    // disabled={state.submitting}
     //       >
     //         Submit
     //       </button>
