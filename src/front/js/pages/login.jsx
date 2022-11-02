@@ -14,12 +14,20 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
 
-  const doSubmit = (e) => {
+  const doSubmit = async (e) => {
     e.preventDefault();
-    let onLogged = actions.login(email, password);
+    let onLogged = await actions.login(email, password);
+    // let msj = await actions.login(email, password).response.data.msg;
+    
+    // console.log(onLogged);
     setEmail("");
     setPassword("");
-    onLogged ? navigate("/") : null;
+    // onLogged ? navigate("/") : null;
+    if(onLogged === "User doesn't exist"){
+      navigate("/signup")
+    }else if(onLogged.msg === "Bad email or password"){
+      navigate("/login")
+    }else {navigate("/")}
   };
 
   return (
