@@ -76,7 +76,11 @@ def valid_token():
     current_user = get_jwt_identity()
     user = User.query.filter_by(email=current_user).first()
     # Same as login, if the query brings nothing then it doesn't exist
-    if user is None:
+
+    if current_user is None:
+        return jsonify({"User not logged in"}), 422
+
+    elif user is None:
         return jsonify({"status":False}), 404
     # If user is correct then it shows the user's info
     response_body = {
@@ -336,6 +340,10 @@ def get_favorites_by_user(id_user):
     favorites = Favorites.query.filter_by(id_user=id_user).all()
     print(favorites)
     results = list(map(lambda x: x.serialize2(), favorites))
+
+    if (results == []):
+      return  jsonify({"msg": "You don't have favorites"}), 404
+
     response_body = {
         "user_id": favorites[0].id_user,
         "results": results
@@ -401,17 +409,6 @@ def create_shopping():
 
     return jsonify({"msg": "Something went bad"}), 404
 
-# @api.route('/user/<int:id_user>/favorite', methods=['GET'])
-# def get_favorite(id_user):
-#     ###########################
-#     # Get user favorites
-#     ###########################
-#     favorites = Favorites.query.filter_by(id_user=id_user).all()
-#     results = list(map(lambda x: x.serialize(), favorites))
-#     print(favorites)
-#     # results = favorites
-#     return jsonify(results), 200
-
 ###########################
 # Shopping GET queries
 ###########################
@@ -435,6 +432,10 @@ def get_shopping_by_user(id_user):
     shopping = Shopping.query.filter_by(id_user=id_user).all()
     print(shopping)
     results = list(map(lambda x: x.serialize2(), shopping))
+
+    if (results == []):
+      return  jsonify({"msg": "Your cart is empty"}), 404
+
     response_body = {
         "user_id": shopping[0].id_user,
         "results": results
@@ -537,6 +538,10 @@ def get_comments_by_user(id_user):
     comments = Comments.query.filter_by(id_user=id_user).all()
     print(comments)
     results = list(map(lambda x: x.serialize(), comments))
+
+    if (results == []):
+      return  jsonify({"msg": "User doesn't have any comments yet"}), 404
+
     response_body = {
         "results": results
     }

@@ -11,18 +11,12 @@ export const Favorites = () => {
   useEffect(() => {
     if (store.userId != null){
 
-      console.log(store.userId)
+      // console.log(store.userId)
       actions.getFavorites();
     }
-	}, [store.userId, store.listaFavoritos]);
+	}, [store.userId]);
   
   
-  
-  // console.log(store.listaFavoritos)
-  // if (store.listaFavoritos.length === 0) {
-  //   alert("No tienes ningun favorito");
-  // }
-
   return (
     <div className="container mt-5 vh-100">
       <div className="w-25">

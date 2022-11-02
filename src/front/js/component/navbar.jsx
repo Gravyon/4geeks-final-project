@@ -89,7 +89,7 @@ export const NavbarPrincipal = () => {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
-                defaultValue={""}
+                
               />
               <Button variant="outline-success">
                 <i className="bi bi-search"></i>
