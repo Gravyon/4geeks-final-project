@@ -14,26 +14,36 @@ import { BsSearch } from 'react-icons/bs';
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
-  const { product, setProduct } = useState([]);
-  const { search, setSearch } = useState("");
+  const [ product, setProduct ] = useState([]);
+  const [ search, setSearch ] = useState("");
 
   const queryGet = () => {
-    let products = store.product;
-    setProduct(products);
+    setProduct(store.product);
     console.log(product);
   };
 
   const handleInput = (e) => {
-    console.log(e.target.value);
+    setSearch(e.target.value)
+   filterSearch(e.target.value);
   };
-  
-  // useEffect(() => {
-  //   if (store.userId != null){
 
-  //     // console.log(store.userId)
-  //     actions.getShopping();
-  //   }
-	// }, [store.userId]);
+  const filterSearch = (searchValue)=>{
+    let results = product.filter((item)=>{
+      if (item.name.toString().toLowerCase().includes(searchValue.toLowerCase())
+      || item.description.toString().toLowerCase().includes(searchValue.toLowerCase()))
+      {
+        return item; 
+      }
+    });
+    setProduct(results)
+  }
+  useEffect(() => {
+    if (store.userId != null){
+
+      // console.log(store.userId)
+      actions.getShopping();
+    }
+	}, [store.userId]);
   
   let navigate = useNavigate();
 
@@ -84,14 +94,14 @@ export const NavbarPrincipal = () => {
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
             </Nav>
             <Form className="d-flex">
-              <Form.Control
+              <Form.Control onChange={handleInput}
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
                 
               />
-              <Button onClick={queryGet} variant="outline-success">
+              <Button variant="outline-success">
                 <i className="bi bi-search"></i>
               </Button>
             </Form>
