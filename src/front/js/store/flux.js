@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const getState = ({
     getStore,
     getActions,
@@ -128,6 +129,8 @@ const getState = ({
                     console.log(product_id);
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
+                    } else if (error.response.data === "User is not logged in") {
+                        alert(error.response.data)
                     }
                 }
             },
@@ -160,18 +163,30 @@ const getState = ({
                 let store = getStore();
                 let user_id = store.userId;
                 // console.log(user_id)
+
                 try {
                     const response = await axios.get(
                         process.env.BACKEND_URL + "/api/user/" + user_id + "/favorites"
                     );
                     // console.log(response.data.results)
+
                     setStore({
+
                         listaFavoritos: response.data.results,
                         // userId: response.user_id
-                    });
+                    })
+
                 } catch (error) {
                     // console.log(error);
                     console.log(error.response.data.msg)
+                    if (error.response.status === 404) {
+                        setStore({
+
+                            listaFavoritos: [],
+
+                        })
+                    }
+
                 }
             },
 
@@ -227,6 +242,7 @@ const getState = ({
                                 Authorization: "Bearer " + accessToken,
                             },
                         }
+
                     );
                     // console.log(accessToken);
                     setStore({

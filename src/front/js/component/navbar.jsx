@@ -91,8 +91,8 @@ export const NavbarPrincipal = () => {
                 aria-label="Search"
                 
               />
-              <Button onClick={queryGet} variant="outline-success">
-                <i className="bi bi-search"></i>
+              <Button onClick={queryGet} variant="outline-ligth" style={{ color: "#bdb284" }}>
+                <BsSearch />
               </Button>
             </Form>
             {!store.auth ? (
