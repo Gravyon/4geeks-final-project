@@ -90,23 +90,23 @@ const getState = ({
                 });
                 return false;
             },
-            addProducts: (product) => {
-                const store = getStore();
-                if (store.products.includes(product)) {
-                    getActions().removeProduct(product);
-                } else {
-                    setStore({
-                        products: [...store.products, product],
-                    });
-                }
-            },
-            removeProduct: (product) => {
-                const store = getStore();
-                setStore({
-                    products: store.products.filter((item) => item !== product),
-                });
-            },
-
+            // addProducts: (product) => {
+            //     const store = getStore();
+            //     if (store.products.includes(product)) {
+            //         getActions().removeProduct(product);
+            //     } else {
+            //         setStore({
+            //             products: [...store.products, product],
+            //         });
+            //     }
+            // },
+            // removeProduct: (product) => {
+            //     const store = getStore();
+            //     setStore({
+            //         products: store.products.filter((item) => item !== product),
+            //     });
+            // },
+            //Funcion para crear favoritos
             createFavorite: async (product_id) => {
                 let store = getStore();
 
@@ -132,7 +132,7 @@ const getState = ({
                 }
             },
 
-            // Funcion para eliminar favoritos en la base
+            // Funcion para eliminar favoritos en la base de datos
             eliminarFavoritos: async (product_id) => {
                 let store = getStore();
                 let user_id = store.userId;
@@ -147,6 +147,7 @@ const getState = ({
                         }
                     );
                     alert(response.data.msg);
+                    getActions().getFavorites();
                     return response;
                 } catch (error) {
                     console.log(error);
@@ -190,7 +191,7 @@ const getState = ({
                     console.log(error);
                 }
             },
-
+            //Funcion para registrarse como usuario
             signup: async (username, email, password) => {
                 try {
                     const response = await axios.post(
@@ -280,6 +281,7 @@ const getState = ({
                         }
                     );
                     alert(response.data.msg);
+                    getActions().getShopping();
                     return response;
                 } catch (error) {
                     console.log(error);
