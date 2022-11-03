@@ -118,7 +118,7 @@ export const ContactUs = () => {
   );
 };
 
-//       COMO EJEMPLO PARA LOS CLASSNAMES Y ESTILOS
+// COMO EJEMPLO PARA LOS CLASSNAMES Y ESTILOS
 // <div className="mb-3">
 //         <label
 //           htmlFor="exampleInputPassword1"
