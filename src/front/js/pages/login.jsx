@@ -18,16 +18,18 @@ export const Login = () => {
     e.preventDefault();
     let onLogged = await actions.login(email, password);
     // let msj = await actions.login(email, password).response.data.msg;
-    
-    // console.log(onLogged);
+
+    console.log(onLogged);
     setEmail("");
     setPassword("");
     // onLogged ? navigate("/") : null;
-    if(onLogged === "User doesn't exist"){
-      navigate("/signup")
-    }else if(onLogged.msg === "Bad email or password"){
-      navigate("/login")
-    }else {navigate("/")}
+    if (onLogged === "User doesn't exist") {
+      navigate("/signup");
+    } else if (onLogged.msg === "Bad email or password") {
+      navigate("/login");
+    } else {
+      navigate("/");
+    }
   };
 
   return (

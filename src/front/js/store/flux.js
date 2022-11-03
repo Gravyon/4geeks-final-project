@@ -72,11 +72,20 @@ const getState = ({
                         auth: true,
                         userId: response.data.user.id,
                     });
-                    return true;
+                    return response.data.msg;
                 } catch (error) {
                     console.log(error);
-                    if (error.code === "ERR_BAD_REQUEST") {
+                    console.log(error.response.status);
+
+                    if (error.response.status === 404) {
+                        alert(
+                            error.response.data.msg +
+                            ". You'll be rediredted to the register page"
+                        );
+                        return error.response.data.msg;
+                    } else if (error.response.status === 401) {
                         alert(error.response.data.msg);
+                        return error.response.data;
                     }
                 }
             },
@@ -218,10 +227,21 @@ const getState = ({
                             registered: true,
                         });
                     }
+                    console.log(response);
+                    return response.data.msg;
                 } catch (error) {
-                    if (error.code === "ERR_BAD_REQUEST") {
-                        alert(error.response.data.msg);
+                    console.log(error);
+                    if (error.response.status === 400) {
+                        alert(
+                            error.response.data.msg +
+                            ". You'll be rediredted to the login page"
+                        );
+                        return error.response.data.msg;
                     }
+                    // else if (error.response.status === 401) {
+                    //     alert(error.response.data.msg);
+                    //     return error.response.data;
+                    // }
                 }
             },
 
