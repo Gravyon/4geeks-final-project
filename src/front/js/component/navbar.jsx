@@ -14,26 +14,33 @@ import { BsSearch } from 'react-icons/bs';
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
-  const { product, setProduct } = useState([]);
-  const { search, setSearch } = useState("");
+  const [ product, setProduct ] = useState([]);
+  const [ search, setSearch ] = useState("");
 
-  const queryGet = () => {
-    let products = store.product;
-    setProduct(products);
-    console.log(product);
-  };
+  // const queryGet = () => {
+  //   console.log(store.product);
+  // };
 
   const handleInput = (e) => {
+    e.preventDefault()
+    setSearch(e.target.value)
     console.log(e.target.value);
+    if (e.target.value === ""){
+      actions.getProduct()
+    }
+    else {
+      actions.filterSearch(e.target.value);
+    }
+    
   };
-  
-  // useEffect(() => {
-  //   if (store.userId != null){
 
-  //     // console.log(store.userId)
-  //     actions.getShopping();
-  //   }
-	// }, [store.userId]);
+  useEffect(() => {
+    if (store.userId != null){
+
+      // console.log(store.userId)
+      actions.getShopping();
+    }
+	}, [store.userId]);
   
   let navigate = useNavigate();
 
@@ -84,14 +91,13 @@ export const NavbarPrincipal = () => {
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
             </Nav>
             <Form className="d-flex">
-              <Form.Control
+              <Form.Control onChange={handleInput}
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
-                
               />
-              <Button onClick={queryGet} variant="outline-ligth" style={{ color: "#bdb284" }}>
+              <Button variant="outline-ligth" style={{ color: "#bdb284" }}>
                 <BsSearch />
               </Button>
             </Form>
