@@ -197,6 +197,7 @@ const getState = ({
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
                         alert(error.response.data);
+                        return error.response.data;
                     }
                 }
             },
