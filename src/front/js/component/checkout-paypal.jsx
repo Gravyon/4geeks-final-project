@@ -1,44 +1,46 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useEffect } from "react";
+import ReactDOM, { render } from "react-dom";
+import PaypalExpressBtn from "react-paypal-express-checkout";
 
-const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+// const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 export const PayPalCheckout = () => {
-  const [price, setPrice] = useState(0);
-  const createOrder = (data, actions) => {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            value: price,
-          },
-        },
-      ],
-    });
+  const onSuccess = (payment) => {
+    console.log("The payment was succeeded!", payment);
   };
 
-  const onApprove = (data, actions) => {
-    return actions.order.capture();
+  const onCancel = (data) => {
+    // User pressed "cancel" or close Paypal's popup!
+    console.log("The payment was cancelled!", data);
+    // You can bind the "data" object's value to your state or props or whatever here, please see below for sample returned data
   };
-  function handleChange(e) {
-    setPrice(e.target.value);
-  }
+
+  const onError = (err) => {
+    // The main Paypal's script cannot be loaded or somethings block the loading of that script!
+    console.log("Error!", err);
+    // Because the Paypal's main script is loaded asynchronously from "https://www.paypalobjects.com/api/checkout.js"
+    // => sometimes it may take about 0.5 second for everything to get set, or for the button to appear
+  };
+
+  let env = "sandbox";
+  let currency = "USD";
+  let total = 1;
+
+  const client = {
+    sandbox:
+      "ATjtdmidJIPsPJh1nqKE6UqzDxB3ohTPJKIOxZS-TMleWHrYt3CWrWvF_2NWhS-w7AOdNq0SRQoMJ706",
+    production: "production-app-id",
+  };
+
   return (
-    <center>
-      <div className="App">
-        <h1>Doname {price} $</h1>
-        <input
-          type="text"
-          onChange={handleChange}
-          value={price}
-          style={{ margin: 20 }}
-        ></input>
-        <br />
-        <PayPalButton
-          createOrder={(data, actions) => createOrder(data, actions)}
-          onApprove={(data, actions) => onApprove(data, actions)}
-        />
-      </div>
-    </center>
+    <PaypalExpressBtn
+      env={env}
+      client={client}
+      currency={currency}
+      total={total}
+      onError={onError}
+      onSuccess={onSuccess}
+      onCancel={onCancel}
+    />
   );
 };
