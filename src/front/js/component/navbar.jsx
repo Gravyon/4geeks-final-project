@@ -25,7 +25,7 @@ export const NavbarPrincipal = () => {
     e.preventDefault()
     setSearch(e.target.value)
     console.log(e.target.value);
-    if (search === ""){
+    if (e.target.value === ""){
       actions.getProduct()
     }
     else {

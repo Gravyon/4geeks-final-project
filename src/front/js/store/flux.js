@@ -352,6 +352,24 @@ const getState = ({
                     }
                 }
             },
+            changePassword: async (email) => {
+                try {
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/user/password", {
+                            email: email,
+                        }
+                    );
+
+                    if (response.status === 200) {
+                        alert("Your password was sended");
+                    }
+                } catch (error) {
+                    console.log(error);
+                    if (error.response.status === 404) {
+                        alert("Your email does not exist");
+                    }
+                }
+            },
             filterSearch: (searchValue) => {
                 let store = getStore();
                 let results = store.product.filter((item) => {
@@ -374,25 +392,6 @@ const getState = ({
                     product: results,
                 });
             },
-            changePassword: async (email) => {
-                try {
-                    const response = await axios.post(
-                        process.env.BACKEND_URL + "/api/user/password", {
-                            email: email,
-                        }
-                    );
-
-                    if (response.status === 200) {
-                        alert("Your password was sended");
-                    }
-                } catch (error) {
-                    console.log(error);
-                    if (error.response.status === 404) {
-                        alert("Your email does not exist");
-                    }
-                }
-            },
-
             // contactus: async (firstName, lastName, email, message) => {
             //     try {
             //         const response = await axios.post(
