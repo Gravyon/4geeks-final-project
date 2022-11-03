@@ -15,14 +15,22 @@ export const SignUp = () => {
   const { actions } = useContext(Context);
   let navigate = useNavigate();
 
-  const doSubmit = (e) => {
+  const doSubmit = async (e) => {
     e.preventDefault();
-    let onSignUp = actions.signup(username, email, password);
+    let onSignUp = await actions.signup(username, email, password);
+
+    // console.log(onSignUp.data.msg);
+    console.log(onSignUp);
     setEmail("");
     setPassword("");
     setUsername("");
 
     onSignUp ? navigate("/") : null;
+    if (onSignUp === "User email already exists") {
+      navigate("/login");
+    } else {
+      navigate("/");
+    }
   };
 
   return (
