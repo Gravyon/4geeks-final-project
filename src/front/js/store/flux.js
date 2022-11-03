@@ -72,17 +72,11 @@ const getState = ({
                         auth: true,
                         userId: response.data.user.id,
                     });
-                    return response.data.msg;
+                    return true;
                 } catch (error) {
                     console.log(error);
-                    console.log(error.response.status);
-
-                    if (error.response.status === 404) {
-                        alert(error.response.data.msg + ". You'll be rediredted to the register page");
-                        return error.response.data.msg
-                    } else if (error.response.status === 401) {
-                        alert(error.response.data.msg)
-                        return error.response.data
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        alert(error.response.data.msg);
                     }
                 }
             },
@@ -135,8 +129,7 @@ const getState = ({
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
-                        alert(error.response.data + ". You'll be rediredted to the login page")
-                        return error.response.data
+                        alert(error.response.data);
                     }
                 }
             },
@@ -279,15 +272,9 @@ const getState = ({
                     getActions().getShopping();
                     return response;
                 } catch (error) {
-                    // console.log(error);
+                    console.log(error);
                     console.log(error.response.status);
-                    // console.log(product_id);
-                    if (error.response.status === 404) {
-                        getActions().deleteShopping(product_id);
-                    } else if (error.response.data === "User is not logged in") {
-                        alert(error.response.data + ". You'll be rediredted to the login page")
-                        return error.response.data
-                    }
+                    console.log(product_id);
                 }
             },
 
@@ -359,11 +346,33 @@ const getState = ({
                     }
                 } catch (error) {
                     console.log(error);
-                    if (error.response.status === 405) {
+                    if (error.response.status === 404) {
                         alert("Your email does not exist");
                     }
                 }
             },
+
+            // contactus: async (firstName, lastName, email, message) => {
+            //     try {
+            //         const response = await axios.post(
+            //             process.env.BACKEND_URL + "/api/user/password", {
+            //                 firstName: firstName,
+            //                 lastName: lastName,
+            //                 email: email,
+            //                 message: message,
+            //             }
+            //         );
+
+            //         if (response.status === 200) {
+            //             alert("Your message was sended");
+            //         }
+            //     } catch (error) {
+            //         console.log(error);
+            //         if (error.response.status === 404) {
+            //             alert("Your email does not exist");
+            //         }
+            //     }
+            // },
         },
     };
 };

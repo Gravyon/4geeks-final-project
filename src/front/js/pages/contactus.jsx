@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useForm, ValidationError } from "@formspree/react";
 
 export const ContactUs = () => {
   // definimos los estados
@@ -15,16 +16,20 @@ export const ContactUs = () => {
   const { actions } = useContext(Context);
   let navigate = useNavigate();
 
-  const doSubmit = (e) => {
-    e.preventDefault();
-    let onSignUp = actions.SignUp(email, message, firstName, lastName);
-    setEmail("");
-    setPassword("");
-    setUsername("");
-    setFirstName("");
-    setLastName("");
-    onSignUp ? navigate("/") : null;
-  };
+  const [state, handleSubmit] = useForm("xqkjgwpk");
+  if (state.succeeded) {
+    return <p>Thanks for joining!</p>;
+  }
+
+  // const doSubmit = (e) => {
+  //   e.preventDefault();
+  //   let contactUs = actions.contactus(email, message, firstName, lastName);
+  //   setEmail("");
+  //   setFirstName("");
+  //   setLastName("");
+  //   setMessage("");
+  //   contactUs ? navigate("/") : null;
+  // };
 
   return (
     <div className="text-center mt-5 container d-flex justify-content-between vh-100">
@@ -43,82 +48,64 @@ export const ContactUs = () => {
         <i className="bi bi-instagram"></i>
         <h5>@yourigprofile</h5>
       </div>
+
       <div>
-        <form onSubmit={doSubmit}>
-          <div className="mb-3">
-            <label
-              htmlFor="exampleInputPassword1"
-              className="form-label opacity-50"
-            >
-              First Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputPassword1"
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
-            />
-          </div>
-          <div className="mb-3">
-            <label
-              htmlFor="exampleInputPassword1"
-              className="form-label opacity-50"
-            >
-              Last Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputPassword1"
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-            />
-          </div>
-          <div className="mb-3">
-            <label
-              htmlFor="exampleInputEmail1"
-              className="form-label opacity-50"
-            >
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-          </div>
-          <div className="mb-3">
-            <label
-              htmlFor="exampleInputMessage"
-              className="form-label opacity-50"
-            >
-              Your message goes here
-            </label>
-            <textarea
-              type="text"
-              aria-label="With textarea"
-              className="form-control"
-              id="exampleInputMessage"
-              onChange={(e) => setMessage(e.target.value)}
-              value={message}
-            />
-          </div>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="I am not a robot reCapcha" />
-          </Form.Group>
+        <form onSubmit={handleSubmit}>
+          <label
+            htmlFor="exampleInputPassword1"
+            className="form-label opacity-50"
+            onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
+          >
+            First Name
+          </label>
+          <input className="mb-3" id="firstName" type="text" name="firstName" />
+          <ValidationError
+            prefix="FirstName"
+            field="firstName"
+            errors={state.errors}
+          />
+          <label
+            htmlFor="exampleInputPassword1"
+            className="form-label opacity-50"
+            onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
+          >
+            Last Name
+          </label>
+          <input className="mb-3" id="lastName" type="text" name="lastName" />
+          <ValidationError
+            prefix="LastName"
+            field="lastName"
+            errors={state.errors}
+          />
+          <label
+            htmlFor="exampleInputPassword1"
+            className="form-label opacity-50"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          >
+            Email address
+          </label>
+          <input className="mb-3" id="email" type="email" name="email" />
+          <ValidationError prefix="Email" field="email" errors={state.errors} />
+          <textarea id="message" name="message" />
+          <ValidationError
+            prefix="Message"
+            field="message"
+            errors={state.errors}
+          />
           <button
             type="submit"
             className="btn btn-dark"
             style={{ color: "#bdb284" }}
+            disabled={state.submitting}
           >
             Submit
           </button>
         </form>
       </div>
+
       <div>
         <h4>We are here</h4>
         <img
@@ -130,3 +117,23 @@ export const ContactUs = () => {
     </div>
   );
 };
+
+//       COMO EJEMPLO PARA LOS CLASSNAMES Y ESTILOS
+// <div className="mb-3">
+//         <label
+//           htmlFor="exampleInputPassword1"
+//           className="form-label opacity-50"
+//         >
+//           Last Name
+//         </label>
+//
+// <ValidationError
+//   prefix="LastName"
+//   field="lastName"
+//   errors={state.errors}
+// />
+//       </div>
+
+//       <Form.Group className="mb-3" controlId="formBasicCheckbox">
+//         <Form.Check type="checkbox" label="I am not a robot reCapcha" />
+//       </Form.Group>
