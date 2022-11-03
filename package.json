@@ -86,6 +86,7 @@
         "buffer": "^6.0.3",
         "cloudinary-react": "^1.8.1",
         "cors": "^2.8.5",
+        "paypal-express-checkout": "^1.6.3",
         "prop-types": "^15.6.1",
         "react": "^16.14.0",
         "react-bootstrap": "^2.5.0",

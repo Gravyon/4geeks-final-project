@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { PayPalCheckout } from "../component/checkout-paypal.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export const Checkout = () => {
   const { store, actions } = useContext(Context);
@@ -216,6 +218,10 @@ export const Checkout = () => {
           >
             Efectivo en redes de cobranza
           </label>
+          {/* <Routes>
+            <Route element={< PayPalCheckout />} />
+          </Routes> */}
+          <PayPalCheckout />
         </div>
 
         <Link to={""}>
