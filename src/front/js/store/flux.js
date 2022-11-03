@@ -19,8 +19,53 @@ const getState = ({
             userId: null,
             auth: false,
             registered: false,
+            profile: {},
         },
         actions: {
+            // Profile
+            userProfile: async () => {
+                const userToken = localStorage.getItem("token");
+                try {
+                    const response = await axios.get(
+                        process.env.BACKEND_URL + "/api/profile", {
+                            headers: {
+                                Authorization: "Bearer " + userToken,
+                            },
+                        }
+                    );
+                    // console.log(data)
+                    setStore({
+                        profile: response.data.user,
+                    });
+                    console.log(response.data);
+                    return true;
+                } catch (error) {
+                    console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        console.log(error.response.data.msg);
+                    }
+                }
+            },
+            //Update user info function
+            updateUser: async (username, email, password, id) => {
+                try {
+                    const response = await axios.put(
+                        process.env.BACKEND_URL + "/api/user" + id, {
+                            username: username,
+                            email: email,
+                            password: password,
+                        }
+                    );
+                    console.log(response);
+                    return response.data.msg;
+                } catch (error) {
+                    console.log(error);
+                    if (error.response.status === 404) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                }
+            },
             // fecht de los cuadros
             getProduct: async () => {
                 try {

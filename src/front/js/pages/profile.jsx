@@ -9,18 +9,28 @@ import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
+  let auth = store.auth
+  let navigate = useNavigate();
+  let profile = store.profile
+
+  // const redirectProfile = () =>{
+  //   navigate("/login");
+  // }
 
   //   useEffect(() => {
   //     actions.getUserInfo(params.id);
   //   }, []);
 
   return (
+    <>
+    {auth ? (
     <div className="container mt-5 vh-100">
-      <h1>Welcome to your profile</h1>
+    <h1>Welcome to your profile</h1>
       <div className="col-12">
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
@@ -68,10 +78,26 @@ export const Profile = (props) => {
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   <div>
-                    <h5>Username: user1</h5>
-                    <h5>Email: 123</h5>
+                  <div className="p-2"> 
+                    <h5>Username: {profile.username}</h5>
+                    </div> 
+                  <div className="p-2"> 
+                    <h5>Email: {profile.email}</h5>
+                    </div> 
+                  <div className="p-2"> 
                     <h5>Password: ********</h5>
-                    <Button
+                    </div> 
+                    <Button className="p-2"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      // onClick={}
+                      variant="dark"
+                      style={{ color: "#bdb284" }}
+                    >
+                      Click here to modify your data
+                    </Button>
+                    <Button className="mt-2 p-2 d-flex"
                       type="button"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
@@ -185,6 +211,16 @@ export const Profile = (props) => {
           </Row>
         </Tab.Container>
       </div>
-    </div>
+    </div>)
+: <div className="d-flex vh-auto vh-100 text-center justify-content-center ">
+<div> 
+  <h1>Not logged in...</h1>
+  <Nav.Link className="bg-dark" style={{ color: "#bdb284" }} href="/login">
+          Go to login
+        </Nav.Link>
+  </div>
+</div>
+  }
+</>
   );
 };
