@@ -218,10 +218,9 @@ export const Checkout = () => {
           >
             Efectivo en redes de cobranza
           </label>
-          {/* <Routes>
-            <Route element={< PayPalCheckout />} />
-          </Routes> */}
+          <div>
           <PayPalCheckout />
+          </div>
         </div>
 
         <Link to={""}>
