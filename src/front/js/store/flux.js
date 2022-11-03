@@ -352,7 +352,28 @@ const getState = ({
                     }
                 }
             },
-
+            filterSearch: (searchValue) => {
+                let store = getStore();
+                let results = store.product.filter((item) => {
+                    if (
+                        item.name
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase()) ||
+                        item.description
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase())
+                    ) {
+                        console.log(item);
+                        return item;
+                    }
+                });
+                // console.log(results)
+                setStore({
+                    product: results,
+                });
+            },
             changePassword: async (email) => {
                 try {
                     const response = await axios.post(
