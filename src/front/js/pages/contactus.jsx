@@ -32,8 +32,8 @@ export const ContactUs = () => {
   // };
 
   return (
-    <div className="text-center mt-5 container d-flex justify-content-between vh-100">
-      <div>
+    <div className="container text-center mt-5 d-flex justify-content-between vh-100">
+      <div className="col-4">
         <i className="bi bi-envelope"></i>
         <h5 className="pb-5">example@domain.com</h5>
         <i className="bi bi-geo-alt"></i>
@@ -49,52 +49,72 @@ export const ContactUs = () => {
         <h5>@yourigprofile</h5>
       </div>
 
-      <div>
+      <div className="col-4">
         <form onSubmit={handleSubmit}>
-          <label
-            htmlFor="exampleInputPassword1"
-            className="form-label opacity-50"
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
-          >
-            First Name
-          </label>
-          <input className="mb-3" id="firstName" type="text" name="firstName" />
-          <ValidationError
-            prefix="FirstName"
-            field="firstName"
-            errors={state.errors}
-          />
-          <label
-            htmlFor="exampleInputPassword1"
-            className="form-label opacity-50"
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
-          >
-            Last Name
-          </label>
-          <input className="mb-3" id="lastName" type="text" name="lastName" />
-          <ValidationError
-            prefix="LastName"
-            field="lastName"
-            errors={state.errors}
-          />
-          <label
-            htmlFor="exampleInputPassword1"
-            className="form-label opacity-50"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          >
-            Email address
-          </label>
-          <input className="mb-3" id="email" type="email" name="email" />
-          <ValidationError prefix="Email" field="email" errors={state.errors} />
-          <textarea id="message" name="message" />
-          <ValidationError
-            prefix="Message"
-            field="message"
-            errors={state.errors}
-          />
+          <div className="col-12">
+            <label
+              htmlFor="exampleInputPassword1"
+              className="form-label opacity-50 mx-2"
+              onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
+            >
+              First Name
+            </label>
+            <br />
+            <input
+              className="mb-3"
+              id="firstName"
+              type="text"
+              name="firstName"
+            />
+            <ValidationError
+              prefix="FirstName"
+              field="firstName"
+              errors={state.errors}
+            />
+          </div>
+          <div className="col-12">
+            <label
+              htmlFor="exampleInputPassword1"
+              className="form-label opacity-50 mx-2"
+              onChange={(e) => setLastName(e.target.value)}
+              value={lastName}
+            >
+              Last Name
+            </label>
+            <br />
+            <input className="mb-3" id="lastName" type="text" name="lastName" />
+            <ValidationError
+              prefix="LastName"
+              field="lastName"
+              errors={state.errors}
+            />
+          </div>
+          <div className="col-12">
+            <label
+              htmlFor="exampleInputPassword1"
+              className="form-label opacity-50 mx-2"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            >
+              Email address
+            </label>
+            <br />
+            <input className="mb-3" id="email" type="email" name="email" />
+            <ValidationError
+              prefix="Email"
+              field="email"
+              errors={state.errors}
+            />
+          </div>
+          <div className="col-12">
+            <textarea id="message" name="message" />
+            <ValidationError
+              prefix="Message"
+              field="message"
+              errors={state.errors}
+            />
+          </div>
           <button
             type="submit"
             className="btn btn-dark"
@@ -106,10 +126,10 @@ export const ContactUs = () => {
         </form>
       </div>
 
-      <div>
+      <div className="col-4">
         <h4>We are here</h4>
         <img
-          style={{ width: "400px", height: "400px" }}
+          style={{ width: "300px", height: "300px" }}
           src="https://thumbs.dreamstime.com/z/mapa-geogr%C3%A1fico-de-uruguay-con-el-capital-de-montevideo-98137776.jpg"
           alt=""
         />
