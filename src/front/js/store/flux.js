@@ -138,7 +138,9 @@ const getState = ({
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
-                        alert(error.response.data);
+                        alert(error.response.data)
+                        alert(error.response.data + ". You'll be rediredted to the login page")
+                        return error.response.data
                     }
                 }
             },
@@ -295,6 +297,12 @@ const getState = ({
                     console.log(error);
                     console.log(error.response.status);
                     console.log(product_id);
+                    if (error.response.status === 404) {
+                        getActions().eliminarFavoritos(product_id);
+                    } else if (error.response.data === "User is not logged in") {
+                        alert(error.response.data + ". You'll be rediredted to the login page")
+                        return error.response.data
+                    }
                 }
             },
 
@@ -352,6 +360,7 @@ const getState = ({
                     }
                 }
             },
+
             changePassword: async (email) => {
                 try {
                     const response = await axios.post(
@@ -370,28 +379,7 @@ const getState = ({
                     }
                 }
             },
-            filterSearch: (searchValue) => {
-                let store = getStore();
-                let results = store.product.filter((item) => {
-                    if (
-                        item.name
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchValue.toLowerCase()) ||
-                        item.description
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchValue.toLowerCase())
-                    ) {
-                        console.log(item);
-                        return item;
-                    }
-                });
-                // console.log(results)
-                setStore({
-                    product: results,
-                });
-            },
+
             // contactus: async (firstName, lastName, email, message) => {
             //     try {
             //         const response = await axios.post(
