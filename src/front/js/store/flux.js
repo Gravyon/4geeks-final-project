@@ -47,20 +47,33 @@ const getState = ({
                 }
             },
             //Update user info function
-            updateUser: async (username, email, password, id) => {
+            updateUser: async (email, password) => {
                 try {
                     const response = await axios.put(
-                        process.env.BACKEND_URL + "/api/user" + id, {
-                            username: username,
+                        process.env.BACKEND_URL + "/api/user", {
+                            // username: username,
                             email: email,
                             password: password,
                         }
                     );
+                    console.log(email, password);
+                    setStore({
+                        email: store.profile.email,
+                        password: store.profile.password,
+                    });
                     console.log(response);
                     return response.data.msg;
                 } catch (error) {
                     console.log(error);
                     if (error.response.status === 404) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                    if (error.response.status === 401) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                    if (error.response.status === 400) {
                         alert(error.response.data.msg);
                         return error.response.data.msg;
                     }
