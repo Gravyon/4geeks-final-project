@@ -76,15 +76,19 @@ export const NavbarPrincipal = () => {
               <Nav.Link href="/" style={{ color: "#bdb284" }}>
                 Home
               </Nav.Link>
-              <Nav.Link href="/profile" style={{ color: "#bdb284" }}>
+              {store.auth ? (<Nav.Link href="/profile" style={{ color: "#bdb284" }}>
                 Profile
-              </Nav.Link>
+              </Nav.Link>) : null}{" "}
+              {store.auth ? (
               <Nav.Link href="/favorites" style={{ color: "#bdb284" }}>
                 Favorites
               </Nav.Link>
+              ) : null}{" "}
+              {store.auth ? (
               <Nav.Link href="/carrito" style={{ color: "#bdb284" }}>
-                Shopping
+                Cart
               </Nav.Link>
+              ) : null}{" "}
               <Nav.Link href="/contactus" style={{ color: "#bdb284" }}>
                 Contact us
               </Nav.Link>
