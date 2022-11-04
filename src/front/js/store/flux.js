@@ -49,33 +49,39 @@ const getState = ({
             //Update user info function
             updateUser: async (email, username, password) => {
                 let store = getStore();
+                let user_id = store.userId;
+                // userId = store.profile.user.id
                 try {
                     const response = await axios.put(
-                        process.env.BACKEND_URL + "/api/user", {
+                        process.env.BACKEND_URL + "/api/user/" + user_id, {
                             email: email,
                             username: username,
                             password: password,
                         }
                     );
-                    setStore({
-                        email: store.profile.email,
-                        username: store.profile.username,
-                        password: store.profile.password,
-                    });
-                    console.log(email, username, password);
-                    console.log(response);
-                    return response.data.msg;
+                    // if (email != store.profile.email) {
+                    //     alert("Email distinto al de perfil");
+                    // } else {
+                    //     setStore({
+                    //         email: store.profile.email,
+                    //         username: store.profile.username,
+                    //         password: store.profile.password,
+                    //     });
+                    // }
+                    // console.log(email, username, password);
+                    // console.log(response);
+                    // return response.data.msg;
                 } catch (error) {
                     console.log(error);
-                    if (error.response.status === 404) {
-                        alert(error.response.data.msg);
-                        return error.response.data.msg;
-                    }
                     if (error.response.status === 401) {
                         alert(error.response.data.msg);
                         return error.response.data.msg;
                     }
-                    if (error.response.status === 400) {
+                    if (error.response.status === 409) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                    if (error.response.status === 404) {
                         alert(error.response.data.msg);
                         return error.response.data.msg;
                     }
