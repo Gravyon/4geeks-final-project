@@ -47,20 +47,22 @@ const getState = ({
                 }
             },
             //Update user info function
-            updateUser: async (email, password) => {
+            updateUser: async (email, username, password) => {
+                let store = getStore();
                 try {
                     const response = await axios.put(
                         process.env.BACKEND_URL + "/api/user", {
-                            // username: username,
                             email: email,
+                            username: username,
                             password: password,
                         }
                     );
-                    console.log(email, password);
                     setStore({
                         email: store.profile.email,
+                        username: store.profile.username,
                         password: store.profile.password,
                     });
+                    console.log(email, username, password);
                     console.log(response);
                     return response.data.msg;
                 } catch (error) {

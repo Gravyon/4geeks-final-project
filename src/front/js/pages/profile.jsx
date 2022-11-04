@@ -16,7 +16,7 @@ export const Profile = (props) => {
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const params = useParams();
   let auth = store.auth;
   let navigate = useNavigate();
@@ -25,12 +25,12 @@ export const Profile = (props) => {
   const toggle = () => setModal(!modal);
   const updateUser = async (e) => {
     e.preventDefault();
-    actions.updateUser(email, password)
-    // let onUpdateUser = await actions.updateUser(email, password);
-    setEmail("");
+    // console.log(profile.name, profile.email)
+    await actions.updateUser(email, username, password)
+    // let onUpdateUser = await actions.updateUser(username, password);
+    setUsername("");
     setPassword("");
-    // setUsername("");
-    console.log(profile.name, profile.email)
+    setEmail("");
     // onUpdateUser ? navigate("/") : null;
     // if (userUpdate) {
     //   navigate("/profile");
@@ -77,7 +77,7 @@ export const Profile = (props) => {
                         Your favorites
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
+                    {/* <Nav.Item>
                       <Nav.Link
                         eventKey="fourth"
                         className="btn btn-dark m-2"
@@ -85,7 +85,7 @@ export const Profile = (props) => {
                       >
                         Admin personal info
                       </Nav.Link>
-                    </Nav.Item>
+                    </Nav.Item> */}
                   </Nav>
                 </Col>
                 <Col sm={9}>
@@ -120,33 +120,39 @@ export const Profile = (props) => {
                                 <form onSubmit={updateUser}>
                                 <ListGroup >
                                   <ListGroup.Item>
-                                    Change email:{" "}
+                                    Type your email:{" "}
                                     <Form.Control
                                       type="email"
-                                      placeholder="Change your email"
+                                      // placeholder="{profile.email}"
                                       onChange={(e) => setEmail(e.target.value)}
                                       value={email}
+                                    />
+                                  </ListGroup.Item>
+                                  <ListGroup.Item>
+                                    Change your username:{" "}
+                                    <Form.Control
+                                      type="text"
+                                      // placeholder="Change your username"
+                                      onChange={(e) => setUsername(e.target.value)}
+                                      value={username}
                                     />
                                   </ListGroup.Item>
                                   <ListGroup.Item>
                                     Password:{" "}
                                     <Form.Control
                                       type="password"
-                                      placeholder="Change your password"
+                                      // placeholder="Change your password"
                                       onChange={(e) => setPassword(e.target.value)}
                                       value={password}
                                     />
                                   </ListGroup.Item>
                                 </ListGroup>
+                                <Button data-dismiss="modal" type="submit" color="primary">
+                                  Save changes
+                                </Button>{" "}
                                 </form>
                               </ModalBody>
                               <ModalFooter>
-                                <Button color="primary" onClick={toggle}>
-                                  Save changes
-                                </Button>{" "}
-                                <Button color="secondary" onClick={toggle}>
-                                  Cancel
-                                </Button>
                               </ModalFooter>
                             </Modal>
                           </div>
@@ -271,7 +277,7 @@ export const Profile = (props) => {
                         </ListGroup>
                       </div>
                     </Tab.Pane>
-                    <Tab.Pane eventKey="fourth">
+                    {/* <Tab.Pane eventKey="fourth">
                       <div>
                         <ListGroup>
                           <ListGroup.Item>
@@ -304,7 +310,7 @@ export const Profile = (props) => {
                           </ListGroup.Item>
                         </ListGroup>
                       </div>
-                    </Tab.Pane>
+                    </Tab.Pane> */}
                   </Tab.Content>
                 </Col>
               </Row>

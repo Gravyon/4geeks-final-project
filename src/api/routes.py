@@ -271,7 +271,7 @@ def delete_user(user_id):
 @api.route('/user', methods=['PUT'])
 def modify_user():
     body = json.loads(request.data)
-    # username = request.json['username']
+    username = request.json['username']
     password = request.json['password']
     email = request.json['email']
     user = User.query.filter_by(email=email).first()
@@ -279,7 +279,7 @@ def modify_user():
     # print("user: " +user.username, "password: "+user.password, "email: "+user.email)
     # If user exists, modifies it with new inputs
     if user:
-        # user.username = username
+        user.username = username
         user.password = password
         user.email = email
         db.session
@@ -295,7 +295,8 @@ def modify_user():
     elif email == user:
         raise APIException('Email already in use', status_code=401)
         return jsonify(user)
-    return "Something else went wrong", 400
+    else:
+        return "Something else went wrong", 400
 
 ###########################
 # User password POST (MODIFY) query
