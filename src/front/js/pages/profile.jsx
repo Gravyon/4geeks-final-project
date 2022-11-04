@@ -23,10 +23,11 @@ export const Profile = (props) => {
   let profile = store.profile;
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+
   const updateUser = async (e) => {
     e.preventDefault();
     // console.log(profile.name, profile.email)
-    await actions.updateUser(email, username, password)
+    await actions.updateUser(email, username, password);
     // let onUpdateUser = await actions.updateUser(username, password);
     setUsername("");
     setPassword("");
@@ -118,42 +119,51 @@ export const Profile = (props) => {
                               </ModalHeader>
                               <ModalBody>
                                 <form onSubmit={updateUser}>
-                                <ListGroup >
-                                  <ListGroup.Item>
-                                    Type your email:{" "}
-                                    <Form.Control
-                                      type="email"
-                                      // placeholder="{profile.email}"
-                                      onChange={(e) => setEmail(e.target.value)}
-                                      value={email}
-                                    />
-                                  </ListGroup.Item>
-                                  <ListGroup.Item>
-                                    Change your username:{" "}
-                                    <Form.Control
-                                      type="text"
-                                      // placeholder="Change your username"
-                                      onChange={(e) => setUsername(e.target.value)}
-                                      value={username}
-                                    />
-                                  </ListGroup.Item>
-                                  <ListGroup.Item>
-                                    Password:{" "}
-                                    <Form.Control
-                                      type="password"
-                                      // placeholder="Change your password"
-                                      onChange={(e) => setPassword(e.target.value)}
-                                      value={password}
-                                    />
-                                  </ListGroup.Item>
-                                </ListGroup>
-                                <Button data-dismiss="modal" type="submit" color="primary">
-                                  Save changes
-                                </Button>{" "}
+                                  <ListGroup>
+                                    <ListGroup.Item>
+                                      Type your email:{" "}
+                                      <Form.Control
+                                        type="email"
+                                        // placeholder="{profile.email}"
+                                        onChange={(e) =>
+                                          setEmail(e.target.value)
+                                        }
+                                        value={email}
+                                      />
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                      Change your username:{" "}
+                                      <Form.Control
+                                        type="text"
+                                        // placeholder="Change your username"
+                                        onChange={(e) =>
+                                          setUsername(e.target.value)
+                                        }
+                                        value={username}
+                                      />
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                      Password:{" "}
+                                      <Form.Control
+                                        type="password"
+                                        // placeholder="Change your password"
+                                        onChange={(e) =>
+                                          setPassword(e.target.value)
+                                        }
+                                        value={password}
+                                      />
+                                    </ListGroup.Item>
+                                  </ListGroup>
+                                  <Button
+                                    data-dismiss="modal"
+                                    type="submit"
+                                    color="primary"
+                                  >
+                                    Save changes
+                                  </Button>{" "}
                                 </form>
                               </ModalBody>
-                              <ModalFooter>
-                              </ModalFooter>
+                              <ModalFooter></ModalFooter>
                             </Modal>
                           </div>
                         </div>
@@ -162,7 +172,6 @@ export const Profile = (props) => {
                           type="button"
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
-                          onClick={() => actions.eliminarFavoritos(item)}
                           variant="dark"
                           style={{ color: "#bdb284" }}
                         >
@@ -192,13 +201,14 @@ export const Profile = (props) => {
                                   type="button"
                                   className="btn btn-dark"
                                   style={{ color: "#bdb284" }}
-                                  data-bs-dismiss="modal"
+                                  onClick={() => actions.eliminarCuenta(item)}
                                 >
                                   Si
                                 </button>
                                 <button
                                   type="button"
                                   className="btn btn-dark"
+                                  data-bs-dismiss="modal"
                                   style={{ color: "#bdb284" }}
                                 >
                                   No
