@@ -3,57 +3,18 @@ import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-
 import {
   EmailShareButton,
   FacebookShareButton,
-  // HatenaShareButton,
-  // InstapaperShareButton,
-  // LineShareButton,
   LinkedinShareButton,
-  // LivejournalShareButton,
-  // MailruShareButton,
-  // OKShareButton,
-  PinterestShareButton,
-  // PocketShareButton,
-  // RedditShareButton,
-  // TelegramShareButton,
-  // TumblrShareButton,
   TwitterShareButton,
-  // ViberShareButton,
-  // VKShareButton,
   WhatsappShareButton,
-  // WorkplaceShareButton
-  FacebookShareCount,
-  // HatenaShareCount,
-  // OKShareCount,
-  PinterestShareCount,
-  // RedditShareCount,
-  // TumblrShareCount,
-  // VKShareCount,
   EmailIcon,
   FacebookIcon,
-  FacebookMessengerIcon,
-  // HatenaIcon,
-  // InstapaperIcon,
-  // LineIcon,
   LinkedinIcon,
-  // LivejournalIcon,
-  // MailruIcon,
-  // OKIcon,
-  PinterestIcon,
-  // PocketIcon,
-  // RedditIcon,
-  // TelegramIcon,
-  // TumblrIcon,
   TwitterIcon,
-  // ViberIcon,
-  // VKIcon,
-  // WeiboIcon,
   WhatsappIcon,
-  // WorkplaceIcon
 } from "react-share";
 
 export const LandingPage = () => {
@@ -146,63 +107,29 @@ export const LandingPage = () => {
                       }}
                     ></i>
                   </Link>
-
-                  {/* empieza el modal */}
-                  <div>
-                    <h5>Username: user1</h5>
-                    <Button
-                      type="button"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                      variant="dark"
-                      style={{ color: "#bdb284" }}
-                    >
-                      Share
-                    </Button>
-                    <div
-                      className="modal fade"
-                      id="exampleModal"
-                      tabIndex="-1"
-                      aria-labelledby="exampleModalLabel"
-                      aria-hidden="true"
-                    >
-                      <div className="modal-dialog">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h1
-                              className="modal-title fs-5"
-                              id="exampleModalLabel"
-                            >
-                              Compartir con:
-                            </h1>
-                          </div>
-                          <div className="modal-body">...</div>
-                          <div className="modal-footer">
-                            <button
-                              type="button"
-                              className="btn btn-dark"
-                              style={{ color: "#bdb284" }}
-                              data-bs-dismiss="modal"
-                            >
-                              <FacebookShareButton
-                              // quote={LosMejoresCuadros}
-                              // hashtag={FacebookCasaArte}
-                              />
-                              <FacebookShareCount
-                                url={"https://www.facebook.com/"}
-                              />
-                              <FacebookIcon size={32} round={true} />
-                              {/* <PinterestShareButton url={shareUrl} /> */}
-                              {/* <TwitterShareButton url={shareUrl} /> */}
-                              {/* <WhatsappShareButton url={shareUrl} /> */}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* termina el modal */}
                 </div>
+                {/* empieza el share */}
+                <br />
+                <div>
+                  <FacebookShareButton url={"https://www.facebook.com/"}>
+                    <FacebookIcon size={32} round={true} />
+                  </FacebookShareButton>
+                  <TwitterShareButton url={"https://twitter.com/home?lang=es"}>
+                    <TwitterIcon size={32} round={true} />
+                  </TwitterShareButton>
+                  <WhatsappShareButton url={"https://web.whatsapp.com/"}>
+                    <WhatsappIcon size={32} round={true} />
+                  </WhatsappShareButton>
+                  <LinkedinShareButton url={"https://www.facebook.com/"}>
+                    <LinkedinIcon size={32} round={true} />
+                  </LinkedinShareButton>
+                  <EmailShareButton
+                    url={"https://www.google.com/intl/es/gmail/about/"}
+                  >
+                    <EmailIcon size={32} round={true} />
+                  </EmailShareButton>
+                </div>
+                {/* termina el share */}
               </Card.Body>
             </Card>
           ))
