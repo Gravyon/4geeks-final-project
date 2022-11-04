@@ -23,6 +23,7 @@ const getState = ({
         },
         actions: {
             // Profile
+            // Profile
             userProfile: async () => {
                 const userToken = localStorage.getItem("token");
                 try {
@@ -33,7 +34,7 @@ const getState = ({
                             },
                         }
                     );
-
+                    // console.log(data)
                     setStore({
                         profile: response.data.user,
                     });
@@ -59,14 +60,6 @@ const getState = ({
                             password: password,
                         }
                     );
-                    setStore({
-                        email: store.profile.email,
-                        username: store.profile.username,
-                        password: store.profile.password,
-                    });
-                    console.log(email, username, password);
-                    console.log(response);
-                    return response.data.msg;
                 } catch (error) {
                     console.log(error);
                     if (error.response.status === 401) {
