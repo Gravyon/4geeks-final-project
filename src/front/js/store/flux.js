@@ -13,13 +13,13 @@ const getState = ({
 
             listaFavoritos: [],
             shoppingList: [],
-            // listaCarrito: [],
-            // productId: [],
-            // productId: "",
+
             userId: null,
             auth: false,
             registered: false,
             profile: {},
+            priceList: [],
+            sum: 0,
         },
         actions: {
             // Profile
@@ -33,7 +33,7 @@ const getState = ({
                             },
                         }
                     );
-                    // console.log(data)
+
                     setStore({
                         profile: response.data.user,
                     });
@@ -62,8 +62,8 @@ const getState = ({
                         username: store.profile.username,
                         password: store.profile.password,
                     });
-                    console.log(email, username, password);
-                    console.log(response);
+                    // console.log(email, username, password);
+                    // console.log(response);
                     return response.data.msg;
                 } catch (error) {
                     console.log(error);
@@ -98,7 +98,7 @@ const getState = ({
                         return item;
                     }
                 });
-                // console.log(results)
+
                 setStore({
                     product: results,
                 });
@@ -110,7 +110,7 @@ const getState = ({
                         process.env.BACKEND_URL + "/api/product"
                     ); //ir a buscar
                     const data = await response.json();
-                    // console.log(data);
+
                     setStore({
                         product: data,
                     }); //promesa 2
@@ -181,22 +181,7 @@ const getState = ({
                 });
                 return false;
             },
-            // addProducts: (product) => {
-            //     const store = getStore();
-            //     if (store.products.includes(product)) {
-            //         getActions().removeProduct(product);
-            //     } else {
-            //         setStore({
-            //             products: [...store.products, product],
-            //         });
-            //     }
-            // },
-            // removeProduct: (product) => {
-            //     const store = getStore();
-            //     setStore({
-            //         products: store.products.filter((item) => item !== product),
-            //     });
-            // },
+
             //Funcion para crear favoritos
             createFavorite: async (product_id) => {
                 let store = getStore();
@@ -325,10 +310,6 @@ const getState = ({
                         );
                         return error.response.data.msg;
                     }
-                    // else if (error.response.status === 401) {
-                    //     alert(error.response.data.msg);
-                    //     return error.response.data;
-                    // }
                 }
             },
 
@@ -344,7 +325,7 @@ const getState = ({
                             },
                         }
                     );
-                    // console.log(accessToken);
+
                     setStore({
                         auth: response.data.status,
                         userId: response.data.user.id,
@@ -352,7 +333,6 @@ const getState = ({
                     console.log(auth);
                     return;
                 } catch (error) {
-                    // console.log(error);
                     if (error.code === "ERR_BAD_REQUEST") {
                         setStore({
                             auth: false,
@@ -375,13 +355,10 @@ const getState = ({
                             id_user: user_id,
                         }
                     );
-                    console.log(response);
+
                     getActions().getShopping();
                     return response;
                 } catch (error) {
-                    console.log(error);
-                    console.log(error.response.status);
-                    console.log(product_id);
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
@@ -425,20 +402,17 @@ const getState = ({
             getShopping: async () => {
                 let store = getStore();
                 let user_id = store.userId;
-                // console.log(user_id)
 
                 try {
                     const response = await axios.get(
                         process.env.BACKEND_URL + "/api/user/" + user_id + "/shopping"
                     );
-                    // console.log(response.data.results)
 
                     setStore({
                         shoppingList: response.data.results,
-                        // userId: response.user_id
                     });
+                    return store.shoppingList;
                 } catch (error) {
-                    // console.log(error);
                     console.log(error.response.data.msg);
                     if (error.response.status === 404) {
                         setStore({
@@ -465,6 +439,35 @@ const getState = ({
                     }
                 }
             },
+            //funcion para pbtener un array con los precios de los elementos del carrito:
+
+            priceFilter: async () => {
+                let store = getStore();
+                await getActions().getShopping();
+
+                setStore({
+                    priceList: store.shoppingList.map((item) => parseInt(item.price)),
+                });
+
+                return store.priceList;
+            },
+
+            //funcion para sumar las los precios del carrito:
+
+            sumaTotal: (arr) => {
+                let store = getStore();
+
+                const initialValue = store.sum;
+                const sumTotal = arr.reduce(
+                    (previousValue, currentValue) => previousValue + currentValue,
+                    initialValue
+                );
+
+                setStore({
+                    sum: sumTotal,
+                });
+            },
+
             // contactus: async (firstName, lastName, email, message) => {
             //     try {
             //         const response = await axios.post(
