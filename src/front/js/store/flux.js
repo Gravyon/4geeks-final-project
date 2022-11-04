@@ -465,27 +465,6 @@ const getState = ({
                     }
                 }
             },
-            // contactus: async (firstName, lastName, email, message) => {
-            //     try {
-            //         const response = await axios.post(
-            //             process.env.BACKEND_URL + "/api/user/password", {
-            //                 firstName: firstName,
-            //                 lastName: lastName,
-            //                 email: email,
-            //                 message: message,
-            //             }
-            //         );
-
-            //         if (response.status === 200) {
-            //             alert("Your message was sended");
-            //         }
-            //     } catch (error) {
-            //         console.log(error);
-            //         if (error.response.status === 404) {
-            //             alert("Your email does not exist");
-            //         }
-            //     }
-            // },
         },
     };
 };

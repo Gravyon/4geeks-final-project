@@ -23,40 +23,38 @@ export const Favorites = () => {
       </div>
       <div>
         <ol>
-          <li>
-            {store.listaFavoritos.length > 0 ? (
-              store.listaFavoritos.map((item, id) => (
-                <li
-                  className="list-group-item border border-1 border border-dark"
-                  key={id}
-                >
-                  <div className="d-flex justify-content-between">
-                    <div className="d-flex justify-content-start">
-                      {item?.name}
-                      <p className="mx-5">Precio: {item?.price}</p>
-                    </div>
-                    <div className="d-flex justify-content-end">
-                      <div className="mx-4">
-                        <BsStarFill />
-                        <BsStarFill />
-                        <BsStarHalf />
-                        <BsStar />
-                        <BsStar />
-                      </div>
-                      <span
-                        className="close btn btn-danger"
-                        onClick={() => actions.eliminarFavoritos(item.id)}
-                      >
-                        <b>X</b>
-                      </span>
-                    </div>
+          {store.listaFavoritos.length > 0 ? (
+            store.listaFavoritos.map((item, id) => (
+              <li
+                className="list-group-item border border-1 border border-dark"
+                key={id}
+              >
+                <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-start">
+                    {item?.name}
+                    <p className="mx-5">Precio: {item?.price}</p>
                   </div>
-                </li>
-              ))
-            ) : (
-              <p>No tienes ningun favorito</p>
-            )}
-          </li>
+                  <div className="d-flex justify-content-end">
+                    <div className="mx-4">
+                      <BsStarFill />
+                      <BsStarFill />
+                      <BsStarHalf />
+                      <BsStar />
+                      <BsStar />
+                    </div>
+                    <span
+                      className="close btn btn-danger"
+                      onClick={() => actions.eliminarFavoritos(item.id)}
+                    >
+                      <b>X</b>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            ))
+          ) : (
+            <p>No tienes ningun favorito</p>
+          )}
         </ol>
       </div>
       <button className="btn btn-dark">
