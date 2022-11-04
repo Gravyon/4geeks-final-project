@@ -19,8 +19,90 @@ const getState = ({
             userId: null,
             auth: false,
             registered: false,
+            profile: {},
         },
         actions: {
+            // Profile
+            userProfile: async () => {
+                const userToken = localStorage.getItem("token");
+                try {
+                    const response = await axios.get(
+                        process.env.BACKEND_URL + "/api/profile", {
+                            headers: {
+                                Authorization: "Bearer " + userToken,
+                            },
+                        }
+                    );
+                    // console.log(data)
+                    setStore({
+                        profile: response.data.user,
+                    });
+                    console.log(response.data);
+                    return true;
+                } catch (error) {
+                    console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        console.log(error.response.data.msg);
+                    }
+                }
+            },
+            //Update user info function
+            updateUser: async (email, username, password) => {
+                let store = getStore();
+                try {
+                    const response = await axios.put(
+                        process.env.BACKEND_URL + "/api/user", {
+                            email: email,
+                            username: username,
+                            password: password,
+                        }
+                    );
+                    setStore({
+                        email: store.profile.email,
+                        username: store.profile.username,
+                        password: store.profile.password,
+                    });
+                    console.log(email, username, password);
+                    console.log(response);
+                    return response.data.msg;
+                } catch (error) {
+                    console.log(error);
+                    if (error.response.status === 404) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                    if (error.response.status === 401) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                    if (error.response.status === 400) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                }
+            },
+            filterSearch: (searchValue) => {
+                let store = getStore();
+                let results = store.product.filter((item) => {
+                    if (
+                        item.name
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase()) ||
+                        item.description
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase())
+                    ) {
+                        console.log(item);
+                        return item;
+                    }
+                });
+                // console.log(results)
+                setStore({
+                    product: results,
+                });
+            },
             // fecht de los cuadros
             getProduct: async () => {
                 try {
@@ -138,6 +220,8 @@ const getState = ({
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
+                        alert(error.response.data);
+                        return error.response.data;
                         alert(
                             error.response.data + ". You'll be rediredted to the login page"
                         );
@@ -363,7 +447,6 @@ const getState = ({
                     }
                 }
             },
-
             changePassword: async (email) => {
                 try {
                     const response = await axios.post(
@@ -382,7 +465,6 @@ const getState = ({
                     }
                 }
             },
-
             // contactus: async (firstName, lastName, email, message) => {
             //     try {
             //         const response = await axios.post(
