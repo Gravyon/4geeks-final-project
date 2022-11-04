@@ -20,7 +20,7 @@ export const Carrito = () => {
   console.log(store.shoppingList);
   
   return (
-    <div className="container mt-5 vh-auto">
+    <div className="container mt-5 vh-auto vh-100">
       <div className="w-25">
         <h1>My Cart </h1>
       </div>
