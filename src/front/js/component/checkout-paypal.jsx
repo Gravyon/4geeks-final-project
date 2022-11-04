@@ -25,7 +25,7 @@ export const PayPalCheckout = () => {
         return item.price;
       })
     );
-    console.log(sumarTotal); //price es mi nuevo array
+    console.log(item.price); //price es mi nuevo array
 
     function sumar(item) {
       setSuma(suma + item);
