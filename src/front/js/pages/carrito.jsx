@@ -63,9 +63,9 @@ export const Carrito = () => {
         </ol>
       </div>
       <button className="btn btn-dark">
-        <Nav.Link style={{ color: "#bdb284" }} href="/">
-          Home
-        </Nav.Link>
+        <Link style={{ color: "#bdb284" }} to={"/checkout"}>
+          Checkout
+        </Link>
       </button>
     </div>
   );
