@@ -50,6 +50,7 @@ export const Login = () => {
               aria-describedby="emailHelp"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              required
             />
           </div>
           <div className="mb-3">
@@ -65,6 +66,7 @@ export const Login = () => {
               id="exampleInputPassword1"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              required
             />
           </div>
           <Link to={"/changePassword"}>

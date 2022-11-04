@@ -40,6 +40,7 @@ export const ChangePassword = () => {
               aria-describedby="emailHelp"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              required
             />
           </div>
           <div className="d-flex justify-content-between">

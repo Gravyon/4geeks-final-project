@@ -89,6 +89,7 @@ export const ContactUs = () => {
               prefix="LastName"
               field="lastName"
               errors={state.errors}
+              required
             />
           </div>
           <div className="col-12">
@@ -97,6 +98,7 @@ export const ContactUs = () => {
               className="form-label opacity-50 mx-2"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              required
             >
               Email address
             </label>
