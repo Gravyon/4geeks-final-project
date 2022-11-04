@@ -79,6 +79,28 @@ const getState = ({
                     }
                 }
             },
+            filterSearch: (searchValue) => {
+                let store = getStore();
+                let results = store.product.filter((item) => {
+                    if (
+                        item.name
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase()) ||
+                        item.description
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchValue.toLowerCase())
+                    ) {
+                        console.log(item);
+                        return item;
+                    }
+                });
+                // console.log(results)
+                setStore({
+                    product: results,
+                });
+            },
             // fecht de los cuadros
             getProduct: async () => {
                 try {
@@ -197,6 +219,10 @@ const getState = ({
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
                         alert(error.response.data);
+                        return error.response.data;
+                        alert(
+                            error.response.data + ". You'll be rediredted to the login page"
+                        );
                         return error.response.data;
                     }
                 }
@@ -428,28 +454,6 @@ const getState = ({
                         alert("Your email does not exist");
                     }
                 }
-            },
-            filterSearch: (searchValue) => {
-                let store = getStore();
-                let results = store.product.filter((item) => {
-                    if (
-                        item.name
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchValue.toLowerCase()) ||
-                        item.description
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchValue.toLowerCase())
-                    ) {
-                        console.log(item);
-                        return item;
-                    }
-                });
-                // console.log(results)
-                setStore({
-                    product: results,
-                });
             },
             // contactus: async (firstName, lastName, email, message) => {
             //     try {
