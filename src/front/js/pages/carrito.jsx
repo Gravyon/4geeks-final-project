@@ -25,41 +25,39 @@ export const Carrito = () => {
       </div>
       <div>
         <ol>
-          <li>
-            {store.shoppingList.length > 0 ? (
-              store.shoppingList.map((item, id) => (
-                <li
-                  className="list-group-item border border-1 border border-dark"
-                  key={id}
-                >
-                  <div className="d-flex justify-content-between">
-                    <div className="d-flex justify-content-start">
-                      {item?.name}
-                      <p className="mx-5">Precio: {item?.price}</p>
-                    </div>
-                    <div className="d-flex justify-content-end">
-                      <div className="mx-4">
-                        <BsStarFill />
-                        <BsStarFill />
-                        <BsStarHalf />
-                        <BsStar />
-                        <BsStar />
-                      </div>
-                      <span
-                        className="close btn btn-danger"
-                        onClick={() => actions.deleteShopping(item.id)}
-                      >
-                        <b>X</b>
-                      </span>
-                    </div>
+          {store.shoppingList.length > 0 ? (
+            store.shoppingList.map((item, id) => (
+              <li
+                className="list-group-item border border-1 border border-dark"
+                key={id}
+              >
+                <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-start">
+                    {item?.name}
+                    <p className="mx-5">Precio: {item?.price}</p>
                   </div>
-                </li>
-                // )) : <p>Nothing to checkout</p>}
-              ))
-            ) : (
-              <p>Cart is empty</p>
-            )}
-          </li>
+                  <div className="d-flex justify-content-end">
+                    <div className="mx-4">
+                      <BsStarFill />
+                      <BsStarFill />
+                      <BsStarHalf />
+                      <BsStar />
+                      <BsStar />
+                    </div>
+                    <span
+                      className="close btn btn-danger"
+                      onClick={() => actions.deleteShopping(item.id)}
+                    >
+                      <b>X</b>
+                    </span>
+                  </div>
+                </div>
+              </li>
+              // )) : <p>Nothing to checkout</p>}
+            ))
+          ) : (
+            <p>Cart is empty</p>
+          )}
         </ol>
       </div>
       <button className="btn btn-dark">

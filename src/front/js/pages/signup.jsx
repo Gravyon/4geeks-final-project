@@ -46,6 +46,7 @@ export const SignUp = () => {
             id="exampleName"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
+            required
           />
         </div>
 
@@ -60,6 +61,7 @@ export const SignUp = () => {
             aria-describedby="emailHelp"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            required
           />
         </div>
 
@@ -76,6 +78,7 @@ export const SignUp = () => {
             id="exampleInputPassword1"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            required
           />
         </div>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">

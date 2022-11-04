@@ -11,6 +11,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import Navbar from "react-bootstrap/Navbar";
+import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
 export const Profile = (props) => {
   const { store, actions } = useContext(Context);
@@ -23,10 +25,11 @@ export const Profile = (props) => {
   let profile = store.profile;
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+
   const updateUser = async (e) => {
     e.preventDefault();
     // console.log(profile.name, profile.email)
-    await actions.updateUser(email, username, password)
+    await actions.updateUser(email, username, password);
     // let onUpdateUser = await actions.updateUser(username, password);
     setUsername("");
     setPassword("");
@@ -39,6 +42,13 @@ export const Profile = (props) => {
     //   navigate("/");
     // }
   };
+
+  useEffect(() => {
+    if (store.userId != null) {
+      // console.log(store.userId)
+      actions.getFavorites();
+    }
+  }, [store.userId]);
 
   return (
     <>
@@ -118,42 +128,51 @@ export const Profile = (props) => {
                               </ModalHeader>
                               <ModalBody>
                                 <form onSubmit={updateUser}>
-                                <ListGroup >
-                                  <ListGroup.Item>
-                                    Type your email:{" "}
-                                    <Form.Control
-                                      type="email"
-                                      // placeholder="{profile.email}"
-                                      onChange={(e) => setEmail(e.target.value)}
-                                      value={email}
-                                    />
-                                  </ListGroup.Item>
-                                  <ListGroup.Item>
-                                    Change your username:{" "}
-                                    <Form.Control
-                                      type="text"
-                                      // placeholder="Change your username"
-                                      onChange={(e) => setUsername(e.target.value)}
-                                      value={username}
-                                    />
-                                  </ListGroup.Item>
-                                  <ListGroup.Item>
-                                    Password:{" "}
-                                    <Form.Control
-                                      type="password"
-                                      // placeholder="Change your password"
-                                      onChange={(e) => setPassword(e.target.value)}
-                                      value={password}
-                                    />
-                                  </ListGroup.Item>
-                                </ListGroup>
-                                <Button  data-dismiss="form" type="submit" color="primary">
-                                  Save changes
-                                </Button>{" "}
+                                  <ListGroup>
+                                    <ListGroup.Item>
+                                      Type your email:{" "}
+                                      <Form.Control
+                                        type="email"
+                                        // placeholder="{profile.email}"
+                                        onChange={(e) =>
+                                          setEmail(e.target.value)
+                                        }
+                                        value={email}
+                                      />
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                      Change your username:{" "}
+                                      <Form.Control
+                                        type="text"
+                                        // placeholder="Change your username"
+                                        onChange={(e) =>
+                                          setUsername(e.target.value)
+                                        }
+                                        value={username}
+                                      />
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                      Password:{" "}
+                                      <Form.Control
+                                        type="password"
+                                        // placeholder="Change your password"
+                                        onChange={(e) =>
+                                          setPassword(e.target.value)
+                                        }
+                                        value={password}
+                                      />
+                                    </ListGroup.Item>
+                                  </ListGroup>
+                                  <Button
+                                    data-dismiss="form"
+                                    type="submit"
+                                    color="primary"
+                                  >
+                                    Save changes
+                                  </Button>{" "}
                                 </form>
                               </ModalBody>
-                              <ModalFooter>
-                              </ModalFooter>
+                              <ModalFooter></ModalFooter>
                             </Modal>
                           </div>
                         </div>
@@ -162,7 +181,6 @@ export const Profile = (props) => {
                           type="button"
                           data-bs-toggle="modal"
                           data-bs-target="#exampleModal"
-                          onClick={() => actions.eliminarFavoritos(item)}
                           variant="dark"
                           style={{ color: "#bdb284" }}
                         >
@@ -192,13 +210,14 @@ export const Profile = (props) => {
                                   type="button"
                                   className="btn btn-dark"
                                   style={{ color: "#bdb284" }}
-                                  data-bs-dismiss="modal"
+                                  onClick={() => actions.eliminarCuenta(item)}
                                 >
                                   Si
                                 </button>
                                 <button
                                   type="button"
                                   className="btn btn-dark"
+                                  data-bs-dismiss="modal"
                                   style={{ color: "#bdb284" }}
                                 >
                                   No
@@ -207,7 +226,7 @@ export const Profile = (props) => {
                             </div>
                           </div>
                         </div>
-                        <div
+                        {/* <div
                           className="modal fade"
                           id="exampleModal"
                           tabIndex="-1"
@@ -244,7 +263,7 @@ export const Profile = (props) => {
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div>*/}
                       </div>
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
@@ -260,7 +279,47 @@ export const Profile = (props) => {
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
                       <div>
-                        <ListGroup>
+                        <div>
+                          <ol>
+                            {store.listaFavoritos.length > 0 ? (
+                              store.listaFavoritos.map((item, id) => (
+                                <li
+                                  className="list-group-item border border-1 border border-dark"
+                                  key={id}
+                                >
+                                  <div className="d-flex justify-content-between">
+                                    <div className="d-flex justify-content-start">
+                                      {item?.name}
+                                      <p className="mx-5">
+                                        Precio: {item?.price}
+                                      </p>
+                                    </div>
+                                    <div className="d-flex justify-content-end">
+                                      <div className="mx-4">
+                                        <BsStarFill />
+                                        <BsStarFill />
+                                        <BsStarHalf />
+                                        <BsStar />
+                                        <BsStar />
+                                      </div>
+                                      <span
+                                        className="close btn btn-danger"
+                                        onClick={() =>
+                                          actions.eliminarFavoritos(item.id)
+                                        }
+                                      >
+                                        <b>X</b>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </li>
+                              ))
+                            ) : (
+                              <p>No tienes ningun favorito</p>
+                            )}
+                          </ol>
+                        </div>
+                        {/* <ListGroup>
                           <ListGroup.Item>
                             Product Name: Equilibrio
                           </ListGroup.Item>
@@ -274,7 +333,7 @@ export const Profile = (props) => {
                           <ListGroup.Item>
                             Product Name: Retrato sin pincel
                           </ListGroup.Item>
-                        </ListGroup>
+                        </ListGroup> */}
                       </div>
                     </Tab.Pane>
                     {/* <Tab.Pane eventKey="fourth">

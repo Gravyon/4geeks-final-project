@@ -247,9 +247,9 @@ def get_users():
 ###########################
 
 @api.route('/user/<int:user_id>', methods=["DELETE"])
-def delete_user(user_id):
+def delete_user(email):
 
-    user = User.query.filter_by(id=user_id).first()
+    user = User.query.filter_by(id=email).first()
     print(user)
     # If user exists, deletes it
     if user:

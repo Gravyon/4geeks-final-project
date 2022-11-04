@@ -66,6 +66,7 @@ export const ContactUs = () => {
               id="firstName"
               type="text"
               name="firstName"
+              required
             />
             <ValidationError
               prefix="FirstName"
@@ -105,6 +106,7 @@ export const ContactUs = () => {
               prefix="Email"
               field="email"
               errors={state.errors}
+              required
             />
           </div>
           <div className="col-12">
