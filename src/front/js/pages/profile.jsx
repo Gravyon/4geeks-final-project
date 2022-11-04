@@ -164,7 +164,7 @@ export const Profile = (props) => {
                                     </ListGroup.Item>
                                   </ListGroup>
                                   <Button
-                                    data-dismiss="modal"
+                                    data-dismiss="form"
                                     type="submit"
                                     color="primary"
                                   >

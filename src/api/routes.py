@@ -268,35 +268,50 @@ def delete_user(email):
 # User PUT (MODIFY) query
 ###########################
 
-@api.route('/user', methods=['PUT'])
-def modify_user():
+@api.route('/user/<int:user_id>', methods=['PUT'])
+# @jwt_required()
+def modify_user(user_id):
+    # username = request.json['username']
+    # password = request.json['password']
+    # email = request.json['email']
+    # current_user = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
     body = json.loads(request.data)
-    username = request.json['username']
-    password = request.json['password']
-    email = request.json['email']
-    user = User.query.filter_by(email=email).first()
+    email_exists = User.query.filter_by(email=body["email"]).all()
+    username_exists = User.query.filter_by(username=body["username"]).all()
+    print(email_exists)
     # print(user, body)
     # print("user: " +user.username, "password: "+user.password, "email: "+user.email)
     # If user exists, modifies it with new inputs
-    if user:
-        user.username = username
-        user.password = password
-        user.email = email
-        db.session
-        db.session.commit()
-        response_body = {
-            "msg": "User updated successfully"
-            }
-        return jsonify(response_body), 200
+    if user is None:
+        return jsonify({"msg": "User doesn't exist"}), 404
+    if email_exists:
+        return jsonify({"msg": "Email already taken"}), 401
+    if username_exists:
+        return jsonify({"msg": "Username already taken"}), 409
 
-    elif user is None:
-        raise APIException('User not found', status_code=404)
-        return jsonify(user)
-    elif email == user:
-        raise APIException('Email already in use', status_code=401)
-        return jsonify(user)
-    else:
-        return "Something else went wrong", 400
+    if "username" in body:
+        user.username = body["username"]
+    if "email" in body:
+        user.email = body["email"] 
+    if "password" in body:
+        user.password = body["password"]   
+    # if user:
+    #     user.username = username
+    #     user.password = password
+    #     user.email = email
+        # db.session
+    db.session.commit()
+    return jsonify({"msg": "User updated successfully"}), 200
+
+    # elif user is None:
+    #     raise APIException('User not found', status_code=404)
+    #     return jsonify(user)
+    # elif email == user:
+    #     raise APIException('Email already in use', status_code=401)
+    #     return jsonify(user)
+    # else:
+    #     return "Something else went wrong", 400
 
 ###########################
 # User password POST (MODIFY) query
