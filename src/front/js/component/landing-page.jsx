@@ -154,7 +154,6 @@ export const LandingPage = () => {
                       type="button"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
-                      onClick={() => actions.eliminarFavoritos(item)}
                       variant="dark"
                       style={{ color: "#bdb284" }}
                     >
