@@ -111,20 +111,43 @@ export const LandingPage = () => {
                 {/* empieza el share */}
                 <br />
                 <div>
-                  <FacebookShareButton url={"https://www.facebook.com/"}>
+                  <FacebookShareButton
+                    url={
+                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                      item.id
+                    }
+                  >
                     <FacebookIcon size={32} round={true} />
                   </FacebookShareButton>
-                  <TwitterShareButton url={"https://twitter.com/home?lang=es"}>
+                  <TwitterShareButton
+                    url={
+                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                      item.id
+                    }
+                  >
                     <TwitterIcon size={32} round={true} />
                   </TwitterShareButton>
-                  <WhatsappShareButton url={"https://web.whatsapp.com/"}>
+                  <WhatsappShareButton
+                    url={
+                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                      item.id
+                    }
+                  >
                     <WhatsappIcon size={32} round={true} />
                   </WhatsappShareButton>
-                  <LinkedinShareButton url={"https://www.facebook.com/"}>
+                  <LinkedinShareButton
+                    url={
+                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                      item.id
+                    }
+                  >
                     <LinkedinIcon size={32} round={true} />
                   </LinkedinShareButton>
                   <EmailShareButton
-                    url={"https://www.google.com/intl/es/gmail/about/"}
+                    url={
+                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                      item.id
+                    }
                   >
                     <EmailIcon size={32} round={true} />
                   </EmailShareButton>
