@@ -80,6 +80,7 @@ export const ContactUs = () => {
               className="form-label opacity-50 mx-2"
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
+              required
             >
               Last Name
             </label>
