@@ -6,18 +6,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import {
-  EmailShareButton,
-  FacebookShareButton,
-  LinkedinShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-  EmailIcon,
-  FacebookIcon,
-  LinkedinIcon,
-  TwitterIcon,
-  WhatsappIcon,
-} from "react-share";
 
 export const Footer = () => {
   return (
@@ -32,43 +20,27 @@ export const Footer = () => {
           <Navbar.Brand href="#" className="text-center fixed-bottom">
             Copyright 2022 - Casa Arte
           </Navbar.Brand>
-          <div>
-            <FacebookShareButton
-              url={
-                "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-              }
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: "100px" }}
+              navbarScroll
             >
-              <FacebookIcon size={32} round={true} />
-            </FacebookShareButton>
-            <TwitterShareButton
-              url={
-                "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-              }
-            >
-              <TwitterIcon size={32} round={true} />
-            </TwitterShareButton>
-            <WhatsappShareButton
-              url={
-                "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-              }
-            >
-              <WhatsappIcon size={32} round={true} />
-            </WhatsappShareButton>
-            <LinkedinShareButton
-              url={
-                "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-              }
-            >
-              <LinkedinIcon size={32} round={true} />
-            </LinkedinShareButton>
-            <EmailShareButton
-              url={
-                "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-              }
-            >
-              <EmailIcon size={32} round={true} />
-            </EmailShareButton>
-          </div>
+              <Nav.Link href="#https://www.instagram.com/">
+                <i className="bi bi-instagram"></i>
+              </Nav.Link>
+              <Nav.Link href="#https://www.facebook.com/">
+                <i className="bi bi-facebook"></i>
+              </Nav.Link>
+              <Nav.Link
+                href="#https://mail.google.com/mail/u/0/?pli=1#inbox?compose=new"
+                disabled
+              >
+                <i className="bi bi-envelope"></i>
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </div>
