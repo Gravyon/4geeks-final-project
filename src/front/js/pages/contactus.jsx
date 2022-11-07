@@ -35,18 +35,46 @@ export const ContactUs = () => {
   return (
     <div className="container text-center mt-5 d-flex justify-content-between vh-100">
       <div className="col-4">
-        <i className="bi bi-envelope"></i>
+        <MDBBtn
+          tag="a"
+          color="none"
+          className="m-1"
+          style={{ color: "#dd4b39" }}
+        >
+          <MDBIcon fab icon="google" size="lg" />
+        </MDBBtn>
         <h5 className="pb-5">example@domain.com</h5>
         <i className="bi bi-geo-alt"></i>
         <h5 className="pb-5">
           Av. de las leyes 1234 <br />
           Montevideo-Uruguay
-          <i className="bi bi-whatsapp"></i>
+          <MDBBtn
+            tag="a"
+            color="none"
+            className="m-1"
+            style={{ color: "#3b5998" }}
+          >
+            <MDBIcon fab icon="whatsapp" size="lg" />
+          </MDBBtn>
         </h5>
         <h5 className="pb-5">+598 2 111 1111</h5>
-        <i className="bi bi-facebook"></i>
+        <MDBBtn
+          tag="a"
+          color="none"
+          className="m-1"
+          style={{ color: "#3b5998" }}
+        >
+          <MDBIcon fab icon="facebook-f" size="lg" />
+        </MDBBtn>
         <h5 className="pb-5">@yourfbprofile</h5>
-        <i className="bi bi-instagram"></i>
+        <MDBBtn
+          tag="a"
+          color="none"
+          className="m-1"
+          style={{ color: "#ac2bac" }}
+        >
+          <MDBIcon fab icon="instagram" size="lg" />
+        </MDBBtn>
         <h5>@yourigprofile</h5>
       </div>
 
