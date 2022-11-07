@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import '../../styles/login.css'
+
+import {  MDBBtn,  MDBContainer,  MDBRow,  MDBCol,  MDBCard,  MDBCardBody,  MDBInput,  MDBIcon} from 'mdb-react-ui-kit';
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -33,63 +36,57 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <div className="text-center mt-5 container vh-100">
-        <form onSubmit={doSubmit}>
-          <div className="mb-3">
-            <label
-              htmlFor="exampleInputEmail1"
-              className="form-label opacity-50"
-            >
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+  <form onSubmit={doSubmit}>
+    <MDBContainer fluid>
+
+      <MDBRow className='d-flex justify-content-center align-items-center h-100'>
+        <MDBCol col='12'>
+
+          <MDBCard className='bg-dark text-white my-5 mx-auto' style={{borderRadius: '1rem', maxWidth: '400px'}}>
+            <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
+
+              <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+              <p className="text-white-50 mb-5">Please enter your login and password</p>
+
+              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-            />
-          </div>
-          <div className="mb-3">
-            <label
-              htmlFor="exampleInputPassword1"
-              className="form-label opacity-50"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputPassword1"
+              />
+              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
-            />
-          </div>
-          <Link to={"/changePassword"}>
-            <p>¿Has olvidado tu contraseña?</p>
-          </Link>
-          <div className="d-flex justify-content-between">
-            <Link to={"/"}>
-              <button
-                type="button"
-                className="btn btn-dark"
-                style={{ color: "#bdb284" }}
-              >
-                Back
-              </button>
-            </Link>
-            <button
-              type="submit"
-              className="btn btn-dark"
-              style={{ color: "#bdb284" }}
-            >
-              Login
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+              />
+
+              <p className="small mb-3 pb-lg-2"><Link class="text-white-50" to={"/changePassword"}>Forgot password?</Link></p>
+              
+              <button  type="submit "className="btn btn-outline-light btn-lg mx-2 px-5" color="white" outline >Login</button>
+
+              <div className='d-flex flex-row mt-3 mb-5'>
+                {/* <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
+                  <MDBIcon fab icon='facebook-f' size="lg"/>
+                </MDBBtn>
+
+                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
+                  <MDBIcon fab icon='twitter' size="lg"/>
+                </MDBBtn>
+
+                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
+                  <MDBIcon fab icon='google' size="lg"/>
+                </MDBBtn> */}
+              </div>
+
+              <div>
+                <p className="mb-0">Don't have an account? <Link to="/signup" class="text-white-50 fw-bold">Sign Up</Link></p>
+
+              </div>
+            </MDBCardBody>
+          </MDBCard>
+
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
+  </form>
+
+
   );
 };
