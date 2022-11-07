@@ -6,7 +6,16 @@ import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useForm, ValidationError } from "@formspree/react";
-import { MDBBtn, MDBIcon } from "mdb-react-ui-kit";
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBInput,
+  MDBIcon,
+} from "mdb-react-ui-kit";
 
 export const ContactUs = () => {
   // definimos los estados
@@ -34,162 +43,168 @@ export const ContactUs = () => {
 
   return (
     <div className="container text-center mt-5 d-flex justify-content-between vh-100">
-      <div className="col-4">
-        <MDBBtn
-          tag="a"
-          color="none"
-          className="m-1"
-          style={{ color: "#dd4b39" }}
-        >
-          <MDBIcon fab icon="google" size="lg" />
-        </MDBBtn>
-        <h5 className="pb-5">example@domain.com</h5>
-
-        <i className="fa-solid fa-location-dot"></i>
-
-        <h5 className="pb-5">
-          Av. de las leyes 1234 <br />
-          Montevideo-Uruguay
+      <div className="col-4 mt-5">
+        <div className="d-flex justify-content">
           <MDBBtn
             tag="a"
             color="none"
-            className="m-1"
+            className="m-1 mx-3"
+            style={{ color: "#dd4b39" }}
+          >
+            <MDBIcon fab icon="google" size="lg" />
+          </MDBBtn>
+          <h5 className="pb-5">example@gmail.com</h5>
+        </div>
+        <div className="d-flex justify-content">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxNIZCwCHKfC9TS8s14LxiRkChkO7KEcbDgQ&usqp=CAU"
+            alt=""
+            style={{ borderRadius: "1rem", width: "30px", height: "30px" }}
+            className="m-1 mx-3"
+          />
+          <h5 className="pb-5">Av. de las leyes 1234 Montevideo-Uruguay</h5>
+        </div>
+        <div className="d-flex justify-content">
+          <MDBBtn
+            tag="a"
+            color="none"
+            className="m-1 mx-3"
             style={{ color: "#3b5998" }}
           >
             <MDBIcon fab icon="whatsapp" size="lg" />
           </MDBBtn>
-        </h5>
-        <h5 className="pb-5">+598 2 111 1111</h5>
-        <MDBBtn
-          tag="a"
-          color="none"
-          className="m-1"
-          style={{ color: "#3b5998" }}
-        >
-          <MDBIcon fab icon="facebook-f" size="lg" />
-        </MDBBtn>
-        <h5 className="pb-5">@yourfbprofile</h5>
-        <MDBBtn
-          tag="a"
-          color="none"
-          className="m-1"
-          style={{ color: "#ac2bac" }}
-        >
-          <MDBIcon fab icon="instagram" size="lg" />
-        </MDBBtn>
-        <h5>@yourigprofile</h5>
-      </div>
 
-      <div className="col-4">
-        <form onSubmit={handleSubmit}>
-          <div className="col-12">
-            <label
-              htmlFor="exampleInputPassword1"
-              className="form-label opacity-50 mx-2"
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
-            >
-              First Name
-            </label>
-            <br />
-            <input
-              className="mb-3"
-              id="firstName"
-              type="text"
-              name="firstName"
-              required
-            />
-            <ValidationError
-              prefix="FirstName"
-              field="firstName"
-              errors={state.errors}
-            />
-          </div>
-          <div className="col-12">
-            <label
-              htmlFor="exampleInputPassword1"
-              className="form-label opacity-50 mx-2"
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-              required
-            >
-              Last Name
-            </label>
-            <br />
-            <input className="mb-3" id="lastName" type="text" name="lastName" />
-            <ValidationError
-              prefix="LastName"
-              field="lastName"
-              errors={state.errors}
-              required
-            />
-          </div>
-          <div className="col-12">
-            <label
-              htmlFor="exampleInputPassword1"
-              className="form-label opacity-50 mx-2"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-              required
-            >
-              Email address
-            </label>
-            <br />
-            <input className="mb-3" id="email" type="email" name="email" />
-            <ValidationError
-              prefix="Email"
-              field="email"
-              errors={state.errors}
-              required
-            />
-          </div>
-          <div className="col-12">
-            <textarea id="message" name="message" />
-            <ValidationError
-              prefix="Message"
-              field="message"
-              errors={state.errors}
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-dark"
-            style={{ color: "#bdb284" }}
-            disabled={state.submitting}
+          <h5 className="pb-5">+598 2 111 1111</h5>
+        </div>
+        <div className="d-flex justify-content">
+          <MDBBtn
+            tag="a"
+            color="none"
+            className="m-1 mx-3"
+            style={{ color: "#3b5998" }}
           >
-            Submit
-          </button>
-        </form>
+            <MDBIcon fab icon="facebook-f" size="lg" />
+          </MDBBtn>
+          <h5 className="pb-5">@yourfbprofile</h5>
+        </div>
+        <div className="d-flex justify-content">
+          <MDBBtn
+            tag="a"
+            color="none"
+            className="m-1 mx-3"
+            style={{ color: "#ac2bac" }}
+          >
+            <MDBIcon fab icon="instagram" size="lg" />
+          </MDBBtn>
+          <h5>@yourigprofile</h5>
+        </div>
       </div>
 
-      <div className="col-4">
+      <Form onSubmit={handleSubmit}>
+        <MDBContainer fluid>
+          <MDBRow className="d-flex justify-content-center align-items-center h-100">
+            <MDBCol col="12">
+              <MDBCard
+                className="bg-dark text-white my-5 mx-auto"
+                style={{ borderRadius: "1rem", maxWidth: "400px" }}
+              >
+                <MDBCardBody className="p-5 d-flex flex-column align-items-center mx-auto w-100">
+                  <h2 className="fw-bold mb-2 text-uppercase">Contact Us</h2>
+                  <p className="text-white-50 mb-5">
+                    Please enter your info and we will contact you
+                  </p>
+                  <div className="col-12">
+                    <MDBInput
+                      wrapperClass="mb-2 w-100"
+                      labelClass="text-white"
+                      label="First Name"
+                      id="formControlLg"
+                      type="text"
+                      size="lg"
+                      onChange={(e) => setFirstName(e.target.value)}
+                      value={firstName}
+                      required
+                    />
+                    <ValidationError
+                      prefix="FirstName"
+                      field="firstName"
+                      errors={state.errors}
+                    />
+                  </div>
+                  <div className="col-12">
+                    <MDBInput
+                      wrapperClass="mb-2 w-100"
+                      labelClass="text-white"
+                      label="Last Name"
+                      id="formControlLg"
+                      type="text"
+                      size="lg"
+                      onChange={(e) => setLastName(e.target.value)}
+                      value={lastName}
+                      required
+                    />
+                    <ValidationError
+                      prefix="LastName"
+                      field="lastName"
+                      errors={state.errors}
+                      required
+                    />
+                  </div>
+                  <div className="col-12">
+                    <MDBInput
+                      wrapperClass="mb-2 w-100"
+                      labelClass="text-white"
+                      label="Email address"
+                      id="formControlLg"
+                      type="email"
+                      size="lg"
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                      required
+                    />
+                    <ValidationError
+                      prefix="Email"
+                      field="email"
+                      errors={state.errors}
+                      required
+                    />
+                  </div>
+                  <div className="col-12 mb-4">
+                    <textarea id="message" name="message" />
+                    <ValidationError
+                      prefix="Message"
+                      field="message"
+                      errors={state.errors}
+                      required
+                      onChange={(e) => setMessage(e.target.value)}
+                      value={message}
+                    />
+                    <br />
+                    <label htmlFor="">Message</label>
+                  </div>
+                  <button
+                    type="submit "
+                    className="btn btn-outline-light btn-lg mx-2 px-5"
+                    color="white"
+                    outline
+                  >
+                    Submit
+                  </button>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </Form>
+
+      <div className="col-4 mt-5">
         <h4>We are here</h4>
         <img
-          style={{ width: "300px", height: "300px" }}
-          src="https://thumbs.dreamstime.com/z/mapa-geogr%C3%A1fico-de-uruguay-con-el-capital-de-montevideo-98137776.jpg"
+          style={{ width: "400px", height: "500px" }}
+          src="https://noticias.unsam.edu.ar/wp-content/uploads/2021/10/Seccion-mapa-Montevideo-1070x622.jpg"
           alt=""
         />
       </div>
     </div>
   );
 };
-
-// COMO EJEMPLO PARA LOS CLASSNAMES Y ESTILOS
-// <div className="mb-3">
-//         <label
-//           htmlFor="exampleInputPassword1"
-//           className="form-label opacity-50"
-//         >
-//           Last Name
-//         </label>
-//
-// <ValidationError
-//   prefix="LastName"
-//   field="lastName"
-//   errors={state.errors}
-// />
-//       </div>
-
-//       <Form.Group className="mb-3" controlId="formBasicCheckbox">
-//         <Form.Check type="checkbox" label="I am not a robot reCapcha" />
-//       </Form.Group>

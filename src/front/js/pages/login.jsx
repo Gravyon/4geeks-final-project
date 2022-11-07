@@ -45,7 +45,7 @@ export const Login = () => {
   };
 
   return (
-    <form onSubmit={doSubmit}>
+    <Form onSubmit={doSubmit}>
       <MDBContainer fluid>
         <MDBRow className="d-flex justify-content-center align-items-center h-100">
           <MDBCol col="12">
@@ -81,7 +81,7 @@ export const Login = () => {
                 />
 
                 <p className="small mb-3 pb-lg-2">
-                  <Link class="text-white-50" to={"/changePassword"}>
+                  <Link className="text-white-50" to={"/changePassword"}>
                     Forgot password?
                   </Link>
                 </p>
@@ -95,24 +95,12 @@ export const Login = () => {
                   Login
                 </button>
 
-                <div className="d-flex flex-row mt-3 mb-5">
-                  {/* <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                  <MDBIcon fab icon='facebook-f' size="lg"/>
-                </MDBBtn>
-
-                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                  <MDBIcon fab icon='twitter' size="lg"/>
-                </MDBBtn>
-
-                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                  <MDBIcon fab icon='google' size="lg"/>
-                </MDBBtn> */}
-                </div>
+                <div className="d-flex flex-row mt-3 mb-5"></div>
 
                 <div>
                   <p className="mb-0">
                     Don't have an account?{" "}
-                    <Link to="/signup" class="text-white-50 fw-bold">
+                    <Link to="/signup" className="text-white-50 fw-bold">
                       Sign Up
                     </Link>
                   </p>
@@ -122,6 +110,6 @@ export const Login = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-    </form>
+    </Form>
   );
 };
