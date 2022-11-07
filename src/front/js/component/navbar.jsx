@@ -106,9 +106,9 @@ export const NavbarPrincipal = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-ligth" style={{ color: "#bdb284" }}>
+              {/* <Button variant="outline-ligth" style={{ color: "#bdb284" }}>
                 <BsSearch />
-              </Button>
+              </Button> */}
             </Form>
             {!store.auth ? (
               <Nav.Link href="/login" style={{ color: "#bdb284" }}>

@@ -41,7 +41,7 @@ export const LandingPage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container w-100">
       <ImgCarousel />
       <div className="container text-align-center my-4">
         <h1 className="display-4 text-align-center">
@@ -107,6 +107,64 @@ export const LandingPage = () => {
                     <i className="fa fa-cart-plus"></i>
                   </button>
 
+                  {/* empieza el share */}
+                  <br />
+                  <div className="dropdown">
+                    <button
+                      class="btn btn-outline-light dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      style={{ float: "center", color: "#bdb284" }}
+                    >
+                      Share
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <FacebookShareButton
+                          url={
+                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            item.id
+                          }
+                        >
+                          <FacebookIcon size={32} round={true} />
+                        </FacebookShareButton>
+                        <TwitterShareButton
+                          url={
+                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            item.id
+                          }
+                        >
+                          <TwitterIcon size={32} round={true} />
+                        </TwitterShareButton>
+                        <WhatsappShareButton
+                          url={
+                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            item.id
+                          }
+                        >
+                          <WhatsappIcon size={32} round={true} />
+                        </WhatsappShareButton>
+                        <LinkedinShareButton
+                          url={
+                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            item.id
+                          }
+                        >
+                          <LinkedinIcon size={32} round={true} />
+                        </LinkedinShareButton>
+                        <EmailShareButton
+                          url={
+                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            item.id
+                          }
+                        >
+                          <EmailIcon size={32} round={true} />
+                        </EmailShareButton>
+                      </li>
+                    </ul>
+                  </div>
+                  {/* termina el share */}
                   <Link
                     to="/"
                     className="btn btn-outline-light align-bottom"
@@ -120,51 +178,6 @@ export const LandingPage = () => {
                     ></i>
                   </Link>
                 </div>
-                {/* empieza el share */}
-                <br />
-                <div>
-                  <FacebookShareButton
-                    url={
-                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
-                      item.id
-                    }
-                  >
-                    <FacebookIcon size={32} round={true} />
-                  </FacebookShareButton>
-                  <TwitterShareButton
-                    url={
-                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
-                      item.id
-                    }
-                  >
-                    <TwitterIcon size={32} round={true} />
-                  </TwitterShareButton>
-                  <WhatsappShareButton
-                    url={
-                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
-                      item.id
-                    }
-                  >
-                    <WhatsappIcon size={32} round={true} />
-                  </WhatsappShareButton>
-                  <LinkedinShareButton
-                    url={
-                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
-                      item.id
-                    }
-                  >
-                    <LinkedinIcon size={32} round={true} />
-                  </LinkedinShareButton>
-                  <EmailShareButton
-                    url={
-                      "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
-                      item.id
-                    }
-                  >
-                    <EmailIcon size={32} round={true} />
-                  </EmailShareButton>
-                </div>
-                {/* termina el share */}
               </Card.Body>
             </Card>
           ))
