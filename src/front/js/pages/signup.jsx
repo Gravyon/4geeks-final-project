@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+import {MDBCardImage ,  MDBBtn,  MDBContainer,  MDBRow,  MDBCol,  MDBCard,  MDBCardBody,  MDBInput,  MDBIcon} from 'mdb-react-ui-kit';
 export const SignUp = () => {
   // definimos los estados
   const [email, setEmail] = useState("");
@@ -34,75 +34,54 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="text-center mt-5 container vh-100">
-      <form onSubmit={doSubmit}>
-        <div className="mb-3">
-          <label htmlFor="exampleName" className="form-label opacity-50">
-            Username
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleName"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-            required
-          />
-        </div>
+<Form onSubmit={doSubmit}>
+<MDBContainer fluid>
 
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label opacity-50">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            required
-          />
-        </div>
+  <MDBRow className='d-flex justify-content-center align-items-center h-100'>
 
-        <div className="mb-3">
-          <label
-            htmlFor="exampleInputPassword1"
-            className="form-label opacity-50"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            required
+    <MDBCol col='12'>
+
+      <MDBCard className='bg-dark text-white my-5 mx-auto' style={{background: 'hsla(0, 0%, 100%, 0.55)',  backdropFilter: 'blur(30px)', borderRadius: '1rem', maxWidth: '600px'}}>
+        <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
+
+          <h2 className="fw-bold mb-2 text-uppercase">Register</h2>
+          <div>
+            <p className="mt-3 mb-3">Already registered? <Link to="/login" className="text-white-50 fw-bold">Login</Link></p>
+
+          </div>
+          {/* <p className="text-white-50 mb-5"> </p> */}
+          <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Username' id='formControlLg' type='text' size="lg"
+          onChange={(e) => setUsername(e.target.value)}
+          value={username}
           />
-        </div>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="I am not a robot" />
-        </Form.Group>
-        <div className="d-flex justify-content-between">
-          <Link to={"/"}>
-            <button
-              type="button"
-              className="btn btn-dark"
-              style={{ color: "#bdb284" }}
-            >
-              Back
-            </button>
-          </Link>
-          <button
-            type="submit"
-            className="btn btn-dark"
-            style={{ color: "#bdb284" }}
-          >
-            Sign Up
-          </button>
-        </div>
-      </form>
-    </div>
+
+          <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          />
+          <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          />
+          
+          <button  type="submit "className="btn btn-outline-light btn-lg mx-2 px-5" color="white" outline >Sign Up</button>
+
+          <div className='d-flex flex-row mt-3 mb-5'>
+          </div>
+
+        </MDBCardBody>
+      </MDBCard>
+
+    </MDBCol>
+    {/* <MDBCol md='6' className="m-4">
+            <MDBCardImage src='https://i.imgur.com/YEHscV4.png' alt="sign inb form" className='rounded-start w-100'/>
+    </MDBCol> */}
+        {/* <MDBCol md='6' className="m-4">
+            <MDBCardImage className='rounded-start w-100'/>
+    </MDBCol> */}
+  </MDBRow>
+</MDBContainer>
+</Form>
+
   );
 };
