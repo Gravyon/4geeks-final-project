@@ -6,6 +6,7 @@ import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useForm, ValidationError } from "@formspree/react";
+import { MDBBtn, MDBIcon } from "mdb-react-ui-kit";
 
 export const ContactUs = () => {
   // definimos los estados
