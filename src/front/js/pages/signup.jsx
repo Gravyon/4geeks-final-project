@@ -18,19 +18,24 @@ export const SignUp = () => {
   const doSubmit = async (e) => {
     e.preventDefault();
     let onSignUp = await actions.signup(username, email, password);
-
+    
     // console.log(onSignUp.data.msg);
     console.log(onSignUp);
+
     setEmail("");
     setPassword("");
     setUsername("");
+    // navigate("/");
 
-    onSignUp ? navigate("/") : null;
-    if (onSignUp === "User email already exists") {
-      navigate("/login");
-    } else {
-      navigate("/");
-    }
+    // onSignUp ? navigate("/") : null;
+    // if (onSignUp === "User email already exists") {
+    //   navigate("/login");
+    // }
+    // else if (onSignUp === "User email already exists") {
+    //     navigate("/login");
+    // } else {
+    //   navigate("/");
+    // }
   };
 
   return (
@@ -73,14 +78,10 @@ export const SignUp = () => {
       </MDBCard>
 
     </MDBCol>
-    {/* <MDBCol md='6' className="m-4">
-            <MDBCardImage src='https://i.imgur.com/YEHscV4.png' alt="sign inb form" className='rounded-start w-100'/>
-    </MDBCol> */}
-        {/* <MDBCol md='6' className="m-4">
-            <MDBCardImage className='rounded-start w-100'/>
-    </MDBCol> */}
+
   </MDBRow>
 </MDBContainer>
+
 </Form>
 
   );

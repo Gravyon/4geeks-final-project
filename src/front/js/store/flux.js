@@ -295,6 +295,7 @@ const getState = ({
                             registered: true,
                         });
                     }
+
                     console.log(response);
                     return response.data.msg;
                 } catch (error) {
@@ -304,6 +305,14 @@ const getState = ({
                             error.response.data.msg +
                             ". You'll be rediredted to the login page"
                         );
+                        return error.response.data.msg;
+                    }
+                    if (error.response.status === 406) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                    if (error.response.status === 409) {
+                        alert(error.response.data.msg);
                         return error.response.data.msg;
                     }
                 }
