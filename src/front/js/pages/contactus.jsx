@@ -44,7 +44,9 @@ export const ContactUs = () => {
           <MDBIcon fab icon="google" size="lg" />
         </MDBBtn>
         <h5 className="pb-5">example@domain.com</h5>
-        <i className="bi bi-geo-alt"></i>
+
+        <i className="fa-solid fa-location-dot"></i>
+
         <h5 className="pb-5">
           Av. de las leyes 1234 <br />
           Montevideo-Uruguay
