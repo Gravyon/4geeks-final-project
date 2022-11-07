@@ -10,38 +10,35 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../img/logo1.png";
-import { BsSearch } from 'react-icons/bs';
+import { BsSearch } from "react-icons/bs";
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
-  const [ product, setProduct ] = useState([]);
-  const [ search, setSearch ] = useState("");
+  const [product, setProduct] = useState([]);
+  const [search, setSearch] = useState("");
 
   // const queryGet = () => {
   //   console.log(store.product);
   // };
 
   const handleInput = (e) => {
-    e.preventDefault()
-    setSearch(e.target.value)
+    e.preventDefault();
+    setSearch(e.target.value);
     console.log(e.target.value);
-    if (e.target.value === ""){
-      actions.getProduct()
-    }
-    else {
+    if (e.target.value === "") {
+      actions.getProduct();
+    } else {
       actions.filterSearch(e.target.value);
     }
-    
   };
 
   useEffect(() => {
-    if (store.userId != null){
-
+    if (store.userId != null) {
       // console.log(store.userId)
       actions.getShopping();
     }
-	}, [store.userId]);
-  
+  }, [store.userId]);
+
   let navigate = useNavigate();
 
   const doLogout = () => {
@@ -76,18 +73,25 @@ export const NavbarPrincipal = () => {
               <Nav.Link href="/" style={{ color: "#bdb284" }}>
                 Home
               </Nav.Link>
-              {store.auth ? (<Nav.Link href="/profile" style={{ color: "#bdb284" }}>
-                Profile
-              </Nav.Link>) : null}{" "}
               {store.auth ? (
-              <Nav.Link href="/favorites" style={{ color: "#bdb284" }}>
-                Favorites
-              </Nav.Link>
+                <Nav.Link href="/profile" style={{ color: "#bdb284" }}>
+                  Profile
+                </Nav.Link>
               ) : null}{" "}
               {store.auth ? (
-              <Nav.Link href="/carrito" style={{ color: "#bdb284" }}>
-                Cart
-              </Nav.Link>
+                <Nav.Link href="/favorites" style={{ color: "#bdb284" }}>
+                  Favorites
+                </Nav.Link>
+              ) : null}{" "}
+              {store.auth ? (
+                <Nav.Link href="/carrito" style={{ color: "#bdb284" }}>
+                  Cart
+                </Nav.Link>
+              ) : null}{" "}
+              {store.auth ? (
+                <Nav.Link href="/upload-img" style={{ color: "#bdb284" }}>
+                  Create product
+                </Nav.Link>
               ) : null}{" "}
               <Nav.Link href="/contactus" style={{ color: "#bdb284" }}>
                 Contact us
@@ -95,7 +99,8 @@ export const NavbarPrincipal = () => {
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
             </Nav>
             <Form className="d-flex">
-              <Form.Control onChange={handleInput}
+              <Form.Control
+                onChange={handleInput}
                 type="search"
                 placeholder="Search"
                 className="me-2"
@@ -126,16 +131,13 @@ export const NavbarPrincipal = () => {
               </Nav.Link>
             ) : null}{" "}
             <Link
-            to={"/carrito"}
+              to={"/carrito"}
               className="btn btn-outline-ligth"
-              style={{color: "#bdb284"}}
+              style={{ color: "#bdb284" }}
               type="button"
-              
             >
               <i className="fa fa-cart-plus"></i>
-              <span className="badge">
-                {store.shoppingList.length}
-              </span>
+              <span className="badge">{store.shoppingList.length}</span>
             </Link>
             {/* <ul className="dropdown-menu">
               {store.shoppingList.map((item, id) => (
