@@ -43,13 +43,11 @@ export const LandingPage = () => {
   return (
     <div className="container w-100">
       <ImgCarousel />
-      <div className="container text-align-center my-4">
-        <h1 className="display-4 text-align-center">
-          Check out these amazing pieces of art!
-        </h1>
+      <div className="container text-align-center my-4" id="h1Container">
+        <h1 className="display-4 text-align-center">Find your art!</h1>
       </div>
 
-      <div className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center w-100">
+      <div className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center w-100 ">
         {store.product.length > 0 ? (
           store.product.map((item, id) => (
             <Card
@@ -60,6 +58,8 @@ export const LandingPage = () => {
                 background: "#212529",
                 margin: "auto",
                 fontFamily: "Rajdhani, sans-serif",
+                borderColor: "#b2a97e",
+                borderRadius: "15px 50px",
               }}
             >
               <Link
@@ -71,20 +71,24 @@ export const LandingPage = () => {
                     src={item.url}
                     className="img-fluid rounded p-1"
                     alt="..."
-                    style={{ maxHeight: "12rem" }}
+                    style={{ maxHeight: "12rem", borderColor: "#b2a97e" }}
                   />
+
                   <div style={{ textAlign: "left", marginLeft: "25px" }}>
+                    <hr style={{ borderTop: "2px dotted #bdb284" }} />
                     <Card.Title
                       style={{ color: "#bdb284", textDecoration: "none" }}
                     >
                       Name: {item.name}
                     </Card.Title>
+                    <hr style={{ borderTop: "2px dotted #bdb284" }} />
                     <Card.Text style={{ color: "#bdb284" }}>
                       Category: {item.category}
                     </Card.Text>
                     <Card.Text style={{ color: "#bdb284" }}>
                       Price: U$S {item.price}
                     </Card.Text>
+                    <hr style={{ borderTop: "2px dotted #bdb284" }} />
                   </div>
                 </Card.Body>
               </Link>
