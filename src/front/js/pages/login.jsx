@@ -1,12 +1,14 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Context } from "../store/appContext";
+import React, { Component } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import "../../styles/login.css";
+
 import {
-  MDBCardImage,
   MDBBtn,
   MDBContainer,
   MDBRow,
@@ -16,27 +18,26 @@ import {
   MDBInput,
   MDBIcon,
 } from "mdb-react-ui-kit";
-export const SignUp = () => {
-  // definimos los estados
+
+export const Login = () => {
+  const { store, actions } = useContext(Context);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-
-  const { actions } = useContext(Context);
   let navigate = useNavigate();
 
   const doSubmit = async (e) => {
     e.preventDefault();
-    let onSignUp = await actions.signup(username, email, password);
+    let onLogged = await actions.login(email, password);
+    // let msj = await actions.login(email, password).response.data.msg;
 
-    // console.log(onSignUp.data.msg);
-    console.log(onSignUp);
+    console.log(onLogged);
     setEmail("");
     setPassword("");
-    setUsername("");
-
-    onSignUp ? navigate("/") : null;
-    if (onSignUp === "User email already exists") {
+    // onLogged ? navigate("/") : null;
+    if (onLogged === "User doesn't exist") {
+      navigate("/signup");
+    } else if (onLogged.msg === "Bad email or password") {
       navigate("/login");
     } else {
       navigate("/");
@@ -50,34 +51,13 @@ export const SignUp = () => {
           <MDBCol col="12">
             <MDBCard
               className="bg-dark text-white my-5 mx-auto"
-              style={{
-                background: "hsla(0, 0%, 100%, 0.55)",
-                backdropFilter: "blur(30px)",
-                borderRadius: "1rem",
-                maxWidth: "600px",
-              }}
+              style={{ borderRadius: "1rem", maxWidth: "400px" }}
             >
               <MDBCardBody className="p-5 d-flex flex-column align-items-center mx-auto w-100">
-                <h2 className="fw-bold mb-2 text-uppercase">Register</h2>
-                <div>
-                  <p className="mt-3 mb-3">
-                    Already registered?{" "}
-                    <Link to="/login" className="text-white-50 fw-bold">
-                      Login
-                    </Link>
-                  </p>
-                </div>
-                {/* <p className="text-white-50 mb-5"> </p> */}
-                <MDBInput
-                  wrapperClass="mb-4 mx-5 w-100"
-                  labelClass="text-white"
-                  label="Username"
-                  id="formControlLg"
-                  type="text"
-                  size="lg"
-                  onChange={(e) => setUsername(e.target.value)}
-                  value={username}
-                />
+                <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+                <p className="text-white-50 mb-5">
+                  Please enter your login and password
+                </p>
 
                 <MDBInput
                   wrapperClass="mb-4 mx-5 w-100"
@@ -100,25 +80,34 @@ export const SignUp = () => {
                   value={password}
                 />
 
+                <p className="small mb-3 pb-lg-2">
+                  <Link className="text-white-50" to={"/changePassword"}>
+                    Forgot password?
+                  </Link>
+                </p>
+
                 <button
                   type="submit "
                   className="btn btn-outline-light btn-lg mx-2 px-5"
                   color="white"
                   outline
                 >
-                  Sign Up
+                  Login
                 </button>
 
                 <div className="d-flex flex-row mt-3 mb-5"></div>
+
+                <div>
+                  <p className="mb-0">
+                    Don't have an account?{" "}
+                    <Link to="/signup" className="text-white-50 fw-bold">
+                      Sign Up
+                    </Link>
+                  </p>
+                </div>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
-          {/* <MDBCol md='6' className="m-4">
-            <MDBCardImage src='https://i.imgur.com/YEHscV4.png' alt="sign inb form" className='rounded-start w-100'/>
-    </MDBCol> */}
-          {/* <MDBCol md='6' className="m-4">
-            <MDBCardImage className='rounded-start w-100'/>
-    </MDBCol> */}
         </MDBRow>
       </MDBContainer>
     </Form>
