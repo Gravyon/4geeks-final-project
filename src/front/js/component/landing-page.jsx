@@ -59,6 +59,7 @@ export const LandingPage = () => {
                 width: "18rem",
                 background: "#212529",
                 margin: "auto",
+                fontFamily: "Rajdhani, sans-serif",
               }}
             >
               <Link
