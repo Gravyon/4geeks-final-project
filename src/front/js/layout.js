@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
+import "../styles/home.css";
 
 import { Home } from "./pages/home.jsx";
 // import { Demo } from "./pages/demo";
@@ -27,7 +28,7 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
 
   return (
-    <div  style={{ background: "#B73E3E" }}>
+    <div id="layout">
       {" "}
       <BrowserRouter basename={basename}>
         {" "}

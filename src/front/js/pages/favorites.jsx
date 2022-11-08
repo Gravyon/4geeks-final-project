@@ -17,22 +17,28 @@ export const Favorites = () => {
   }, [store.userId]);
 
   return (
-    <div className="container mt-5 vh-auto vh-100">
-      <div className="w-25">
+    <div
+      className="container mt-5 vh-auto vh-100 mx-auto"
+      style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "1.3rem" }}
+    >
+      <div className="w-25 mx-auto">
         <h1>Favorites </h1>
       </div>
-      <div>
+      <div className="col-12 mx-auto my-4">
         <ol>
           {store.listaFavoritos.length > 0 ? (
             store.listaFavoritos.map((item, id) => (
               <li
                 className="list-group-item border border-1 border border-dark"
                 key={id}
+                style={{ background: "#212529", color: "#908969" }}
               >
                 <div className="d-flex justify-content-between">
                   <div className="d-flex justify-content-start">
-                    {item?.name}
-                    <p className="mx-5">Precio: {item?.price}</p>
+                    Name: {item?.name}
+                  </div>
+                  <div className="d-flex justify-content-start">
+                    <p className="mx-5">Price: US${item?.price}</p>
                   </div>
                   <div className="d-flex justify-content-end">
                     <div className="mx-4">
@@ -43,8 +49,9 @@ export const Favorites = () => {
                       <BsStar />
                     </div>
                     <span
-                      className="close btn btn-danger"
+                      className="btn btn-outline-light"
                       onClick={() => actions.eliminarFavoritos(item.id)}
+                      style={{ color: "#bdb284" }}
                     >
                       <b>X</b>
                     </span>
@@ -57,11 +64,13 @@ export const Favorites = () => {
           )}
         </ol>
       </div>
-      <button className="btn btn-dark">
-        <Nav.Link style={{ color: "#bdb284" }} href="/">
-          Home
-        </Nav.Link>
-      </button>
+      {/* <div className="mx-auto">
+        <button className="btn btn-dark">
+          <Nav.Link style={{ color: "#bdb284" }} href="/">
+            Home
+          </Nav.Link>
+        </button>
+      </div> */}
     </div>
   );
 };

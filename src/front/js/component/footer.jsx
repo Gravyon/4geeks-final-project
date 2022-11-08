@@ -6,43 +6,80 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import {
+  MDBFooter,
+  MDBContainer,
+  MDBCol,
+  MDBRow,
+  MDBIcon,
+  MDBBtn,
+} from "mdb-react-ui-kit";
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  EmailIcon,
+  FacebookIcon,
+  LinkedinIcon,
+  TwitterIcon,
+  WhatsappIcon,
+  InstapaperShareButton,
+} from "react-share";
 
 export const Footer = () => {
   return (
-    <div className="vh-auto fixed-bottom">
-      <Navbar
-        className="d-flex position-relative"
-        bg="dark"
-        variant="dark"
-        expand="lg"
+    <MDBFooter className="bg-dark text-center text-white">
+      <MDBContainer className="p-4 pb-0">
+        <section className="mb-4 col-3 d-flex justify-content-between mx-auto">
+          <FacebookShareButton
+            url={
+              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
+            }
+          >
+            <FacebookIcon size={32} round={true} />
+          </FacebookShareButton>
+
+          <TwitterShareButton
+            url={
+              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
+            }
+          >
+            <TwitterIcon size={32} round={true} />
+          </TwitterShareButton>
+
+          <WhatsappShareButton
+            url={
+              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
+            }
+          >
+            <WhatsappIcon size={32} round={true} />
+          </WhatsappShareButton>
+          <LinkedinShareButton
+            url={
+              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
+            }
+          >
+            <LinkedinIcon size={32} round={true} />
+          </LinkedinShareButton>
+
+          <EmailShareButton
+            url={
+              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
+            }
+          >
+            <EmailIcon size={32} round={true} />
+          </EmailShareButton>
+        </section>
+      </MDBContainer>
+
+      <div
+        className="text-center p-3"
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
-        <Container fluid>
-          <Navbar.Brand href="#" className="text-center fixed-bottom">
-            Copyright 2022 - Casa Arte
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              <Nav.Link href="#https://www.instagram.com/">
-                <i className="bi bi-instagram"></i>
-              </Nav.Link>
-              <Nav.Link href="#https://www.facebook.com/">
-                <i className="bi bi-facebook"></i>
-              </Nav.Link>
-              <Nav.Link
-                href="#https://mail.google.com/mail/u/0/?pli=1#inbox?compose=new"
-                disabled
-              >
-                <i className="bi bi-envelope"></i>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
+        © 2022 Copyright: Casa Arte
+      </div>
+    </MDBFooter>
   );
 };
