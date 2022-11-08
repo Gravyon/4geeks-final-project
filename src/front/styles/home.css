@@ -6,6 +6,29 @@
     on that page only (the ones not reused in other pages).
 */
 h1 {
-    font-family: 'Monoton', cursive;
+    font-family: "Poiret One", cursive;
     text-align: center;
+    font-weight: bold;
+}
+
+body,
+#layout {
+    background-image: radial-gradient(circle at 120.71% 50%,
+            #da4fcd 0,
+            #e745bd 6.25%,
+            #f13cac 12.5%,
+            #f9359b 18.75%,
+            #fd318a 25%,
+            #ff3178 31.25%,
+            #ff3667 37.5%,
+            #fd3d56 43.75%,
+            #f94646 50%,
+            #f35035 56.25%,
+            #eb5924 62.5%,
+            #e2620d 68.75%,
+            #d76b00 75%,
+            #cb7300 81.25%,
+            #be7b00 87.5%,
+            #b08200 93.75%,
+            #a28800 100%);
 }
