@@ -38,5 +38,9 @@ body,
 }
 
 .carousel-control-next {
-    right: -98px;
+    right: -150px;
+}
+
+.carousel-indicators {
+    bottom: 120px;
 }

@@ -43,36 +43,44 @@ export const ProductDetail = (props) => {
       >
         <Carousel variant="dark">
           {store.product.map((item) => (
-            <Carousel.Item className="" key={item.id}>
+            <Carousel.Item key={item.id}>
               <div className="row">
                 <div className="col-5">
                   <Card style={{ width: "18rem", height: "400px" }}>
-                    <Card.Img variant="top" src={item?.url} />
+                    <div style={{ width: "18rem", height: "400px" }}>
+                      <Card.Img
+                        className="d-flex justify-content-center m-auto"
+                        variant="top"
+                        style={{ width: "auto", height: "288px" }}
+                        src={item?.url}
+                      />
+                    </div>
                     <Card.Body>
                       <Card.Title className="d-flex justify-content-center">
                         {item?.name}
                       </Card.Title>
-                      <Card.Text>Price $ {item?.price}</Card.Text>
-                      <button
-                        type="button"
-                        onClick={() => handleAddShopping(item.id)}
-                        className="btn btn-outline-light d-flex align-bottom bg-dark"
-                        style={{ float: "right", color: "#bdb284" }}
-                      >
-                        <i className="fa fa-cart-plus"></i>
-                      </button>
-                      <Link
-                        to="/"
-                        className="btn btn-outline-light align-bottom bg-dark"
-                        style={{ color: "#bdb284" }}
-                      >
-                        <i
-                          className="far fa-heart"
-                          onClick={() => {
-                            handleAddFavorites(item.id);
-                          }}
-                        ></i>
-                      </Link>
+                      <div className="d-flex d-flex justify-content-between">
+                        <button
+                          type="button"
+                          onClick={() => handleAddShopping(item.id)}
+                          className="btn btn-outline-light d-flex align-bottom bg-dark"
+                          style={{ float: "right", color: "#bdb284" }}
+                        >
+                          <i className="fa fa-cart-plus"></i>
+                        </button>
+                        <Link
+                          to="/"
+                          className="btn btn-outline-light align-bottom bg-dark"
+                          style={{ color: "#bdb284" }}
+                        >
+                          <i
+                            className="far fa-heart"
+                            onClick={() => {
+                              handleAddFavorites(item.id);
+                            }}
+                          ></i>
+                        </Link>
+                      </div>
                     </Card.Body>
                   </Card>
                 </div>
@@ -84,15 +92,21 @@ export const ProductDetail = (props) => {
                         Category: {item?.category}
                       </Card.Subtitle>
                       <Card.Text>Description: {item?.description}</Card.Text>
-                      <Card.Link href="#">Card Link</Card.Link>
-                      <Card.Link href="#">Price: $ {item?.price}</Card.Link>
+                      <Card.Text>Price: $ {item?.price}</Card.Text>
                     </Card.Body>
                   </Card>
                 </div>
               </div>
               <div className="input-container">
                 <form action="">
-                  <Form.Label>Comment</Form.Label>
+                  <Form.Label>
+                    <h1
+                      className="mt-4"
+                      style={{ float: "right", color: "#bdb284" }}
+                    >
+                      Comment
+                    </h1>
+                  </Form.Label>
                   <div className="row">
                     <Form.Control
                       type="text"
