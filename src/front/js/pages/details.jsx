@@ -45,9 +45,12 @@ export const ProductDetail = (props) => {
           {store.product.map((item) => (
             <Carousel.Item key={item.id}>
               <div className="row">
-                <div className="col-5 m-0">
+                <div className="col-5 p-0" style={{ marginRight: "-30px" }}>
                   <Card style={{ width: "18rem", height: "400px" }}>
-                    <div style={{ width: "18rem", height: "400px" }}>
+                    <div
+                      style={{ width: "18rem", height: "400px" }}
+                      className="bg-dark"
+                    >
                       <Card.Img
                         className="d-flex justify-content-center m-auto"
                         variant="top"
@@ -55,11 +58,11 @@ export const ProductDetail = (props) => {
                         src={item?.url}
                       />
                     </div>
-                    <Card.Body>
-                      <Card.Title className="d-flex justify-content-center">
+                    <Card.Body className="bg-dark border border-0">
+                      <Card.Title className="d-flex justify-content-center text-white">
                         {item?.name}
                       </Card.Title>
-                      <div className="d-flex d-flex justify-content-between">
+                      <div className="d-flex justify-content-between">
                         <button
                           type="button"
                           onClick={() => handleAddShopping(item.id)}
@@ -84,19 +87,32 @@ export const ProductDetail = (props) => {
                     </Card.Body>
                   </Card>
                 </div>
-                <div className="col-7 m-0">
-                  <Card style={{ width: "30rem", height: "400px" }}>
+                <div
+                  className="col-7 m-0 p-0 bg-secondary"
+                  style={{ padding: "-50px" }}
+                >
+                  <Card
+                    style={{ width: "30rem", height: "400px" }}
+                    className="col-7 m-0 bg-dark text-white"
+                  >
                     <Card.Body>
                       <Card.Title>{item?.name}</Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted">
+                      <hr style={{ borderTop: "2px dotted #bdb284" }} />
+                      <Card.Subtitle className="mb-2 text-muted text-white">
                         Category: {item?.category}
                       </Card.Subtitle>
-                      <Card.Text>Description: {item?.description}</Card.Text>
-                      <Card.Text>Price: $ {item?.price}</Card.Text>
+                      <Card.Text className="text-white">
+                        Description: {item?.description}
+                      </Card.Text>
+                      <hr style={{ borderTop: "2px dotted #bdb284" }} />
+                      <Card.Text className="text-white">
+                        Price: $ {item?.price}
+                      </Card.Text>
                     </Card.Body>
                   </Card>
                 </div>
               </div>
+              {/* empieza los Comments */}
               <div className="input-container">
                 <form action="">
                   <Form.Label>
