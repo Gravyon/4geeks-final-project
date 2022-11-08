@@ -34,11 +34,9 @@ export const Favorites = () => {
                 style={{ background: "#212529", color: "#908969" }}
               >
                 <div className="d-flex justify-content-between">
-                  <div className="d-flex justify-content-start">
-                    Name: {item?.name}
-                  </div>
-                  <div className="d-flex justify-content-start">
-                    <p className="mx-5">Price: US${item?.price}</p>
+                  <div className="text-left w-25">Name: {item?.name}</div>
+                  <div className="text-left">
+                    <p className="mx-5 text-right">Price: US${item?.price}</p>
                   </div>
                   <div className="d-flex justify-content-end">
                     <div className="mx-4">

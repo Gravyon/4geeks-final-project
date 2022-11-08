@@ -36,7 +36,7 @@ export const Carrito = () => {
                 style={{ background: "#212529", color: "#908969" }}
               >
                 <div className="d-flex justify-content-between">
-                  <div className="d-flex justify-content-start">
+                  <div className="d-flex justify-content-start text-left w-25">
                     Name: {item?.name}
                   </div>
                   <div className="d-flex justify-content-start">
