@@ -44,7 +44,9 @@ export const ProductDetail = (props) => {
         <Carousel variant="dark">
           {store.product.map((item, index) => (
             <Carousel.Item
-              className={params.id - 1 === index ? store.classNameDetails : ""}
+              className={
+                params.id - 1 === index ? store.classNameDetails : null
+              }
               key={item.id}
             >
               <div className="row">
