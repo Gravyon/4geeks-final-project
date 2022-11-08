@@ -30,7 +30,7 @@ import {
 
 export const Footer = () => {
   return (
-    <MDBFooter className="bg-dark text-center text-white">
+    <MDBFooter className="bg-dark text-center text-white ">
       <MDBContainer className="p-4 pb-0">
         <section className="mb-4 col-3 d-flex justify-content-between mx-auto">
           <FacebookShareButton
@@ -73,6 +73,23 @@ export const Footer = () => {
           </EmailShareButton>
         </section>
       </MDBContainer>
+      <div className="container d-flex justify-content-between">
+        <h6 className="text-uppercase fw-bold mb-4">Contact:</h6>
+        <p>
+          <i className="fas fa-home me-3 text-secondary"></i> Montevideo, Rincon
+          123, UY
+        </p>
+        <p>
+          <i className="fas fa-envelope me-3 text-secondary"></i>
+          casaarte@gmail.com
+        </p>
+        <p>
+          <i className="fas fa-phone me-3 text-secondary"></i> +598 2 111 1111
+        </p>
+        <p>
+          <i className="fas fa-print me-3 text-secondary"></i> +598 2 111 1112
+        </p>
+      </div>
 
       <div
         className="text-center p-3"
