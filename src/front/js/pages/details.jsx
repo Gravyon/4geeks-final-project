@@ -17,16 +17,21 @@ export const ProductDetail = (props) => {
 
   return (
     <div className="vh-100 container mt-5">
-      <div className=" col-9 central-content d-flex justify-content-center">
+      <div
+        className="d-flex justify-content-center"
+        // col-9 central-content ESTO LO QUITE, ME PARECIO MEJOR
+      >
         <Carousel variant="dark">
           {store.product.map((item) => (
-            <Carousel.Item key={item.id}>
+            <Carousel.Item className="" key={item.id}>
               <div className="row">
                 <div className="col-5">
                   <Card style={{ width: "18rem", height: "400px" }}>
                     <Card.Img variant="top" src={item?.url} />
                     <Card.Body>
-                      <Card.Title>{item?.name}</Card.Title>
+                      <Card.Title className="d-flex justify-content-center">
+                        {item?.name}
+                      </Card.Title>
                       <Card.Text>Price $</Card.Text>
                       <Button
                         onClick={() => actions.addProducts(item.name)}

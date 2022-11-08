@@ -98,6 +98,7 @@
         "react-polyfills": "0.0.1",
         "react-router-dom": "^6.3.0",
         "react-share": "^4.4.1",
-        "reactstrap": "^9.1.5"
+        "reactstrap": "^9.1.5",
+        "sweetalert": "^2.1.2"
     }
 }
