@@ -6,6 +6,7 @@ import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useForm, ValidationError } from "@formspree/react";
+import Iframe from 'react-iframe'
 import {
   MDBBtn,
   MDBContainer,
@@ -30,83 +31,14 @@ export const ContactUs = () => {
   if (state.succeeded) {
     return <p>Thanks for joining!</p>;
   }
-
-  // const doSubmit = (e) => {
-  //   e.preventDefault();
-  //   let contactUs = actions.contactus(email, message, firstName, lastName);
-  //   setEmail("");
-  //   setFirstName("");
-  //   setLastName("");
-  //   setMessage("");
-  //   contactUs ? navigate("/") : null;
-  // };
-
   return (
-    <div className="container text-center mt-5 d-flex justify-content-between vh-100">
-      <div className="col-4 mt-5">
-        <div className="d-flex justify-content">
-          <MDBBtn
-            tag="a"
-            color="none"
-            className="m-1 mx-3"
-            style={{ color: "#dd4b39" }}
-          >
-            <MDBIcon fab icon="google" size="lg" />
-          </MDBBtn>
-          <h5 className="pb-5">example@gmail.com</h5>
-        </div>
-        <div className="d-flex justify-content">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxNIZCwCHKfC9TS8s14LxiRkChkO7KEcbDgQ&usqp=CAU"
-            alt=""
-            style={{ borderRadius: "1rem", width: "30px", height: "30px" }}
-            className="m-1 mx-3"
-          />
-          <h5 className="pb-5">Av. de las leyes 1234 Montevideo-Uruguay</h5>
-        </div>
-        <div className="d-flex justify-content">
-          <MDBBtn
-            tag="a"
-            color="none"
-            className="m-1 mx-3"
-            style={{ color: "#3b5998" }}
-          >
-            <MDBIcon fab icon="whatsapp" size="lg" />
-          </MDBBtn>
-
-          <h5 className="pb-5">+598 2 111 1111</h5>
-        </div>
-        <div className="d-flex justify-content">
-          <MDBBtn
-            tag="a"
-            color="none"
-            className="m-1 mx-3"
-            style={{ color: "#3b5998" }}
-          >
-            <MDBIcon fab icon="facebook-f" size="lg" />
-          </MDBBtn>
-          <h5 className="pb-5">@yourfbprofile</h5>
-        </div>
-        <div className="d-flex justify-content">
-          <MDBBtn
-            tag="a"
-            color="none"
-            className="m-1 mx-3"
-            style={{ color: "#ac2bac" }}
-          >
-            <MDBIcon fab icon="instagram" size="lg" />
-          </MDBBtn>
-          <h5>@yourigprofile</h5>
-        </div>
-      </div>
-
-      <Form onSubmit={handleSubmit}>
-        <MDBContainer fluid>
-          <MDBRow className="d-flex justify-content-center align-items-center h-100">
-            <MDBCol col="12">
+          <Form onSubmit={handleSubmit}>
+    <MDBContainer fluid>
+          <MDBRow >
+            <MDBCol col="6">
               <MDBCard
                 className="bg-dark text-white my-5 mx-auto"
-                style={{ borderRadius: "1rem", maxWidth: "400px" }}
+                style={{ borderRadius: "1rem", maxWidth: "800px" }}
               >
                 <MDBCardBody className="p-5 d-flex flex-column align-items-center mx-auto w-100">
                   <h2 className="fw-bold mb-2 text-uppercase">Contact Us</h2>
@@ -169,8 +101,8 @@ export const ContactUs = () => {
                       required
                     />
                   </div>
-                  <div className="col-12 mb-4">
-                    <textarea id="message" name="message" />
+                  {/* <div className="col-12">
+                    <textarea id="message" name="message" rows="7"/>
                     <ValidationError
                       prefix="Message"
                       field="message"
@@ -181,30 +113,41 @@ export const ContactUs = () => {
                     />
                     <br />
                     <label htmlFor="">Message</label>
+                  </div> */}
+                  <div className="col-12 form-group shadow-textarea">
+                    {/* <label for="exampleFormControlTextarea6">Your message</label> */}
+                    <textarea className="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..."></textarea>
+                    <ValidationError
+                      prefix="Message"
+                      field="message"
+                      errors={state.errors}
+                      required
+                      onChange={(e) => setMessage(e.target.value)}
+                      value={message}
+                    />
+                    <br />
                   </div>
                   <button
                     type="submit "
                     className="btn btn-outline-light btn-lg mx-2 px-5"
                     color="white"
-                    outline
                   >
                     Submit
                   </button>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
+            <MDBCol col='6' className="position-relative">
+              <Iframe url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.7505999753657!2d-56.1650912842493!3d-34.91270538142044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f81a13fd5d817%3A0xe12d2cca3cc32fdc!2sBv.%20Gral.%20Artigas%2C%2011300%20Montevideo%2C%20Departamento%20de%20Montevideo%2C%20Uruguay!5e0!3m2!1sen!2sbr!4v1667919921299!5m2!1sen!2sbr"
+              width="640px"
+              height="320px"
+              id=""
+              className="position-absolute top-50 start-50 translate-middle"
+              display="block"
+              position="relative"/>
+            </MDBCol>
           </MDBRow>
-        </MDBContainer>
+    </MDBContainer>
       </Form>
-
-      <div className="col-4 mt-5">
-        <h4>We are here</h4>
-        <img
-          style={{ width: "400px", height: "500px" }}
-          src="https://noticias.unsam.edu.ar/wp-content/uploads/2021/10/Seccion-mapa-Montevideo-1070x622.jpg"
-          alt=""
-        />
-      </div>
-    </div>
   );
 };
