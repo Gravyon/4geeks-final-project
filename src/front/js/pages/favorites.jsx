@@ -18,7 +18,7 @@ export const Favorites = () => {
 
   return (
     <div
-      className="container mt-5 vh-auto mx-auto "
+      className="container mt-5 vh-100 "
       style={{
         fontFamily: "Rajdhani, sans-serif",
         fontSize: "1.3rem",
@@ -27,7 +27,7 @@ export const Favorites = () => {
       <div className="w-25 mx-auto">
         <h1>Favorites </h1>
       </div>
-      <div className="col-12 mx-auto my-4">
+      <div className="col-12 mx-auto my-4 h-75">
         <ol>
           {store.listaFavoritos.length > 0 ? (
             store.listaFavoritos.map((item, id) => (

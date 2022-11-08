@@ -42,8 +42,11 @@ export const ProductDetail = (props) => {
         // col-9 central-content ESTO LO QUITE, ME PARECIO MEJOR
       >
         <Carousel variant="dark">
-          {store.product.map((item) => (
-            <Carousel.Item className="" key={item.id}>
+          {store.product.map((item, index) => (
+            <Carousel.Item
+              className={params.id - 1 === index ? store.classNameDetails : ""}
+              key={item.id}
+            >
               <div className="row">
                 <div className="col-5">
                   <Card style={{ width: "18rem", height: "400px" }}>

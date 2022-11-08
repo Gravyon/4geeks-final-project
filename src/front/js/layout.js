@@ -35,7 +35,7 @@ const Layout = () => {
         <ScrollToTop>
           {" "}
           <NavbarPrincipal />{" "}
-          <Routes style={{ marginBottom: "100px" }}>
+          <Routes>
             {" "}
             <Route element={<Home />} path="/" />{" "}
             <Route element={<Login />} path="/login" />{" "}
