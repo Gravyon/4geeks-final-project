@@ -18,24 +18,20 @@ export const SignUp = () => {
   const doSubmit = async (e) => {
     e.preventDefault();
     let onSignUp = await actions.signup(username, email, password);
-    
-    // console.log(onSignUp.data.msg);
-    console.log(onSignUp);
 
-    setEmail("");
-    setPassword("");
-    setUsername("");
-    // navigate("/");
+    if (onSignUp === "User email already exists") {
+      alert("User email already exists, redirecting to login")
+      navigate("/login");
+    }
+    else if (onSignUp === "New user created") {
+      // console.log(onSignUp.msg)
+      navigate("/");
+      setEmail("");
+      setPassword("");
+      setUsername("");
 
-    // onSignUp ? navigate("/") : null;
-    // if (onSignUp === "User email already exists") {
-    //   navigate("/login");
-    // }
-    // else if (onSignUp === "User email already exists") {
-    //     navigate("/login");
-    // } else {
-    //   navigate("/");
-    // }
+    }
+
   };
 
   return (
