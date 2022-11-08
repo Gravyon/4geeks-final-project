@@ -312,8 +312,6 @@ const getState = ({
                         return error.response.data.msg;
                     } else if (error.response.status === 406) {
                         return error.response.data.msg;
-                    } else if (error.response.status === 409) {
-                        return error.response.data.msg;
                     }
                 }
             },
