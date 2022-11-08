@@ -200,12 +200,22 @@ def create_user():
     # Load data from postman or input
     body = json.loads(request.data)
     print(body)
+    username = request.json['username']
+    email = request.json['email']
+    password = request.json['password']
     # Filter by to check input email, this will be used in the if so email is never repeated
     user_query = User.query.filter_by(email=body["email"]).first()
     print(user_query)
     
     # If to check if user doesn't exist (by checking the email), if so, it's created
-    if user_query is None:
+    if username == "":
+        return jsonify({"msg": "Username can't be empty"}), 406
+    if email == "":
+        return jsonify({"msg": "Email can't be empty"}), 406
+    if password == "":
+        return jsonify({"msg": "Password can't be empty"}), 406
+        
+    elif user_query is None:
         # Table contents, same as the one in models.py
         new_user = User(
         username=body["username"],
@@ -217,16 +227,11 @@ def create_user():
         # Flask command to commit the database, saving the changes
         db.session.commit()
         # Standard response to request with error code 200 (success)
-        response_body = {
-            "msg": "New user created"
-        }
-        return jsonify(response_body), 200
+        return jsonify({"msg": "New user created"}), 200
     # else response if the email exists
-    response_body = {
-        "msg": "User email already exists"
-    }
-    # Ends the function by sending the error code 400 (data already exists)
-    return jsonify(response_body), 400
+    elif user_query:
+        # Ends the function by sending the error code 400 (data already exists)
+        return jsonify({"msg": "User email already exists"}), 409
     
 ###########################
 # User GET query

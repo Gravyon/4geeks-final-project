@@ -150,6 +150,7 @@ const getState = ({
                         auth: true,
                         userId: response.data.user.id,
                     });
+                    console.log(response.status);
                     return response.data.msg;
                 } catch (error) {
                     console.log(error);
@@ -289,21 +290,28 @@ const getState = ({
                         }
                     );
 
-                    if (response.status === 200) {
+                    if (response.data.msg === "New user created") {
                         getActions().login(email, password);
                         setStore({
                             registered: true,
                         });
                     }
+
                     console.log(response);
+                    console.log(response.status);
+                    console.log(response.data.msg);
                     return response.data.msg;
                 } catch (error) {
                     console.log(error);
-                    if (error.response.status === 400) {
-                        alert(
-                            error.response.data.msg +
-                            ". You'll be rediredted to the login page"
-                        );
+                    if (error.response.status === 409) {
+                        // alert(
+                        //     error.response.data.msg +
+                        //     ". You'll be rediredted to the login page"
+                        //  );
+                        return error.response.data.msg;
+                    } else if (error.response.status === 406) {
+                        return error.response.data.msg;
+                    } else if (error.response.status === 409) {
                         return error.response.data.msg;
                     }
                 }
