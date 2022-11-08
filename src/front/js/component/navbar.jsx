@@ -84,8 +84,13 @@ export const NavbarPrincipal = () => {
                 </Nav.Link>
               ) : null}{" "}
               {store.auth ? (
+                <Nav.Link href="/carrito" style={{ color: "#bdb284" }}>
+                  Cart
+                </Nav.Link>
+              ) : null}{" "}
+              {store.auth ? (
                 <Nav.Link href="/upload-img" style={{ color: "#bdb284" }}>
-                  Add product
+                  Create product
                 </Nav.Link>
               ) : null}{" "}
               <Nav.Link href="/contactus" style={{ color: "#bdb284" }}>
@@ -101,9 +106,9 @@ export const NavbarPrincipal = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-ligth" style={{ color: "#bdb284" }}>
+              {/* <Button variant="outline-ligth" style={{ color: "#bdb284" }}>
                 <BsSearch />
-              </Button>
+              </Button> */}
             </Form>
             {!store.auth ? (
               <Nav.Link href="/login" style={{ color: "#bdb284" }}>
