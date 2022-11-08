@@ -50,54 +50,84 @@ export const ProductDetail = (props) => {
               key={item.id}
             >
               <div className="row">
-                <div className="col-5">
+                <div className="col-5 p-0" style={{ marginRight: "-30px" }}>
                   <Card style={{ width: "18rem", height: "400px" }}>
-                    <Card.Img variant="top" src={item?.url} />
-                    <Card.Body>
-                      <Card.Title className="d-flex justify-content-center">
+                    <div
+                      style={{ width: "18rem", height: "400px" }}
+                      className="bg-dark"
+                    >
+                      <Card.Img
+                        className="d-flex justify-content-center m-auto"
+                        variant="top"
+                        style={{ width: "auto", height: "288px" }}
+                        src={item?.url}
+                      />
+                    </div>
+                    <Card.Body className="bg-dark border border-0">
+                      <Card.Title className="d-flex justify-content-center text-white">
                         {item?.name}
                       </Card.Title>
-                      <Card.Text>Price $ {item?.price}</Card.Text>
-                      <button
-                        type="button"
-                        onClick={() => handleAddShopping(item.id)}
-                        className="btn btn-outline-light d-flex align-bottom bg-dark"
-                        style={{ float: "right", color: "#bdb284" }}
-                      >
-                        <i className="fa fa-cart-plus"></i>
-                      </button>
-                      <Link
-                        to="/"
-                        className="btn btn-outline-light align-bottom bg-dark"
-                        style={{ color: "#bdb284" }}
-                      >
-                        <i
-                          className="far fa-heart"
-                          onClick={() => {
-                            handleAddFavorites(item.id);
-                          }}
-                        ></i>
-                      </Link>
+                      <div className="d-flex justify-content-between">
+                        <button
+                          type="button"
+                          onClick={() => handleAddShopping(item.id)}
+                          className="btn btn-outline-light d-flex align-bottom bg-dark"
+                          style={{ float: "right", color: "#bdb284" }}
+                        >
+                          <i className="fa fa-cart-plus"></i>
+                        </button>
+                        <Link
+                          to="/"
+                          className="btn btn-outline-light align-bottom bg-dark"
+                          style={{ color: "#bdb284" }}
+                        >
+                          <i
+                            className="far fa-heart"
+                            onClick={() => {
+                              handleAddFavorites(item.id);
+                            }}
+                          ></i>
+                        </Link>
+                      </div>
                     </Card.Body>
                   </Card>
                 </div>
-                <div className="col-7">
-                  <Card style={{ width: "30rem", height: "400px" }}>
+                <div
+                  className="col-7 m-0 p-0 bg-secondary"
+                  style={{ padding: "-50px" }}
+                >
+                  <Card
+                    style={{ width: "30rem", height: "400px" }}
+                    className="col-7 m-0 bg-dark text-white"
+                  >
                     <Card.Body>
                       <Card.Title>{item?.name}</Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted">
+                      <hr style={{ borderTop: "2px dotted #bdb284" }} />
+                      <Card.Subtitle className="mb-2 text-muted text-white">
                         Category: {item?.category}
                       </Card.Subtitle>
-                      <Card.Text>Description: {item?.description}</Card.Text>
-                      <Card.Link href="#">Card Link</Card.Link>
-                      <Card.Link href="#">Price: $ {item?.price}</Card.Link>
+                      <Card.Text className="text-white">
+                        Description: {item?.description}
+                      </Card.Text>
+                      <hr style={{ borderTop: "2px dotted #bdb284" }} />
+                      <Card.Text className="text-white">
+                        Price: $ {item?.price}
+                      </Card.Text>
                     </Card.Body>
                   </Card>
                 </div>
               </div>
+              {/* empieza los Comments */}
               <div className="input-container">
                 <form action="">
-                  <Form.Label>Comment</Form.Label>
+                  <Form.Label>
+                    <h1
+                      className="mt-4"
+                      style={{ float: "right", color: "#bdb284" }}
+                    >
+                      Comment
+                    </h1>
+                  </Form.Label>
                   <div className="row">
                     <Form.Control
                       type="text"

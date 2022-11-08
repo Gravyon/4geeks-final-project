@@ -38,15 +38,9 @@ body,
 }
 
 .carousel-control-next {
-    right: -98px;
+    right: -150px;
 }
 
-/* #layout {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+.carousel-indicators {
+    bottom: 120px;
 }
-
-#layout main {
-    flex-grow: 1;
-} */
