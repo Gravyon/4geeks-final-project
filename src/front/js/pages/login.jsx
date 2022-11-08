@@ -90,7 +90,7 @@ export const Login = () => {
                   type="submit "
                   className="btn btn-outline-light btn-lg mx-2 px-5"
                   color="white"
-                  outline
+                  
                 >
                   Login
                 </button>

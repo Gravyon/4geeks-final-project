@@ -65,7 +65,7 @@ export const SignUp = () => {
           value={password}
           />
           
-          <button  type="submit "className="btn btn-outline-light btn-lg mx-2 px-5" color="white" outline >Sign Up</button>
+          <button  type="submit "className="btn btn-outline-light btn-lg mx-2 px-5" color="white" >Sign Up</button>
 
           <div className='d-flex flex-row mt-3 mb-5'>
           </div>

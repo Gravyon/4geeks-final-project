@@ -305,10 +305,6 @@ const getState = ({
                 } catch (error) {
                     console.log(error);
                     if (error.response.status === 409) {
-                        // alert(
-                        //     error.response.data.msg +
-                        //     ". You'll be rediredted to the login page"
-                        //  );
                         return error.response.data.msg;
                     } else if (error.response.status === 406) {
                         return error.response.data.msg;
