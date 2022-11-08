@@ -27,12 +27,12 @@ export const ContactUs = () => {
   const { actions } = useContext(Context);
   let navigate = useNavigate();
 
-  const [state, handleSubmit] = useForm("xqkjgwpk");
+  const [state, handleSubmit] = useForm(process.env.CONTACT_FORM);
   if (state.succeeded) {
-    return <p>Thanks for joining!</p>;
+    return <h1 className="position-relative position-absolute top-50 start-50 translate-middle">Thanks for your feedback!</h1>;
   }
   return (
-          <Form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
     <MDBContainer fluid>
           <MDBRow >
             <MDBCol col="6">
@@ -101,22 +101,8 @@ export const ContactUs = () => {
                       required
                     />
                   </div>
-                  {/* <div className="col-12">
-                    <textarea id="message" name="message" rows="7"/>
-                    <ValidationError
-                      prefix="Message"
-                      field="message"
-                      errors={state.errors}
-                      required
-                      onChange={(e) => setMessage(e.target.value)}
-                      value={message}
-                    />
-                    <br />
-                    <label htmlFor="">Message</label>
-                  </div> */}
                   <div className="col-12 form-group shadow-textarea">
-                    {/* <label for="exampleFormControlTextarea6">Your message</label> */}
-                    <textarea className="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..."></textarea>
+                    <textarea className="form-control z-depth-1" id="message" name="message"  rows="3" placeholder="Write something here..."></textarea>
                     <ValidationError
                       prefix="Message"
                       field="message"
@@ -125,7 +111,7 @@ export const ContactUs = () => {
                       onChange={(e) => setMessage(e.target.value)}
                       value={message}
                     />
-                    <br />
+                    <br/>
                   </div>
                   <button
                     type="submit "
@@ -148,6 +134,6 @@ export const ContactUs = () => {
             </MDBCol>
           </MDBRow>
     </MDBContainer>
-      </Form>
+      </form>
   );
 };
