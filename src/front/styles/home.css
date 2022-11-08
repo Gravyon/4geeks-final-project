@@ -32,3 +32,11 @@ body,
             #b08200 93.75%,
             #a28800 100%);
 }
+
+.carousel-control-prev {
+    left: -150px;
+}
+
+.carousel-control-next {
+    right: -98px;
+}

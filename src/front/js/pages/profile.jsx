@@ -226,44 +226,6 @@ export const Profile = (props) => {
                             </div>
                           </div>
                         </div>
-                        {/* <div
-                          className="modal fade"
-                          id="exampleModal"
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <div className="modal-dialog">
-                            <div className="modal-content">
-                              <div className="modal-header">
-                                <h1
-                                  className="modal-title fs-5"
-                                  id="exampleModalLabel"
-                                >
-                                  ¿Deseas borrar tu cuenta?
-                                </h1>
-                              </div>
-                              <div className="modal-body">...</div>
-                              <div className="modal-footer">
-                                <button
-                                  type="button"
-                                  className="btn btn-dark"
-                                  style={{ color: "#bdb284" }}
-                                  data-bs-dismiss="modal"
-                                >
-                                  Si
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-dark"
-                                  style={{ color: "#bdb284" }}
-                                >
-                                  No
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>*/}
                       </div>
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
