@@ -130,15 +130,17 @@ export const NavbarPrincipal = () => {
                 Sign Up
               </Nav.Link>
             ) : null}{" "}
-            <Link
-              to={"/carrito"}
-              className="btn btn-outline-ligth"
-              style={{ color: "#bdb284" }}
-              type="button"
-            >
-              <i className="fa fa-cart-plus"></i>
-              <span className="badge">{store.shoppingList.length}</span>
-            </Link>
+            {store.auth ? (
+              <Link
+                to={"/carrito"}
+                className="btn btn-outline-ligth"
+                style={{ color: "#bdb284" }}
+                type="button"
+              >
+                <i className="fa fa-cart-plus"></i>
+                <span className="badge">{store.shoppingList.length}</span>
+              </Link>
+            ) : null}
             {/* <ul className="dropdown-menu">
               {store.shoppingList.map((item, id) => (
                 <li className="p-2" key={id}>
