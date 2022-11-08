@@ -30,7 +30,7 @@ import {
 
 export const Footer = () => {
   return (
-    <MDBFooter className="bg-dark text-center text-white ">
+    <MDBFooter className="bg-dark text-center text-white w-100 ">
       <MDBContainer className="p-4 pb-0">
         <section className="mb-4 col-3 d-flex justify-content-between mx-auto">
           <FacebookShareButton

@@ -20,7 +20,7 @@ export const Carrito = () => {
 
   return (
     <div
-      className="container mt-5 vh-auto vh-100 mx-auto"
+      className="container mt-5 vh-auto mx-auto"
       style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "1.3rem" }}
     >
       <div className="w-25 mx-auto">

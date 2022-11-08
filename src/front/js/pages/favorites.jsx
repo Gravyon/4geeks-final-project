@@ -18,8 +18,11 @@ export const Favorites = () => {
 
   return (
     <div
-      className="container mt-5 vh-auto vh-100 mx-auto"
-      style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "1.3rem" }}
+      className="container mt-5 vh-auto mx-auto "
+      style={{
+        fontFamily: "Rajdhani, sans-serif",
+        fontSize: "1.3rem",
+      }}
     >
       <div className="w-25 mx-auto">
         <h1>Favorites </h1>
@@ -34,7 +37,9 @@ export const Favorites = () => {
                 style={{ background: "#212529", color: "#908969" }}
               >
                 <div className="d-flex justify-content-between">
-                  <div className="text-left w-25">Name: {item?.name}</div>
+                  <div className="d-flex justify-content-start text-left w-25">
+                    Name: {item?.name}
+                  </div>
                   <div className="text-left">
                     <p className="mx-5 text-right">Price: US${item?.price}</p>
                   </div>

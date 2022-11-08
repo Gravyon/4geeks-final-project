@@ -42,7 +42,7 @@ export const ContactUs = () => {
   // };
 
   return (
-    <div className="container text-center mt-5 d-flex justify-content-between vh-100">
+    <div className="container text-center mt-5 d-flex justify-content-between vh-auto">
       <div className="col-4 mt-5">
         <div className="d-flex justify-content">
           <MDBBtn
