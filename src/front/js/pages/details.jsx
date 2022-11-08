@@ -45,7 +45,7 @@ export const ProductDetail = (props) => {
           {store.product.map((item) => (
             <Carousel.Item key={item.id}>
               <div className="row">
-                <div className="col-5">
+                <div className="col-5 m-0">
                   <Card style={{ width: "18rem", height: "400px" }}>
                     <div style={{ width: "18rem", height: "400px" }}>
                       <Card.Img
@@ -84,7 +84,7 @@ export const ProductDetail = (props) => {
                     </Card.Body>
                   </Card>
                 </div>
-                <div className="col-7">
+                <div className="col-7 m-0">
                   <Card style={{ width: "30rem", height: "400px" }}>
                     <Card.Body>
                       <Card.Title>{item?.name}</Card.Title>
