@@ -20,7 +20,7 @@ export const Carrito = () => {
 
   return (
     <div
-      className="container mt-5 vh-auto vh-100 mx-auto"
+      className="container mt-5 vh-100 mx-auto"
       style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "1.3rem" }}
     >
       <div className="w-25 mx-auto">
@@ -36,7 +36,7 @@ export const Carrito = () => {
                 style={{ background: "#212529", color: "#908969" }}
               >
                 <div className="d-flex justify-content-between">
-                  <div className="d-flex justify-content-start">
+                  <div className="d-flex justify-content-start text-left w-25">
                     Name: {item?.name}
                   </div>
                   <div className="d-flex justify-content-start">

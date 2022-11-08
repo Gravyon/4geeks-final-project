@@ -18,13 +18,16 @@ export const Favorites = () => {
 
   return (
     <div
-      className="container mt-5 vh-auto vh-100 mx-auto"
-      style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "1.3rem" }}
+      className="container mt-5 vh-100 "
+      style={{
+        fontFamily: "Rajdhani, sans-serif",
+        fontSize: "1.3rem",
+      }}
     >
       <div className="w-25 mx-auto">
         <h1>Favorites </h1>
       </div>
-      <div className="col-12 mx-auto my-4">
+      <div className="col-12 mx-auto my-4 h-75">
         <ol>
           {store.listaFavoritos.length > 0 ? (
             store.listaFavoritos.map((item, id) => (
@@ -34,11 +37,11 @@ export const Favorites = () => {
                 style={{ background: "#212529", color: "#908969" }}
               >
                 <div className="d-flex justify-content-between">
-                  <div className="d-flex justify-content-start">
+                  <div className="d-flex justify-content-start text-left w-25">
                     Name: {item?.name}
                   </div>
-                  <div className="d-flex justify-content-start">
-                    <p className="mx-5">Price: US${item?.price}</p>
+                  <div className="text-left">
+                    <p className="mx-5 text-right">Price: US${item?.price}</p>
                   </div>
                   <div className="d-flex justify-content-end">
                     <div className="mx-4">

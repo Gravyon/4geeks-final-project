@@ -21,10 +21,23 @@ const getState = ({
             profile: {},
             priceList: [],
             sum: 0,
+            classNameDetails: "",
         },
         actions: {
             // Profile
             // Profile
+            cambiaClassNameDetails: (id) => {
+                let store = getStore();
+                if (store.classNameDetails == "") {
+                    setStore({
+                        classNameDetails: "active",
+                    });
+                } else {
+                    setStore({
+                        classNameDetails: "",
+                    });
+                }
+            },
             userProfile: async () => {
                 const userToken = localStorage.getItem("token");
                 try {
