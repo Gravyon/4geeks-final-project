@@ -84,11 +84,6 @@ export const NavbarPrincipal = () => {
                 </Nav.Link>
               ) : null}{" "}
               {store.auth ? (
-                <Nav.Link href="/carrito" style={{ color: "#bdb284" }}>
-                  Cart
-                </Nav.Link>
-              ) : null}{" "}
-              {store.auth ? (
                 <Nav.Link href="/upload-img" style={{ color: "#bdb284" }}>
                   Create product
                 </Nav.Link>
