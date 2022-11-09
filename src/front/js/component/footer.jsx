@@ -73,22 +73,32 @@ export const Footer = () => {
           </EmailShareButton>
         </section>
       </MDBContainer>
-      <div className="container d-flex justify-content-between">
+      <div>
         <h6 className="text-uppercase fw-bold mb-4">Contact:</h6>
-        <p>
-          <i className="fas fa-home me-3 text-secondary"></i> Montevideo, Rincon
-          123, UY
-        </p>
-        <p>
-          <i className="fas fa-envelope me-3 text-secondary"></i>
-          casaarte@gmail.com
-        </p>
-        <p>
-          <i className="fas fa-phone me-3 text-secondary"></i> +598 2 111 1111
-        </p>
-        <p>
-          <i className="fas fa-print me-3 text-secondary"></i> +598 2 111 1112
-        </p>
+      </div>
+      <div className="container d-xl-inline-flex d-lg-inline-flex justify-content-between">
+        <div className="col-sm-12 col-md-6 col-lg-3">
+          <p>
+            <i className="fas fa-home me-3 text-secondary"></i> Montevideo,
+            Rincon 123, UY
+          </p>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-3">
+          <p>
+            <i className="fas fa-envelope me-3 text-secondary"></i>
+            casaarte@gmail.com
+          </p>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-3">
+          <p>
+            <i className="fas fa-phone me-3 text-secondary"></i> +598 2 111 1111
+          </p>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-3">
+          <p>
+            <i className="fas fa-print me-3 text-secondary"></i> +598 2 111 1112
+          </p>
+        </div>
       </div>
 
       <div
