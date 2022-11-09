@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import "../../styles/favorites.css";
 
 export const Carrito = () => {
   const { store, actions } = useContext(Context);
@@ -20,14 +21,14 @@ export const Carrito = () => {
 
   return (
     <div
-      className="container mt-5 vh-100 mx-auto"
+      className="container mt-5 vh-sm-auto vh-xl-100 vh-lg-100 mx-auto"
       style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "1.3rem" }}
     >
       <div className="w-25 mx-auto">
         <h1>My Cart </h1>
       </div>
-      <div className="col-12 mx-auto my-4">
-        <ol>
+      <div className="col-12 mx-auto my-4 h-75">
+        <ol className="h-75">
           {store.shoppingList.length > 0 ? (
             store.shoppingList.map((item, id) => (
               <li
