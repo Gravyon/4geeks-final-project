@@ -119,6 +119,9 @@ export const ContactUs = () => {
                     name="message"
                     rows="3"
                     placeholder="Write something here..."
+                    required
+                    invalid= {MDBInput.invalid}
+                    validation= "Please provide your feedback, it's very important to us"
                   ></textarea>
                   <ValidationError
                     prefix="Message"
@@ -126,9 +129,6 @@ export const ContactUs = () => {
                     errors={state.errors}
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
-                    required
-                    invalid= {MDBInput.invalid}
-                    validation= "Please provide your feedback, it's very important to us"
                   />
                     {/* <div class="mb-3">
     <label for="validationTextarea" class="form-label"></label>
