@@ -224,7 +224,6 @@ export const Profile = (props) => {
                           data-bs-target="#exampleModal"
                           variant="dark"
                           style={{ color: "#bdb284" }}
-                          onClick={swalWithBootstrapButtons}
                         >
                           Delete account
                         </Button>
