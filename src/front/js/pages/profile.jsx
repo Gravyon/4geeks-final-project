@@ -212,7 +212,7 @@ export const Profile = (props) => {
                                   type="button"
                                   className="btn btn-dark"
                                   style={{ color: "#bdb284" }}
-                                  onClick={() => actions.eliminarCuenta(item)}
+                                  onClick={() => actions.eliminarCuenta(email)}
                                 >
                                   Si
                                 </button>

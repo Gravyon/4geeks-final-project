@@ -479,6 +479,31 @@ const getState = ({
                     sum: sumTotal,
                 });
             },
+
+            eliminarCuenta: async (email) => {
+                let store = getStore();
+                let user_id = store.userId;
+
+                try {
+                    const response = await axios.delete(
+                        process.env.BACKEND_URL + "/api/user/" + user_id, {
+                            data: {
+                                email: email,
+                            },
+                        }
+                    );
+                    if (response.status === 200) {
+                        alert(response.data.msg);
+                        return response;
+                    }
+                    console.log(response);
+                } catch (error) {
+                    console.log(error);
+                    if (error.response.status === 404) {
+                        alert(error.response.msg);
+                    }
+                }
+            },
         },
     };
 };
