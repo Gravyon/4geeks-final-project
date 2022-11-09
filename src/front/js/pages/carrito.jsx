@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import "../../styles/favorites.css";
 
 export const Carrito = () => {
   const { store, actions } = useContext(Context);
