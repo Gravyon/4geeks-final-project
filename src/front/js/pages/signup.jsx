@@ -20,7 +20,7 @@ export const SignUp = () => {
     let onSignUp = await actions.signup(username, email, password);
 
     if (onSignUp === "User email already exists") {
-      alert("User email already exists, redirecting to login")
+      swal("User email already exists, redirecting to login")
       navigate("/login");
     }
     else if (onSignUp === "New user created") {
@@ -54,15 +54,25 @@ export const SignUp = () => {
           <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Username' id='formControlLg' type='text' size="lg"
           onChange={(e) => setUsername(e.target.value)}
           value={username}
+          required
+          invalid= {MDBInput.invalid}
+          validation= "Please provide your username"
           />
 
           <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          required
+          invalid= {MDBInput.invalid}
+          validation= "Please provide your email"
           />
           <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          required
+          invalid= {MDBInput.invalid}
+          validation= "Please provide your password"
+          
           />
           
           <button  type="submit "className="btn btn-outline-light btn-lg mx-2 px-5" color="white" >Sign Up</button>
