@@ -117,7 +117,7 @@ export const LandingPage = () => {
                   <br />
                   <div className="dropdown">
                     <button
-                      class="btn btn-outline-light dropdown-toggle"
+                      className="btn btn-outline-light dropdown-toggle"
                       type="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
@@ -125,7 +125,7 @@ export const LandingPage = () => {
                     >
                       Share
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul className="dropdown-menu">
                       <li>
                         <FacebookShareButton
                           url={
@@ -171,8 +171,8 @@ export const LandingPage = () => {
                     </ul>
                   </div>
                   {/* termina el share */}
-                  <Link
-                    to="/"
+                  <button
+                    type="button"
                     className="btn btn-outline-light align-bottom"
                     style={{ color: "#bdb284" }}
                   >
@@ -182,7 +182,7 @@ export const LandingPage = () => {
                         handleAddFavorites(item.id);
                       }}
                     ></i>
-                  </Link>
+                  </button>
                 </div>
               </Card.Body>
             </Card>

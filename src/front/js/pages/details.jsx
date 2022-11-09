@@ -57,7 +57,7 @@ export const ProductDetail = (props) => {
         {/* <img src={item.url} alt={item.altText} /> */}
         <div className="card ">
           <div className="row g-0">
-            <div className="col-md-5">
+            <div className="col-md-5 d-flex justify-content-center bg-dark">
               <img
                 src={item.url}
                 className="img-fluid rounded-start"
@@ -67,17 +67,18 @@ export const ProductDetail = (props) => {
             <div className="col-md-7">
               <div className="card-body h-100 bg-dark text-white">
                 <div>
-                  <h5 className="card-title">{item.name}</h5>
+                  <h1 className="card-title text-center">{item.name}</h1>
+                  <hr style={{ borderTop: "2px dotted #bdb284" }} />
                   <p
                     className="card-text"
-                    style={{ width: "18rem", height: "18em" }}
+                    style={{ width: "18rem", height: "21em" }}
                   >
                     {item.description}
                   </p>
                 </div>
-                <div class="card-footer align-bottom ">
+                <div className="card-footer align-bottom ">
                   <h6 className="card-text">Price: USD {item.price}</h6>
-
+                  <hr style={{ borderTop: "2px dotted #bdb284" }} />
                   <div className="d-flex justify-content-between">
                     <button
                       type="button"
@@ -87,8 +88,8 @@ export const ProductDetail = (props) => {
                     >
                       <i className="fa fa-cart-plus"></i>
                     </button>
-                    <Link
-                      to="/"
+                    <button
+                      type="button"
                       className="btn btn-outline-light align-bottom bg-dark"
                       style={{ color: "#bdb284" }}
                     >
@@ -98,7 +99,7 @@ export const ProductDetail = (props) => {
                           handleAddFavorites(item.id);
                         }}
                       ></i>
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>

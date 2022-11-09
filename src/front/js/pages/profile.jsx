@@ -243,19 +243,25 @@ export const Profile = (props) => {
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
                       <div>
-                        <div>
+                        <div className="col-12 mx-auto my-4 h-75">
                           <ol>
                             {store.listaFavoritos.length > 0 ? (
                               store.listaFavoritos.map((item, id) => (
                                 <li
                                   className="list-group-item border border-1 border border-dark"
                                   key={id}
+                                  style={{
+                                    background: "#212529",
+                                    color: "#908969",
+                                  }}
                                 >
                                   <div className="d-flex justify-content-between">
-                                    <div className="d-flex justify-content-start">
-                                      {item?.name}
-                                      <p className="mx-5">
-                                        Precio: {item?.price}
+                                    <div className="d-flex justify-content-start text-left w-25">
+                                      Name: {item?.name}
+                                    </div>
+                                    <div className="text-left">
+                                      <p className="mx-5 text-right">
+                                        Price: US${item?.price}
                                       </p>
                                     </div>
                                     <div className="d-flex justify-content-end">
@@ -267,10 +273,11 @@ export const Profile = (props) => {
                                         <BsStar />
                                       </div>
                                       <span
-                                        className="close btn btn-danger"
+                                        className="btn btn-outline-light"
                                         onClick={() =>
                                           actions.eliminarFavoritos(item.id)
                                         }
+                                        style={{ color: "#bdb284" }}
                                       >
                                         <b>X</b>
                                       </span>
@@ -283,21 +290,6 @@ export const Profile = (props) => {
                             )}
                           </ol>
                         </div>
-                        {/* <ListGroup>
-                          <ListGroup.Item>
-                            Product Name: Equilibrio
-                          </ListGroup.Item>
-                          <ListGroup.Item>
-                            Product Name: Atardecer
-                          </ListGroup.Item>
-                          <ListGroup.Item>Product Name: Danza</ListGroup.Item>
-                          <ListGroup.Item>
-                            Product Name: Texturas
-                          </ListGroup.Item>
-                          <ListGroup.Item>
-                            Product Name: Retrato sin pincel
-                          </ListGroup.Item>
-                        </ListGroup> */}
                       </div>
                     </Tab.Pane>
                     {/* <Tab.Pane eventKey="fourth">
