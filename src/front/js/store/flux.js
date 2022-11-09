@@ -480,20 +480,27 @@ const getState = ({
                 });
             },
 
-            eliminarCuenta: async (email) => {
+            eliminarCuenta: async () => {
                 let store = getStore();
                 let user_id = store.userId;
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger",
+                    },
+                    buttonsStyling: false,
+                });
 
                 try {
                     const response = await axios.delete(
-                        process.env.BACKEND_URL + "/api/user/" + user_id, {
-                            data: {
-                                email: email,
-                            },
-                        }
+                        process.env.BACKEND_URL + "/api/user/" + user_id, {}
                     );
-                    if (response.status === 200) {
+                    if (response.status === "User deleted successfully") {
                         alert(response.data.msg);
+                        setStore({
+                            auth: false,
+                            registered: false,
+                        });
                         return response;
                     }
                     console.log(response);
