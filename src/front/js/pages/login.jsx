@@ -68,6 +68,9 @@ export const Login = () => {
                   size="lg"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
+                  required
+                  invalid= {MDBInput.invalid}
+                  validation= "Please provide your email"
                 />
                 <MDBInput
                   wrapperClass="mb-4 mx-5 w-100"
@@ -78,6 +81,9 @@ export const Login = () => {
                   size="lg"
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
+                  required
+                  invalid= {MDBInput.invalid}
+                  validation= "Please provide your password"
                 />
 
                 <p className="small mb-3 pb-lg-2">
