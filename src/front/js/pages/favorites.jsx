@@ -67,13 +67,6 @@ export const Favorites = () => {
           )}
         </ol>
       </div>
-      {/* <div className="mx-auto">
-        <button className="btn btn-dark">
-          <Nav.Link style={{ color: "#bdb284" }} href="/">
-            Home
-          </Nav.Link>
-        </button>
-      </div> */}
     </div>
   );
 };
