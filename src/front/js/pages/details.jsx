@@ -65,10 +65,17 @@ export const ProductDetail = (props) => {
               />
             </div>
             <div className="col-md-7">
-              <div className="card-body">
-                <h5 className="card-title">{item.name}</h5>
-                <p className="card-text">{item.description}</p>
-                <div class="card-footer d-flex-inline justify-content-end">
+              <div className="card-body h-100 bg-dark text-white">
+                <div>
+                  <h5 className="card-title">{item.name}</h5>
+                  <p
+                    className="card-text"
+                    style={{ width: "18rem", height: "18em" }}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+                <div class="card-footer align-bottom ">
                   <h6 className="card-text">Price: USD {item.price}</h6>
 
                   <div className="d-flex justify-content-between">
