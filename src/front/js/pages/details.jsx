@@ -54,13 +54,55 @@ export const ProductDetail = (props) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
-        <img src={item.url} alt={item.altText} />
-        <div className="col-5 p-0" style={{ marginRight: "-30px" }}></div>
-        <CarouselCaption
+        {/* <img src={item.url} alt={item.altText} /> */}
+        <div className="card ">
+          <div className="row g-0">
+            <div className="col-md-5">
+              <img
+                src={item.url}
+                className="img-fluid rounded-start"
+                alt={item.altText}
+              />
+            </div>
+            <div className="col-md-7">
+              <div className="card-body">
+                <h5 className="card-title">{item.name}</h5>
+                <p className="card-text">{item.description}</p>
+                <div class="card-footer d-flex-inline justify-content-end">
+                  <h6 className="card-text">Price: USD {item.price}</h6>
+
+                  <div className="d-flex justify-content-between">
+                    <button
+                      type="button"
+                      onClick={() => handleAddShopping(item.id)}
+                      className="btn btn-outline-light d-flex align-bottom bg-dark"
+                      style={{ float: "right", color: "#bdb284" }}
+                    >
+                      <i className="fa fa-cart-plus"></i>
+                    </button>
+                    <Link
+                      to="/"
+                      className="btn btn-outline-light align-bottom bg-dark"
+                      style={{ color: "#bdb284" }}
+                    >
+                      <i
+                        className="far fa-heart"
+                        onClick={() => {
+                          handleAddFavorites(item.id);
+                        }}
+                      ></i>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <CarouselCaption
           className="text-danger"
           captionText={item.name}
           captionHeader={item.name}
-        />
+        /> */}
       </CarouselItem>
     );
   });
