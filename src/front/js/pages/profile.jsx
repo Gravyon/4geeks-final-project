@@ -51,15 +51,17 @@ export const Profile = (props) => {
   }, [store.userId]);
 
   return (
-    <>
+    <div className="container mx-auto d-flex">
       {auth ? (
-        <div className="container mt-5 vh-100">
-          <h1>Welcome to your profile</h1>
-          <div className="col-12">
+        <div className="container mt-5 vh-100 ">
+          <div>
+            <h1>Welcome to your profile</h1>
+          </div>
+          <div className="col-9 mx-auto mt-5">
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
               <Row>
-                <Col sm={3}>
-                  <Nav className="flex-column">
+                <Col sm={4}>
+                  <Nav className="flex-column ">
                     <Nav.Item>
                       <Nav.Link
                         eventKey="first"
@@ -98,7 +100,7 @@ export const Profile = (props) => {
                     </Nav.Item> */}
                   </Nav>
                 </Col>
-                <Col sm={9}>
+                <Col sm={8}>
                   <Tab.Content>
                     <Tab.Pane eventKey="first">
                       <div>
@@ -352,6 +354,6 @@ export const Profile = (props) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
