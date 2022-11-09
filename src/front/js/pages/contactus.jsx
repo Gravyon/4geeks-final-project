@@ -36,7 +36,7 @@ export const ContactUs = () => {
     );
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="needs-validation">
       <MDBContainer fluid>
         <MDBRow>
           <MDBCol col="6">
@@ -60,6 +60,9 @@ export const ContactUs = () => {
                     onChange={(e) => setFirstName(e.target.value)}
                     value={firstName}
                     required
+                    
+                    invalid= {MDBInput.invalid}
+                    validation= "Please provide your name"
                   />
                   <ValidationError
                     prefix="FirstName"
@@ -78,6 +81,8 @@ export const ContactUs = () => {
                     onChange={(e) => setLastName(e.target.value)}
                     value={lastName}
                     required
+                    invalid= {MDBInput.invalid}
+                    validation= "Please provide your lastname"
                   />
                   <ValidationError
                     prefix="LastName"
@@ -97,6 +102,8 @@ export const ContactUs = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     required
+                    invalid= {MDBInput.invalid}
+                    validation= "Please provide your email"
                   />
                   <ValidationError
                     prefix="Email"
@@ -117,10 +124,19 @@ export const ContactUs = () => {
                     prefix="Message"
                     field="message"
                     errors={state.errors}
-                    required
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
+                    required
+                    invalid= {MDBInput.invalid}
+                    validation= "Please provide your feedback, it's very important to us"
                   />
+                    {/* <div class="mb-3">
+    <label for="validationTextarea" class="form-label"></label>
+    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Write something here" required></textarea>
+    <div class="invalid-feedback">
+    Please provide your feedback, it's very important to us
+    </div>
+  </div> */}
                   <br />
                 </div>
                 <button
