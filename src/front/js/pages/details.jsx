@@ -108,8 +108,8 @@ export const ProductDetail = (props) => {
         </div>
         {/* <CarouselCaption
           className="text-danger"
-          captionText={item.name}
-          captionHeader={item.name}
+          captionText={null}
+          captionHeader={null}
         /> */}
       </CarouselItem>
     );

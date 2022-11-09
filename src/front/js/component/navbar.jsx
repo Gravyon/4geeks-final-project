@@ -11,6 +11,7 @@ import Form from "react-bootstrap/Form";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../img/logo1.png";
 import { BsSearch } from "react-icons/bs";
+import "../../styles/navbar.css";
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
@@ -53,8 +54,14 @@ export const NavbarPrincipal = () => {
   // es lo mismo a poner !onLogged ? history.push("/login"):null;
 
   return (
-    <div>
-      <Navbar bg="dark" variant="dark" expand="lg" style={{ color: "#bdb284" }}>
+    <div className="sticky-sm-top" id="navbar">
+      <Navbar
+        className="sticky-top"
+        bg="dark"
+        variant="dark"
+        expand="lg"
+        style={{ color: "#bdb284" }}
+      >
         <Container fluid>
           <Navbar.Brand href="/">
             <img
@@ -93,7 +100,7 @@ export const NavbarPrincipal = () => {
               </Nav.Link>
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
             </Nav>
-            <Form className="d-flex">
+            <Form className="d-flex d-sm-none">
               <Form.Control
                 onChange={handleInput}
                 type="search"
