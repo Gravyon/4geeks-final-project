@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import "../../styles/favorites.css";
 
 export const Favorites = () => {
   const { store, actions } = useContext(Context);
@@ -28,7 +29,7 @@ export const Favorites = () => {
         <h1>Favorites </h1>
       </div>
       <div className="col-12 mx-auto my-4 h-75">
-        <ol>
+        <ol className="h-75">
           {store.listaFavoritos.length > 0 ? (
             store.listaFavoritos.map((item, id) => (
               <li
