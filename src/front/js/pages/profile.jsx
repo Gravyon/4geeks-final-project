@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export const Profile = (props) => {
   const { store, actions } = useContext(Context);
@@ -49,6 +51,43 @@ export const Profile = (props) => {
       actions.getFavorites();
     }
   }, [store.userId]);
+
+  // const swalWithBootstrapButtons = Swal.mixin({
+  //   customClass: {
+  //     confirmButton: "btn btn-success",
+  //     cancelButton: "btn btn-danger",
+  //   },
+  //   buttonsStyling: false,
+  // });
+
+  // swalWithBootstrapButtons
+  //   .fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonText: "Yes, delete it!",
+  //     cancelButtonText: "No, cancel!",
+  //     reverseButtons: true,
+  //   })
+  //   .then((result) => {
+  //     if (result.isConfirmed) {
+  //       swalWithBootstrapButtons.fire(
+  //         "Deleted!",
+  //         "Your file has been deleted.",
+  //         "success"
+  //       );
+  //     } else if (
+  //       /* Read more about handling dismissals below */
+  //       result.dismiss === Swal.DismissReason.cancel
+  //     ) {
+  //       swalWithBootstrapButtons.fire(
+  //         "Cancelled",
+  //         "Your imaginary file is safe :)",
+  //         "error"
+  //       );
+  //     }
+  //   });
 
   return (
     <div className="container mx-auto d-flex">
@@ -188,8 +227,8 @@ export const Profile = (props) => {
                         >
                           Delete account
                         </Button>
-
-                        <div
+                        {/* Empieza el modal */}
+                        {/* <div
                           className="modal fade"
                           id="exampleModal"
                           tabIndex="-1"
@@ -208,14 +247,16 @@ export const Profile = (props) => {
                               </div>
                               <div className="modal-body">...</div>
                               <div className="modal-footer">
-                                <button
+                                <Link
+                                  to={"/"}
                                   type="button"
                                   className="btn btn-dark"
                                   style={{ color: "#bdb284" }}
-                                  onClick={() => actions.eliminarCuenta(item)}
+                                  data-bs-dismiss="modal"
+                                  onClick={() => actions.eliminarCuenta()}
                                 >
                                   Si
-                                </button>
+                                </Link>
                                 <button
                                   type="button"
                                   className="btn btn-dark"
@@ -227,7 +268,7 @@ export const Profile = (props) => {
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
