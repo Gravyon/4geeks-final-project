@@ -23,6 +23,9 @@ const getState = ({
             priceList: [],
             sum: 0,
             classNameDetails: "",
+            summScore: null,
+            avgScore: null,
+            productRating: [],
         },
         actions: {
             // Profile
@@ -569,18 +572,10 @@ const getState = ({
             },
 
             //funcion para calcular el promedio de los valores de un array de enteros
-            calcAvg: async (arr) => {
+            calcAvgScore: async (productRating) => {
                 let store = getStore();
 
-                const initialValue = store.sum;
-                const sumTotal = arr.reduce(
-                    (previousValue, currentValue) => previousValue + currentValue,
-                    initialValue
-                );
-
-                setStore({
-                    sum: sumTotal,
-                });
+                setStore({});
             },
         },
     };
