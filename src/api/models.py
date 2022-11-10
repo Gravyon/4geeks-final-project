@@ -8,7 +8,7 @@ class User(db.Model):
     password = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(250), nullable=False)
     favorites = db.relationship('Favorites', backref='user', cascade="all, delete-orphan", lazy=True)
-    comments = db.relationship('Comments', backref='user', cascade="all, delete-orphan", lazy=True)
+    reviews = db.relationship('Review', backref='user', cascade="all, delete-orphan", lazy=True)
     shopping = db.relationship('Shopping', backref='user', cascade="all, delete-orphan", lazy=True)
     orders = db.relationship('OrderHistory', backref='user', cascade="all, delete-orphan", lazy=True)
 
@@ -32,7 +32,7 @@ class Products(db.Model):
     price = db.Column(db.Integer, nullable=False)
     shopping = db.relationship('Shopping', backref='products', cascade="all, delete-orphan", lazy=True)
     favorite = db.relationship('Favorites', backref='products', cascade="all, delete-orphan", lazy=True)
-    comments = db.relationship('Comments', backref='products', cascade="all, delete-orphan", lazy=True)
+    reviews = db.relationship('Review', backref='products', cascade="all, delete-orphan", lazy=True)
     
 
     def __repr__(self):
@@ -68,21 +68,24 @@ class Favorites(db.Model):
         return product.serialize()
 
 
-class Comments(db.Model):
+class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(250))
+    comment = db.Column(db.String(250))
     id_user = db.Column(db.Integer,  db.ForeignKey('user.id'), nullable=False )
     id_products = db.Column(db.Integer, db.ForeignKey('products.id') , nullable=True)
+    score = db.Column(db.Integer, nullable=True)
+    
 
     def __repr__(self):
-        return f'<Comments {self.id}>'
+        return f'<Review {self.id}>'
 
     def serialize(self):
         return {
             "id": self.id,
             "id_user": self.id_user,
             "id_products": self.id_products,
-            "content": self.content
+            "comment": self.comment,
+            "score": self.score
         }
         
     def serialize2(self):
