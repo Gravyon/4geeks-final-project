@@ -31,6 +31,7 @@ const injectContext = (PassedComponent) => {
        * store, instead use actions, like this:
        **/
       state.actions.getProduct();
+      // state.actions.deleteProduct();
       // state.actions.addProducts(); // <---- calling this function from the flux.js actions
       state.actions.validToken();
       // state.actions.getShopping();

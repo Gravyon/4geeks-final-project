@@ -43,8 +43,8 @@ export const Login = () => {
               style={{ borderRadius: "1rem", maxWidth: "400px" }}
             >
               <div className="p-5 d-flex flex-column align-items-center mx-auto w-100">
-                <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
-                <p className="text-white-50 mb-5">
+                <h2 className="fw-bold mb-2 text-uppercase" style={{ color: "#bdb284" }}>Login</h2>
+                <p className="text-white-50">
                   Please enter your login and password
                 </p>
                 <div className="form-outline ">
@@ -59,7 +59,6 @@ export const Login = () => {
                   />
                   <label class="form-label" for="form1Example2"></label>
                 </div>
-                {/* <input type="password" id="form1Example2" class="form-control" /> */}
                 <div className="form-outline ">
                   <input
                     type="password"
@@ -69,7 +68,6 @@ export const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     required
-                    // validation= "Please provide your password"
                   />
                 </div>
                 <p className="small mb-3 pb-lg-2">
@@ -90,9 +88,9 @@ export const Login = () => {
                 <div className="d-flex flex-row mt-3 mb-5"></div>
 
                 <div>
-                  <p className="mb-0">
+                  <p className="mb-0" style={{ color: "#bdb284" }}>
                     Don't have an account?{" "}
-                    <Link to="/signup" className="text-white-50 fw-bold">
+                    <Link to="/signup" className="text-white-50 fw-bold" >
                       Sign Up
                     </Link>
                   </p>

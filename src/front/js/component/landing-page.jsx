@@ -64,7 +64,7 @@ export const LandingPage = () => {
             >
               <Link
                 style={{ textDecoration: "none" }}
-                to={"product-detail/" + (id + 1)}
+                to={"/product-detail/" + (id + 1)}
                 onClick={() => actions.cambiaClassNameDetails(id)}
               >
                 <Card.Body>
@@ -183,6 +183,13 @@ export const LandingPage = () => {
                       }}
                     ></i>
                   </button>
+                  <span
+                    className="btn btn-outline-light d-flex justify-content-end"
+                    onClick={() => actions.deleteProduct(item.id)}
+                    style={{ color: "#bdb284" }}
+                  >
+                    <b>X</b>
+                  </span>
                 </div>
               </Card.Body>
             </Card>
