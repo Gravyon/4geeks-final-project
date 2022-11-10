@@ -47,7 +47,7 @@ export const Login = () => {
                 <p className="text-white-50">
                   Please enter your login and password
                 </p>
-                <div className="form-outline ">
+                <div className="col-12 ">
                   <input
                     type="email"
                     id="email"
@@ -59,7 +59,7 @@ export const Login = () => {
                   />
                   <label class="form-label" for="form1Example2"></label>
                 </div>
-                <div className="form-outline ">
+                <div className="col-12 ">
                   <input
                     type="password"
                     id="password"

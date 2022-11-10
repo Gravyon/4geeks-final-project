@@ -47,7 +47,7 @@ export const SignUp = () => {
                 <h2 className="fw-bold mb-2 text-uppercase" style={{ color: "#bdb284" }}>Register</h2>
                 <p className="mt-3 mb-3" style={{ color: "#bdb284" }}>Already registered? <Link to="/login" className="text-white-50 fw-bold" >Login</Link></p>
               <p></p>
-                <div className="form-outline ">
+                <div className="col-12 ">
                   <input
                     type="text"
                     id="email"
@@ -59,7 +59,7 @@ export const SignUp = () => {
                     />
                   <label className="form-label" for="form1Example2"></label>
                 </div>
-                <div className="form-outline ">
+                <div className="col-12 ">
                   <input
                     type="email"
                     id="email"
@@ -71,7 +71,7 @@ export const SignUp = () => {
                     />
                   <label className="form-label" for="form1Example2"></label>
                 </div>
-                <div className="form-outline ">
+                <div className="col-12 ">
                   <input
                     type="password"
                     id="password"
