@@ -14,6 +14,7 @@ import {
   CarouselControl,
   CarouselCaption,
 } from "reactstrap";
+import { Scoring } from "../component/scoring.jsx";
 import "../../styles/details.css";
 
 export const ProductDetail = (props) => {
@@ -66,6 +67,8 @@ export const ProductDetail = (props) => {
               />
             </div>
             <div className="col-md-7">
+              {/* <div className="col">
+              </div> */}
               <div className="card-body h-100 bg-dark text-white">
                 <div>
                   <h1 className="card-title text-center">{item.name}</h1>
@@ -76,7 +79,8 @@ export const ProductDetail = (props) => {
                   >
                     {item.description}
                   </p>
-                  <form>
+
+                  {/* <form>
                     <p className="clasificacion">
                       <input
                         id="radio1"
@@ -84,37 +88,37 @@ export const ProductDetail = (props) => {
                         name="estrellas"
                         value="5"
                       />
-                      <label for="radio1">★</label>
+                      <label htmlFor="radio1">★</label>
                       <input
                         id="radio2"
                         type="radio"
                         name="estrellas"
                         value="4"
                       />
-                      <label for="radio2">★</label>
+                      <label htmlFor="radio2">★</label>
                       <input
                         id="radio3"
                         type="radio"
                         name="estrellas"
                         value="3"
                       />
-                      <label for="radio3">★</label>
+                      <label htmlFor="radio3">★</label>
                       <input
                         id="radio4"
                         type="radio"
                         name="estrellas"
                         value="2"
                       />
-                      <label for="radio4">★</label>
+                      <label htmlFor="radio4">★</label>
                       <input
                         id="radio5"
                         type="radio"
                         name="estrellas"
                         value="1"
                       />
-                      <label for="radio5">★</label>
+                      <label htmlFor="radio5">★</label>
                     </p>
-                  </form>
+                  </form> */}
                 </div>
                 <div className="card-footer align-bottom ">
                   <h6 className="card-text">Price: USD {item.price}</h6>
@@ -193,6 +197,9 @@ export const ProductDetail = (props) => {
           onClickHandler={next}
         />
       </Carousel>
+      <div>
+        <Scoring />
+      </div>
     </div>
   );
 };
