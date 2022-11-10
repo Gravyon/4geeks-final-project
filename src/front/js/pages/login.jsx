@@ -101,31 +101,5 @@ export const Login = () => {
         </div>
       </div>
     </Form>
-    //     <form className="d-flex justify-content-center align-items-center h-100">
-    //       <div className="container-fluid">
-
-    //      <div className="bg-dark text-white my-5 mx-auto">
-    //   <div class="form-outline mb-4">
-    //     <input type="email" id="form1Example1" class="form-control" />
-    //     <label class="form-label" for="form1Example1">Email address</label>
-    //   </div>
-
-    //   <div class="form-outline mb-4">
-    //     <input type="password" id="form1Example2" class="form-control" />
-    //     <label class="form-label" for="form1Example2">Password</label>
-    //   </div>
-
-    //   <div class="row mb-4">
-
-    //     <div class="col">
-
-    //       <a href="#!">Forgot password?</a>
-    //     </div>
-    //   </div>
-
-    //   <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-    //       </div>
-    //       </div>
-    // </form>
   );
 };
