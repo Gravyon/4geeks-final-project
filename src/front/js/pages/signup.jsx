@@ -22,11 +22,7 @@ export const SignUp = () => {
       swal("User email already exists, redirecting to login");
       navigate("/login");
     } else if (onSignUp === "New user created") {
-      // console.log(onSignUp.msg)
       navigate("/");
-      // setEmail("");
-      // setPassword("");
-      // setUsername("");
     }
   };
 
@@ -63,7 +59,7 @@ export const SignUp = () => {
                     value={username}
                     required
                   />
-                  <label className="form-label" for="form1Example2"></label>
+                  <label className="form-label" htmlFor="form1Example2"></label>
                 </div>
                 <div className="col-12 ">
                   <input
@@ -75,7 +71,7 @@ export const SignUp = () => {
                     value={email}
                     required
                   />
-                  <label className="form-label" for="form1Example2"></label>
+                  <label className="form-label" htmlFor="form1Example2"></label>
                 </div>
                 <div className="col-12 ">
                   <input
