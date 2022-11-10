@@ -125,7 +125,10 @@ export const LandingPage = () => {
                     >
                       Share
                     </button>
-                    <ul className="dropdown-menu">
+                    <ul
+                      className="dropdown-menu bg-transparent"
+                      style={{ minWidth: "15rem" }}
+                    >
                       <li>
                         <FacebookShareButton
                           url={
@@ -136,6 +139,7 @@ export const LandingPage = () => {
                           <FacebookIcon size={32} round={true} />
                         </FacebookShareButton>
                         <TwitterShareButton
+                          className="m-3"
                           url={
                             "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
                             item.id
@@ -152,6 +156,7 @@ export const LandingPage = () => {
                           <WhatsappIcon size={32} round={true} />
                         </WhatsappShareButton>
                         <LinkedinShareButton
+                          className="m-3"
                           url={
                             "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
                             item.id
