@@ -7,16 +7,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useForm, ValidationError } from "@formspree/react";
 import Iframe from "react-iframe";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBIcon,
-} from "mdb-react-ui-kit";
+
 
 export const ContactUs = () => {
   // definimos los estados
@@ -36,24 +27,22 @@ export const ContactUs = () => {
     );
   }
   return (
-    <form onSubmit={handleSubmit} className="needs-validation">
-      <MDBContainer fluid>
-        <MDBRow>
-          <MDBCol col="6">
-            <MDBCard
-              className="bg-dark text-white my-5 mx-auto"
+    <form onSubmit={handleSubmit}>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12 mb-3">
+            <div
+              className="card bg-dark text-white my-5 mx-auto"
               style={{ borderRadius: "1rem", maxWidth: "800px" }}
             >
-              <MDBCardBody className="p-5 d-flex flex-column align-items-center mx-auto w-100">
-                <h2 className="fw-bold mb-2 text-uppercase">Contact Us</h2>
-                <p className="text-white-50 mb-5">
+              <div className="card-body p-5 d-flex flex-column align-items-center mx-auto w-100">
+                <h2 className="fw-bold mb-2 text-uppercase" style={{ color: "#bdb284" }}>Contact Us</h2>
+                <p className="text-white-50">
                   Please enter your info and we will contact you
                 </p>
-                <div className="col-12">
-                  <MDBInput
-                    wrapperClass="mb-2 w-100"
-                    labelClass="text-white"
-                    label="First Name"
+                <div className="col-12 p-3">
+                  <input
+                    className="form-control"
                     id="formControlLg"
                     type="text"
                     size="lg"
@@ -61,58 +50,34 @@ export const ContactUs = () => {
                     value={firstName}
                     required
                     
-                    invalid= {MDBInput.invalid}
-                    validation= "Please provide your name"
-                  />
-                  <ValidationError
-                    prefix="FirstName"
-                    field="firstName"
-                    errors={state.errors}
+                    placeholder="First Name"
                   />
                 </div>
-                <div className="col-12">
-                  <MDBInput
-                    wrapperClass="mb-2 w-100"
-                    labelClass="text-white"
-                    label="Last Name"
+                <div className="col-12 p-3">
+                  <input
                     id="formControlLg"
+                    className="form-control"
                     type="text"
                     size="lg"
                     onChange={(e) => setLastName(e.target.value)}
                     value={lastName}
                     required
-                    invalid= {MDBInput.invalid}
-                    validation= "Please provide your lastname"
-                  />
-                  <ValidationError
-                    prefix="LastName"
-                    field="lastName"
-                    errors={state.errors}
-                    required
+                    placeholder="Last Name"
                   />
                 </div>
-                <div className="col-12">
-                  <MDBInput
-                    wrapperClass="mb-2 w-100"
-                    labelClass="text-white"
-                    label="Email address"
+                <div className="col-12 p-3">
+                  <input
                     id="formControlLg"
+                    className="form-control"
                     type="email"
                     size="lg"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     required
-                    invalid= {MDBInput.invalid}
-                    validation= "Please provide your email"
-                  />
-                  <ValidationError
-                    prefix="Email"
-                    field="email"
-                    errors={state.errors}
-                    required
+                    placeholder="Email Address"
                   />
                 </div>
-                <div className="col-12 form-group shadow-textarea">
+                <div className="col-12 form-group shadow-textarea p-3">
                   <textarea
                     className="form-control z-depth-1"
                     id="message"
@@ -120,35 +85,21 @@ export const ContactUs = () => {
                     rows="3"
                     placeholder="Write something here..."
                     required
-                    invalid= {MDBInput.invalid}
-                    validation= "Please provide your feedback, it's very important to us"
-                  ></textarea>
-                  <ValidationError
-                    prefix="Message"
-                    field="message"
-                    errors={state.errors}
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
-                  />
-                    {/* <div class="mb-3">
-    <label for="validationTextarea" class="form-label"></label>
-    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Write something here" required></textarea>
-    <div class="invalid-feedback">
-    Please provide your feedback, it's very important to us
-    </div>
-  </div> */}
+                  ></textarea>
                   <br />
                 </div>
                 <button
                   type="submit "
-                  className="btn btn-outline-light btn-lg mx-2 px-5"
+                  className="btn btn-outline-light btn-lg mx-2 px-5" style={{ color: "#bdb284" }}
                   color="white"
                 >
                   Submit
                 </button>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
+              </div>
+            </div>
+          </div>
           <div className="mx-auto p-2">
             <Iframe
               url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.7505999753657!2d-56.1650912842493!3d-34.91270538142044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f81a13fd5d817%3A0xe12d2cca3cc32fdc!2sBv.%20Gral.%20Artigas%2C%2011300%20Montevideo%2C%20Departamento%20de%20Montevideo%2C%20Uruguay!5e0!3m2!1sen!2sbr!4v1667919921299!5m2!1sen!2sbr"
@@ -158,8 +109,8 @@ export const ContactUs = () => {
               height="300px"
             />
           </div>
-        </MDBRow>
-      </MDBContainer>
+        </div>
+      </div>
     </form>
   );
 };
