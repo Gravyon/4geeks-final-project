@@ -55,7 +55,7 @@ export const ProductDetail = (props) => {
         onExited={() => setAnimating(false)}
       >
         {/* <img src={item.url} alt={item.altText} /> */}
-        <div className="card ">
+        <div className="card">
           <div className="row g-0">
             <div className="col-md-5 d-flex justify-content-center bg-dark">
               <img

@@ -526,6 +526,34 @@ const getState = ({
                     console.log(error);
                 }
             },
+
+            updateProduct: async (product_id) => {
+                let store = getStore();
+                let user_id = store.userId;
+                // userId = store.profile.user.id
+                try {
+                    const response = await axios.put(
+                        process.env.BACKEND_URL + "/api/product/" + product_id, {
+                            id_products: product_id,
+                        }
+                    );
+                    console.log(response);
+                } catch (error) {
+                    console.log(error);
+                    if (error.response.status === 401) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                    if (error.response.status === 409) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                    if (error.response.status === 404) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                }
+            },
         },
     };
 };
