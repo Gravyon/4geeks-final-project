@@ -542,33 +542,41 @@ const getState = ({
                 }
             },
 
-            updateProduct: async (name, description, category, price, url) => {
+            //funcion para crear review de productos:
+            createScore: async (comment, score, product_id) => {
                 let store = getStore();
-                let product_id = store.id_product;
-                // userId = store.profile.user.id
+                let user_id = store.userId;
+
+                console.log(typeof user_id);
+                console.log(typeof product_id);
+                console.log(typeof comment);
+                console.log(typeof score);
+
+                product_id = parseInt(product_id);
+                console.log(typeof product_id);
                 try {
-                    const response = await axios.put(
-                        process.env.BACKEND_URL + "/api/product/" + product_id, {
-                            name,
-                            description,
-                            category,
-                            price,
-                            url,
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/review", {
+                            id_products: product_id,
+                            id_user: user_id,
+                            comment: comment,
+                            score: score,
                         }
                     );
-                    console.log(product_id);
-                    // if (response.status === 200) {
-                    //     Swal.fire(response.data.msg);
-                    //     getActions().getProduct();
-                    //     return response;
-                    // }
-                    // console.log(response);
+
+                    console.log(response);
+
+                    return response;
                 } catch (error) {
+                    // if (error.response.status === 404) {
+                    //     getActions().eliminarFavoritos(product_id);
+                    // } else if (error.response.data === "User is not logged in") {
+                    //     alert(
+                    //         error.response.data + ". You'll be rediredted to the login page"
+                    //     );
+                    //     return error.response.data;
+                    // }
                     console.log(error);
-                    if (error.response.status === 404) {
-                        alert(error.response.data.msg);
-                        return error.response.data.msg;
-                    }
                 }
             },
         },
