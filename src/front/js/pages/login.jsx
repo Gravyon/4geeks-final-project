@@ -8,8 +8,6 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import "../../styles/login.css";
 
-import * as mdb from 'mdb-ui-kit';
-
 export const Login = () => {
   const { store, actions } = useContext(Context);
 
@@ -49,33 +47,33 @@ export const Login = () => {
                 <p className="text-white-50 mb-5">
                   Please enter your login and password
                 </p>
-
-                <input
-                  // wrapperClass="mb-4 mx-5 w-100"
-                  // labelClass="text-white"
-                  label="Email address"
-                  id="formControlLg"
-                  type="email"
-                  size="lg"
-                  // onChange={(e) => setEmail(e.target.value)}
-                  // value={email}
-                  // required
-                  // validation= "Please provide your email"
-                />
-                <input
-                  // wrapperClass="mb-4 mx-5 w-100"
-                  // labelClass="text-white"
-                  // label="Password"
-                  // id="formControlLg"
-                  // type="password"
-                  // size="lg"
-                  // onChange={(e) => setPassword(e.target.value)}
-                  // value={password}
-                  // required
-                  // validation= "Please provide your password"
-                />
-
+                <div className="form-outline ">
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Email Address"
+                    class="form-control"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    required
+                  />
+                  <label class="form-label" for="form1Example2"></label>
+                </div>
+                {/* <input type="password" id="form1Example2" class="form-control" /> */}
+                <div className="form-outline ">
+                  <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    required
+                    // validation= "Please provide your password"
+                  />
+                </div>
                 <p className="small mb-3 pb-lg-2">
+                <br />
                   <Link className="text-white-50" to={"/changePassword"}>
                     Forgot password?
                   </Link>
@@ -83,9 +81,8 @@ export const Login = () => {
 
                 <button
                   type="submit "
-                  className="btn btn-outline-light btn-lg mx-2 px-5"
+                  className="btn btn-outline-light btn-lg mx-2 px-5" style={{ color: "#bdb284" }}
                   color="white"
-                  
                 >
                   Login
                 </button>
@@ -106,34 +103,31 @@ export const Login = () => {
         </div>
       </div>
     </Form>
-//     <form className="d-flex justify-content-center align-items-center h-100">
-//       <div className="container-fluid">
+    //     <form className="d-flex justify-content-center align-items-center h-100">
+    //       <div className="container-fluid">
 
-//      <div className="bg-dark text-white my-5 mx-auto">
-//   <div class="form-outline mb-4">
-//     <input type="email" id="form1Example1" class="form-control" />
-//     <label class="form-label" for="form1Example1">Email address</label>
-//   </div>
+    //      <div className="bg-dark text-white my-5 mx-auto">
+    //   <div class="form-outline mb-4">
+    //     <input type="email" id="form1Example1" class="form-control" />
+    //     <label class="form-label" for="form1Example1">Email address</label>
+    //   </div>
 
+    //   <div class="form-outline mb-4">
+    //     <input type="password" id="form1Example2" class="form-control" />
+    //     <label class="form-label" for="form1Example2">Password</label>
+    //   </div>
 
-//   <div class="form-outline mb-4">
-//     <input type="password" id="form1Example2" class="form-control" />
-//     <label class="form-label" for="form1Example2">Password</label>
-//   </div>
+    //   <div class="row mb-4">
 
+    //     <div class="col">
 
-//   <div class="row mb-4">
+    //       <a href="#!">Forgot password?</a>
+    //     </div>
+    //   </div>
 
-//     <div class="col">
-
-//       <a href="#!">Forgot password?</a>
-//     </div>
-//   </div>
-
-
-//   <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-//       </div>
-//       </div>  
-// </form>
+    //   <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+    //       </div>
+    //       </div>
+    // </form>
   );
 };

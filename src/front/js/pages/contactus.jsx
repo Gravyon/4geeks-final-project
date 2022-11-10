@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useForm, ValidationError } from "@formspree/react";
 import Iframe from "react-iframe";
-import * as mdb from 'mdb-ui-kit';
+
 
 export const ContactUs = () => {
   // definimos los estados
