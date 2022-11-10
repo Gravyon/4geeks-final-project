@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import {MDBCardImage ,  MDBBtn,  MDBContainer,  MDBRow,  MDBCol,  MDBCard,  MDBCardBody,  MDBInput,  MDBIcon} from 'mdb-react-ui-kit';
+import * as mdb from 'mdb-ui-kit';
 export const SignUp = () => {
   // definimos los estados
   const [email, setEmail] = useState("");

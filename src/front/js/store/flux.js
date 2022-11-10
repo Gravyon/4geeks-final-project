@@ -55,9 +55,10 @@ const getState = ({
                     console.log(response.data);
                     return true;
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                     if (error.code === "ERR_BAD_REQUEST") {
-                        console.log(error.response.data.msg);
+                        // console.log(error.response.data.msg);
+                        return;
                     }
                 }
             },
@@ -76,7 +77,7 @@ const getState = ({
                     );
                     console.log(response);
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                     if (error.response.status === 401) {
                         alert(error.response.data.msg);
                         return error.response.data.msg;
@@ -157,9 +158,9 @@ const getState = ({
                     );
 
                     localStorage.setItem("token", response.data.msg);
-                    console.log(response.data.msg);
-                    console.log(response);
-                    console.log(response.data.user.id);
+                    // console.log(response.data.msg);
+                    // console.log(response);
+                    // console.log(response.data.user.id);
                     setStore({
                         auth: true,
                         userId: response.data.user.id,
@@ -316,7 +317,7 @@ const getState = ({
                     console.log(response.data.msg);
                     return response.data.msg;
                 } catch (error) {
-                    console.log(error);
+                    // console.log(error);
                     if (error.response.status === 409) {
                         return error.response.data.msg;
                     } else if (error.response.status === 406) {
