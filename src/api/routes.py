@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint, json, current_app
-from api.models import db, User, Products, Comments, Favorites, Shopping, OrderHistory
+from api.models import db, User, Products, Review, Favorites, Shopping, OrderHistory
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from flask_mail import Mail, Message
@@ -356,6 +356,7 @@ def get_favorites():
     results = list(map(lambda x: x.serialize(), favorites))
     print(results)
     return jsonify(results), 200
+    
 
 @api.route('/user/<int:id_user>/favorites', methods=['GET'])
 def get_favorites_by_user(id_user):
@@ -541,31 +542,42 @@ def delete_favorites():
             
 
 ###########################
-# Comments GET queries
+# Reviews GET queries
 ###########################
 
-@api.route('/comments', methods=['GET'])
-def get_comments():
+@api.route('/reviews', methods=['GET'])
+def get_reviews():
     ###########################
-    # Get all comments
+    # Get all reviews
     ###########################
-    comments = Comments.query.all()
-    print(comments)
-    results = list(map(lambda x: x.serialize(), comments))
+    reviews = Review.query.all()
+    print(reviews)
+    results = list(map(lambda x: x.serialize(), reviews))
     print(results)
     return jsonify(results), 200
 
-@api.route('/user/<int:id_user>/comments', methods=['GET'])
-def get_comments_by_user(id_user):
+@api.route('/product/<int:product_id>/reviews', methods=['GET'])
+def get_reviews_per_product(product_id):
     ###########################
-    # Get user comments list
+    # Get all reviews per product
     ###########################
-    comments = Comments.query.filter_by(id_user=id_user).all()
-    print(comments)
-    results = list(map(lambda x: x.serialize(), comments))
+    reviews = Review.query.filter_by(id_products=product_id).all()
+    print(reviews)
+    results = list(map(lambda x: x.serialize(), reviews))
+    print(results)
+    return jsonify(results), 200
+
+@api.route('/user/<int:id_user>/reviews', methods=['GET'])
+def get_reviews_by_user(id_user):
+    ###########################
+    # Get user reviews list
+    ###########################
+    reviews = Review.query.filter_by(id_user=id_user).all()
+    print(reviews)
+    results = list(map(lambda x: x.serialize(), reviews))
 
     if (results == []):
-      return  jsonify({"msg": "User doesn't have any comments yet"}), 404
+      return  jsonify({"msg": "User doesn't have any reviews yet"}), 404
 
     response_body = {
         "results": results
@@ -573,8 +585,8 @@ def get_comments_by_user(id_user):
     print(results)
     return jsonify(response_body), 200
 
-@api.route('/comment', methods=['POST'])
-def create_comment():
+@api.route('/review', methods=['POST'])
+def create_review():
     # Load data from postman or input
     body = json.loads(request.data)
     print(body)
@@ -582,44 +594,45 @@ def create_comment():
     print(user_query)
     print(user_query)
     if user_query: 
-        new_comment = Comments(
-        content=body["content"],
+        new_review = Review(
+        comment=body["comment"],
+        score=body["score"],
         id_user=body["id_user"],
         id_products=body["id_products"])
         # Flask command to add a new entry
-        db.session.add(new_comment)
+        db.session.add(new_review)
         # Flask command to commit the database, saving the changes
         db.session.commit()
         # Standard response to request with error code 200 (success)
-        return jsonify({"msg": "New comment created on that product by that user"}), 200
+        return jsonify({"msg": "New review created on that product by that user"}), 200
 
     return jsonify({"msg": "Something went bad"}), 404
 
 
 ###########################
-# Comment DELETE query
+# Review DELETE query
 ###########################
 
-@api.route('/comments/<int:id_user>/<int:id_comment>', methods=['DELETE'])
-def delete_comment(id_user, id_comment):
+@api.route('/reviews/<int:id_user>/<int:id_review>', methods=['DELETE'])
+def delete_review(id_user, id_review):
     # Load data from postman or input
     # user_query = User.query.filter_by(id_user=body["id_user"]).first()
     # product_query = Products.query.filter_by(id_products=body["id_products"]).first()
     # print(user, content)
     # favorite_query = Favorites.query.filter_by(id=body["id"]).first()
-    comment_query= Comments.query.filter_by(id_user=id_user).filter_by(id=id_comment).first()
-    print(comment_query)
-    if comment_query:
-        db.session.delete(comment_query)
+    review_query= Review.query.filter_by(id_user=id_user).filter_by(id=id_review).first()
+    print(review_query)
+    if review_query:
+        db.session.delete(review_query)
         db.session.commit()
         response_body = {
-        "msg": "Comment deleted successfully"
+        "msg": "Review deleted successfully"
         }
         return jsonify(response_body), 200
             
-    elif comment_query is None:
+    elif review_query is None:
         raise APIException('Content not found', status_code=404)
-        return jsonify(comment_query)  
+        return jsonify(review_query)  
 
     return jsonify({"msg": "Something went wrong"}), 400
 

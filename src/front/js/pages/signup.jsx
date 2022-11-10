@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
 export const SignUp = () => {
   // definimos los estados
   const [email, setEmail] = useState("");
@@ -20,18 +19,15 @@ export const SignUp = () => {
     let onSignUp = await actions.signup(username, email, password);
 
     if (onSignUp === "User email already exists") {
-      swal("User email already exists, redirecting to login")
+      swal("User email already exists, redirecting to login");
       navigate("/login");
-    }
-    else if (onSignUp === "New user created") {
+    } else if (onSignUp === "New user created") {
       // console.log(onSignUp.msg)
       navigate("/");
       // setEmail("");
       // setPassword("");
       // setUsername("");
-
     }
-
   };
 
   return (
@@ -42,11 +38,21 @@ export const SignUp = () => {
             <div
               className="bg-dark text-white my-5 mx-auto"
               style={{ borderRadius: "1rem", maxWidth: "400px" }}
-              >
-              <div className="p-5 d-flex flex-column align-items-center mx-auto w-100" > 
-                <h2 className="fw-bold mb-2 text-uppercase" style={{ color: "#bdb284" }}>Register</h2>
-                <p className="mt-3 mb-3" style={{ color: "#bdb284" }}>Already registered? <Link to="/login" className="text-white-50 fw-bold" >Login</Link></p>
-              <p></p>
+            >
+              <div className="p-5 d-flex flex-column align-items-center mx-auto w-100">
+                <h2
+                  className="fw-bold mb-2 text-uppercase"
+                  style={{ color: "#bdb284" }}
+                >
+                  Register
+                </h2>
+                <p className="mt-3 mb-3" style={{ color: "#bdb284" }}>
+                  Already registered?{" "}
+                  <Link to="/login" className="text-white-50 fw-bold">
+                    Login
+                  </Link>
+                </p>
+                <p></p>
                 <div className="col-12 ">
                   <input
                     type="text"
@@ -56,7 +62,7 @@ export const SignUp = () => {
                     onChange={(e) => setUsername(e.target.value)}
                     value={username}
                     required
-                    />
+                  />
                   <label className="form-label" for="form1Example2"></label>
                 </div>
                 <div className="col-12 ">
@@ -68,7 +74,7 @@ export const SignUp = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     required
-                    />
+                  />
                   <label className="form-label" for="form1Example2"></label>
                 </div>
                 <div className="col-12 ">
@@ -80,10 +86,10 @@ export const SignUp = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     required
-                    />
+                  />
                 </div>
                 <p className="small mb-3 pb-lg-2">
-                <br />
+                  <br />
                   <Link className="text-white-50" to={"/changePassword"}>
                     Forgot password?
                   </Link>
@@ -91,18 +97,17 @@ export const SignUp = () => {
 
                 <button
                   type="submit "
-                  className="btn btn-outline-light btn-lg mx-2 px-5" style={{ color: "#bdb284" }}
+                  className="btn btn-outline-light btn-lg mx-2 px-5"
+                  style={{ color: "#bdb284" }}
                   color="white"
-                  >
+                >
                   Signup
                 </button>
-
               </div>
             </div>
           </div>
         </div>
       </div>
     </form>
-
   );
 };
