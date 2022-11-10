@@ -16,12 +16,13 @@ const getState = ({
             listaFavoritos: [],
             shoppingList: [],
 
-            id_products: null,
+            productId: null,
             userId: null,
             auth: false,
             registered: false,
             profile: {},
             priceList: [],
+            // productIdList: [],
             sum: 0,
             classNameDetails: "",
         },
@@ -135,16 +136,20 @@ const getState = ({
             },
             // funcion para obtener detalles de los cuadros
             getProductDetail: async (id) => {
+                let store = getStore();
                 try {
                     const response = await fetch(
                         process.env.BACKEND_URL + "/api/product/" + id
                     );
                     const data = await response.json();
                     console.log(data);
-
                     setStore({
                         productDetail: data,
+                        productId: data.id,
                     });
+                    console.log(store.productDetail);
+                    console.log(store.productId);
+                    return store.productId;
                 } catch (err) {
                     console.log(err);
                 }
@@ -577,6 +582,38 @@ const getState = ({
                     //     return error.response.data;
                     // }
                     console.log(error);
+                }
+            },
+            updateProduct: async (name, description, category, price, url) => {
+                let store = getStore();
+                let product_id = store.productId;
+                // userId = store.profile.user.id
+                try {
+                    const response = await axios.put(
+                        process.env.BACKEND_URL + "/api/product/" + product_id, {
+                            name,
+                            description,
+                            category,
+                            price,
+                            url,
+                        }
+                    );
+                    // console.log(productId);
+                    // console.log(product_id);
+
+                    if (response.status === 200) {
+                        Swal.fire(response.data.msg);
+                        getActions().getProduct();
+                        return response;
+                    }
+                    console.log(response);
+                    return true;
+                } catch (error) {
+                    console.log(error);
+                    if (error.response.status === 404) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
                 }
             },
         },

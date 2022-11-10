@@ -226,7 +226,7 @@ export const LandingPage = () => {
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
                     >
-                      <i className="bi bi-pencil-square"></i>
+                      <i className="bi bi-pen-fill"></i>
                     </button>
 
                     <div
