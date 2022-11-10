@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 const getState = ({
     getStore,
@@ -479,6 +480,30 @@ const getState = ({
                 setStore({
                     sum: sumTotal,
                 });
+            },
+
+            eliminarCuenta: async () => {
+                let store = getStore();
+                let user_id = store.userId;
+
+                try {
+                    const response = await axios.delete(
+                        process.env.BACKEND_URL + "/api/user/" + user_id, {}
+                    );
+                    console.log(response.data.msg);
+                    if (response.status === 200) {
+                        Swal.fire(response.data.msg);
+                        setStore({
+                            auth: false,
+                        });
+                        return response;
+                    }
+                } catch (error) {
+                    console.log(error);
+                    if (error.response.status === 404) {
+                        Swal.fire(error.response.msg);
+                    }
+                }
             },
         },
     };
