@@ -68,6 +68,7 @@ export const ImgCarousel = (args) => {
       next={next}
       previous={previous}
       {...args}
+      className="w-75 m-auto"
     >
       <CarouselIndicators
         items={items}
