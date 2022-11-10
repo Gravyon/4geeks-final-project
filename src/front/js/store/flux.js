@@ -527,6 +527,44 @@ const getState = ({
                     console.log(error);
                 }
             },
+
+            //funcion para crear review de productos:
+            createScore: async (comment, score, product_id) => {
+                let store = getStore();
+                let user_id = store.userId;
+
+                console.log(typeof user_id);
+                console.log(typeof product_id);
+                console.log(typeof comment);
+                console.log(typeof score);
+
+                product_id = parseInt(product_id);
+                console.log(typeof product_id);
+                try {
+                    const response = await axios.post(
+                        process.env.BACKEND_URL + "/api/review", {
+                            id_products: product_id,
+                            id_user: user_id,
+                            comment: comment,
+                            score: score,
+                        }
+                    );
+
+                    console.log(response);
+
+                    return response;
+                } catch (error) {
+                    // if (error.response.status === 404) {
+                    //     getActions().eliminarFavoritos(product_id);
+                    // } else if (error.response.data === "User is not logged in") {
+                    //     alert(
+                    //         error.response.data + ". You'll be rediredted to the login page"
+                    //     );
+                    //     return error.response.data;
+                    // }
+                    console.log(error);
+                }
+            },
         },
     };
 };
