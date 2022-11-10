@@ -528,7 +528,7 @@ const getState = ({
                 }
             },
 
-            updateProduct: async (product_id) => {
+            updateProduct: async (name, description, category, price) => {
                 let store = getStore();
                 let user_id = store.userId;
                 // userId = store.profile.user.id
@@ -536,19 +536,20 @@ const getState = ({
                     const response = await axios.put(
                         process.env.BACKEND_URL + "/api/product/" + product_id, {
                             id_products: product_id,
+                            name,
+                            description,
+                            category,
+                            price,
                         }
                     );
+                    if (response.status === 200) {
+                        Swal.fire(response.data.msg);
+                        getActions().getProduct();
+                        return response;
+                    }
                     console.log(response);
                 } catch (error) {
                     console.log(error);
-                    if (error.response.status === 401) {
-                        alert(error.response.data.msg);
-                        return error.response.data.msg;
-                    }
-                    if (error.response.status === 409) {
-                        alert(error.response.data.msg);
-                        return error.response.data.msg;
-                    }
                     if (error.response.status === 404) {
                         alert(error.response.data.msg);
                         return error.response.data.msg;

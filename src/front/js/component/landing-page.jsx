@@ -1,9 +1,12 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
+import PropTypes from "prop-types";
+import ListGroup from "react-bootstrap/ListGroup";
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -21,6 +24,8 @@ import { ImgCarousel } from "../component/imgCarousel.jsx";
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+  const toggle = () => setModal(!modal);
+  const [modal, setModal] = useState(false);
 
   let handleAddFavorites = async (id) => {
     //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
@@ -38,6 +43,30 @@ export const LandingPage = () => {
     if (msj === "User is not logged in") {
       navigate("/login");
     }
+  };
+
+  // empieza la funcion para editar producto
+
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+
+  const updateProduct = async (e) => {
+    e.preventDefault();
+    await actions.updateProduct(name, description, category, price);
+    // let onUploaded = await actions.createProduct(
+    //   name,
+    //   description,
+    //   category,
+    //   price
+    // );
+    // console.log(onUploaded);
+
+    setName("");
+    setCategory("");
+    setDescription("");
+    setPrice("");
   };
 
   return (
@@ -74,7 +103,6 @@ export const LandingPage = () => {
                     alt="..."
                     style={{ maxHeight: "12rem", borderColor: "#b2a97e" }}
                   />
-
                   <div style={{ textAlign: "left", marginLeft: "25px" }}>
                     <hr style={{ borderTop: "2px dotted #bdb284" }} />
                     <Card.Title
@@ -188,6 +216,173 @@ export const LandingPage = () => {
                       }}
                     ></i>
                   </button>
+                  {/* empieza el modal de editar producto */}
+                  <div>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      <i className="bi bi-pencil-square"></i>
+                    </button>
+
+                    <div
+                      className="modal fade"
+                      id="exampleModal"
+                      tabIndex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h1
+                              className="modal-title fs-5"
+                              id="exampleModalLabel"
+                            >
+                              Modify your product
+                            </h1>
+                            <button
+                              type="button"
+                              className="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div className="modal-body">
+                            <div className="modal-body">
+                              <form onSubmit={updateProduct}>
+                                <label>
+                                  <label>
+                                    Change the name:{" "}
+                                    <input
+                                      type="text"
+                                      // placeholder="{profile.name}"
+                                      onChange={(e) => setName(e.target.value)}
+                                      value={name}
+                                    />
+                                  </label>
+                                  <label>
+                                    Change the category:{" "}
+                                    <input
+                                      type="text"
+                                      // placeholder="Change your category"
+                                      onChange={(e) =>
+                                        setCategory(e.target.value)
+                                      }
+                                      value={category}
+                                    />
+                                  </label>
+                                  <label>
+                                    Change the description:{" "}
+                                    <input
+                                      type="text"
+                                      // placeholder="Change your description"
+                                      onChange={(e) =>
+                                        setDescription(e.target.value)
+                                      }
+                                      value={description}
+                                    />
+                                  </label>
+                                  <label>
+                                    Change the price:{" "}
+                                    <input
+                                      type="text"
+                                      // placeholder="Change your price"
+                                      onChange={(e) => setPrice(e.target.value)}
+                                      value={price}
+                                    />
+                                  </label>
+                                </label>
+                                <Button
+                                  data-dismiss="form"
+                                  type="submit"
+                                  color="primary"
+                                >
+                                  Save changes
+                                </Button>{" "}
+                              </form>
+                            </div>
+                          </div>
+                          <div className="modal-footer">
+                            <button
+                              type="button"
+                              className="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* <Button
+                      onClick={toggle}
+                      className="p-2 d-flex mb-2"
+                      type="button"
+                      variant="dark"
+                      style={{ color: "#bdb284" }}
+                    >
+                      <i className="bi bi-pencil-square"></i>
+                    </Button>
+                    <Modal isOpen={modal} toggle={toggle}>
+                      <ModalHeader toggle={toggle}>
+                        Modify your product
+                      </ModalHeader>
+                      <ModalBody>
+                        <form onSubmit={updateProduct}>
+                          <ListGroup>
+                            <ListGroup.Item>
+                              Change the name:{" "}
+                              <Form.Control
+                                type="text"
+                                // placeholder="{profile.name}"
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
+                              />
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                              Change the category:{" "}
+                              <Form.Control
+                                type="text"
+                                // placeholder="Change your category"
+                                onChange={(e) => setCategory(e.target.value)}
+                                value={category}
+                              />
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                              Change the description:{" "}
+                              <Form.Control
+                                type="text"
+                                // placeholder="Change your description"
+                                onChange={(e) => setDescription(e.target.value)}
+                                value={description}
+                              />
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                              Change the price:{" "}
+                              <Form.Control
+                                type="text"
+                                // placeholder="Change your price"
+                                onChange={(e) => setPrice(e.target.value)}
+                                value={price}
+                              />
+                            </ListGroup.Item>
+                          </ListGroup>
+                          <Button
+                            data-dismiss="form"
+                            type="submit"
+                            color="primary"
+                          >
+                            Save changes
+                          </Button>{" "}
+                        </form>
+                      </ModalBody>
+                      <ModalFooter></ModalFooter>
+                    </Modal> */}
+                  </div>
+                  {/* termina el modal de editar producto */}
                   <span
                     className="btn btn-outline-light d-flex justify-content-end"
                     onClick={() => actions.deleteProduct(item.id)}
