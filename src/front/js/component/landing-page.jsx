@@ -51,10 +51,11 @@ export const LandingPage = () => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [url, setUrl] = useState("");
 
   const updateProduct = async (e) => {
     e.preventDefault();
-    await actions.updateProduct(name, description, category, price);
+    await actions.updateProduct(name, description, category, price, url);
     // let onUploaded = await actions.createProduct(
     //   name,
     //   description,
@@ -67,6 +68,7 @@ export const LandingPage = () => {
     setCategory("");
     setDescription("");
     setPrice("");
+    setUrl("");
   };
 
   return (
@@ -272,6 +274,15 @@ export const LandingPage = () => {
                                         setCategory(e.target.value)
                                       }
                                       value={category}
+                                    />
+                                  </label>
+                                  <label>
+                                    Change the url:{" "}
+                                    <input
+                                      type="text"
+                                      // placeholder="Change your category"
+                                      onChange={(e) => setUrl(e.target.value)}
+                                      value={url}
                                     />
                                   </label>
                                   <label>

@@ -16,6 +16,7 @@ const getState = ({
             listaFavoritos: [],
             shoppingList: [],
 
+            id_products: null,
             userId: null,
             auth: false,
             registered: false,
@@ -492,7 +493,20 @@ const getState = ({
                     );
                     console.log(response.data.msg);
                     if (response.status === 200) {
-                        Swal.fire(response.data.msg);
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                            }
+                        });
+                        // Swal.fire(response.data.msg);
                         setStore({
                             auth: false,
                         });
@@ -528,26 +542,27 @@ const getState = ({
                 }
             },
 
-            updateProduct: async (name, description, category, price) => {
+            updateProduct: async (name, description, category, price, url) => {
                 let store = getStore();
-                let user_id = store.userId;
+                let product_id = store.id_product;
                 // userId = store.profile.user.id
                 try {
                     const response = await axios.put(
                         process.env.BACKEND_URL + "/api/product/" + product_id, {
-                            id_products: product_id,
                             name,
                             description,
                             category,
                             price,
+                            url,
                         }
                     );
-                    if (response.status === 200) {
-                        Swal.fire(response.data.msg);
-                        getActions().getProduct();
-                        return response;
-                    }
-                    console.log(response);
+                    console.log(product_id);
+                    // if (response.status === 200) {
+                    //     Swal.fire(response.data.msg);
+                    //     getActions().getProduct();
+                    //     return response;
+                    // }
+                    // console.log(response);
                 } catch (error) {
                     console.log(error);
                     if (error.response.status === 404) {
