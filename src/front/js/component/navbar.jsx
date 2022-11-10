@@ -100,7 +100,7 @@ export const NavbarPrincipal = () => {
               </Nav.Link>
               {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
             </Nav>
-            <Form className="d-flex d-sm-none">
+            <Form className="d-flex d-sm-none d-md-inline">
               <Form.Control
                 onChange={handleInput}
                 type="search"
