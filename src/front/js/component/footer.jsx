@@ -6,14 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBIcon,
-  MDBBtn,
-} from "mdb-react-ui-kit";
+
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -30,8 +23,8 @@ import {
 
 export const Footer = () => {
   return (
-    <MDBFooter className=" bg-dark text-center text-white w-100 d-flex-inline align-items-end mt-100vh ">
-      <MDBContainer className="p-4 pb-0 ">
+    <footer className=" bg-dark text-center text-white w-100 d-flex-inline align-items-end mt-100vh ">
+      <div className="p-4 pb-0 ">
         <section className="mb-4 col-3 d-flex justify-content-between mx-auto">
           <FacebookShareButton
             url={
@@ -72,7 +65,7 @@ export const Footer = () => {
             <EmailIcon size={32} round={true} />
           </EmailShareButton>
         </section>
-      </MDBContainer>
+      </div>
       <div>
         <h6 className="text-uppercase fw-bold mb-4">Contact:</h6>
       </div>
@@ -107,6 +100,6 @@ export const Footer = () => {
       >
         © 2022 Copyright: Casa Arte
       </div>
-    </MDBFooter>
+    </footer>
   );
 };
