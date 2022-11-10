@@ -504,6 +504,28 @@ const getState = ({
                     }
                 }
             },
+
+            deleteProduct: async (product_id) => {
+                let store = getStore();
+
+                try {
+                    const response = await axios.delete(
+                        process.env.BACKEND_URL + "/api/product/" + product_id, {
+                            data: {
+                                id_products: product_id,
+                            },
+                        }
+                    );
+                    alert(response.data.msg);
+                    console.log(response);
+                    // console.log(store.shoppingList)
+                    getActions().getProduct();
+
+                    return;
+                } catch (error) {
+                    console.log(error);
+                }
+            },
         },
     };
 };
