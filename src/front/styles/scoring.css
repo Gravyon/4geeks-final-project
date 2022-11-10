@@ -11,6 +11,7 @@ input[type="radio"] {
     /* right to left */
     unicode-bidi: bidi-override;
     /* bidi de bidireccional */
+    width: auto !important;
 }
 
 label:hover {
@@ -24,3 +25,27 @@ label:hover~label {
 input[type="radio"]:checked~label {
     color: orange;
 }
+
+p {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+textarea {
+    margin: auto;
+}
+
+form {
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#buttonSubmit,
+#divTextarea {
+    display: flex;
+    justify-content: center;
+}
+
+/* #comments {
+    width: 80% !important;
+} */

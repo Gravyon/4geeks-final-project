@@ -66,10 +66,9 @@ export const ProductDetail = (props) => {
                 alt={item.altText}
               />
             </div>
-            <div className="col-md-5 d-flex justify-content-center bg-dark">
-              <Scoring />
-            </div>
             <div className="col-md-7">
+              {/* <div className="col">
+              </div> */}
               <div className="card-body h-100 bg-dark text-white">
                 <div>
                   <h1 className="card-title text-center">{item.name}</h1>
@@ -80,7 +79,8 @@ export const ProductDetail = (props) => {
                   >
                     {item.description}
                   </p>
-                  <form>
+
+                  {/* <form>
                     <p className="clasificacion">
                       <input
                         id="radio1"
@@ -118,7 +118,7 @@ export const ProductDetail = (props) => {
                       />
                       <label htmlFor="radio5">★</label>
                     </p>
-                  </form>
+                  </form> */}
                 </div>
                 <div className="card-footer align-bottom ">
                   <h6 className="card-text">Price: USD {item.price}</h6>
@@ -197,6 +197,9 @@ export const ProductDetail = (props) => {
           onClickHandler={next}
         />
       </Carousel>
+      <div>
+        <Scoring />
+      </div>
     </div>
   );
 };

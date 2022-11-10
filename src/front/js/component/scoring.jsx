@@ -31,60 +31,72 @@ export const Scoring = (props) => {
   };
 
   return (
-    <form onSubmit={handleScore}>
-      <p className="clasificacion">
-        <input
-          id="radio1"
-          type="radio"
-          name="estrellas"
-          value="5"
-          onClick={(e) => setScore(parseInt(e.target.value))}
-        />
-        <label htmlFor="radio1">★</label>
-        <input
-          id="radio2"
-          type="radio"
-          name="estrellas"
-          value="4"
-          onClick={(e) => setScore(parseInt(e.target.value))}
-        />
-        <label htmlFor="radio2">★</label>
-        <input
-          id="radio3"
-          type="radio"
-          name="estrellas"
-          value="3"
-          onClick={(e) => setScore(parseInt(e.target.value))}
-        />
-        <label htmlFor="radio3">★</label>
-        <input
-          id="radio4"
-          type="radio"
-          name="estrellas"
-          value="2"
-          onClick={(e) => setScore(parseInt(e.target.value))}
-        />
-        <label htmlFor="radio4">★</label>
-        <input
-          id="radio5"
-          type="radio"
-          name="estrellas"
-          value="1"
-          onClick={(e) => setScore(parseInt(e.target.value))}
-        />
-        <label htmlFor="radio5">★</label>
-      </p>
-      <textarea
-        name="comments"
-        id=""
-        cols="30"
-        rows="10"
-        onChange={(e) => setComment(e.target.value)}
-        value={comment}
-      ></textarea>
-      <button class="btn btn-primary" type="submit">
-        Submit
-      </button>
+    <form onSubmit={handleScore} className="bg-dark mb-3 mt-3 pt-3">
+      <h3 style={{ color: "#908969", textAlign: "center" }}>Review product</h3>
+      <div className="container d-xl-inline-flex d-lg-inline-flex justify-content-between bg-dark mt-3 mb-4 pb-3">
+        <div className="col-sm-12 col-lg-2">
+          <p className="clasificacion">
+            <input
+              id="radio1"
+              type="radio"
+              name="estrellas"
+              value="5"
+              onClick={(e) => setScore(parseInt(e.target.value))}
+            />
+            <label htmlFor="radio1">★</label>
+            <input
+              id="radio2"
+              type="radio"
+              name="estrellas"
+              value="4"
+              onClick={(e) => setScore(parseInt(e.target.value))}
+            />
+            <label htmlFor="radio2">★</label>
+            <input
+              id="radio3"
+              type="radio"
+              name="estrellas"
+              value="3"
+              onClick={(e) => setScore(parseInt(e.target.value))}
+            />
+            <label htmlFor="radio3">★</label>
+            <input
+              id="radio4"
+              type="radio"
+              name="estrellas"
+              value="2"
+              onClick={(e) => setScore(parseInt(e.target.value))}
+            />
+            <label htmlFor="radio4">★</label>
+            <input
+              id="radio5"
+              type="radio"
+              name="estrellas"
+              value="1"
+              onClick={(e) => setScore(parseInt(e.target.value))}
+            />
+            <label htmlFor="radio5">★</label>
+          </p>
+        </div>
+        <div className="col-sm-12 col-md-4 col-lg-8" id="divTextarea">
+          <textarea
+            name="comments"
+            id="comments"
+            cols="50"
+            rows="2"
+            onChange={(e) => setComment(e.target.value)}
+            value={comment}
+          ></textarea>
+        </div>
+        <div
+          className="col-sm-12 col-lg-2 mt-sm-2 mt-md-0 mt-lg-0"
+          id="buttonSubmit"
+        >
+          <button className="btn btn-outline-light" type="submit">
+            Submit
+          </button>
+        </div>
+      </div>
     </form>
   );
 };
