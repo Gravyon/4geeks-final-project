@@ -102,6 +102,7 @@
         "react-share": "^4.4.1",
         "reactstrap": "^9.1.5",
         "sweetalert": "^2.1.2",
-        "sweetalert2": "^11.6.7"
+        "sweetalert2": "^11.6.7",
+        "yup": "^0.32.11"
     }
 }
