@@ -15,11 +15,9 @@ export const Scoring = (props) => {
     e.preventDefault();
     let onScored = await actions.createScore(comment, score, params.id);
     // let msj = await actions.login(email, password).response.data.msg;
-    console.log(onScored);
+    console.log(onScored.data.msg);
 
-    // console.log(onLogged);
-    // setScore(null);
-    // setComment("");
+    setComment("");
 
     // if (onLogged === "User doesn't exist") {
     //   navigate("/signup");
