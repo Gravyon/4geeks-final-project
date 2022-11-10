@@ -15,7 +15,7 @@ export const Scoring = (props) => {
     e.preventDefault();
     let onScored = await actions.createScore(comment, score, params.id);
     // let msj = await actions.login(email, password).response.data.msg;
-    console.log(onScored.data.msg);
+    alert(onScored.data.msg);
 
     setComment("");
 
@@ -33,7 +33,7 @@ export const Scoring = (props) => {
       <h3 style={{ color: "#908969", textAlign: "center" }}>Review product</h3>
       <div className="container d-xl-inline-flex d-lg-inline-flex justify-content-between bg-dark mt-3 mb-4 pb-3">
         <div className="col-sm-12 col-lg-2">
-          <p className="clasificacion">
+          <p className="clasificacion" id="pClasification">
             <input
               id="radio1"
               type="radio"

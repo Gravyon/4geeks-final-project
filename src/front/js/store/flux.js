@@ -134,6 +134,7 @@ const getState = ({
             },
             // funcion para obtener detalles de los cuadros
             getProductDetail: async (id) => {
+                let store = getStore();
                 try {
                     const response = await fetch(
                         process.env.BACKEND_URL + "/api/product/" + id
@@ -144,6 +145,7 @@ const getState = ({
                     setStore({
                         productDetail: data,
                     });
+                    console.log(store.productDetail);
                 } catch (err) {
                     console.log(err);
                 }
@@ -564,6 +566,21 @@ const getState = ({
                     // }
                     console.log(error);
                 }
+            },
+
+            //funcion para calcular el promedio de los valores de un array de enteros
+            calcAvg: async (arr) => {
+                let store = getStore();
+
+                const initialValue = store.sum;
+                const sumTotal = arr.reduce(
+                    (previousValue, currentValue) => previousValue + currentValue,
+                    initialValue
+                );
+
+                setStore({
+                    sum: sumTotal,
+                });
             },
         },
     };
