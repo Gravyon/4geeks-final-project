@@ -136,6 +136,7 @@ const getState = ({
             },
             // funcion para obtener detalles de los cuadros
             getProductDetail: async (id) => {
+                let store = getStore();
                 try {
                     const response = await fetch(
                         process.env.BACKEND_URL + "/api/product/" + id
@@ -146,6 +147,7 @@ const getState = ({
                     setStore({
                         productDetail: data,
                     });
+                    console.log(store.productDetail);
                 } catch (err) {
                     console.log(err);
                 }
