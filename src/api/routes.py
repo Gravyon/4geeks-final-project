@@ -31,12 +31,8 @@ def login():
     # Grants a token if login was successful
     else:
         access_token = create_access_token(identity=email)
-        response_body = {
             # Shows the token and the user info
-            "msg":access_token,
-            "user": user.serialize()
-        }
-        return jsonify(response_body), 200
+        return jsonify({"msg": access_token,"user": user.serialize()}), 200
 
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.
@@ -55,11 +51,7 @@ def protected():
     if user is None:
         return jsonify({"msg":"User doesn't exist"}), 404
     # If user is correct then it shows the user's info
-    response_body = {
-    "user": user.serialize()
-        
-    }
-    return jsonify(response_body), 200
+    return jsonify({"user": user.serialize()}), 200
 
 # Endpoint for revoking the current users access token. Saved the unique
 # identifier (jti) for the JWT into our database.
@@ -67,7 +59,6 @@ def protected():
 ###########################
 # Logout function
 ###########################
-
 
 @api.route("/valid-token", methods=["GET"])
 @jwt_required()
@@ -83,12 +74,7 @@ def valid_token():
     elif user is None:
         return jsonify({"status":False}), 404
     # If user is correct then it shows the user's info
-    response_body = {
-        "status": True,
-        "user": user.serialize()
-        
-    }
-    return jsonify(response_body), 200
+    return jsonify({"status": True,"user": user.serialize()  }), 200
 
 ###########################
 # Product queries
@@ -134,31 +120,22 @@ def create_product():
     # Flask command to commit the database, saving the changes
     db.session.commit()
     # Standard response to request with error code 200 (success)
-    response_body = {
-        "msg": "New product created"
-    }
-    return jsonify(response_body), 200
+    return jsonify({"msg": "New product created"}), 200
 
 @api.route('/product/<int:product_id>', methods=["DELETE"])
 def delete_product(product_id):
-
     ###########################
     # Create product
     ###########################
     product = Products.query.filter_by(id=product_id).first()
     print(product)
+    if product is None:
+        return jsonify({"msg": "Product not found"}), 404
     # If user exists, deletes it
-    if product:
+    elif product:
         db.session.delete(product)
         db.session.commit()
-        response_body = {
-            "msg": "Product deleted successfully"
-            }
-        return jsonify(response_body), 200
-
-    elif product is None:
-        raise APIException('Product not found', status_code=404)
-        return jsonify(product)
+        return jsonify({"msg": "Product deleted successfully"}), 200
 
 ###########################
 # Product PUT (MODIFY) query
@@ -167,11 +144,6 @@ def delete_product(product_id):
 @api.route('/product/<int:product_id>', methods=['PUT'])
 def modify_product(product_id):
     body = json.loads(request.data)
-    # name = request.json['name']
-    # category = request.json['category']
-    # description = request.json['description']
-    # url = request.json['url']
-    # price = request.json['price']
     product = Products.query.filter_by(id=product_id).first()
     # If product exists, modifies it with new inputs
     if product is None:
@@ -187,19 +159,8 @@ def modify_product(product_id):
         product.url = body["url"]
     if "price" in body:
         product.price = int(body["price"])
-            
+    db.session.commit()
     return jsonify({"msg":"Product updated successfully"}), 200
-    # if product:
-    #     product.category = category
-    #     product.description = description
-    #     product.url = url
-    #     product.price = int(price)
-    #     db.session
-    #     db.session.commit()
-    #     response_body = {
-    #         "msg": "Product updated successfully"
-    #         }
-    #     return jsonify(response_body), 200
 
 ###########################
 # User POST query
@@ -267,17 +228,12 @@ def delete_user(user_id):
     user = User.query.filter_by(id=user_id).first()
     print(user)
     # If user exists, deletes it
-    if user:
+    if user is None:
+        return jsonify({"msg" : 'User not found'}, 404)
+    elif user:
         db.session.delete(user)
         db.session.commit()
-        response_body = {
-            "msg": "User deleted successfully"
-            }
-        return jsonify(response_body), 200
-
-    elif user is None:
-        raise APIException('User not found', status_code=404)
-        return jsonify(user)
+        return jsonify({"msg": "User deleted successfully"}), 200
 
 ###########################
 # User PUT (MODIFY) query
@@ -286,17 +242,11 @@ def delete_user(user_id):
 @api.route('/user/<int:user_id>', methods=['PUT'])
 # @jwt_required()
 def modify_user(user_id):
-    # username = request.json['username']
-    # password = request.json['password']
-    # email = request.json['email']
-    # current_user = get_jwt_identity()
-    user = User.query.filter_by(id=user_id).first()
     body = json.loads(request.data)
+    user = User.query.filter_by(id=user_id).first()
     email_exists = User.query.filter_by(email=body["email"]).all()
     username_exists = User.query.filter_by(username=body["username"]).all()
     print(email_exists)
-    # print(user, body)
-    # print("user: " +user.username, "password: "+user.password, "email: "+user.email)
     # If user exists, modifies it with new inputs
     if user is None:
         return jsonify({"msg": "User doesn't exist"}), 404
@@ -311,22 +261,8 @@ def modify_user(user_id):
         user.email = body["email"] 
     if "password" in body:
         user.password = body["password"]   
-    # if user:
-    #     user.username = username
-    #     user.password = password
-    #     user.email = email
-        # db.session
     db.session.commit()
     return jsonify({"msg": "User updated successfully"}), 200
-
-    # elif user is None:
-    #     raise APIException('User not found', status_code=404)
-    #     return jsonify(user)
-    # elif email == user:
-    #     raise APIException('Email already in use', status_code=401)
-    #     return jsonify(user)
-    # else:
-    #     return "Something else went wrong", 400
 
 ###########################
 # User password POST (MODIFY) query
@@ -379,13 +315,8 @@ def get_favorites_by_user(id_user):
 
     if (results == []):
       return  jsonify({"msg": "You don't have favorites"}), 404
-
-    response_body = {
-        "user_id": favorites[0].id_user,
-        "results": results
-    }
     print(results)
-    return jsonify(response_body), 200
+    return jsonify({"user_id": favorites[0].id_user, "results": results}), 200
 
 ###########################
 # Favorites POST query
@@ -399,7 +330,6 @@ def create_favorites():
     user = request.json['id_user']
     product = request.json['id_products']
     print(user, product)
-    # favorite_query = Favorites.query.filter_by(id=body["id"]).first()
     user_query = User.query.filter_by(id=body["id_user"]).first()
     
     print(user_query)
@@ -419,7 +349,7 @@ def create_favorites():
             # Standard response to request with error code 200 (success)
             return jsonify({"msg": "New favorite list created"}), 200
 
-    return "User is not logged in", 400
+    return jsonify({"msg":"User is not logged in"}), 400
 
 ###########################
 # Shopping POST query
@@ -443,7 +373,7 @@ def create_shopping():
         # Standard response to request with error code 200 (success)
         return jsonify({"msg": "New shopping list created"}), 200
 
-    return "User is not logged in", 400
+    return jsonify({"msg":"User is not logged in"}), 400
 
 ###########################
 # Shopping GET queries
@@ -471,13 +401,8 @@ def get_shopping_by_user(id_user):
 
     if results == []:
       return  jsonify({"msg": "Your cart is empty"}), 404
-
-    response_body = {
-        "user_id": shopping[0].id_user,
-        "results": results
-    }
     print(results)
-    return jsonify(response_body), 200
+    return jsonify({"user_id": shopping[0].id_user,"results": results}), 200
 
 ###########################
 # Order History queries
@@ -510,12 +435,8 @@ def create_order():
     # Flask command to commit the database, saving the changes
     db.session.commit()
     # Standard response to request with error code 200 (success)
-    response_body = {
-        "msg": "New order created"
-    }
-    return jsonify(response_body), 200
+    return jsonify({"msg": "New order created"}), 200
 
-    
 ###########################
 # Favorites DELETE query
 ###########################
@@ -541,15 +462,10 @@ def delete_favorites():
             
             db.session.delete(product_query)
             db.session.commit()
-            response_body = {
-            "msg": "Favorite deleted successfully"
-            }
-            return jsonify(response_body), 200
-            
+            return jsonify({"msg": "Favorite deleted successfully"}), 200
+
         elif product is None:
-            raise APIException('Product not found', status_code=404)
-            return jsonify(product)    
-            
+            return jsonify(({"msg":'Product not found'}), 404)   
 
 ###########################
 # Reviews GET queries
@@ -589,11 +505,8 @@ def get_reviews_by_user(id_user):
     if (results == []):
       return  jsonify({"msg": "User doesn't have any reviews yet"}), 404
 
-    response_body = {
-        "results": results
-    }
     print(results)
-    return jsonify(response_body), 200
+    return jsonify({"results": results}), 200
 
 @api.route('/review', methods=['POST'])
 def create_review():
@@ -615,9 +528,10 @@ def create_review():
         db.session.commit()
         # Standard response to request with error code 200 (success)
         return jsonify({"msg": "New review created for this product"}), 200
-
-    return jsonify({"msg": "Something went bad"}), 404
-
+    if user_query is None:
+        return jsonify({"msg": "User doesn't exist"}), 404
+    
+    return jsonify({"msg": "Something went wrong"}), 400
 
 ###########################
 # Review DELETE query
@@ -625,24 +539,16 @@ def create_review():
 
 @api.route('/reviews/<int:id_user>/<int:id_review>', methods=['DELETE'])
 def delete_review(id_user, id_review):
-    # Load data from postman or input
-    # user_query = User.query.filter_by(id_user=body["id_user"]).first()
-    # product_query = Products.query.filter_by(id_products=body["id_products"]).first()
-    # print(user, content)
-    # favorite_query = Favorites.query.filter_by(id=body["id"]).first()
+    # Filters by user id and review id
     review_query= Review.query.filter_by(id_user=id_user).filter_by(id=id_review).first()
     print(review_query)
     if review_query:
         db.session.delete(review_query)
         db.session.commit()
-        response_body = {
-        "msg": "Review deleted successfully"
-        }
-        return jsonify(response_body), 200
+        return jsonify({"msg": "Review deleted successfully"}), 200
             
     elif review_query is None:
-        raise APIException('Content not found', status_code=404)
-        return jsonify(review_query)  
+        return jsonify({"msg": "Review not found"}), 404
 
     return jsonify({"msg": "Something went wrong"}), 400
 
@@ -654,9 +560,6 @@ def delete_shopping():
     # Load data from postman or input
     body = json.loads(request.data)
     print(body)
-    # user_query = User.query.filter_by(id_user=body["id_user"]).first()
-    # product_query = Products.query.filter_by(id_products=body["id_products"]).first()
-
     user = request.json['id_user']
     product = request.json['id_products']
     print(user, product)
@@ -670,12 +573,9 @@ def delete_shopping():
             
             db.session.delete(product_query)
             db.session.commit()
-            response_body = {
-            "msg": "The product was deleted from your cart"
-            }
-            return jsonify(response_body), 200
+            return jsonify({"msg": "The product was deleted from your cart"}), 200
             
         elif product is None:
-            raise APIException('Product not found', status_code=404)
-            return jsonify(product) 
-    return "ok"
+            return jsonify({"msg": "Product not found"}), 404
+
+    return jsonify({"msg": "Something went wrong"}), 400
