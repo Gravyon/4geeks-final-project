@@ -26,6 +26,7 @@ export const ProductDetail = (props) => {
 
   useEffect(() => {
     actions.getProductDetail(params.id);
+    actions.getProductRatings(params.id);
   }, []);
 
   const next = () => {
@@ -121,6 +122,7 @@ export const ProductDetail = (props) => {
                   </form> */}
                 </div>
                 <div className="card-footer align-bottom ">
+                  <p>{store.avgScore}</p>
                   <h6 className="card-text">Price: USD {item.price}</h6>
                   <hr style={{ borderTop: "2px dotted #bdb284" }} />
                   <div className="d-flex justify-content-between">

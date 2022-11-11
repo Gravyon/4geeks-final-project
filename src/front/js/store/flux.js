@@ -23,7 +23,6 @@ const getState = ({
             priceList: [],
             sum: 0,
             classNameDetails: "",
-            summScore: null,
             avgScore: null,
             productRating: [],
         },
@@ -137,7 +136,6 @@ const getState = ({
             },
             // funcion para obtener detalles de los cuadros
             getProductDetail: async (id) => {
-                let store = getStore();
                 try {
                     const response = await fetch(
                         process.env.BACKEND_URL + "/api/product/" + id
@@ -148,7 +146,6 @@ const getState = ({
                     setStore({
                         productDetail: data,
                     });
-                    console.log(store.productDetail);
                 } catch (err) {
                     console.log(err);
                 }
@@ -571,11 +568,35 @@ const getState = ({
                 }
             },
 
-            //funcion para calcular el promedio de los valores de un array de enteros
-            calcAvgScore: async (productRating) => {
+            getProductRatings: async (id) => {
                 let store = getStore();
+                try {
+                    const response = await fetch(
+                        process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
+                    );
+                    const data = await response.json();
+                    console.log(data); //funciona
 
-                setStore({});
+                    setStore({
+                        productRating: data.map((item) => item.score),
+                    });
+
+                    console.log(store.productRating); //funciona
+                    let sumScore = store.productRating;
+                    getActions().sumaTotal(sumScore);
+                    console.log(store.sum);
+                    let arrLength = store.productRating.length;
+                    console.log(arrLength);
+
+                    setStore({
+                        avgScore: store.sum / arrLength,
+                    });
+
+                    console.log(store.avgScore);
+                    return store.avgScore;
+                } catch (error) {
+                    console.log(error);
+                }
             },
         },
     };
