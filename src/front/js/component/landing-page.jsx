@@ -233,17 +233,17 @@ export const LandingPage = () => {
                           <div className="modal-body">
                             <div className="modal-body">
                               <form
-                                onSubmit={(e) =>
-                                  updateProduct(
-                                    e,
+                                onSubmit={(e) => {
+                                  e.preventDefault();
+                                  actions.updateProduct(
                                     name,
                                     description,
                                     category,
                                     price,
                                     url,
                                     item.id
-                                  )
-                                }
+                                  );
+                                }}
                               >
                                 <label>
                                   <label>
