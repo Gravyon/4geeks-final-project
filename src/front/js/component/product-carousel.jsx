@@ -60,7 +60,7 @@ export const ProductCarousel = () => {
               alt={item.altText}
             />
 
-            <h2 className="card-title text-center">{item.name}</h2>
+            <h5 className="card-title text-center">{item.name}</h5>
           </div>
         </Link>
       </CarouselItem>
@@ -70,19 +70,26 @@ export const ProductCarousel = () => {
   return (
     <div
       className="container bg-dark text-light my-3"
-      style={{ width: "20%", margin: "auto" }}
+      style={{ width: "40%", margin: "auto" }}
     >
-      <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+      <Carousel
+        activeIndex={activeIndex}
+        next={next}
+        previous={previous}
+        style={{ width: "40%", margin: "auto" }}
+      >
         <CarouselIndicators
           items={store.product}
           activeIndex={activeIndex}
           onClickHandler={goToIndex}
+          style={{ width: "40%", margin: "auto" }}
         />
         {slides}
         <CarouselControl
           direction="prev"
           directionText="Previous"
           onClickHandler={previous}
+          style={{ padding: "-50px" }}
         />
         <CarouselControl
           direction="next"
