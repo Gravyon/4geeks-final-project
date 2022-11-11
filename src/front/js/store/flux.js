@@ -150,11 +150,8 @@ const getState = ({
                         productId: data.id,
                     });
                     console.log(store.productDetail);
-<<<<<<< HEAD
                     console.log(store.productId);
                     return store.productId;
-=======
->>>>>>> 4f94187d8f632928ebe812f74d36b886578ebbd4
                 } catch (err) {
                     console.log(err);
                 }
@@ -589,80 +586,48 @@ const getState = ({
                     console.log(error);
                 }
             },
-<<<<<<< HEAD
             updateProduct: async (
                 name,
                 description,
                 category,
-                price,
                 url,
-                productId
+                productId,
+                price
             ) => {
                 let store = getStore();
-                // let product_id = store.productId;
+                // const price = parseInt(price);
+                let product_id = store.productId;
                 // userId = store.profile.user.id
                 console.log(productId);
-                console.log(name, description, category, typeof price, url);
-                // try {
-                //     const response = await axios.put(
-                //         process.env.BACKEND_URL + "/api/product/" + product_id, {
-                //             name,
-                //             description,
-                //             category,
-                //             price,
-                //             url,
-                //         }
-                //     );
-                //     // console.log(productId);
-                //     // console.log(product_id);
-
-                //     if (response.status === 200) {
-                //         Swal.fire(response.data.msg);
-                //         getActions().getProduct();
-                //         return response;
-                //     }
-
-                //     console.log(response);
-                //     return true;
-                // } catch (error) {
-                //     console.log(error);
-                //     if (error.response.status === 404) {
-                //         alert(error.response.data.msg);
-                //         return error.response.data.msg;
-                //     }
-                // }
-=======
-
-            getProductRatings: async (id) => {
-                let store = getStore();
+                console.log(name, description, category, parseInt(price), url);
                 try {
-                    const response = await fetch(
-                        process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
+                    const response = await axios.put(
+                        process.env.BACKEND_URL + "/api/product/" + product_id, {
+                            name,
+                            description,
+                            category,
+                            price,
+                            url,
+                        }
                     );
-                    const data = await response.json();
-                    console.log(data); //funciona
+                    // console.log(productId);
+                    // console.log(product_id);
 
-                    setStore({
-                        productRating: data.map((item) => item.score),
-                    });
+                    if (response.status === 200) {
+                        Swal.fire(response.data.msg);
+                        getActions().getProduct();
+                        return response;
+                    }
 
-                    console.log(store.productRating); //funciona
-                    let sumScore = store.productRating;
-                    getActions().sumaTotal(sumScore);
-                    console.log(store.sum);
-                    let arrLength = store.productRating.length;
-                    console.log(arrLength);
-
-                    setStore({
-                        avgScore: store.sum / arrLength,
-                    });
-
-                    console.log(store.avgScore);
-                    return store.avgScore;
+                    console.log(response);
+                    return true;
                 } catch (error) {
                     console.log(error);
+                    if (error.response.status === 404) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
                 }
->>>>>>> 4f94187d8f632928ebe812f74d36b886578ebbd4
             },
         },
     };

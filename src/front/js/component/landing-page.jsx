@@ -55,7 +55,14 @@ export const LandingPage = () => {
 
   const updateProduct = (e, name, description, category, price, url, id) => {
     e.preventDefault;
-    actions.updateProduct(name, description, category, price, url, id);
+    actions.updateProduct(
+      name,
+      description,
+      category,
+      parseInt(price),
+      url,
+      id
+    );
   };
 
   return (
@@ -239,7 +246,7 @@ export const LandingPage = () => {
                                     name,
                                     description,
                                     category,
-                                    price,
+                                    parseInt(price),
                                     url,
                                     item.id
                                   );
