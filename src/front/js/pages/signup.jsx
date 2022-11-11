@@ -2,36 +2,64 @@ import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Component } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+
 export const SignUp = () => {
   // definimos los estados
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [username, setUsername] = useState("");
   const { actions } = useContext(Context);
   let navigate = useNavigate();
 
-  const doSubmit = async (e) => {
-    e.preventDefault();
-    let onSignUp = await actions.signup(username, email, password);
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string('Enter your email')
+      .email('Enter a valid email')
+      .required("Email required"),
+    password: Yup.string('Enter your password')
+      .min(2, 'Password should be of minimum 8 characters length')
+      .max(50, "Too Long!")
+      .required("Password required"),
+    username: Yup.string('Enter your username')
+    .min(2, 'Username should be of minimum 8 characters length')
+    .max(30, "Too Long!")
+    .required("Username required"),
+  });
+  // const doSubmit = async (e) => {
+  //   e.preventDefault();
+  //   let onSignUp = await actions.signup(username, email, password);
 
-    if (onSignUp === "User email already exists") {
-      swal("User email already exists, redirecting to login");
-      navigate("/login");
-    } else if (onSignUp === "New user created") {
-      navigate("/");
-    }
-  };
+  //   if (onSignUp === "User email already exists") {
+  //     swal("User email already exists, redirecting to login");
+  //     navigate("/login");
+  //   } else if (onSignUp === "New user created") {
+  //     navigate("/");
+  //   }
+  // };
 
   return (
-    <form onSubmit={doSubmit}>
-      <div className="container-fluid text-center">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div col="12">
-            <div
+    <Formik
+    //Valores iniciales
+    initialValues={{ email: "", password: "", username: "" }}
+    validationSchema={SignupSchema}
+    // Declara onSubmit y se le pasan los valores del login dentro, anotandolos con values
+    onSubmit={async (values) => {
+      let onSignUp = await actions.signup(values.email, values.password, values.username);
+      if (onSignUp === "User email already exists") {
+        swal("User email already exists, redirecting to login");
+        navigate("/login");
+      } else if (onSignUp === "New user created") {
+        navigate("/");
+      }
+    }}
+  >
+      {({ errors, touched}) => (
+     <Form>
+       <div className="container-fluid text-center">
+         <div className="row d-flex justify-content-center align-items-center h-100">
+           <div col="12">
+             <div
               className="bg-dark text-white my-5 mx-auto"
               style={{ borderRadius: "1rem", maxWidth: "400px" }}
             >
@@ -48,41 +76,35 @@ export const SignUp = () => {
                     Login
                   </Link>
                 </p>
-                <p></p>
+    
                 <div className="col-12 ">
-                  <input
+                  <Field
                     type="text"
-                    id="email"
+                    name="username"
                     placeholder="Username"
                     className="form-control"
-                    onChange={(e) => setUsername(e.target.value)}
-                    value={username}
-                    required
                   />
+                  {errors.username && touched.username && errors.username}
                   <label className="form-label" htmlFor="form1Example2"></label>
                 </div>
                 <div className="col-12 ">
-                  <input
+                  <Field
                     type="email"
-                    id="email"
+                    name="email"
                     placeholder="Email Address"
                     className="form-control"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                    required
                   />
+                  {errors.email && touched.email && errors.email}
                   <label className="form-label" htmlFor="form1Example2"></label>
                 </div>
                 <div className="col-12 ">
-                  <input
+                  <Field
                     type="password"
-                    id="password"
+                    name="password"
                     className="form-control"
                     placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    required
                   />
+                  {errors.password && touched.password && errors.password}
                 </div>
                 <p className="small mb-3 pb-lg-2">
                   <br />
@@ -90,7 +112,7 @@ export const SignUp = () => {
                     Forgot password?
                   </Link>
                 </p>
-
+    
                 <button
                   type="submit "
                   className="btn btn-outline-light btn-lg mx-2 px-5"
@@ -104,6 +126,9 @@ export const SignUp = () => {
           </div>
         </div>
       </div>
-    </form>
-  );
-};
+    </Form>
+    )}
+    </Formik>
+    );
+  };
+  
