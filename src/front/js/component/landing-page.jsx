@@ -67,10 +67,10 @@ export const LandingPage = () => {
 
       <div className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center w-100 ">
         {store.product.length > 0 ? (
-          store.product.map((item, id) => (
+          store.product.map((item) => (
             <Card
               className="mx-4 my-4"
-              key={id}
+              key={item.id}
               style={{
                 width: "18rem",
                 background: "#212529",
@@ -82,7 +82,7 @@ export const LandingPage = () => {
             >
               <Link
                 style={{ textDecoration: "none" }}
-                to={"/product-detail/" + (id + 1)}
+                to={"/product-detail/" + item.id}
                 onClick={() => actions.cambiaClassNameDetails(id)}
               >
                 <Card.Body>

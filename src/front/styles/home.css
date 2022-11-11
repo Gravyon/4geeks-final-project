@@ -13,7 +13,7 @@ h1 {
 
 body,
 #layout {
-    background-image: radial-gradient(circle at 120.71% 50%,
+    /* background-image: radial-gradient(circle at 120.71% 50%,
             #da4fcd 0,
             #e745bd 6.25%,
             #f13cac 12.5%,
@@ -30,7 +30,19 @@ body,
             #cb7300 81.25%,
             #be7b00 87.5%,
             #b08200 93.75%,
-            #a28800 100%);
+            #a28800 100%); */
+    background: #c6ffdd;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right,
+            #f7797d,
+            #fbd786,
+            #c6ffdd);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,
+            #f7797d,
+            #fbd786,
+            #c6ffdd);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .carousel-control-prev {

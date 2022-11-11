@@ -25,6 +25,8 @@ const getState = ({
             // productIdList: [],
             sum: 0,
             classNameDetails: "",
+            avgScore: null,
+            productRating: [],
         },
         actions: {
             // Profile
@@ -148,8 +150,11 @@ const getState = ({
                         productId: data.id,
                     });
                     console.log(store.productDetail);
+<<<<<<< HEAD
                     console.log(store.productId);
                     return store.productId;
+=======
+>>>>>>> 4f94187d8f632928ebe812f74d36b886578ebbd4
                 } catch (err) {
                     console.log(err);
                 }
@@ -584,6 +589,7 @@ const getState = ({
                     console.log(error);
                 }
             },
+<<<<<<< HEAD
             updateProduct: async (
                 name,
                 description,
@@ -625,6 +631,38 @@ const getState = ({
                 //         return error.response.data.msg;
                 //     }
                 // }
+=======
+
+            getProductRatings: async (id) => {
+                let store = getStore();
+                try {
+                    const response = await fetch(
+                        process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
+                    );
+                    const data = await response.json();
+                    console.log(data); //funciona
+
+                    setStore({
+                        productRating: data.map((item) => item.score),
+                    });
+
+                    console.log(store.productRating); //funciona
+                    let sumScore = store.productRating;
+                    getActions().sumaTotal(sumScore);
+                    console.log(store.sum);
+                    let arrLength = store.productRating.length;
+                    console.log(arrLength);
+
+                    setStore({
+                        avgScore: store.sum / arrLength,
+                    });
+
+                    console.log(store.avgScore);
+                    return store.avgScore;
+                } catch (error) {
+                    console.log(error);
+                }
+>>>>>>> 4f94187d8f632928ebe812f74d36b886578ebbd4
             },
         },
     };
