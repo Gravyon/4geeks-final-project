@@ -8,7 +8,6 @@ import Form from "react-bootstrap/Form";
 import { useForm, ValidationError } from "@formspree/react";
 import Iframe from "react-iframe";
 
-
 export const ContactUs = () => {
   // definimos los estados
   const [email, setEmail] = useState("");
@@ -36,7 +35,12 @@ export const ContactUs = () => {
               style={{ borderRadius: "1rem", maxWidth: "800px" }}
             >
               <div className="card-body p-5 d-flex flex-column align-items-center mx-auto w-100">
-                <h2 className="fw-bold mb-2 text-uppercase" style={{ color: "#bdb284" }}>Contact Us</h2>
+                <h2
+                  className="fw-bold mb-2 text-uppercase"
+                  style={{ color: "#bdb284" }}
+                >
+                  Contact Us
+                </h2>
                 <p className="text-white-50">
                   Please enter your info and we will contact you
                 </p>
@@ -49,7 +53,6 @@ export const ContactUs = () => {
                     onChange={(e) => setFirstName(e.target.value)}
                     value={firstName}
                     required
-                    
                     placeholder="First Name"
                   />
                 </div>
@@ -92,7 +95,8 @@ export const ContactUs = () => {
                 </div>
                 <button
                   type="submit "
-                  className="btn btn-outline-light btn-lg mx-2 px-5" style={{ color: "#bdb284" }}
+                  className="btn btn-outline-light btn-lg mx-2 px-5"
+                  style={{ color: "#bdb284" }}
                   color="white"
                 >
                   Submit

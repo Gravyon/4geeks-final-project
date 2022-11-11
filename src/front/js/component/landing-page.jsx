@@ -53,22 +53,9 @@ export const LandingPage = () => {
   const [price, setPrice] = useState("");
   const [url, setUrl] = useState("");
 
-  const updateProduct = async (e) => {
-    e.preventDefault();
-    await actions.updateProduct(name, description, category, price, url);
-    // let onUploaded = await actions.createProduct(
-    //   name,
-    //   description,
-    //   category,
-    //   price
-    // );
-    // console.log(onUploaded);
-
-    setName("");
-    setCategory("");
-    setDescription("");
-    setPrice("");
-    setUrl("");
+  const updateProduct = (e, name, description, category, price, url, id) => {
+    e.preventDefault;
+    actions.updateProduct(name, description, category, price, url, id);
   };
 
   return (
@@ -125,15 +112,6 @@ export const LandingPage = () => {
               </Link>
               <Card.Body>
                 <div className="d-flex align-bottom justify-content-between ">
-                  {/* <div className="col-6 d-flex justify-content-between">
-                    <Link
-                      to={"/product-detail/" + (id + 1)}
-                      className="btn btn-primary"
-                    >
-                      Leer mas...
-                    </Link>
-                  </div> */}
-
                   <button
                     type="button"
                     onClick={() => handleAddShopping(item.id)}
@@ -254,13 +232,24 @@ export const LandingPage = () => {
                           </div>
                           <div className="modal-body">
                             <div className="modal-body">
-                              <form onSubmit={updateProduct}>
+                              <form
+                                onSubmit={(e) =>
+                                  updateProduct(
+                                    e,
+                                    name,
+                                    description,
+                                    category,
+                                    price,
+                                    url,
+                                    item.id
+                                  )
+                                }
+                              >
                                 <label>
                                   <label>
                                     Change the name:{" "}
                                     <input
                                       type="text"
-                                      // placeholder="{profile.name}"
                                       onChange={(e) => setName(e.target.value)}
                                       value={name}
                                     />
@@ -269,7 +258,6 @@ export const LandingPage = () => {
                                     Change the category:{" "}
                                     <input
                                       type="text"
-                                      // placeholder="Change your category"
                                       onChange={(e) =>
                                         setCategory(e.target.value)
                                       }
@@ -280,7 +268,6 @@ export const LandingPage = () => {
                                     Change the url:{" "}
                                     <input
                                       type="text"
-                                      // placeholder="Change your category"
                                       onChange={(e) => setUrl(e.target.value)}
                                       value={url}
                                     />
@@ -289,7 +276,6 @@ export const LandingPage = () => {
                                     Change the description:{" "}
                                     <input
                                       type="text"
-                                      // placeholder="Change your description"
                                       onChange={(e) =>
                                         setDescription(e.target.value)
                                       }
@@ -300,7 +286,6 @@ export const LandingPage = () => {
                                     Change the price:{" "}
                                     <input
                                       type="text"
-                                      // placeholder="Change your price"
                                       onChange={(e) => setPrice(e.target.value)}
                                       value={price}
                                     />
@@ -328,70 +313,6 @@ export const LandingPage = () => {
                         </div>
                       </div>
                     </div>
-                    {/* <Button
-                      onClick={toggle}
-                      className="p-2 d-flex mb-2"
-                      type="button"
-                      variant="dark"
-                      style={{ color: "#bdb284" }}
-                    >
-                      <i className="bi bi-pencil-square"></i>
-                    </Button>
-                    <Modal isOpen={modal} toggle={toggle}>
-                      <ModalHeader toggle={toggle}>
-                        Modify your product
-                      </ModalHeader>
-                      <ModalBody>
-                        <form onSubmit={updateProduct}>
-                          <ListGroup>
-                            <ListGroup.Item>
-                              Change the name:{" "}
-                              <Form.Control
-                                type="text"
-                                // placeholder="{profile.name}"
-                                onChange={(e) => setName(e.target.value)}
-                                value={name}
-                              />
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              Change the category:{" "}
-                              <Form.Control
-                                type="text"
-                                // placeholder="Change your category"
-                                onChange={(e) => setCategory(e.target.value)}
-                                value={category}
-                              />
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              Change the description:{" "}
-                              <Form.Control
-                                type="text"
-                                // placeholder="Change your description"
-                                onChange={(e) => setDescription(e.target.value)}
-                                value={description}
-                              />
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              Change the price:{" "}
-                              <Form.Control
-                                type="text"
-                                // placeholder="Change your price"
-                                onChange={(e) => setPrice(e.target.value)}
-                                value={price}
-                              />
-                            </ListGroup.Item>
-                          </ListGroup>
-                          <Button
-                            data-dismiss="form"
-                            type="submit"
-                            color="primary"
-                          >
-                            Save changes
-                          </Button>{" "}
-                        </form>
-                      </ModalBody>
-                      <ModalFooter></ModalFooter>
-                    </Modal> */}
                   </div>
                   {/* termina el modal de editar producto */}
                   <span

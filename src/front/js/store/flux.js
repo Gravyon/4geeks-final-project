@@ -584,37 +584,47 @@ const getState = ({
                     console.log(error);
                 }
             },
-            updateProduct: async (name, description, category, price, url) => {
+            updateProduct: async (
+                name,
+                description,
+                category,
+                price,
+                url,
+                productId
+            ) => {
                 let store = getStore();
-                let product_id = store.productId;
+                // let product_id = store.productId;
                 // userId = store.profile.user.id
-                try {
-                    const response = await axios.put(
-                        process.env.BACKEND_URL + "/api/product/" + product_id, {
-                            name,
-                            description,
-                            category,
-                            price,
-                            url,
-                        }
-                    );
-                    // console.log(productId);
-                    // console.log(product_id);
+                console.log(productId);
+                console.log(name, description, category, typeof price, url);
+                // try {
+                //     const response = await axios.put(
+                //         process.env.BACKEND_URL + "/api/product/" + product_id, {
+                //             name,
+                //             description,
+                //             category,
+                //             price,
+                //             url,
+                //         }
+                //     );
+                //     // console.log(productId);
+                //     // console.log(product_id);
 
-                    if (response.status === 200) {
-                        Swal.fire(response.data.msg);
-                        getActions().getProduct();
-                        return response;
-                    }
-                    console.log(response);
-                    return true;
-                } catch (error) {
-                    console.log(error);
-                    if (error.response.status === 404) {
-                        alert(error.response.data.msg);
-                        return error.response.data.msg;
-                    }
-                }
+                //     if (response.status === 200) {
+                //         Swal.fire(response.data.msg);
+                //         getActions().getProduct();
+                //         return response;
+                //     }
+
+                //     console.log(response);
+                //     return true;
+                // } catch (error) {
+                //     console.log(error);
+                //     if (error.response.status === 404) {
+                //         alert(error.response.data.msg);
+                //         return error.response.data.msg;
+                //     }
+                // }
             },
         },
     };
