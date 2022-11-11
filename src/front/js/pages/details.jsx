@@ -42,10 +42,13 @@ export const ProductDetail = (props) => {
 
   return (
     <div className="row">
+      <div className="" id="product-carousel">
+        <ProductCarousel />
+      </div>
       <div
-        className=""
+        className="col-6 my-4"
         id="product-details"
-        style={{ width: "80%", margin: "auto" }}
+        style={{ width: "60%", margin: "auto" }}
       >
         <div
           className="card mb-3 bg-dark text-white"
@@ -108,9 +111,6 @@ export const ProductDetail = (props) => {
         <div>
           <Scoring />
         </div>
-      </div>
-      <div className="" id="product-carousel">
-        <ProductCarousel />
       </div>
     </div>
   );
