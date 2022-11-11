@@ -11,9 +11,11 @@ export const Login = () => {
   const { store, actions } = useContext(Context);
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Email required"),
-    password: Yup.string()
-      .min(2, "Too Short!")
+    email: Yup.string('Enter your email')
+      .email('Enter a valid email')
+      .required("Email required"),
+    password: Yup.string('Enter your password')
+      .min(2, 'Password should be of minimum 8 characters length')
       .max(50, "Too Long!")
       .required("Password required"),
   });
@@ -23,8 +25,8 @@ export const Login = () => {
       initialValues={{ email: "", password: "" }}
       validationSchema={SignupSchema}
       // Declara onSubmit y se le pasan los valores del login dentro, anotandolos con values
-      onSubmit={(values, { setSubmitting }) => {
-        let onLogged = actions.login(values.email, values.password);
+      onSubmit={async (values) => {
+        let onLogged = await actions.login(values.email, values.password);
         if (onLogged === "User doesn't exist") {
           navigate("/signup");
         } else if (onLogged.msg === "Bad email or password") {
@@ -34,7 +36,7 @@ export const Login = () => {
         }
       }}
     >
-      {({ errors, touched, isSubmitting }) => (
+      {({ errors, touched}) => (
         <Form>
           <div className="container-fluid text-center">
             <div className="row d-flex justify-content-center align-items-center h-100">
@@ -83,7 +85,7 @@ export const Login = () => {
                     </p>
                     <button
                       type="submit"
-                      disabled={isSubmitting}
+                      // disabled={isSubmitting}
                       className="btn btn-outline-light btn-lg mx-2 px-5"
                       style={{ color: "#bdb284" }}
                       color="white"
