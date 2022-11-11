@@ -598,7 +598,7 @@ const getState = ({
                 // const price = parseInt(price);
                 let product_id = store.productId;
                 // userId = store.profile.user.id
-                console.log(productId);
+                console.log(store.productId);
                 console.log(name, description, category, parseInt(price), url);
                 try {
                     const response = await axios.put(
@@ -610,6 +610,8 @@ const getState = ({
                             url,
                         }
                     );
+                    console.log(productId);
+                    console.log(name, description, category, parseInt(price), url);
                     // console.log(productId);
                     // console.log(product_id);
 
@@ -620,13 +622,15 @@ const getState = ({
                     }
 
                     console.log(response);
-                    return true;
+                    // return true;
                 } catch (error) {
                     console.log(error);
-                    if (error.response.status === 404) {
-                        alert(error.response.data.msg);
-                        return error.response.data.msg;
-                    }
+                    console.log(productId);
+                    console.log(name, description, category, parseInt(price), url);
+                    // if (error.response.status === 404) {
+                    //     alert(error.response.data.msg);
+                    //     return error.response.data.msg;
+                    // }
                 }
             },
         },
