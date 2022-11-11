@@ -23,6 +23,8 @@ const getState = ({
             priceList: [],
             sum: 0,
             classNameDetails: "",
+            avgScore: null,
+            productRating: [],
         },
         actions: {
             // Profile
@@ -134,6 +136,7 @@ const getState = ({
             },
             // funcion para obtener detalles de los cuadros
             getProductDetail: async (id) => {
+                let store = getStore();
                 try {
                     const response = await fetch(
                         process.env.BACKEND_URL + "/api/product/" + id
@@ -144,6 +147,7 @@ const getState = ({
                     setStore({
                         productDetail: data,
                     });
+                    console.log(store.productDetail);
                 } catch (err) {
                     console.log(err);
                 }
@@ -562,6 +566,37 @@ const getState = ({
                     //     );
                     //     return error.response.data;
                     // }
+                    console.log(error);
+                }
+            },
+
+            getProductRatings: async (id) => {
+                let store = getStore();
+                try {
+                    const response = await fetch(
+                        process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
+                    );
+                    const data = await response.json();
+                    console.log(data); //funciona
+
+                    setStore({
+                        productRating: data.map((item) => item.score),
+                    });
+
+                    console.log(store.productRating); //funciona
+                    let sumScore = store.productRating;
+                    getActions().sumaTotal(sumScore);
+                    console.log(store.sum);
+                    let arrLength = store.productRating.length;
+                    console.log(arrLength);
+
+                    setStore({
+                        avgScore: store.sum / arrLength,
+                    });
+
+                    console.log(store.avgScore);
+                    return store.avgScore;
+                } catch (error) {
                     console.log(error);
                 }
             },

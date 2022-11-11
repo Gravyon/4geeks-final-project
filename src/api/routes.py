@@ -604,7 +604,7 @@ def create_review():
         # Flask command to commit the database, saving the changes
         db.session.commit()
         # Standard response to request with error code 200 (success)
-        return jsonify({"msg": "New review created on that product by that user"}), 200
+        return jsonify({"msg": "New review created for this product"}), 200
 
     return jsonify({"msg": "Something went bad"}), 404
 
