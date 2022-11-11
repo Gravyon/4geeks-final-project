@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 
 import { Scoring } from "../component/scoring.jsx";
+import { ProductCarousel } from "../component/product-carousel.jsx";
 import "../../styles/details.css";
 
 export const ProductDetail = (props) => {
@@ -19,7 +20,7 @@ export const ProductDetail = (props) => {
   useEffect(() => {
     actions.getProductDetail(params.id);
     actions.getProductRatings(params.id);
-  }, []);
+  }, [params.id]);
 
   let handleAddShopping = async (id) => {
     //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
@@ -40,67 +41,76 @@ export const ProductDetail = (props) => {
   };
 
   return (
-    <div style={{ width: "80%", margin: "auto" }}>
+    <div className="row">
       <div
-        className="card mb-3 bg-dark text-white"
-        style={{ maxWidth: "100%" }}
+        className=""
+        id="product-details"
+        style={{ width: "80%", margin: "auto" }}
       >
-        <div className="row g-0">
-          <div className="col-md-5">
-            <img
-              src={store.productDetail.url}
-              className="img-fluid rounded-start"
-              alt="..."
-            />
-          </div>
-          <div className="col-md-7">
-            <div className="card-body bg-dark text-white">
-              <div style={{ height: "75%" }}>
-                <h1 className="card-title">{store.productDetail.name}</h1>
-                <hr style={{ borderTop: "2px dotted #bdb284" }} />
+        <div
+          className="card mb-3 bg-dark text-white"
+          style={{ maxWidth: "100%" }}
+        >
+          <div className="row g-0">
+            <div className="col-md-5">
+              <img
+                src={store.productDetail.url}
+                className="img-fluid rounded-start"
+                alt="..."
+              />
+            </div>
+            <div className="col-md-7">
+              <div className="card-body bg-dark text-white">
+                <div style={{ height: "75%" }}>
+                  <h1 className="card-title">{store.productDetail.name}</h1>
+                  <hr style={{ borderTop: "2px dotted #bdb284" }} />
 
-                <p className="card-text">
-                  Category: {store.productDetail.category}
-                </p>
-                <p className="card-text">
-                  <small className="text-muted">
-                    Product description: {store.productDetail.description}
-                  </small>
-                </p>
-                <p className="card-text">USD {store.productDetail.price}</p>
-                <p className="card-text">Score: {store.avgScore}</p>
-              </div>
+                  <p className="card-text">
+                    Category: {store.productDetail.category}
+                  </p>
+                  <p className="card-text">
+                    <small className="text-muted">
+                      Product description: {store.productDetail.description}
+                    </small>
+                  </p>
+                  <p className="card-text">USD {store.productDetail.price}</p>
+                  <p className="card-text">Score: {store.avgScore}</p>
+                </div>
 
-              <div className="card-footer align-bottom ">
-                <div className="d-flex justify-content-between">
-                  <button
-                    type="button"
-                    onClick={() => handleAddShopping(store.productDetail.id)}
-                    className="btn btn-outline-light d-flex align-bottom bg-dark"
-                    style={{ float: "right", color: "#bdb284" }}
-                  >
-                    <i className="fa fa-cart-plus"></i>
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-light align-bottom bg-dark"
-                    style={{ color: "#bdb284" }}
-                  >
-                    <i
-                      className="far fa-heart"
-                      onClick={() => {
-                        handleAddFavorites(store.productDetail.id);
-                      }}
-                    ></i>
-                  </button>
+                <div className="card-footer align-bottom ">
+                  <div className="d-flex justify-content-between">
+                    <button
+                      type="button"
+                      onClick={() => handleAddShopping(store.productDetail.id)}
+                      className="btn btn-outline-light d-flex align-bottom bg-dark"
+                      style={{ float: "right", color: "#bdb284" }}
+                    >
+                      <i className="fa fa-cart-plus"></i>
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline-light align-bottom bg-dark"
+                      style={{ color: "#bdb284" }}
+                    >
+                      <i
+                        className="far fa-heart"
+                        onClick={() => {
+                          handleAddFavorites(store.productDetail.id);
+                        }}
+                      ></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div>
+          <Scoring />
+        </div>
       </div>
-      <div>
-        <Scoring />
+      <div className="" id="product-carousel">
+        <ProductCarousel />
       </div>
     </div>
   );
