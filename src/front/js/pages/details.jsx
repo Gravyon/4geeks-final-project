@@ -41,15 +41,14 @@ export const ProductDetail = (props) => {
   };
 
   return (
-    <div className="row">
-      <div className="" id="product-carousel">
+    <div className="row" style={{ margin: "auto" }}>
+      <div className="col-4 my-4 bg-dark text-ligth ml-3" id="product-carousel">
+        <div>
+          <h2 style={{ textAlign: "center" }}>Related products:</h2>
+        </div>
         <ProductCarousel />
       </div>
-      <div
-        className="col-6 my-4"
-        id="product-details"
-        style={{ width: "60%", margin: "auto" }}
-      >
+      <div className="col-8 my-4" id="product-details" style={{ width: "60%" }}>
         <div
           className="card mb-3 bg-dark text-white"
           style={{ maxWidth: "100%" }}

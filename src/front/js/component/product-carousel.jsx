@@ -57,7 +57,7 @@ export const ProductCarousel = () => {
           <div className="card bg-dark">
             <img
               src={item.url}
-              className="img-fluid rounded-start"
+              className="img-fluid rounded-start w-100"
               alt={item.altText}
             />
 
@@ -71,13 +71,13 @@ export const ProductCarousel = () => {
   return (
     <div
       className="container bg-dark text-light my-3"
-      style={{ width: "40%", margin: "auto" }}
+      style={{ width: "65%", margin: "auto", marginTop: "30%" }}
     >
       <Carousel
         activeIndex={activeIndex}
         next={next}
         previous={previous}
-        style={{ width: "40%", margin: "auto" }}
+        style={{ width: "70%", margin: "auto" }}
       >
         <CarouselIndicators
           items={store.product}
