@@ -41,7 +41,10 @@ export const ProductDetail = (props) => {
 
   return (
     <div style={{ width: "80%", margin: "auto" }}>
-      <div className="card mb-3" style={{ maxWidth: "100%" }}>
+      <div
+        className="card mb-3 bg-dark text-white"
+        style={{ maxWidth: "100%" }}
+      >
         <div className="row g-0">
           <div className="col-md-5">
             <img
@@ -51,7 +54,7 @@ export const ProductDetail = (props) => {
             />
           </div>
           <div className="col-md-7">
-            <div className="card-body">
+            <div className="card-body bg-dark text-white">
               <div style={{ height: "75%" }}>
                 <h1 className="card-title">{store.productDetail.name}</h1>
                 <hr style={{ borderTop: "2px dotted #bdb284" }} />
