@@ -1,97 +1,117 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Context } from "../store/appContext";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Component } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { useForm, ValidationError } from "@formspree/react";
+import React from "react";
+import { useForm} from "@formspree/react";
 import Iframe from "react-iframe";
-
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 
 export const ContactUs = () => {
-  // definimos los estados
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const { actions } = useContext(Context);
-  let navigate = useNavigate();
 
-  const [state, handleSubmit] = useForm(process.env.CONTACT_FORM);
-  if (state.succeeded) {
-    return (
-      <h1 className="position-relative position-absolute top-50 start-50 translate-middle">
-        Thanks for your feedback!
-      </h1>
-    );
-  }
+  const SignupSchema = Yup.object().shape({
+    fname: Yup.string('Enter your name')
+    .max(50, "Too Long!")
+    .min(2, 'Too short')
+    .required("A name is required"),
+    lname: Yup.string()
+    .min(2, 'Too short')
+    .max(50, "Too Long!"),
+    email: Yup.string('Enter your email')
+      .email('Enter a valid email')
+      .required("Email required"),
+    message: Yup.string()
+    .min(2, 'Too short')
+    .max(250, "Too Long!")
+    .required("Please leave your feedback"),
+  });
+
+// const contactForm = (values) => {
+//   const [state] = useForm(process.env.CONTACT_FORM);
+//   if (state.succeeded) {
+//     return (
+//       <h1 className="position-relative position-absolute top-50 start-50 translate-middle">
+//         Thanks for your feedback!
+//       </h1>
+//     );
+//   }
+// }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <Formik
+    initialValues={{ email: "", fname: "", lname:"", message:"" }}
+    validationSchema={SignupSchema}
+    onSubmit={(values) => {
+      values.email
+      values.fname
+      values.lname
+      values.message
+      setTimeout(() => {
+        console.log(JSON.stringify(values, null, 2));
+        // setSubmitting(false);
+      }, 400);
+      const [state] = useForm(process.env.CONTACT_FORM);
+      if (state.succeeded) {
+        return (
+          <h1 className="position-relative position-absolute top-50 start-50 translate-middle">
+            Thanks for your feedback!
+          </h1>
+        );
+      }
+    }}
+    >
+    {({ errors, touched}) => (
+    <Form>
       <div className="container-fluid">
         <div className="row">
           <div className="col-12 mb-3">
             <div
               className="card bg-dark text-white my-5 mx-auto"
-              style={{ borderRadius: "1rem", maxWidth: "800px" }}
-            >
+              style={{ borderRadius: "1rem", maxWidth: "900px" }}
+              >
               <div className="card-body p-5 d-flex flex-column align-items-center mx-auto w-100">
                 <h2 className="fw-bold mb-2 text-uppercase" style={{ color: "#bdb284" }}>Contact Us</h2>
                 <p className="text-white-50">
                   Please enter your info and we will contact you
                 </p>
                 <div className="col-12 p-3">
-                  <input
+                  <Field
                     className="form-control"
-                    id="formControlLg"
+                    name="fname"
                     type="text"
-                    size="lg"
-                    onChange={(e) => setFirstName(e.target.value)}
-                    value={firstName}
-                    required
-                    
                     placeholder="First Name"
-                  />
+                    />
+                    {errors.fname && touched.fname && errors.fname}
                 </div>
                 <div className="col-12 p-3">
-                  <input
-                    id="formControlLg"
+                  <Field
+                    name="lname"
                     className="form-control"
                     type="text"
-                    size="lg"
-                    onChange={(e) => setLastName(e.target.value)}
-                    value={lastName}
-                    required
                     placeholder="Last Name"
                   />
+                  {errors.lname && touched.lname && errors.lname}
                 </div>
                 <div className="col-12 p-3">
-                  <input
-                    id="formControlLg"
+                  <Field
+                    name="email"
                     className="form-control"
                     type="email"
-                    size="lg"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                    required
                     placeholder="Email Address"
-                  />
+                    />
+                    {errors.email && touched.email && errors.email}
                 </div>
                 <div className="col-12 form-group shadow-textarea p-3">
-                  <textarea
+                  <Field
                     className="form-control z-depth-1"
-                    id="message"
+                    type="text"
+                    component="textarea"
                     name="message"
                     rows="3"
                     placeholder="Write something here..."
-                    required
-                    onChange={(e) => setMessage(e.target.value)}
-                    value={message}
-                  ></textarea>
+                  />
+                  {errors.message && touched.message && errors.message}
                   <br />
                 </div>
                 <button
-                  type="submit "
+                  type="submit"
                   className="btn btn-outline-light btn-lg mx-2 px-5" style={{ color: "#bdb284" }}
                   color="white"
                 >
@@ -111,6 +131,8 @@ export const ContactUs = () => {
           </div>
         </div>
       </div>
-    </form>
+    </Form>
+    )}
+</Formik>
   );
 };
