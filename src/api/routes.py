@@ -127,7 +127,7 @@ def create_product():
     category=body["category"],
     description=body["description"],
     url=body["url"],
-    price=body["price"])
+    price=int(body["price"]))
     print(new_product)
     # Flask command to add a new entry
     db.session.add(new_product)
@@ -167,29 +167,39 @@ def delete_product(product_id):
 @api.route('/product/<int:product_id>', methods=['PUT'])
 def modify_product(product_id):
     body = json.loads(request.data)
-    name = request.json['name']
-    category = request.json['category']
-    description = request.json['description']
-    url = request.json['url']
-    price = request.json['price']
+    # name = request.json['name']
+    # category = request.json['category']
+    # description = request.json['description']
+    # url = request.json['url']
+    # price = request.json['price']
     product = Products.query.filter_by(id=product_id).first()
     # If product exists, modifies it with new inputs
-    if product:
-        product.name = name
-        product.category = category
-        product.description = description
-        product.url = url
-        product.price = price
-        db.session
-        db.session.commit()
-        response_body = {
-            "msg": "Product updated successfully"
-            }
-        return jsonify(response_body), 200
-
-    elif product is None:
-        raise APIException('Product not found', status_code=404)
-        return jsonify(product)
+    if product is None:
+        return json({"msg": "Product not found"}), 404
+    
+    if "name" in body:
+        product.name = body["name"]
+    if "category" in body:
+        product.category = body["category"]
+    if "description" in body:
+        product.description = body["description"]
+    if "url" in body:
+        product.url = body["url"]
+    if "price" in body:
+        product.price = int(body["price"])
+            
+    return jsonify({"msg":"Product updated successfully"}), 200
+    # if product:
+    #     product.category = category
+    #     product.description = description
+    #     product.url = url
+    #     product.price = int(price)
+    #     db.session
+    #     db.session.commit()
+    #     response_body = {
+    #         "msg": "Product updated successfully"
+    #         }
+    #     return jsonify(response_body), 200
 
 ###########################
 # User POST query
