@@ -207,13 +207,17 @@ export const LandingPage = () => {
                   <div>
                     <button
                       type="button"
-                      className="btn btn-primary"
+                      className="btn btn-outline-light"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
                     >
-                      <i className="bi bi-pen-fill"></i>
+                      <img
+                        style={{ width: "25px" }}
+                        src="https://thumbs.dreamstime.com/b/editar-vector-de-icono-bot%C3%B3n-edici%C3%B3n-plano-moda-la-colecci%C3%B3n-interfaces-usuario-aislado-en-fondo-blanco-ilustraci%C3%B3n-vectorial-164827048.jpg"
+                        alt=""
+                      />
                     </button>
-
+                    {/* empieza el model change product */}
                     <div
                       className="modal fade"
                       id="exampleModal"
