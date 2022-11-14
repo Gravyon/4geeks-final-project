@@ -277,8 +277,9 @@ def modify_user_password():
     if not recover_email:
         return jsonify({"msg": "You must type an email address"}), 401
     user = User.query.filter_by(email=recover_email).first()
+    print(user)
     # If user email doesn't exist
-    if recover_email != user.email:
+    if user is None:
         return jsonify({"msg": "User email doesn't exist"}), 404
     # Modifies user passowrd with new random password
     user.password = recover_password
