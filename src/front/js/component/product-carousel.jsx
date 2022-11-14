@@ -10,7 +10,6 @@ import {
   CarouselItem,
   CarouselIndicators,
   CarouselControl,
-  CarouselCaption,
 } from "reactstrap";
 // import "../../styles/carousel-products.css";
 
