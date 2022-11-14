@@ -29,7 +29,7 @@ export const SignUp = () => {
   return (
     <Formik
       //Valores iniciales
-      initialValues={{ username: "" , email: "", password: "", }}
+      initialValues={{ username: "", email: "", password: "" }}
       validationSchema={SignupSchema}
       // Declara onSubmit y se le pasan los valores de cada campo, anotandolos con values
       onSubmit={async (values) => {

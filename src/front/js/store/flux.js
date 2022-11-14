@@ -25,6 +25,7 @@ const getState = ({
             classNameDetails: "",
             avgScore: null,
             productRating: [],
+            comments: [],
         },
         actions: {
             // Profile
@@ -142,7 +143,6 @@ const getState = ({
                         process.env.BACKEND_URL + "/api/product/" + id
                     );
                     const data = await response.json();
-                    console.log(data);
 
                     setStore({
                         productDetail: data,
@@ -574,25 +574,14 @@ const getState = ({
                         process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
                     );
                     const data = await response.json();
-                    console.log(data); //funciona
+                    console.log(data);
 
                     setStore({
-                        productRating: data.map((item) => item.score),
+                        comments: data.map((item) => item.comment),
                     });
 
-                    console.log(store.productRating); //funciona
-                    let sumScore = store.productRating;
-                    getActions().sumaTotal(sumScore);
-                    console.log(store.sum);
-                    let arrLength = store.productRating.length;
-                    console.log(arrLength);
-
-                    setStore({
-                        avgScore: store.sum / arrLength,
-                    });
-
-                    console.log(store.avgScore);
-                    return store.avgScore;
+                    console.log(store.comments);
+                    return store.comments;
                 } catch (error) {
                     console.log(error);
                 }
