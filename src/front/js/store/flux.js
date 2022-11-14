@@ -27,6 +27,7 @@ const getState = ({
             classNameDetails: "",
             avgScore: null,
             productRating: [],
+            comments: [],
         },
         actions: {
             // Profile
@@ -571,46 +572,24 @@ const getState = ({
                     console.log(error);
                 }
             },
-            updateProduct: async (
-                name,
-                description,
-                category,
-                price,
-                url,
-                productId
-            ) => {
+
+            getProductRatings: async (id) => {
                 let store = getStore();
-                // const price = parseInt(price);
-                // let product_id = store.productId;
-                // userId = store.profile.user.id
-                console.log(productId);
-                console.log(name, description, category, price, url);
                 try {
-                    const response = await axios.put(
-                        process.env.BACKEND_URL + "/api/product/" + productId, {
-                            name,
-                            description,
-                            category,
-                            price,
-                            url,
-                        }
+                    const response = await fetch(
+                        process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
                     );
+                    const data = await response.json();
+                    console.log(data);
 
-                    if (response.status === 200) {
-                        Swal.fire(response.data.msg);
-                        getActions().getProduct();
-                        return response;
-                    }
+                    setStore({
+                        comments: data.map((item) => item.comment),
+                    });
 
-                    console.log(response);
-                    // return true;
+                    console.log(store.comments);
+                    return store.comments;
                 } catch (error) {
                     console.log(error);
-
-                    if (error.response.status === 404) {
-                        alert(error.response.data.msg);
-                        return error.response.data.msg;
-                    }
                 }
             },
         },

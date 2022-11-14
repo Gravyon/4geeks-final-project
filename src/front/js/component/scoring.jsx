@@ -32,7 +32,7 @@ export const Scoring = (props) => {
     <form onSubmit={handleScore} className="bg-dark mb-3 mt-3 pt-3">
       <h3 style={{ color: "#908969", textAlign: "center" }}>Review product</h3>
       <div className="container d-xl-inline-flex d-lg-inline-flex justify-content-between bg-dark mt-3 mb-4 pb-3">
-        <div className="col-sm-12 col-lg-2">
+        <div className="col-sm-12 col-md-12 col-lg-2">
           <p className="clasificacion" id="pClasification">
             <input
               id="radio1"
@@ -76,7 +76,7 @@ export const Scoring = (props) => {
             <label htmlFor="radio5">★</label>
           </p>
         </div>
-        <div className="col-sm-12 col-md-4 col-lg-8" id="divTextarea">
+        <div className="col-sm-12 col-md-12 col-md-4 col-lg-8" id="divTextarea">
           <textarea
             name="comments"
             id="comments"
@@ -87,7 +87,7 @@ export const Scoring = (props) => {
           ></textarea>
         </div>
         <div
-          className="col-sm-12 col-lg-2 mt-sm-2 mt-md-0 mt-lg-0"
+          className="col-sm-12 col-md-12 col-lg-2 mt-sm-2 mt-md-0 mt-lg-0"
           id="buttonSubmit"
         >
           <button className="btn btn-outline-light" type="submit">

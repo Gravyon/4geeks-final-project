@@ -88,11 +88,11 @@ export const LandingPage = () => {
         <h1 className="display-4 text-align-center">Find your art!</h1>
       </div>
 
-      <div className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center w-100 ">
+      <div className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-sm-center justify-content-lg-between w-100 ">
         {store.product.length > 0 ? (
           store.product.map((item) => (
             <Card
-              className="mx-4 my-4"
+              className="mx-1 my-4"
               key={item.id}
               style={{
                 width: "18rem",

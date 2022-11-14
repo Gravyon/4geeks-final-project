@@ -16,9 +16,8 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="vh-auto p-3 " style={{ marginBottom: "100px" }}>
-      <div className="jumbotron jumbotron-fluid mb-3 mt-5 text-align-center"></div>
-      <div className="container text-center">
+    <div className="vh-auto p-3 w-100">
+      <div className="container text-center w-100">
         <LandingPage />
       </div>
     </div>

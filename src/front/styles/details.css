@@ -24,3 +24,8 @@ label:hover~label {
 input[type="radio"]:checked~label {
     color: orange;
 }
+
+.scrolleable {
+    height: 200px;
+    overflow-y: auto;
+}
