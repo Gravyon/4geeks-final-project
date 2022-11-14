@@ -11,12 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { Scoring } from "../component/scoring.jsx";
 import { ProductCarousel } from "../component/product-carousel.jsx";
 import "../../styles/details.css";
-import {
-  Carousel,
-  CarouselItem,
-  CarouselIndicators,
-  CarouselControl,
-} from "reactstrap";
 
 export const ProductDetail = (props) => {
   const { store, actions } = useContext(Context);
@@ -64,44 +58,8 @@ export const ProductDetail = (props) => {
   }
   console.log(scoreTotal);
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  const next = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === store.comments.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === 0 ? store.comments.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  };
-
-  const slides = store.comments.map((item, index) => {
-    return (
-      <CarouselItem
-        className="custom-tag bg-dark"
-        tag="div"
-        key={index}
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-      >
-        <p className="card-title text-center">{item}</p>
-      </CarouselItem>
-    );
-  });
-
   return (
-    <div className="row m-lg-5 w-100 h-100">
+    <div className="row m-lg-5 w-100 h-100" style={{ width: "100%" }}>
       <div
         className="col-sm-12 col-md-12 col-lg-4 my-4 bg-dark text-white  h-110 h-md-50"
         id="product-carousel"
@@ -176,43 +134,27 @@ export const ProductDetail = (props) => {
             </div>
           </div>
         </div>
-        <div className="mt-5">
-          <div>
-            <h3>Comments</h3>
-            <div
-              className="container bg-dark text-light my-3"
-              style={{ width: "65%", margin: "auto", marginTop: "30%" }}
-            >
-              <Carousel
-                activeIndex={activeIndex}
-                next={next}
-                previous={previous}
-                style={{ width: "70%", margin: "auto" }}
-              >
-                <CarouselIndicators
-                  items={store.comments}
-                  activeIndex={activeIndex}
-                  onClickHandler={goToIndex}
-                  style={{ width: "40%", margin: "auto" }}
-                />
-                {slides}
-                <CarouselControl
-                  direction="prev"
-                  directionText="Previous"
-                  onClickHandler={previous}
-                  style={{ padding: "-50px" }}
-                />
-                <CarouselControl
-                  direction="next"
-                  directionText="Next"
-                  onClickHandler={next}
-                />
-              </Carousel>
-            </div>
-          </div>
-        </div>
+
         <div className="mt-5">
           <Scoring />
+        </div>
+      </div>
+      <div
+        className="my-4 border border-5 border-dark rounded-4"
+        style={{ width: "80%", margin: "auto" }}
+      >
+        <div>
+          <h3 className="text-center">Comments:</h3>
+          <div className="scrolleable">
+            <ul className="list-group">
+              {" "}
+              {store.comments.length > 0 ? (
+                store.comments.map((item) => <li className="my-3">'{item}'</li>)
+              ) : (
+                <p>No comments for this product</p>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
