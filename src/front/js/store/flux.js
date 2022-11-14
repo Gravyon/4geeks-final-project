@@ -381,7 +381,7 @@ const getState = ({
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data === "User is not logged in") {
                         alert(
-                            error.response.data + ". You'll be rediredted to the login page"
+                            error.response.data + ". You'll be redireted to the login page"
                         );
                         return error.response.data;
                     }
@@ -446,14 +446,18 @@ const getState = ({
                             email: email,
                         }
                     );
+                    console.log(response);
+                    console.log(response.status);
 
                     if (response.status === 200) {
-                        alert("Your password was sended");
+                        swal("Your password has been sent to your email");
+                        // return response.data
                     }
                 } catch (error) {
-                    console.log(error);
-                    if (error.response.status === 404) {
-                        alert("Your email does not exist");
+                    // console.log(error);
+                    if (error.response.data.msg === "User email doesn't exist") {
+                        swal("Your email does not exist");
+                        // return error.response.msg;
                     }
                 }
             },
