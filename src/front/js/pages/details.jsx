@@ -70,7 +70,6 @@ export const ProductDetail = (props) => {
                 <p className="card-text">USD {store.productDetail.price}</p>
                 <p className="card-text">Score: {store.avgScore}</p>
               </div>
-
               <div className="card-footer align-bottom ">
                 <div className="d-flex justify-content-between">
                   <button

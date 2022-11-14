@@ -590,19 +590,19 @@ const getState = ({
                 name,
                 description,
                 category,
+                price,
                 url,
-                productId,
-                price
+                productId
             ) => {
                 let store = getStore();
                 // const price = parseInt(price);
-                let product_id = store.productId;
+                // let product_id = store.productId;
                 // userId = store.profile.user.id
-                console.log(store.productId);
-                console.log(name, description, category, parseInt(price), url);
+                console.log(productId);
+                console.log(name, description, category, price, url);
                 try {
                     const response = await axios.put(
-                        process.env.BACKEND_URL + "/api/product/" + product_id, {
+                        process.env.BACKEND_URL + "/api/product/" + productId, {
                             name,
                             description,
                             category,
@@ -610,10 +610,6 @@ const getState = ({
                             url,
                         }
                     );
-                    console.log(productId);
-                    console.log(name, description, category, parseInt(price), url);
-                    // console.log(productId);
-                    // console.log(product_id);
 
                     if (response.status === 200) {
                         Swal.fire(response.data.msg);
@@ -625,12 +621,11 @@ const getState = ({
                     // return true;
                 } catch (error) {
                     console.log(error);
-                    console.log(productId);
-                    console.log(name, description, category, parseInt(price), url);
-                    // if (error.response.status === 404) {
-                    //     alert(error.response.data.msg);
-                    //     return error.response.data.msg;
-                    // }
+
+                    if (error.response.status === 404) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
                 }
             },
         },

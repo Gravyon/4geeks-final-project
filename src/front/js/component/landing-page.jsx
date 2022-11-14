@@ -262,24 +262,6 @@ export const LandingPage = () => {
                                     />
                                   </label>
                                   <label>
-                                    Change the category:{" "}
-                                    <input
-                                      type="text"
-                                      onChange={(e) =>
-                                        setCategory(e.target.value)
-                                      }
-                                      value={category}
-                                    />
-                                  </label>
-                                  <label>
-                                    Change the url:{" "}
-                                    <input
-                                      type="text"
-                                      onChange={(e) => setUrl(e.target.value)}
-                                      value={url}
-                                    />
-                                  </label>
-                                  <label>
                                     Change the description:{" "}
                                     <input
                                       type="text"
@@ -288,14 +270,34 @@ export const LandingPage = () => {
                                       }
                                       value={description}
                                     />
-                                  </label>
-                                  <label>
-                                    Change the price:{" "}
-                                    <input
-                                      type="text"
-                                      onChange={(e) => setPrice(e.target.value)}
-                                      value={price}
-                                    />
+                                    <label>
+                                      Change the category:{" "}
+                                      <input
+                                        type="text"
+                                        onChange={(e) =>
+                                          setCategory(e.target.value)
+                                        }
+                                        value={category}
+                                      />
+                                    </label>
+                                    <label>
+                                      Change the price:{" "}
+                                      <input
+                                        type="text"
+                                        onChange={(e) =>
+                                          setPrice(e.target.value)
+                                        }
+                                        value={price}
+                                      />
+                                    </label>
+                                    <label>
+                                      Change the url:{" "}
+                                      <input
+                                        type="text"
+                                        onChange={(e) => setUrl(e.target.value)}
+                                        value={url}
+                                      />
+                                    </label>
                                   </label>
                                 </label>
                                 <Button
