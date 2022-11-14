@@ -5,6 +5,8 @@ import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
+import { Formik, Field } from "formik";
+import * as Yup from "yup";
 import PropTypes from "prop-types";
 import ListGroup from "react-bootstrap/ListGroup";
 import {
@@ -47,23 +49,37 @@ export const LandingPage = () => {
 
   // empieza la funcion para editar producto
 
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [url, setUrl] = useState("");
+  // const [name, setName] = useState("");
+  // const [category, setCategory] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [url, setUrl] = useState("");
 
-  const updateProduct = (e, name, description, category, price, url, id) => {
-    e.preventDefault;
-    actions.updateProduct(
-      name,
-      description,
-      category,
-      parseInt(price),
-      url,
-      id
-    );
-  };
+  // const updateProduct = (e, name, description, category, price, url, id) => {
+  //   e.preventDefault;
+  //
+  // };
+
+  const editSchema = Yup.object().shape({
+    name: Yup.string("Enter the name")
+      .min(2, "name should be of minimum 4 characters length")
+      .max(250, "Too Long!"),
+    // .required("Username required"),
+    description: Yup.string("Enter the description")
+      .min(2, "description should be of minimum 4 characters length")
+      .max(300, "Too Long!"),
+    // .required("Email required"),
+    category: Yup.string("Enter the category")
+      .min(2, "category should be of minimum 4 characters length")
+      .max(30, "Too Long!"),
+    // .required("Password required"),
+    price: Yup.number("Enter the price")
+      .min(1, "price should be of minimum 1 characters length")
+      .max(100, "Too Long!"),
+    url: Yup.string("Enter the url")
+      .min(2, "url should be of minimum 4 characters length")
+      .max(400, "Too Long!"),
+  });
 
   return (
     <div className="container w-100">
@@ -203,7 +219,6 @@ export const LandingPage = () => {
                       }}
                     ></i>
                   </button>
-                  {/* empieza el modal de editar producto */}
                   <div>
                     <button
                       type="button"
@@ -217,7 +232,7 @@ export const LandingPage = () => {
                         alt=""
                       />
                     </button>
-                    {/* empieza el model change product */}
+                    {/* empieza el modal de editar producto */}
                     <div
                       className="modal fade"
                       id="exampleModal"
@@ -243,75 +258,106 @@ export const LandingPage = () => {
                           </div>
                           <div className="modal-body">
                             <div className="modal-body">
-                              <form
-                                onSubmit={(e) => {
-                                  e.preventDefault();
-                                  actions.updateProduct(
-                                    name,
-                                    description,
-                                    category,
-                                    parseInt(price),
-                                    url,
-                                    item.id
-                                  );
+                              <Formik
+                                //Valores iniciales
+                                initialValues={{
+                                  name: "",
+                                  description: "",
+                                  category: "",
+                                  price: "",
+                                  url: "",
+                                }}
+                                validationSchema={editSchema}
+                                // Declara onSubmit y se le pasan los valores de cada campo, anotandolos con values
+                                onSubmit={async (values) => {
+                                  let onUpdateProduct =
+                                    await actions.updateProduct(
+                                      values.name,
+                                      values.description,
+                                      values.category,
+                                      values.price,
+                                      values.url,
+                                      values.id
+                                    );
+                                  console.log(values);
                                 }}
                               >
-                                <label>
-                                  <label>
-                                    Change the name:{" "}
-                                    <input
-                                      type="text"
-                                      onChange={(e) => setName(e.target.value)}
-                                      value={name}
-                                    />
-                                  </label>
-                                  <label>
-                                    Change the description:{" "}
-                                    <input
-                                      type="text"
-                                      onChange={(e) =>
-                                        setDescription(e.target.value)
-                                      }
-                                      value={description}
-                                    />
+                                {({ errors, touched }) => (
+                                  <Form
+                                  // onSubmit={() => {
+                                  //   actions.updateProduct(
+                                  //     name,
+                                  //     description,
+                                  //     category,
+                                  //     parseInt(price),
+                                  //     url,
+                                  //     item.id
+                                  //   );
+                                  // }}
+                                  >
                                     <label>
-                                      Change the category:{" "}
-                                      <input
+                                      <Field
                                         type="text"
-                                        onChange={(e) =>
-                                          setCategory(e.target.value)
-                                        }
-                                        value={category}
+                                        name="name"
+                                        placeholder="Name"
+                                        className="form-control"
                                       />
-                                    </label>
-                                    <label>
-                                      Change the price:{" "}
-                                      <input
+                                      {errors.name &&
+                                        touched.name &&
+                                        errors.name}
+                                      <label>Change the name: </label>
+
+                                      <label>Change the description: </label>
+                                      <Field
                                         type="text"
-                                        onChange={(e) =>
-                                          setPrice(e.target.value)
-                                        }
-                                        value={price}
+                                        name="description"
+                                        placeholder="Description"
+                                        className="form-control"
                                       />
-                                    </label>
-                                    <label>
-                                      Change the url:{" "}
-                                      <input
+                                      {errors.description &&
+                                        touched.description &&
+                                        errors.description}
+                                      <label>Change the category: </label>
+                                      <Field
                                         type="text"
-                                        onChange={(e) => setUrl(e.target.value)}
-                                        value={url}
+                                        name="category"
+                                        placeholder="Category"
+                                        className="form-control"
                                       />
+                                      {errors.category &&
+                                        touched.category &&
+                                        errors.category}
+
+                                      <label>Change the price: </label>
+                                      <Field
+                                        type="text"
+                                        name="price"
+                                        placeholder="Price"
+                                        className="form-control"
+                                      />
+                                      {errors.price &&
+                                        touched.price &&
+                                        errors.price}
+
+                                      <label>Change the url: </label>
+                                      <Field
+                                        type="text"
+                                        name="url"
+                                        placeholder="Url"
+                                        className="form-control"
+                                      />
+                                      {errors.url && touched.url && errors.url}
                                     </label>
-                                  </label>
-                                </label>
-                                <Button
-                                  data-dismiss="form"
-                                  type="submit"
-                                  color="primary"
-                                >
-                                  Save changes
-                                </Button>{" "}
-                              </form>
+                                    <Button
+                                      data-dismiss="form"
+                                      type="submit"
+                                      color="primary"
+                                    >
+                                      Save changes
+                                    </Button>{" "}
+                                  </Form>
+                                )}
+                              </Formik>
                             </div>
                           </div>
                           <div className="modal-footer">
