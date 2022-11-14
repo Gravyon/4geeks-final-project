@@ -40,15 +40,42 @@ export const ProductDetail = (props) => {
     }
   };
 
+  let scoreTotal;
+  console.log(store.avgScore);
+
+  if (store.avgScore === 1) {
+    scoreTotal = "★";
+  } else if (store.avgScore === 2) {
+    scoreTotal = "★★";
+  } else if (store.avgScore === 3) {
+    scoreTotal = "★★★";
+  } else if (store.avgScore === 4) {
+    scoreTotal = "★★★★";
+  } else if (store.avgScore == 5) {
+    scoreTotal = "★★★★★";
+  } else {
+    scoreTotal = "Product has no review";
+  }
+  console.log(scoreTotal);
+
   return (
-    <div className="row" style={{ margin: "auto" }}>
-      <div className="col-4 my-4 bg-dark text-ligth ml-3" id="product-carousel">
+    <div className="row m-lg-5 w-100 h-100">
+      <div
+        className="col-sm-12 col-md-12 col-lg-4 my-4 bg-dark text-white  h-110"
+        id="product-carousel"
+      >
         <div>
-          <h2 style={{ textAlign: "center" }}>Related products:</h2>
+          <h2 className="text-white" style={{ textAlign: "center" }}>
+            Related products:
+          </h2>
         </div>
         <ProductCarousel />
       </div>
-      <div className="col-8 my-4" id="product-details" style={{ width: "60%" }}>
+      <div
+        className="col-sm-12 col-md-12 col-lg-8 my-4 m-auto h-100"
+        id="product-details"
+        style={{ width: "60%" }}
+      >
         <div
           className="card mb-3 bg-dark text-white"
           style={{ maxWidth: "100%" }}
@@ -76,7 +103,7 @@ export const ProductDetail = (props) => {
                     </small>
                   </p>
                   <p className="card-text">USD {store.productDetail.price}</p>
-                  <p className="card-text">Score: {store.avgScore}</p>
+                  <p className="card-text">Score: {scoreTotal}</p>
                 </div>
 
                 <div className="card-footer align-bottom ">
@@ -107,7 +134,7 @@ export const ProductDetail = (props) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="mt-5">
           <Scoring />
         </div>
       </div>

@@ -142,7 +142,6 @@ const getState = ({
                         process.env.BACKEND_URL + "/api/product/" + id
                     );
                     const data = await response.json();
-                    console.log(data);
 
                     setStore({
                         productDetail: data,
@@ -585,13 +584,19 @@ const getState = ({
 
                     console.log(store.productRating); //funciona
                     let sumScore = store.productRating;
-                    getActions().sumaTotal(sumScore);
-                    console.log(store.sum);
+                    let suma = 0;
+                    // getActions().sumaTotal(sumScore);
+                    // console.log(store.sum);
+                    sumScore.forEach(function(numero) {
+                        suma += numero;
+                    });
+                    console.log(suma);
+
                     let arrLength = store.productRating.length;
                     console.log(arrLength);
 
                     setStore({
-                        avgScore: store.sum / arrLength,
+                        avgScore: Math.floor(suma / arrLength),
                     });
 
                     console.log(store.avgScore);
