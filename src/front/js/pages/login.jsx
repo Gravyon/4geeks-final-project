@@ -5,11 +5,16 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { GoogleLogin } from 'react-google-login';
 import "../../styles/login.css";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
   let navigate = useNavigate();
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
+  
   const SignupSchema = Yup.object().shape({
     email: Yup.string('Enter your email')
       .email('Enter a valid email')
@@ -18,7 +23,9 @@ export const Login = () => {
       .min(2, 'Password should be of minimum 8 characters length')
       .max(50, "Too Long!")
       .required("Password required"),
-  });
+  }
+  
+  );
   return (
     <Formik
     //Valores iniciales
@@ -92,7 +99,14 @@ export const Login = () => {
                     >
                       Login
                     </button>
-                    <div className="d-flex flex-row mt-3 mb-5"></div>
+                    <div className="d-flex flex-row mt-3 mb-5">
+                    <GoogleLogin
+    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    cookiePolicy={'single_host_origin'}
+  />
+                    </div>
                     <div>
                       <p className="mb-0" style={{ color: "#bdb284" }}>
                         Don't have an account?{" "}
