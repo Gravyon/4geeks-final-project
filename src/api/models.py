@@ -45,9 +45,20 @@ class Products(db.Model):
             "category": self.category,
             "price": self.price,
             "description": self.description,
-            "url": self.url
+            "url": self.url,
+            "score": self.serialize_score_average()
         }
 
+    def serialize_score_average(self):
+        arr_score=list(map(lambda item: item.score, self.reviews))
+        if len(arr_score) != 0 :
+            avg_score = int(sum(arr_score)/len(arr_score))
+
+            return avg_score
+        else:
+            avg_score = 0
+
+            return avg_score
 class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_user = db.Column(db.Integer,  db.ForeignKey('user.id'), nullable=False )

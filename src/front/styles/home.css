@@ -5,7 +5,8 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
-h1 {
+h1,
+h2 {
     font-family: "Poiret One", cursive;
     text-align: center;
     font-weight: bold;
@@ -33,15 +34,9 @@ body,
             #a28800 100%); */
     background: #c6ffdd;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right,
-            #f7797d,
-            #fbd786,
-            #c6ffdd);
+    background: -webkit-linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right,
-            #f7797d,
-            #fbd786,
-            #c6ffdd);
+    background: linear-gradient(to right, #f7797d, #fbd786, #c6ffdd);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
