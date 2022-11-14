@@ -14,6 +14,10 @@ export const SignUp = () => {
   let navigate = useNavigate();
 
   const SignupSchema = Yup.object().shape({
+    username: Yup.string("Enter your username")
+      .min(2, "Username should be of minimum 8 characters length")
+      .max(30, "Too Long!")
+      .required("Username required"),
     email: Yup.string("Enter your email")
       .email("Enter a valid email")
       .required("Email required"),
@@ -21,22 +25,18 @@ export const SignUp = () => {
       .min(2, "Password should be of minimum 8 characters length")
       .max(50, "Too Long!")
       .required("Password required"),
-    username: Yup.string("Enter your username")
-      .min(2, "Username should be of minimum 8 characters length")
-      .max(30, "Too Long!")
-      .required("Username required"),
   });
   return (
     <Formik
       //Valores iniciales
-      initialValues={{ email: "", password: "", username: "" }}
+      initialValues={{ username: "" , email: "", password: "", }}
       validationSchema={SignupSchema}
       // Declara onSubmit y se le pasan los valores de cada campo, anotandolos con values
       onSubmit={async (values) => {
         let onSignUp = await actions.signup(
+          values.username,
           values.email,
-          values.password,
-          values.username
+          values.password
         );
         if (onSignUp === "User email already exists") {
           swal("User email already exists, redirecting to login");
