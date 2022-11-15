@@ -22,7 +22,7 @@ const getState = ({
             profile: {},
             priceList: [],
             sum: 0,
-            classNameDetails: "",
+            classNameDetails: "btn btn-outline-light align-bottom",
             avgScore: null,
             productRating: [],
             comments: [],
@@ -30,15 +30,15 @@ const getState = ({
         actions: {
             // Profile
             // Profile
-            cambiaClassNameDetails: (id) => {
+            cambiaClassNameDetails: () => {
                 let store = getStore();
-                if (store.classNameDetails == "") {
+                if (store.classNameDetails == "btn btn-outline-light align-bottom") {
                     setStore({
-                        classNameDetails: "active",
+                        classNameDetails: "btn btn-light align-bottom",
                     });
                 } else {
                     setStore({
-                        classNameDetails: "",
+                        classNameDetails: "btn btn-outline-light align-bottom",
                     });
                 }
             },
@@ -221,13 +221,14 @@ const getState = ({
                     console.log(product_id);
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
-                    } else if (error.response.data === "User is not logged in") {
-                        alert(error.response.data);
-                        return error.response.data;
+                    } else if (error.response.data.msg === "User is not logged in") {
+                        // alert(error.response.data);
+                        // return error.response.data;
                         alert(
-                            error.response.data + ". You'll be rediredted to the login page"
+                            error.response.data.msg +
+                            ". You'll be rediredted to the login page"
                         );
-                        return error.response.data;
+                        return error.response.data.msg;
                     }
                 }
             },
@@ -379,9 +380,9 @@ const getState = ({
                 } catch (error) {
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
-                    } else if (error.response.data === "User is not logged in") {
-                        alert(error.response.data + "... redirecting to login...");
-                        return error.response.data;
+                    } else if (error.response.data.msg === "User is not logged in") {
+                        alert(error.response.data.msg + "... redirecting to login...");
+                        return error.response.data.msg;
                     }
                 }
             },
