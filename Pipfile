@@ -20,6 +20,7 @@ flask-admin = "*"
 flask-jwt-extended = "*"
 shell = "*"
 flask-mail = "*"
+flask-bcrypt = "*"
 
 [requires]
 python_version = "3.8"

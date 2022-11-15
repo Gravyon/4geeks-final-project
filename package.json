@@ -89,6 +89,7 @@
         "cloudinary-react": "^1.8.1",
         "cors": "^2.8.5",
         "formik": "^2.2.9",
+        "google-auth-library": "^8.7.0",
         "mdb-ui-kit": "^6.0.0",
         "paypal-express-checkout": "^1.6.3",
         "prop-types": "^15.6.1",

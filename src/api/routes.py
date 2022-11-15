@@ -23,10 +23,13 @@ def login():
     # Query to get user info
     user = User.query.filter_by(email=email).first()
     ## If "user" query brings no data, then user doesn't exist
+
+    encrypted_pass = current_app.bcrypt.check_password_hash(user.password, password)
+
     if user is None:
         return jsonify({"msg":"User doesn't exist"}), 404
     # Compared email and password, if one of them is not correct then it rejects the login attempt
-    elif email != user.email or password != user.password:
+    elif email != user.email or not encrypted_pass:
         return jsonify({"msg": "Bad email or password"}), 401
     # Grants a token if login was successful
     else:
@@ -177,7 +180,7 @@ def create_user():
     # Filter by to check input email, this will be used in the if so email is never repeated
     user_query = User.query.filter_by(email=body["email"]).first()
     print(user_query)
-    
+    encrypted_pass = current_app.bcrypt.generate_password_hash(body["password"]).decode('utf-8')
     # If to check if user doesn't exist (by checking the email), if so, it's created
     if username == "":
         return jsonify({"msg": "Username can't be empty"}), 406
@@ -190,7 +193,7 @@ def create_user():
         # Table contents, same as the one in models.py
         new_user = User(
         username=body["username"],
-        password=body["password"],
+        password=encrypted_pass,
         email=body["email"])
         print(new_user)
         # Flask command to add a new entry

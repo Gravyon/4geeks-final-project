@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "../../styles/login.css";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
+import { FcGoogle } from 'react-icons/fc';
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
-
+  let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     email: Yup.string("Enter your email")
       .email("Enter a valid email")
@@ -21,6 +22,24 @@ export const Login = () => {
       .max(50, "Too Long!")
       .required("Password required"),
   });
+
+  const responseGoogle = (response) => {
+    //console.log(response);
+     const userObject = jwt_decode(response.credential);
+     //console.log(userObject);
+     localStorage.setItem('user', JSON.stringify(userObject));
+     const { name, sub, picture } = userObject;
+     const doc = {
+       _id: sub,
+       _type: 'user',
+       userName: name,
+       image: picture,
+     };
+     client.createIfNotExists(doc).then(() => {
+       navigate('/', { replace: true });
+     });
+    }
+
   return (
     <Formik
       //Valores iniciales
@@ -95,14 +114,23 @@ export const Login = () => {
                       Login
                     </button>
                     <div className="d-flex flex-row mt-3 mb-5">
-                      <GoogleOAuthProvider clientId={process.env.GOOGLE_AUTH}>
+                      <GoogleOAuthProvider
+                        clientId={`${process.env.GOOGLE_AUTH}`}
+                      >
                         <GoogleLogin
-                          onSuccess={(credentialResponse) => {
-                            console.log(credentialResponse);
-                          }}
-                          onError={() => {
-                            console.log("Login Failed");
-                          }}
+                          render={(renderProps) => (
+                            <button
+                              type="button"
+                              className=""
+                              onClick={renderProps.onClick}
+                              disabled={renderProps.disabled}
+                            >
+                              <FcGoogle className="" /> Sign in with google
+                            </button>
+                          )}
+                          onSuccess={responseGoogle}
+                          onFailure={responseGoogle}
+                          cookiePolicy="single_host_origin"
                         />
                       </GoogleOAuthProvider>
                     </div>

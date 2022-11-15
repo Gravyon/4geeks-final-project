@@ -16,11 +16,13 @@ const getState = ({
             listaFavoritos: [],
             shoppingList: [],
 
+            productId: null,
             userId: null,
             auth: false,
             registered: false,
             profile: {},
             priceList: [],
+            // productIdList: [],
             sum: 0,
             classNameDetails: "",
             avgScore: null,
@@ -143,11 +145,14 @@ const getState = ({
                         process.env.BACKEND_URL + "/api/product/" + id
                     );
                     const data = await response.json();
-
+                    console.log(data);
                     setStore({
                         productDetail: data,
+                        productId: data.id,
                     });
                     console.log(store.productDetail);
+                    console.log(store.productId);
+                    return store.productId;
                 } catch (err) {
                     console.log(err);
                 }
@@ -493,8 +498,9 @@ const getState = ({
                         process.env.BACKEND_URL + "/api/user/" + user_id, {}
                     );
                     console.log(response.data.msg);
+
                     if (response.status === 200) {
-                        Swal.fire(response.data.msg);
+                        // Swal.fire(response.data.msg);
                         setStore({
                             auth: false,
                         });
@@ -585,6 +591,49 @@ const getState = ({
                     return store.comments;
                 } catch (error) {
                     console.log(error);
+                }
+            },
+
+            updateProduct: async (
+                name,
+                description,
+                category,
+                price,
+                url,
+                productId
+            ) => {
+                let store = getStore();
+                // const price = parseInt(price);
+                // let product_id = store.productId;
+                // userId = store.profile.user.id
+                console.log(productId);
+                console.log(name, description, category, price, url);
+                try {
+                    const response = await axios.put(
+                        process.env.BACKEND_URL + "/api/product/" + productId, {
+                            name,
+                            description,
+                            category,
+                            price,
+                            url,
+                        }
+                    );
+
+                    if (response.status === 200) {
+                        Swal.fire(response.data.msg);
+                        getActions().getProduct();
+                        return response;
+                    }
+
+                    console.log(response);
+                    // return true;
+                } catch (error) {
+                    console.log(error);
+
+                    if (error.response.status === 404) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
                 }
             },
         },
