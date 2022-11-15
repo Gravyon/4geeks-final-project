@@ -28,7 +28,7 @@ export const Login = () => {
      const userObject = jwt_decode(response.credential);
      //console.log(userObject);
      localStorage.setItem('user', JSON.stringify(userObject));
-     const { name, sub, picture, email, jti, iat, exp } = userObject;
+     const { name, sub, picture, email, jti, iat, exp, token, iss } = userObject;
      const doc = {
        _id: sub,
        _type: 'user',
@@ -37,7 +37,9 @@ export const Login = () => {
        email: email,
        jti: jti,
        iat: iat,
-       exp: exp
+       exp: exp,
+       token: token,
+       iss: iss
      };
     console.log(doc)
     //  client.createIfNotExists(doc).then(() => {
