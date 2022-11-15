@@ -592,6 +592,49 @@ const getState = ({
                     console.log(error);
                 }
             },
+
+            updateProduct: async (
+                name,
+                description,
+                category,
+                price,
+                url,
+                productId
+            ) => {
+                let store = getStore();
+                // const price = parseInt(price);
+                // let product_id = store.productId;
+                // userId = store.profile.user.id
+                console.log(productId);
+                console.log(name, description, category, price, url);
+                try {
+                    const response = await axios.put(
+                        process.env.BACKEND_URL + "/api/product/" + productId, {
+                            name,
+                            description,
+                            category,
+                            price,
+                            url,
+                        }
+                    );
+
+                    if (response.status === 200) {
+                        Swal.fire(response.data.msg);
+                        getActions().getProduct();
+                        return response;
+                    }
+
+                    console.log(response);
+                    // return true;
+                } catch (error) {
+                    console.log(error);
+
+                    if (error.response.status === 404) {
+                        alert(error.response.data.msg);
+                        return error.response.data.msg;
+                    }
+                }
+            },
         },
     };
 };
