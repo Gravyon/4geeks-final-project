@@ -30,7 +30,7 @@ const getState = ({
         actions: {
             // Profile
             // Profile
-            cambiaClassNameDetails: () => {
+            cambiaClassNameDetails: (id) => {
                 let store = getStore();
                 if (store.classNameDetails == "btn btn-outline-light align-bottom") {
                     setStore({
@@ -266,7 +266,7 @@ const getState = ({
                     const response = await axios.get(
                         process.env.BACKEND_URL + "/api/user/" + user_id + "/favorites"
                     );
-                    // console.log(response.data.results)
+                    console.log(response.data.results);
 
                     setStore({
                         listaFavoritos: response.data.results,

@@ -173,11 +173,11 @@ export const LandingPage = () => {
                   {/* termina el share */}
                   <button
                     type="button"
-                    className={store.classNameDetails}
+                    className="btn btn-outline-light align-bottom"
                     style={{ color: "#bdb284" }}
                     onClick={() => {
                       handleAddFavorites(item.id);
-                      actions.cambiaClassNameDetails(item.id);
+                      // actions.cambiaClassNameDetails(item.id);
                     }}
                   >
                     <i className="far fa-heart"></i>
