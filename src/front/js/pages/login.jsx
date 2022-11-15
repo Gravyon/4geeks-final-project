@@ -28,16 +28,21 @@ export const Login = () => {
      const userObject = jwt_decode(response.credential);
      //console.log(userObject);
      localStorage.setItem('user', JSON.stringify(userObject));
-     const { name, sub, picture } = userObject;
+     const { name, sub, picture, email, jti, iat, exp } = userObject;
      const doc = {
        _id: sub,
        _type: 'user',
        userName: name,
        image: picture,
+       email: email,
+       jti: jti,
+       iat: iat,
+       exp: exp
      };
-     client.createIfNotExists(doc).then(() => {
-       navigate('/', { replace: true });
-     });
+    console.log(doc)
+    //  client.createIfNotExists(doc).then(() => {
+    //    navigate('/', { replace: true });
+    //  });
     }
 
   return (
