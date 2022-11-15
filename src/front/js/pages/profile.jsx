@@ -161,6 +161,7 @@ export const Profile = (props) => {
                                           setEmail(e.target.value)
                                         }
                                         value={email}
+                                        required
                                       />
                                     </ListGroup.Item>
                                     <ListGroup.Item>
@@ -172,6 +173,7 @@ export const Profile = (props) => {
                                           setUsername(e.target.value)
                                         }
                                         value={username}
+                                        required
                                       />
                                     </ListGroup.Item>
                                     <ListGroup.Item>
@@ -183,6 +185,7 @@ export const Profile = (props) => {
                                           setPassword(e.target.value)
                                         }
                                         value={password}
+                                        required
                                       />
                                     </ListGroup.Item>
                                   </ListGroup>
