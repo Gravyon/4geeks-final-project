@@ -194,13 +194,12 @@ export const LandingPage = () => {
                     type="button"
                     className="btn btn-outline-light align-bottom"
                     style={{ color: "#bdb284" }}
+                    onClick={() => {
+                      handleAddFavorites(item.id);
+                      // actions.cambiaClassNameDetails(item.id);
+                    }}
                   >
-                    <i
-                      className="far fa-heart"
-                      onClick={() => {
-                        handleAddFavorites(item.id);
-                      }}
-                    ></i>
+                    <i className="far fa-heart"></i>
                   </button>
                   <div>
                     <button
