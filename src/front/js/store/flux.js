@@ -83,19 +83,38 @@ const getState = ({
                             password: password,
                         }
                     );
+                    Swal.fire({
+                        position: "top",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                     console.log(response);
                 } catch (error) {
                     // console.log(error);
                     if (error.response.status === 401) {
-                        alert(error.response.data.msg);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: error.response.data.msg,
+                        });
                         return error.response.data.msg;
                     }
                     if (error.response.status === 409) {
-                        alert(error.response.data.msg);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: error.response.data.msg,
+                        });
                         return error.response.data.msg;
                     }
                     if (error.response.status === 404) {
-                        alert(error.response.data.msg);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: error.response.data.msg,
+                        });
                         return error.response.data.msg;
                     }
                 }
@@ -184,13 +203,19 @@ const getState = ({
                     console.log(error.response.status);
 
                     if (error.response.status === 404) {
-                        alert(
-                            error.response.data.msg +
-                            ". You'll be rediredted to the register page"
-                        );
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: error.response.data.msg +
+                                ". You'll be rediredted to the register page",
+                        });
                         return error.response.data.msg;
                     } else if (error.response.status === 401) {
-                        alert(error.response.data.msg);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: error.response.data.msg,
+                        });
                         return error.response.data;
                     }
                 }
@@ -233,10 +258,12 @@ const getState = ({
                     } else if (error.response.data.msg === "User is not logged in") {
                         // alert(error.response.data);
                         // return error.response.data;
-                        alert(
-                            error.response.data.msg +
-                            ". You'll be rediredted to the login page"
-                        );
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: error.response.data.msg +
+                                ". You'll be rediredted to the login page",
+                        });
                         return error.response.data.msg;
                     }
                 }
@@ -279,7 +306,7 @@ const getState = ({
                             },
                         }
                     );
-                    alert(response.data.msg);
+                    Swal.fire(response.data.msg);
                     getActions().getFavorites();
                     return response;
                 } catch (error) {
@@ -413,7 +440,11 @@ const getState = ({
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data.msg === "User is not logged in") {
-                        alert(error.response.data.msg + "... redirecting to login...");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: error.response.data.msg + "... redirecting to login...",
+                        });
                         return error.response.data.msg;
                     }
                 }
@@ -552,7 +583,7 @@ const getState = ({
                             },
                         }
                     );
-                    alert(response.data.msg);
+                    // Swal.fire(response.data.msg);
                     console.log(response);
                     // console.log(store.shoppingList)
                     getActions().getProduct();
@@ -658,7 +689,11 @@ const getState = ({
                     console.log(error);
 
                     if (error.response.status === 404) {
-                        alert(error.response.data.msg);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: error.response.data.msg,
+                        });
                         return error.response.data.msg;
                     }
                 }

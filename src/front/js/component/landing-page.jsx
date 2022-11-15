@@ -5,7 +5,8 @@ import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
-
+import swal from "sweetalert";
+import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 import ListGroup from "react-bootstrap/ListGroup";
 import {
@@ -82,6 +83,25 @@ export const LandingPage = () => {
     setCategory("");
     setPrice("");
     setUrl("");
+  };
+
+  const handleSweetAlert = (id) => {
+    //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        const borrar = actions.deleteProduct(id);
+        console.log(borrar);
+      }
+    });
   };
 
   return (
@@ -246,7 +266,7 @@ export const LandingPage = () => {
                       aria-hidden="true"
                     >
                       <div className="modal-dialog">
-                        <div className="modal-content">
+                        <div className="modal-content bg-dark text-white">
                           <div className="modal-header">
                             <h1
                               className="modal-title fs-5"
@@ -279,6 +299,7 @@ export const LandingPage = () => {
                                 <label>
                                   <label>Change the name: </label>
                                   <input
+                                    className="m-3 d-flex justify-content-between"
                                     type="text"
                                     onChange={(e) => setName(e.target.value)}
                                     value={name}
@@ -286,6 +307,7 @@ export const LandingPage = () => {
 
                                   <label>Change the description: </label>
                                   <input
+                                    className="m-3 d-flex justify-content-between"
                                     type="text"
                                     onChange={(e) =>
                                       setDescription(e.target.value)
@@ -295,6 +317,7 @@ export const LandingPage = () => {
 
                                   <label>Change the category: </label>
                                   <input
+                                    className="m-3 d-flex justify-content-between"
                                     type="text"
                                     onChange={(e) =>
                                       setCategory(e.target.value)
@@ -304,6 +327,7 @@ export const LandingPage = () => {
 
                                   <label>Change the price: </label>
                                   <input
+                                    className="m-3 d-flex justify-content-between"
                                     type="number"
                                     onChange={(e) => setPrice(e.target.value)}
                                     value={price}
@@ -311,15 +335,18 @@ export const LandingPage = () => {
 
                                   <label>Change the url: </label>
                                   <input
+                                    className="m-3 d-flex justify-content-between"
                                     type="text"
                                     onChange={(e) => setUrl(e.target.value)}
                                     value={url}
                                   />
                                 </label>
+                                <br />
                                 <Button
                                   data-dismiss="form"
                                   type="submit"
                                   color="dark"
+                                  className="border border-white"
                                 >
                                   Save changes
                                 </Button>{" "}
@@ -342,7 +369,8 @@ export const LandingPage = () => {
                   {/* termina el modal de editar producto */}
                   <span
                     className="btn btn-outline-light d-flex justify-content-end"
-                    onClick={() => actions.deleteProduct(item.id)}
+                    // onClick={() => actions.deleteProduct(item.id)}
+                    onClick={() => handleSweetAlert(item.id)}
                     style={{ color: "#bdb284" }}
                   >
                     <b>X</b>
