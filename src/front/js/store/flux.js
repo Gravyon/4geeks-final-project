@@ -221,13 +221,12 @@ const getState = ({
                     console.log(product_id);
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
-                    } else if (error.response.data === "User is not logged in") {
-                        alert(error.response.data);
-                        return error.response.data;
-                        alert(
+                    } else if (error.response.data.msg === "User is not logged in") {
+                        alert(error.response.msg);
+                        return alert(
                             error.response.data + ". You'll be rediredted to the login page"
                         );
-                        return error.response.data;
+                        // return error.response.data;
                     }
                 }
             },
