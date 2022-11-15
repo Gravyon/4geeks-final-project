@@ -21,7 +21,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import { BsFillHeartFill } from "react-icons/bs";
+import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
 
 export const LandingPage = () => {
@@ -30,32 +30,21 @@ export const LandingPage = () => {
   const toggle = () => setModal(!modal);
   const [modal, setModal] = useState(false);
   const [colorIconFav, setColorIconFav] = useState("");
+  const [isFaved, setIsFaved] = useState(false);
 
   useEffect(() => {
     if (store.userId != null) {
       actions.mapfavorites();
+      actions.comparingFavorites();
     }
   }, [store.userId]);
 
-  useEffect(() => {
-    actions.mapProductId();
-  }, []);
-
   let handleAddFavorites = async (id) => {
-    //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
-    console.log(id); //funciona
-    console.log(store.favoriteItem); //funciona
-    const isFaved = store.favoriteItem.some((favId) => favId === id); //funciona
-    console.log(isFaved); //funciona
-
-    // const [label, emoji] = isFaved
-    //   ? ["Remove item from favorites", "X"]
-    //   : ["Add item to favorites", "😍 "];
-    // // let msj = await actions.createFavorite(id);
-    // // console.log(msj);
-    // // if (msj === "User is not logged in") {
-    // //   navigate("/login");
-    // // }
+    let msj = await actions.createFavorite(id);
+    console.log(msj);
+    if (msj === "User is not logged in") {
+      navigate("/login");
+    }
   };
 
   let handleAddShopping = async (id) => {
@@ -241,8 +230,12 @@ export const LandingPage = () => {
                   >
                     {/* <i className="far fa-heart"></i> */}
                     {/* <i className="fa-solid fa-heart"></i> */}
-
-                    <BsFillHeartFill />
+                    {/* {store.favoriteHeart} */}
+                    {store.favoriteItem.includes(item.id) ? (
+                      store.favoriteHeart
+                    ) : (
+                      <BsHeart />
+                    )}
                   </button>
                   <div>
                     <button
