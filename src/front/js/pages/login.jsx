@@ -10,18 +10,20 @@ import "../../styles/login.css";
 export const Login = () => {
   const { store, actions } = useContext(Context);
   let navigate = useNavigate();
+
   const SignupSchema = Yup.object().shape({
-    email: Yup.string('Enter your email')
-      .email('Enter a valid email')
+    email: Yup.string("Enter your email")
+      .email("Enter a valid email")
       .required("Email required"),
-    password: Yup.string('Enter your password')
-      .min(2, 'Password should be of minimum 8 characters length')
+    password: Yup.string("Enter your password")
+      .min(2, "Password should be of minimum 8 characters length")
       .max(50, "Too Long!")
       .required("Password required"),
   });
+
   return (
     <Formik
-    //Valores iniciales
+      //Valores iniciales
       initialValues={{ email: "", password: "" }}
       validationSchema={SignupSchema}
       // Declara onSubmit y se le pasan los valores del login dentro, anotandolos con values
@@ -36,7 +38,7 @@ export const Login = () => {
         }
       }}
     >
-      {({ errors, touched}) => (
+      {({ errors, touched }) => (
         <Form>
           <div className="container-fluid text-center">
             <div className="row d-flex justify-content-center align-items-center h-100">
