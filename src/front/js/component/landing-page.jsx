@@ -20,6 +20,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
+import { BsFillHeartFill } from "react-icons/bs";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
 
 export const LandingPage = () => {
@@ -27,6 +28,7 @@ export const LandingPage = () => {
   const navigate = useNavigate();
   const toggle = () => setModal(!modal);
   const [modal, setModal] = useState(false);
+  const [colorIconFav, setColorIconFav] = useState("");
 
   useEffect(() => {
     if (store.userId != null) {
@@ -40,10 +42,10 @@ export const LandingPage = () => {
 
   let handleAddFavorites = async (id) => {
     //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
-    console.log(id);
-    console.log(store.favoriteItem);
-    const isFaved = store.favoriteItem.some((favId) => favId === id);
-    console.log(isFaved);
+    console.log(id); //funciona
+    console.log(store.favoriteItem); //funciona
+    const isFaved = store.favoriteItem.some((favId) => favId === id); //funciona
+    console.log(isFaved); //funciona
 
     // const [label, emoji] = isFaved
     //   ? ["Remove item from favorites", "X"]
@@ -217,7 +219,10 @@ export const LandingPage = () => {
                       // actions.cambiaClassNameDetails(item.id);
                     }}
                   >
-                    <i className="far fa-heart"></i>
+                    {/* <i className="far fa-heart"></i> */}
+                    {/* <i className="fa-solid fa-heart"></i> */}
+
+                    <BsFillHeartFill />
                   </button>
                   <div>
                     <button
