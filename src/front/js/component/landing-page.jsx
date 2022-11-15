@@ -28,13 +28,31 @@ export const LandingPage = () => {
   const toggle = () => setModal(!modal);
   const [modal, setModal] = useState(false);
 
+  useEffect(() => {
+    if (store.userId != null) {
+      actions.mapfavorites();
+    }
+  }, [store.userId]);
+
+  useEffect(() => {
+    actions.mapProductId();
+  }, []);
+
   let handleAddFavorites = async (id) => {
     //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
-    let msj = await actions.createFavorite(id);
-    console.log(msj);
-    if (msj === "User is not logged in") {
-      navigate("/login");
-    }
+    console.log(id);
+    console.log(store.favoriteItem);
+    const isFaved = store.favoriteItem.some((favId) => favId === id);
+    console.log(isFaved);
+
+    // const [label, emoji] = isFaved
+    //   ? ["Remove item from favorites", "X"]
+    //   : ["Add item to favorites", "😍 "];
+    // // let msj = await actions.createFavorite(id);
+    // // console.log(msj);
+    // // if (msj === "User is not logged in") {
+    // //   navigate("/login");
+    // // }
   };
 
   let handleAddShopping = async (id) => {

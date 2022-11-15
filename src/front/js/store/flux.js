@@ -29,6 +29,7 @@ const getState = ({
             productRating: [],
             comments: [],
             favoriteItem: [], //contiene las id de los productos favoritos
+            productsIds: [],
         },
         actions: {
             // Profile
@@ -208,9 +209,10 @@ const getState = ({
             //Funcion para crear favoritos
             createFavorite: async (product_id) => {
                 let store = getStore();
+                getActions().mapfavorites();
 
                 let user_id = store.userId;
-                console.log(user_id);
+                // console.log(user_id);
 
                 try {
                     const response = await axios.post(
@@ -220,6 +222,7 @@ const getState = ({
                         }
                     );
                     console.log(response);
+                    getActions().mapfavorites();
                     return response;
                 } catch (error) {
                     console.log(error);
@@ -249,7 +252,17 @@ const getState = ({
                 setStore({
                     favoriteItem: store.listaFavoritos.map((item) => item.id),
                 });
-                console.log(store.favoriteItem);
+                console.log(store.favoriteItem); //array de las id de los productos agregados a favoritos por el user
+            },
+            mapProductId: async () => {
+                let store = getStore();
+                await getActions().getProduct();
+                console.log(store.product);
+                // let favoriteItem;
+                setStore({
+                    productsIds: store.product.map((item) => item.id),
+                });
+                console.log(store.productsIds); //array de las id de todos los productos
             },
 
             // Funcion para eliminar favoritos en la base de datos
@@ -285,7 +298,7 @@ const getState = ({
                     const response = await axios.get(
                         process.env.BACKEND_URL + "/api/user/" + user_id + "/favorites"
                     );
-                    console.log(response.data.results);
+                    // console.log(response.data.results);
 
                     setStore({
                         listaFavoritos: response.data.results,
