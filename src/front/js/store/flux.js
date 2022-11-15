@@ -26,22 +26,23 @@ const getState = ({
             avgScore: null,
             productRating: [],
             comments: [],
+            favoriteItem: [], //contiene las id de los productos favoritos
         },
         actions: {
             // Profile
             // Profile
-            cambiaClassNameDetails: (id) => {
-                let store = getStore();
-                if (store.classNameDetails == "btn btn-outline-light align-bottom") {
-                    setStore({
-                        classNameDetails: "btn btn-light align-bottom",
-                    });
-                } else {
-                    setStore({
-                        classNameDetails: "btn btn-outline-light align-bottom",
-                    });
-                }
-            },
+            // cambiaClassNameDetails: (id) => {
+            //     let store = getStore();
+            //     if (store.classNameDetails == "btn btn-outline-light align-bottom") {
+            //         setStore({
+            //             classNameDetails: "btn btn-light align-bottom",
+            //         });
+            //     } else {
+            //         setStore({
+            //             classNameDetails: "btn btn-outline-light align-bottom",
+            //         });
+            //     }
+            // },
             userProfile: async () => {
                 const userToken = localStorage.getItem("token");
                 try {
@@ -231,6 +232,19 @@ const getState = ({
                         return error.response.data.msg;
                     }
                 }
+            },
+
+            //funcion para mapear los favoritos por usuuario:
+
+            mapfavorites: async () => {
+                let store = getStore();
+                await getActions().getFavorites();
+                console.log(store.listaFavoritos);
+                // let favoriteItem;
+                setStore({
+                    favoriteItem: store.listaFavoritos.map((item) => item.id),
+                });
+                console.log(store.favoriteItem);
             },
 
             // Funcion para eliminar favoritos en la base de datos
