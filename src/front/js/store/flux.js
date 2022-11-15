@@ -556,7 +556,7 @@ const getState = ({
                             },
                         }
                     );
-                    Swal.fire(response.data.msg);
+                    // Swal.fire(response.data.msg);
                     console.log(response);
                     // console.log(store.shoppingList)
                     getActions().getProduct();

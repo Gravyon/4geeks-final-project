@@ -146,59 +146,62 @@ export const Profile = (props) => {
                               Click here to modify your data
                             </Button>
                             <Modal isOpen={modal} toggle={toggle}>
-                              <ModalHeader toggle={toggle}>
-                                Modify your data
-                              </ModalHeader>
-                              <ModalBody>
-                                <form onSubmit={updateUser}>
-                                  <ListGroup>
-                                    <ListGroup.Item>
-                                      Type your email:{" "}
-                                      <Form.Control
-                                        type="email"
-                                        // placeholder="{profile.email}"
-                                        onChange={(e) =>
-                                          setEmail(e.target.value)
-                                        }
-                                        value={email}
-                                        required
-                                      />
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                      Change your username:{" "}
-                                      <Form.Control
-                                        type="text"
-                                        // placeholder="Change your username"
-                                        onChange={(e) =>
-                                          setUsername(e.target.value)
-                                        }
-                                        value={username}
-                                        required
-                                      />
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                      Password:{" "}
-                                      <Form.Control
-                                        type="password"
-                                        // placeholder="Change your password"
-                                        onChange={(e) =>
-                                          setPassword(e.target.value)
-                                        }
-                                        value={password}
-                                        required
-                                      />
-                                    </ListGroup.Item>
-                                  </ListGroup>
-                                  <Button
-                                    data-dismiss="form"
-                                    type="submit"
-                                    color="primary"
-                                  >
-                                    Save changes
-                                  </Button>{" "}
-                                </form>
-                              </ModalBody>
-                              <ModalFooter></ModalFooter>
+                              <div className="bg-dark text-white">
+                                <ModalHeader toggle={toggle}>
+                                  Modify your data
+                                </ModalHeader>
+                                <ModalBody>
+                                  <form onSubmit={updateUser}>
+                                    <ListGroup>
+                                      <ListGroup.Item className="bg-dark text-white">
+                                        Type your email:{" "}
+                                        <Form.Control
+                                          type="email"
+                                          // placeholder="{profile.email}"
+                                          onChange={(e) =>
+                                            setEmail(e.target.value)
+                                          }
+                                          value={email}
+                                          required
+                                        />
+                                      </ListGroup.Item>
+                                      <ListGroup.Item className="bg-dark text-white">
+                                        Change your username:{" "}
+                                        <Form.Control
+                                          type="text"
+                                          // placeholder="Change your username"
+                                          onChange={(e) =>
+                                            setUsername(e.target.value)
+                                          }
+                                          value={username}
+                                          required
+                                        />
+                                      </ListGroup.Item>
+                                      <ListGroup.Item className="bg-dark text-white">
+                                        Password:{" "}
+                                        <Form.Control
+                                          type="password"
+                                          // placeholder="Change your password"
+                                          onChange={(e) =>
+                                            setPassword(e.target.value)
+                                          }
+                                          value={password}
+                                          required
+                                        />
+                                      </ListGroup.Item>
+                                    </ListGroup>
+                                    <Button
+                                      data-dismiss="form"
+                                      type="submit"
+                                      color="dark"
+                                      className="btn btn-dark border border-white"
+                                    >
+                                      Save changes
+                                    </Button>{" "}
+                                  </form>
+                                </ModalBody>
+                                <ModalFooter></ModalFooter>
+                              </div>
                             </Modal>
                           </div>
                         </div>
