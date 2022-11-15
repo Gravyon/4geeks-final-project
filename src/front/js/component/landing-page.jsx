@@ -3,9 +3,11 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-import { Button } from "reactstrap";
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
+
+import PropTypes from "prop-types";
+import ListGroup from "react-bootstrap/ListGroup";
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -19,27 +21,6 @@ import {
   WhatsappIcon,
 } from "react-share";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
-
-const SignupSchema = Yup.object().shape({
-  name: Yup.string("Enter the name")
-    .min(2, "name should be of minimum 4 characters length")
-    .max(250, "Too Long!"),
-  // .required("Username required"),
-  description: Yup.string("Enter the description")
-    .min(2, "description should be of minimum 4 characters length")
-    .max(300, "Too Long!"),
-  // .required("Email required"),
-  category: Yup.string("Enter the category")
-    .min(2, "category should be of minimum 4 characters length")
-    .max(30, "Too Long!"),
-  // .required("Password required"),
-  price: Yup.number("Enter the price")
-    .min(1, "price should be of minimum 1 characters length")
-    .max(100, "Too Long!"),
-  url: Yup.string("Enter the url")
-    .min(2, "url should be of minimum 2 characters length")
-    .max(400, "Too Long!"),
-});
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
@@ -67,16 +48,21 @@ export const LandingPage = () => {
 
   // empieza la funcion para editar producto
 
-  // const [name, setName] = useState("");
-  // const [category, setCategory] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [url, setUrl] = useState("");
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [url, setUrl] = useState("");
 
-  // const updateProduct = (e, name, description, category, price, url, id) => {
-  //   e.preventDefault;
-  //
-  // };
+  const updateProduct = (e, name, description, category, price, url, id) => {
+    actions.updateProduct(name, description, category, price, url);
+
+    setName("");
+    setDescription("");
+    setCategory("");
+    setPrice("");
+    setUrl("");
+  };
 
   return (
     <div className="container w-100">
@@ -255,90 +241,67 @@ export const LandingPage = () => {
                           </div>
                           <div className="modal-body">
                             <div className="modal-body">
-                              <Formik
-                                //Valores iniciales
-                                initialValues={{
-                                  name: "",
-                                  description: "",
-                                  category: "",
-                                  price: "",
-                                  url: "",
-                                }}
-                                validationSchema={SignupSchema}
-                                // Declara onSubmit y se le pasan los valores de cada campo, anotandolos con values
-                                onSubmit={(values) => {
-                                  // let onUpdateProduct = actions.updateProduct(
-                                  //   values.name,
-                                  //   values.description,
-                                  //   values.category,
-                                  //   values.price,
-                                  //   values.url,
-                                  //   item.id
-                                  // );
-                                  console.log(values);
+                              <form
+                                onSubmit={(e) => {
+                                  e.preventDefault();
+                                  actions.updateProduct(
+                                    name,
+                                    description,
+                                    category,
+                                    parseInt(price),
+                                    url,
+                                    item.id
+                                  );
                                 }}
                               >
-                                {({ errors, touched }) => (
-                                  <Form>
-                                    <label>
-                                      <label>Change the name: </label>
-                                      <Field
-                                        name="name"
-                                        placeholder="Name"
-                                        className="form-control"
-                                      />
-                                      {errors.name &&
-                                        touched.name &&
-                                        errors.name}
+                                <label>
+                                  <label>Change the name: </label>
+                                  <input
+                                    type="text"
+                                    onChange={(e) => setName(e.target.value)}
+                                    value={name}
+                                  />
 
-                                      <label>Change the description: </label>
-                                      <Field
-                                        name="description"
-                                        placeholder="Description"
-                                        className="form-control"
-                                      />
-                                      {errors.description &&
-                                        touched.description &&
-                                        errors.description}
-                                      <label>Change the category: </label>
-                                      <Field
-                                        name="category"
-                                        placeholder="Category"
-                                        className="form-control"
-                                      />
-                                      {errors.category &&
-                                        touched.category &&
-                                        errors.category}
+                                  <label>Change the description: </label>
+                                  <input
+                                    type="text"
+                                    onChange={(e) =>
+                                      setDescription(e.target.value)
+                                    }
+                                    value={description}
+                                  />
 
-                                      <label>Change the price: </label>
-                                      <Field
-                                        name="price"
-                                        placeholder="Price"
-                                        className="form-control"
-                                      />
-                                      {errors.price &&
-                                        touched.price &&
-                                        errors.price}
+                                  <label>Change the category: </label>
+                                  <input
+                                    type="text"
+                                    onChange={(e) =>
+                                      setCategory(e.target.value)
+                                    }
+                                    value={category}
+                                  />
 
-                                      <label>Change the url: </label>
-                                      <Field
-                                        name="url"
-                                        placeholder="Url"
-                                        className="form-control"
-                                      />
-                                      {errors.url && touched.url && errors.url}
-                                    </label>
-                                    <br />
-                                    <button
-                                      // data-dismiss="form"
-                                      type="submit"
-                                      // color="dark"
-                                    >
-                                      Save changes
-                                    </button>{" "}
-                                  </Form>
-                                )}
-                              </Formik>
+                                  <label>Change the price: </label>
+                                  <input
+                                    type="number"
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    value={price}
+                                  />
+
+                                  <label>Change the url: </label>
+                                  <input
+                                    type="text"
+                                    onChange={(e) => setUrl(e.target.value)}
+                                    value={url}
+                                  />
+                                </label>
+                                <Button
+                                  data-dismiss="form"
+                                  type="submit"
+                                  color="dark"
+                                >
+                                  Save changes
+                                </Button>{" "}
+                              </form>
                             </div>
                           </div>
                           <div className="modal-footer">
