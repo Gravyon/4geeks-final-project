@@ -222,11 +222,13 @@ const getState = ({
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data.msg === "User is not logged in") {
-                        alert(error.response.msg);
-                        return alert(
-                            error.response.data + ". You'll be rediredted to the login page"
-                        );
+                        // alert(error.response.data);
                         // return error.response.data;
+                        alert(
+                            error.response.data.msg +
+                            ". You'll be rediredted to the login page"
+                        );
+                        return error.response.data.msg;
                     }
                 }
             },
@@ -378,9 +380,9 @@ const getState = ({
                 } catch (error) {
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
-                    } else if (error.response.data === "User is not logged in") {
-                        alert(error.response.data + "... redirecting to login...");
-                        return error.response.data;
+                    } else if (error.response.data.msg === "User is not logged in") {
+                        alert(error.response.data.msg + "... redirecting to login...");
+                        return error.response.data.msg;
                     }
                 }
             },
