@@ -45,49 +45,31 @@ export const Profile = (props) => {
     // }
   };
 
+  const handleSweetAlert = () => {
+    //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        const borrar = actions.eliminarCuenta();
+        console.log(borrar);
+      }
+    });
+  };
+
   useEffect(() => {
     if (store.userId != null) {
       // console.log(store.userId)
       actions.getFavorites();
     }
   }, [store.userId]);
-
-  // const swalWithBootstrapButtons = Swal.mixin({
-  //   customClass: {
-  //     confirmButton: "btn btn-success",
-  //     cancelButton: "btn btn-danger",
-  //   },
-  //   buttonsStyling: false,
-  // });
-
-  // swalWithBootstrapButtons
-  //   .fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonText: "Yes, delete it!",
-  //     cancelButtonText: "No, cancel!",
-  //     reverseButtons: true,
-  //   })
-  //   .then((result) => {
-  //     if (result.isConfirmed) {
-  //       swalWithBootstrapButtons.fire(
-  //         "Deleted!",
-  //         "Your file has been deleted.",
-  //         "success"
-  //       );
-  //     } else if (
-  //       /* Read more about handling dismissals below */
-  //       result.dismiss === Swal.DismissReason.cancel
-  //     ) {
-  //       swalWithBootstrapButtons.fire(
-  //         "Cancelled",
-  //         "Your imaginary file is safe :)",
-  //         "error"
-  //       );
-  //     }
-  //   });
 
   return (
     <div className="container mx-auto d-flex">
@@ -220,55 +202,15 @@ export const Profile = (props) => {
                         <Button
                           className="mt-2 p-2 d-flex"
                           type="button"
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
+                          // href={"/"}
+                          // data-bs-toggle="modal"
                           variant="dark"
                           style={{ color: "#bdb284" }}
+                          onClick={() => handleSweetAlert()}
                         >
                           Delete account
                         </Button>
-                        {/* Empieza el modal */}
-                        {/* <div
-                          className="modal fade"
-                          id="exampleModal"
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <div className="modal-dialog">
-                            <div className="modal-content">
-                              <div className="modal-header">
-                                <h1
-                                  className="modal-title fs-5"
-                                  id="exampleModalLabel"
-                                >
-                                  ¿Deseas borrar tu cuenta?
-                                </h1>
-                              </div>
-                              <div className="modal-body">...</div>
-                              <div className="modal-footer">
-                                <Link
-                                  to={"/"}
-                                  type="button"
-                                  className="btn btn-dark"
-                                  style={{ color: "#bdb284" }}
-                                  data-bs-dismiss="modal"
-                                  onClick={() => actions.eliminarCuenta()}
-                                >
-                                  Si
-                                </Link>
-                                <button
-                                  type="button"
-                                  className="btn btn-dark"
-                                  data-bs-dismiss="modal"
-                                  style={{ color: "#bdb284" }}
-                                >
-                                  No
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div> */}
+                        <Link style={{ color: "#bdb284" }}></Link>
                       </div>
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
