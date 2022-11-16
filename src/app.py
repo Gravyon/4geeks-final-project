@@ -14,6 +14,7 @@ from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail, Message
 from threading import Thread
+from flask_bcrypt import Bcrypt
 #from models import Person
 
 ENV = os.getenv("FLASK_ENV")
@@ -54,6 +55,9 @@ app.config.update(mail_settings)
 mail = Mail(app)
 app.mail = mail
 
+# Adds password encryption
+bcrypt = Bcrypt(app)
+app.bcrypt = bcrypt
 # add the admin
 setup_admin(app)
 

@@ -3,11 +3,12 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-
-import { Button } from "reactstrap";
-
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
+import swal from "sweetalert";
 import Swal from "sweetalert2";
-
+import PropTypes from "prop-types";
+import ListGroup from "react-bootstrap/ListGroup";
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -115,6 +116,7 @@ export const LandingPage = () => {
               <Link
                 style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
+                // onClick={() => actions.cambiaClassNameDetails(item.id)}
               >
                 <Card.Body>
                   <img

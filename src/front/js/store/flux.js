@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
+import jwt_decode from "jwt-decode";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -13,7 +14,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       listaFavoritos: [],
       shoppingList: [],
-      //   listaOrder: [],
 
       productId: null,
       userId: null,
@@ -181,6 +181,39 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(err);
         }
       },
+      responseGoogle: async (response) => {
+        // console.log(response);
+        const userObject = jwt_decode(response.credential);
+        // //console.log(userObject);
+        // localStorage.setItem("token", JSON.stringify(userObject));
+        // console.log(userObject);
+        // console.log(response.credential);
+        localStorage.setItem("token", response.credential);
+
+        // localStorage.getItem("token");
+        // console.log(accessToken);
+        //  client.createIfNotExists(doc).then(() => {
+        //    navigate('/', { replace: true });
+        //  });
+
+        let results = await getActions().signup(
+          userObject.name,
+          userObject.email,
+          userObject.given_name
+        );
+        if (results === "User exists") {
+          await getActions().login(userObject.email, userObject.given_name);
+        } else {
+          await getActions().signup(
+            userObject.name,
+            userObject.email,
+            userObject.given_name
+          );
+        }
+        // console.log(results);
+
+        // return console.log("hola");
+      },
       // funcion para Login
       login: async (email, password) => {
         try {
@@ -321,7 +354,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
             // console.log(store.favoriteHeart);
           }
-          getActions().getFavorites();
         }
       },
 
@@ -340,8 +372,8 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
             }
           );
-          getActions().getFavorites();
           Swal.fire(response.data.msg);
+          getActions().getFavorites();
           return response;
         } catch (error) {
           console.log(error);
@@ -658,7 +690,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               score: score,
             }
           );
-
+          getActions().getProductDetail();
           console.log(response);
 
           return response;
@@ -687,7 +719,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             comments: data.map((item) => item.comment),
           });
-          getActions().getProductDetail(id);
 
           // console.log(store.comments);
           return store.comments;
@@ -743,66 +774,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
-
-      //funcion para obtener todos los favoritos de un usuario
-      //   getOrder: async () => {
-      //     let store = getStore();
-      //     let user_id = store.userId;
-      //     // console.log(user_id)
-      //     console.log(listaOrder);
-      //     try {
-      //       const response = await axios.get(
-      //         process.env.BACKEND_URL + "/api/order"
-      //         // "/api/user/" + user_id + "/order"
-      //       );
-      //       console.log(response.data.results);
-
-      //       setStore({
-      //         listaOrder: response.data.results,
-      //         // userId: response.user_id
-      //       });
-      //     } catch (error) {
-      //       // console.log(error);
-      //       console.log(error.response.data.msg);
-      //       if (error.response.status === 404) {
-      //         setStore({
-      //           listaOrder: [],
-      //         });
-      //       }
-      //     }
-      //   },
-
-      //   // funcion de crear una compra
-      //   createOrder: async (shopping_id) => {
-      //     let store = getStore();
-
-      //     let user_id = store.userId;
-      //     console.log(user_id);
-
-      //     try {
-      //       const response = await axios.post(
-      //         process.env.BACKEND_URL + "/api/order",
-      //         {
-      //           id_shopping: shopping_id,
-      //           id_user: user_id,
-      //         }
-      //       );
-
-      //       getActions().getOrder();
-      //       return response;
-      //     } catch (error) {
-      //       if (error.response.status === 404) {
-      //         getActions().eliminarFavoritos(product_id);
-      //       } else if (error.response.data.msg === "User is not logged in") {
-      //         Swal.fire({
-      //           icon: "error",
-      //           title: "Oops...",
-      //           text: error.response.data.msg + "... redirecting to login...",
-      //         });
-      //         return error.response.data.msg;
-      //       }
-      //     }
-      //   },
     },
   };
 };
