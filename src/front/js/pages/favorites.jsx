@@ -14,6 +14,7 @@ export const Favorites = () => {
     if (store.userId != null) {
       // console.log(store.userId)
       actions.getFavorites();
+      actions.mapfavorites();
     }
   }, [store.userId]);
 
