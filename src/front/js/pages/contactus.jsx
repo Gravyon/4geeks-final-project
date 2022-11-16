@@ -24,9 +24,11 @@ export const ContactUs = () => {
   const [state, handleSubmit] = useForm(process.env.CONTACT_FORM);
   if (state.succeeded) {
     return (
-      <h1 className="position-relative position-absolute top-50 start-50 translate-middle">
-        Thanks for your feedback!
-      </h1>
+      <div className="vh-100">
+        <h1 className="position-absolute top-50 start-50 translate-middle">
+          Thanks for your feedback!
+        </h1>
+      </div>
     );
   }
   return (

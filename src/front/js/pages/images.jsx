@@ -22,7 +22,7 @@ export const SubirImagenes = () => {
       url,
       price
     );
-    console.log(onUploaded);
+    // console.log(onUploaded);
 
     setImage("");
     setName("");
@@ -47,10 +47,10 @@ export const SubirImagenes = () => {
       }
     );
     const file = await res.json();
-    console.log(res);
+    // console.log(res);
     setImage(file.secure_url);
     setUrl(file.secure_url);
-    console.log(file.secure_url);
+    // console.log(file.secure_url);
     setLoading(false);
   };
 

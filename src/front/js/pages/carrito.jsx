@@ -17,7 +17,7 @@ export const Carrito = () => {
     }
   }, [store.userId]);
 
-  console.log(store.shoppingList);
+  // console.log(store.shoppingList);
 
   return (
     <div
