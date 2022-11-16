@@ -15,6 +15,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
+import "../../styles/favorites.css";
 
 export const Profile = (props) => {
   const { store, actions } = useContext(Context);
@@ -74,11 +75,11 @@ export const Profile = (props) => {
   return (
     <div className="container mx-auto d-flex">
       {auth ? (
-        <div className="container mt-5 vh-100 ">
+        <div className="container  vh-100 ">
           <div>
             <h1>Welcome to your profile</h1>
           </div>
-          <div className="col-9 mx-auto mt-5">
+          <div className="col-lg-9 col-sm-12 mx-auto mt-5">
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
               <Row>
                 <Col sm={4}>
@@ -232,8 +233,8 @@ export const Profile = (props) => {
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
                       <div>
-                        <div className="col-12 mx-auto my-4 h-75">
-                          <ol>
+                        <div className="col-12">
+                          <ol className="h-75">
                             {store.listaFavoritos.length > 0 ? (
                               store.listaFavoritos.map((item, id) => (
                                 <li
@@ -246,21 +247,15 @@ export const Profile = (props) => {
                                 >
                                   <div className="d-flex justify-content-between">
                                     <div className="d-flex justify-content-start text-left w-25">
-                                      Name: {item?.name}
+                                      {item?.name}
                                     </div>
                                     <div className="text-left">
                                       <p className="mx-5 text-right">
-                                        Price: US${item?.price}
+                                        US${item?.price}{" "}
                                       </p>
                                     </div>
+
                                     <div className="d-flex justify-content-end">
-                                      <div className="mx-4">
-                                        <BsStarFill />
-                                        <BsStarFill />
-                                        <BsStarHalf />
-                                        <BsStar />
-                                        <BsStar />
-                                      </div>
                                       <span
                                         className="btn btn-outline-light"
                                         onClick={() =>

@@ -1,7 +1,12 @@
+import React from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 import jwt_decode from "jwt-decode";
+import {
+    BsFillHeartFill,
+    BsHeart
+} from "react-icons/bs";
 
 const getState = ({
     getStore,
@@ -25,26 +30,30 @@ const getState = ({
             priceList: [],
             // productIdList: [],
             sum: 0,
-            classNameDetails: "",
+            classNameDetails: "btn btn-outline-light align-bottom",
             avgScore: null,
             productRating: [],
             comments: [],
+            favoriteItem: [], //contiene las id de los productos favoritos
+            productsIds: [],
+            faved: false,
+            favoriteHeart: < BsHeart / > ,
         },
         actions: {
             // Profile
             // Profile
-            cambiaClassNameDetails: (id) => {
-                let store = getStore();
-                if (store.classNameDetails == "") {
-                    setStore({
-                        classNameDetails: "active",
-                    });
-                } else {
-                    setStore({
-                        classNameDetails: "",
-                    });
-                }
-            },
+            // cambiaClassNameDetails: (id) => {
+            //     let store = getStore();
+            //     if (store.classNameDetails == "btn btn-outline-light align-bottom") {
+            //         setStore({
+            //             classNameDetails: "btn btn-light align-bottom",
+            //         });
+            //     } else {
+            //         setStore({
+            //             classNameDetails: "btn btn-outline-light align-bottom",
+            //         });
+            //     }
+            // },
             userProfile: async () => {
                 const userToken = localStorage.getItem("token");
                 try {
@@ -59,7 +68,7 @@ const getState = ({
                     setStore({
                         profile: response.data.user,
                     });
-                    console.log(response.data);
+                    //   console.log(response.data);
                     return true;
                 } catch (error) {
                     // console.log(error);
@@ -165,13 +174,13 @@ const getState = ({
                         process.env.BACKEND_URL + "/api/product/" + id
                     );
                     const data = await response.json();
-                    console.log(data);
+                    // console.log(data);
                     setStore({
                         productDetail: data,
                         productId: data.id,
                     });
-                    console.log(store.productDetail);
-                    console.log(store.productId);
+                    // console.log(store.productDetail);
+                    // console.log(store.productId);
                     return store.productId;
                 } catch (err) {
                     console.log(err);
@@ -197,7 +206,7 @@ const getState = ({
                     userObject.email,
                     userObject.given_name
                 );
-                if (results === "User email already exists") {
+                if (results === "User exists") {
                     await getActions().login(userObject.email, userObject.given_name);
                 } else {
                     await getActions().signup(
@@ -228,11 +237,11 @@ const getState = ({
                         auth: true,
                         userId: response.data.user.id,
                     });
-                    console.log(response.status);
+                    // console.log(response.status);
                     return response.data.msg;
                 } catch (error) {
-                    console.log(error);
-                    console.log(error.response.status);
+                    // console.log(error);
+                    // console.log(error.response.status);
 
                     if (error.response.status === 404) {
                         Swal.fire({
@@ -266,9 +275,10 @@ const getState = ({
             //Funcion para crear favoritos
             createFavorite: async (product_id) => {
                 let store = getStore();
+                getActions().mapfavorites();
 
                 let user_id = store.userId;
-                console.log(user_id);
+                // console.log(user_id);
 
                 try {
                     const response = await axios.post(
@@ -277,12 +287,13 @@ const getState = ({
                             id_user: user_id,
                         }
                     );
-                    console.log(response);
+                    //   console.log(response);
+                    getActions().mapfavorites();
                     return response;
                 } catch (error) {
-                    console.log(error);
-                    console.log(error.response.status);
-                    console.log(product_id);
+                    // console.log(error);
+                    // console.log(error.response.status);
+                    // console.log(product_id);
                     if (error.response.status === 404) {
                         getActions().eliminarFavoritos(product_id);
                     } else if (error.response.data.msg === "User is not logged in") {
@@ -295,6 +306,54 @@ const getState = ({
                                 ". You'll be rediredted to the login page",
                         });
                         return error.response.data.msg;
+                    }
+                }
+            },
+
+            //funcion para mapear los favoritos por usuuario:
+
+            mapfavorites: async () => {
+                let store = getStore();
+                await getActions().getFavorites();
+                // console.log(store.listaFavoritos);
+                // let favoriteItem;
+                setStore({
+                    favoriteItem: store.listaFavoritos.map((item) => item.id),
+                });
+                // console.log(store.favoriteItem); //array de las id de los productos agregados a favoritos por el user
+            },
+            mapProductId: async () => {
+                let store = getStore();
+                await getActions().getProduct();
+                // console.log(store.product);
+                // let favoriteItem;
+                setStore({
+                    productsIds: store.product.map((item) => item.id),
+                });
+                // console.log(store.productsIds); //array de las id de todos los productos
+            },
+
+            comparingFavorites: async (productId) => {
+                let store = getStore();
+                await getActions().mapfavorites(); // store.favoriteItem
+                await getActions().mapProductId(); // store.productsIds
+
+                for (let i = 0; i < store.productsIds.length; i++) {
+                    let element = store.productsIds[i];
+                    if (store.favoriteItem.includes(element)) {
+                        // console.log(element);
+                        for (element in store.favoriteItem) {
+                            setStore({
+                                favoriteHeart: < BsFillHeartFill / > ,
+                            });
+                        }
+                        // console.log(store.favoriteHeart);
+                    } else {
+                        // console.log(element);
+                        setStore({
+                            favoriteHeart: < BsHeart / > ,
+                        });
+                        // console.log(store.favoriteHeart);
                     }
                 }
             },
@@ -332,7 +391,7 @@ const getState = ({
                     const response = await axios.get(
                         process.env.BACKEND_URL + "/api/user/" + user_id + "/favorites"
                     );
-                    // console.log(response.data.results)
+                    // console.log(response.data.results);
 
                     setStore({
                         listaFavoritos: response.data.results,
@@ -340,7 +399,7 @@ const getState = ({
                     });
                 } catch (error) {
                     // console.log(error);
-                    console.log(error.response.data.msg);
+                    // console.log(error.response.data.msg);
                     if (error.response.status === 404) {
                         setStore({
                             listaFavoritos: [],
@@ -368,7 +427,6 @@ const getState = ({
             },
             //Funcion para registrarse como usuario
             signup: async (username, email, password) => {
-                console.log(username, email, password);
                 try {
                     const response = await axios.post(
                         process.env.BACKEND_URL + "/api/user", {
@@ -385,9 +443,9 @@ const getState = ({
                         });
                     }
 
-                    console.log(response);
-                    console.log(response.status);
-                    console.log(response.data.msg);
+                    // console.log(response);
+                    // console.log(response.status);
+                    // console.log(response.data.msg);
                     return response.data.msg;
                 } catch (error) {
                     // console.log(error);
@@ -501,7 +559,7 @@ const getState = ({
                     });
                     return store.shoppingList;
                 } catch (error) {
-                    console.log(error.response.data.msg);
+                    // console.log(error.response.data.msg);
                     if (error.response.status === 404) {
                         setStore({
                             shoppingList: [],
@@ -647,13 +705,13 @@ const getState = ({
                         process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
                     );
                     const data = await response.json();
-                    console.log(data);
+                    // console.log(data);
 
                     setStore({
                         comments: data.map((item) => item.comment),
                     });
 
-                    console.log(store.comments);
+                    // console.log(store.comments);
                     return store.comments;
                 } catch (error) {
                     console.log(error);
