@@ -3,12 +3,11 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
-import swal from "sweetalert";
+
+import { Button } from "reactstrap";
+
 import Swal from "sweetalert2";
-import PropTypes from "prop-types";
-import ListGroup from "react-bootstrap/ListGroup";
+
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -29,8 +28,6 @@ export const LandingPage = () => {
   const navigate = useNavigate();
   const toggle = () => setModal(!modal);
   const [modal, setModal] = useState(false);
-  const [colorIconFav, setColorIconFav] = useState("");
-  const [isFaved, setIsFaved] = useState(false);
 
   useEffect(() => {
     if (store.userId != null) {
@@ -118,7 +115,6 @@ export const LandingPage = () => {
               <Link
                 style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
-                onClick={() => actions.cambiaClassNameDetails(id)}
               >
                 <Card.Body>
                   <img
@@ -224,12 +220,8 @@ export const LandingPage = () => {
                     style={{ color: "#bdb284" }}
                     onClick={() => {
                       handleAddFavorites(item.id);
-                      // actions.cambiaClassNameDetails(item.id);
                     }}
                   >
-                    {/* <i className="far fa-heart"></i> */}
-                    {/* <i className="fa-solid fa-heart"></i> */}
-                    {/* {store.favoriteHeart} */}
                     {store.favoriteItem.includes(item.id) ? (
                       store.favoriteHeart
                     ) : (
@@ -364,7 +356,6 @@ export const LandingPage = () => {
                   {store.auth ? (
                     <span
                       className="btn btn-outline-light d-flex justify-content-end"
-                      // onClick={() => actions.deleteProduct(item.id)}
                       onClick={() => handleSweetAlert(item.id)}
                       style={{ color: "#bdb284" }}
                     >

@@ -17,7 +17,22 @@ export const Carrito = () => {
     }
   }, [store.userId]);
 
-  console.log(store.shoppingList);
+  // console.log(store.shoppingList);
+  let scoreGenerator = (score) => {
+    if (score === 1) {
+      return "★";
+    } else if (score === 2) {
+      return "★★";
+    } else if (score === 3) {
+      return "★★★";
+    } else if (score === 4) {
+      return "★★★★";
+    } else if (score == 5) {
+      return "★★★★★";
+    } else {
+      return "No review";
+    }
+  };
 
   return (
     <>
@@ -47,19 +62,10 @@ export const Carrito = () => {
                       </div>
                       <div className="d-flex justify-content-end">
                         <div className="mx-4">
-                          <BsStarFill />
-                          <BsStarFill />
-                          <BsStarHalf />
-                          <BsStar />
-                          <BsStar />
+                          <p className="card-text">
+                            {scoreGenerator(item.score)}
+                          </p>
                         </div>
-                        <span
-                          className="btn btn-outline-light"
-                          onClick={() => actions.deleteShopping(item.id)}
-                          style={{ color: "#bdb284" }}
-                        >
-                          <b>X</b>
-                        </span>
                       </div>
                     </div>
                   </li>

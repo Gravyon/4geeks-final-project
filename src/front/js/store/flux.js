@@ -169,13 +169,13 @@ const getState = ({ getStore, getActions, setStore }) => {
             process.env.BACKEND_URL + "/api/product/" + id
           );
           const data = await response.json();
-          console.log(data);
+          // console.log(data);
           setStore({
             productDetail: data,
             productId: data.id,
           });
-          console.log(store.productDetail);
-          console.log(store.productId);
+          // console.log(store.productDetail);
+          // console.log(store.productId);
           return store.productId;
         } catch (err) {
           console.log(err);
@@ -200,11 +200,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             auth: true,
             userId: response.data.user.id,
           });
-          console.log(response.status);
+          // console.log(response.status);
           return response.data.msg;
         } catch (error) {
-          console.log(error);
-          console.log(error.response.status);
+          // console.log(error);
+          // console.log(error.response.status);
 
           if (error.response.status === 404) {
             Swal.fire({
@@ -256,9 +256,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           getActions().mapfavorites();
           return response;
         } catch (error) {
-          console.log(error);
-          console.log(error.response.status);
-          console.log(product_id);
+          // console.log(error);
+          // console.log(error.response.status);
+          // console.log(product_id);
           if (error.response.status === 404) {
             getActions().eliminarFavoritos(product_id);
           } else if (error.response.data.msg === "User is not logged in") {
@@ -286,7 +286,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({
           favoriteItem: store.listaFavoritos.map((item) => item.id),
         });
-        console.log(store.favoriteItem); //array de las id de los productos agregados a favoritos por el user
+        // console.log(store.favoriteItem); //array de las id de los productos agregados a favoritos por el user
       },
       mapProductId: async () => {
         let store = getStore();
@@ -296,7 +296,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({
           productsIds: store.product.map((item) => item.id),
         });
-        console.log(store.productsIds); //array de las id de todos los productos
+        // console.log(store.productsIds); //array de las id de todos los productos
       },
 
       comparingFavorites: async (productId) => {
@@ -307,19 +307,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         for (let i = 0; i < store.productsIds.length; i++) {
           let element = store.productsIds[i];
           if (store.favoriteItem.includes(element)) {
-            console.log(element);
+            // console.log(element);
             for (element in store.favoriteItem) {
               setStore({
                 favoriteHeart: <BsFillHeartFill />,
               });
             }
-            console.log(store.favoriteHeart);
+            // console.log(store.favoriteHeart);
           } else {
-            console.log(element);
+            // console.log(element);
             setStore({
               favoriteHeart: <BsHeart />,
             });
-            console.log(store.favoriteHeart);
+            // console.log(store.favoriteHeart);
           }
         }
       },
@@ -366,7 +366,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
         } catch (error) {
           // console.log(error);
-          console.log(error.response.data.msg);
+          // console.log(error.response.data.msg);
           if (error.response.status === 404) {
             setStore({
               listaFavoritos: [],
@@ -412,9 +412,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
           }
 
-          console.log(response);
-          console.log(response.status);
-          console.log(response.data.msg);
+          // console.log(response);
+          // console.log(response.status);
+          // console.log(response.data.msg);
           return response.data.msg;
         } catch (error) {
           // console.log(error);
@@ -531,7 +531,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
           return store.shoppingList;
         } catch (error) {
-          console.log(error.response.data.msg);
+          // console.log(error.response.data.msg);
           if (error.response.status === 404) {
             setStore({
               shoppingList: [],
@@ -681,13 +681,13 @@ const getState = ({ getStore, getActions, setStore }) => {
             process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
           );
           const data = await response.json();
-          console.log(data);
+          // console.log(data);
 
           setStore({
             comments: data.map((item) => item.comment),
           });
 
-          console.log(store.comments);
+          // console.log(store.comments);
           return store.comments;
         } catch (error) {
           console.log(error);

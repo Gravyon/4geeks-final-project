@@ -1,18 +1,13 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
-import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
-import { Context } from "../store/appContext";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-// import Carousel from "react-bootstrap/Carousel";
-import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
 
+import { useParams } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 import { Scoring } from "../component/scoring.jsx";
 import { ProductCarousel } from "../component/product-carousel.jsx";
 import "../../styles/details.css";
 
-export const ProductDetail = (props) => {
+export const ProductDetail = () => {
   const { store, actions } = useContext(Context);
   const params = useParams();
   const navigate = useNavigate();
@@ -41,7 +36,6 @@ export const ProductDetail = (props) => {
   };
 
   let scoreTotal;
-  console.log(store.productDetail.score);
 
   if (store.productDetail.score === 1) {
     scoreTotal = "★";
@@ -56,7 +50,6 @@ export const ProductDetail = (props) => {
   } else {
     scoreTotal = "Product has no review";
   }
-  console.log(scoreTotal);
 
   return (
     <div className="row m-lg-5 w-100 h-100" style={{ width: "100%" }}>
