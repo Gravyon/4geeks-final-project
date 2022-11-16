@@ -36,6 +36,7 @@ const injectContext = (PassedComponent) => {
       state.actions.validToken();
       // state.actions.getShopping();
       // state.actions.getFavorites();
+      // state.actions.getOrder();
       // state.actions.marcarFavoritos();
       state.actions.userProfile();
     }, []);
