@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import "../../styles/favorites.css";
 
@@ -12,11 +13,26 @@ export const Favorites = () => {
 
   useEffect(() => {
     if (store.userId != null) {
-      // console.log(store.userId)
       actions.getFavorites();
-      actions.mapfavorites();
     }
   }, [store.userId]);
+
+  let scoreGenerator = (score) => {
+    if (score === 1) {
+      return "★";
+    } else if (score === 2) {
+      return "★★";
+    } else if (score === 3) {
+      return "★★★";
+    } else if (score === 4) {
+      return "★★★★";
+    } else if (score == 5) {
+      return "★★★★★";
+    } else {
+      return "No review";
+    }
+  };
+  // let scoreTotal;
 
   return (
     <div
@@ -32,10 +48,10 @@ export const Favorites = () => {
       <div className="col-12 mx-auto my-4 h-75">
         <ol className="h-75">
           {store.listaFavoritos.length > 0 ? (
-            store.listaFavoritos.map((item, id) => (
+            store.listaFavoritos.map((item) => (
               <li
                 className="list-group-item border border-1 border border-dark"
-                key={id}
+                key={item.id}
                 style={{ background: "#212529", color: "#908969" }}
               >
                 <div className="d-flex justify-content-between">
@@ -47,11 +63,7 @@ export const Favorites = () => {
                   </div>
                   <div className="d-flex justify-content-end">
                     <div className="mx-4">
-                      <BsStarFill />
-                      <BsStarFill />
-                      <BsStarHalf />
-                      <BsStar />
-                      <BsStar />
+                      <p className="card-text">{scoreGenerator(item.score)}</p>
                     </div>
                     <span
                       className="btn btn-outline-light"
