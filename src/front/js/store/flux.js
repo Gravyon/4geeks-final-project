@@ -672,54 +672,6 @@ const getState = ({
                     }
                 }
             },
-            // // Funcion para eliminar la Order en la base de datos
-            // eliminarOrder: async (product_id) => {
-            //     let store = getStore();
-            //     let user_id = store.userId;
-
-            //     try {
-            //         const response = await axios.delete(
-            //             process.env.BACKEND_URL + "/api/order", {
-            //                 data: {
-            //                     id_products: product_id,
-            //                     id_user: user_id,
-            //                 },
-            //             }
-            //         );
-            //         Swal.fire(response.data.msg);
-            //         getActions().getOrder();
-            //         return response;
-            //     } catch (error) {
-            //         console.log(error);
-            //     }
-            // },
-
-            // //funcion para obtener todos los favoritos de un usuario
-            // getOrder: async () => {
-            //     let store = getStore();
-            //     let user_id = store.userId;
-            //     // console.log(user_id)
-
-            //     try {
-            //         const response = await axios.get(
-            //             process.env.BACKEND_URL + "/api/user/" + user_id + "/order"
-            //         );
-            //         console.log(response.data.results);
-
-            //         setStore({
-            //             listaOrder: response.data.results,
-            //             // userId: response.user_id
-            //         });
-            //     } catch (error) {
-            //         // console.log(error);
-            //         console.log(error.response.data.msg);
-            //         if (error.response.status === 404) {
-            //             setStore({
-            //                 listaOrder: [],
-            //             });
-            //         }
-            //     }
-            // },
         },
     };
 };
