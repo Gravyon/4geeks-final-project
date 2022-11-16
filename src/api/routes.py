@@ -181,14 +181,17 @@ def create_user():
     user_query = User.query.filter_by(email=body["email"]).first()
     print(user_query)
     encrypted_pass = current_app.bcrypt.generate_password_hash(body["password"]).decode('utf-8')
-    # If to check if user doesn't exist (by checking the email), if so, it's created
     if username == "":
         return jsonify({"msg": "Username can't be empty"}), 406
     if email == "":
         return jsonify({"msg": "Email can't be empty"}), 406
     if password == "":
         return jsonify({"msg": "Password can't be empty"}), 406
-        
+    # response if the email exists
+    if user_query:
+        # Ends the function by sending the error code 409 (data already exists)
+        return jsonify({"msg": "User email already exists"}), 409
+    # If to check if user doesn't exist (by checking the email), if so, it's created
     elif user_query is None:
         # Table contents, same as the one in models.py
         new_user = User(
@@ -202,10 +205,6 @@ def create_user():
         db.session.commit()
         # Standard response to request with error code 200 (success)
         return jsonify({"msg": "New user created"}), 200
-    # else response if the email exists
-    elif user_query:
-        # Ends the function by sending the error code 400 (data already exists)
-        return jsonify({"msg": "User email already exists"}), 409
     
 ###########################
 # User GET query

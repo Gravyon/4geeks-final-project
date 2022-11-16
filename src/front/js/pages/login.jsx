@@ -1,17 +1,17 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "../../styles/login.css";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import jwt_decode from "jwt-decode";
+import { GoogleLogin, googleLogout, GoogleOAuthProvider } from "@react-oauth/google";
 import { FcGoogle } from 'react-icons/fc';
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
+  const [user, setUser] = useState({})
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     email: Yup.string("Enter your email")
@@ -22,33 +22,9 @@ export const Login = () => {
       .max(50, "Too Long!")
       .required("Password required"),
   });
-
-  const responseGoogle = (response) => {
-    //console.log(response);
-     const userObject = jwt_decode(response.credential);
-     //console.log(userObject);
-     localStorage.setItem('user', JSON.stringify(userObject));
-     const { name, sub, picture, email, jti, iat, exp, token, iss } = userObject;
-     const doc = {
-       _id: sub,
-       _type: 'user',
-       userName: name,
-       image: picture,
-       email: email,
-       jti: jti,
-       iat: iat,
-       exp: exp,
-       token: token,
-       iss: iss
-     };
-    console.log(doc)
-    //  client.createIfNotExists(doc).then(() => {
-    //    navigate('/', { replace: true });
-    //  });
-    }
-
-  return (
-    <Formik
+ 
+    return (
+      <Formik
       //Valores iniciales
       initialValues={{ email: "", password: "" }}
       validationSchema={SignupSchema}
@@ -135,8 +111,8 @@ export const Login = () => {
                               <FcGoogle className="" /> Sign in with google
                             </button>
                           )}
-                          onSuccess={responseGoogle}
-                          onFailure={responseGoogle}
+                          onSuccess={actions.responseGoogle}
+                          onFailure={actions.responseGoogle}
                           cookiePolicy="single_host_origin"
                         />
                       </GoogleOAuthProvider>

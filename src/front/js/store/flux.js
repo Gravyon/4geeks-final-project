@@ -1,6 +1,7 @@
 import axios from "axios";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
+import jwt_decode from "jwt-decode";
 
 const getState = ({
     getStore,
@@ -176,6 +177,39 @@ const getState = ({
                     console.log(err);
                 }
             },
+            responseGoogle: async (response) => {
+                // console.log(response);
+                const userObject = jwt_decode(response.credential);
+                // //console.log(userObject);
+                // localStorage.setItem("token", JSON.stringify(userObject));
+                // console.log(userObject);
+                // console.log(response.credential);
+                localStorage.setItem("token", response.credential);
+
+                // localStorage.getItem("token");
+                // console.log(accessToken);
+                //  client.createIfNotExists(doc).then(() => {
+                //    navigate('/', { replace: true });
+                //  });
+
+                let results = await getActions().signup(
+                    userObject.name,
+                    userObject.email,
+                    userObject.given_name
+                );
+                if (results === "User email already exists") {
+                    await getActions().login(userObject.email, userObject.given_name);
+                } else {
+                    await getActions().signup(
+                        userObject.name,
+                        userObject.email,
+                        userObject.given_name
+                    );
+                }
+                // console.log(results);
+
+                // return console.log("hola");
+            },
             // funcion para Login
             login: async (email, password) => {
                 try {
@@ -334,6 +368,7 @@ const getState = ({
             },
             //Funcion para registrarse como usuario
             signup: async (username, email, password) => {
+                console.log(username, email, password);
                 try {
                     const response = await axios.post(
                         process.env.BACKEND_URL + "/api/user", {

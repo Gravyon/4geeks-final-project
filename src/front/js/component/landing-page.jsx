@@ -109,7 +109,7 @@ export const LandingPage = () => {
               <Link
                 style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
-                onClick={() => actions.cambiaClassNameDetails(id)}
+                onClick={() => actions.cambiaClassNameDetails(item.id)}
               >
                 <Card.Body>
                   <img
