@@ -321,6 +321,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
             // console.log(store.favoriteHeart);
           }
+          getActions().getFavorites();
         }
       },
 
@@ -339,8 +340,8 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
             }
           );
-          Swal.fire(response.data.msg);
           getActions().getFavorites();
+          Swal.fire(response.data.msg);
           return response;
         } catch (error) {
           console.log(error);
@@ -686,6 +687,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({
             comments: data.map((item) => item.comment),
           });
+          getActions().getProductDetail(id);
 
           // console.log(store.comments);
           return store.comments;
