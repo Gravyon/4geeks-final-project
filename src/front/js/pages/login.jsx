@@ -1,16 +1,18 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "../../styles/login.css";
+import { GoogleLogin, googleLogout, GoogleOAuthProvider } from "@react-oauth/google";
+import { FcGoogle } from 'react-icons/fc';
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
+  const [user, setUser] = useState({})
   let navigate = useNavigate();
-
   const SignupSchema = Yup.object().shape({
     email: Yup.string("Enter your email")
       .email("Enter a valid email")
@@ -20,9 +22,9 @@ export const Login = () => {
       .max(50, "Too Long!")
       .required("Password required"),
   });
-
-  return (
-    <Formik
+ 
+    return (
+      <Formik
       //Valores iniciales
       initialValues={{ email: "", password: "" }}
       validationSchema={SignupSchema}
@@ -94,7 +96,27 @@ export const Login = () => {
                     >
                       Login
                     </button>
-                    <div className="d-flex flex-row mt-3 mb-5"></div>
+                    <div className="d-flex flex-row mt-3 mb-5">
+                      <GoogleOAuthProvider
+                        clientId={`${process.env.GOOGLE_AUTH}`}
+                      >
+                        <GoogleLogin
+                          render={(renderProps) => (
+                            <button
+                              type="button"
+                              className=""
+                              onClick={renderProps.onClick}
+                              disabled={renderProps.disabled}
+                            >
+                              <FcGoogle className="" /> Sign in with google
+                            </button>
+                          )}
+                          onSuccess={actions.responseGoogle}
+                          onFailure={actions.responseGoogle}
+                          cookiePolicy="single_host_origin"
+                        />
+                      </GoogleOAuthProvider>
+                    </div>
                     <div>
                       <p className="mb-0" style={{ color: "#bdb284" }}>
                         Don't have an account?{" "}
