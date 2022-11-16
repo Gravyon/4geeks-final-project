@@ -32,7 +32,6 @@ export const Favorites = () => {
       return "No review";
     }
   };
-  // let scoreTotal;
 
   return (
     <div
