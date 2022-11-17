@@ -21,10 +21,16 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import { BsFillHeartFill, BsHeart, BsFillBrushFill } from "react-icons/bs";
+import {
+  BsFillHeartFill,
+  BsHeart,
+  BsFillBrushFill,
+  BsFillShareFill,
+} from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
 import { ScrollRestoration } from "react-router-dom";
+import { FaShareAlt } from "react-icons/fa";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
@@ -181,7 +187,7 @@ export const LandingPage = () => {
                       aria-expanded="false"
                       style={{ float: "center", color: "white" }}
                     >
-                      Share
+                      <BsFillShareFill style={{ fontSize: "1.2rem" }} />
                     </button>
                     <ul
                       className="dropdown-menu bg-transparent"
