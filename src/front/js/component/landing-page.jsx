@@ -153,17 +153,20 @@ export const LandingPage = () => {
               <Card.Body>
                 <div className="mb-1">
                   <Card.Text
-                    style={{ color: "white", fontSize: "1.5rem" }}
+                    style={{ color: "white", fontSize: "1.4rem" }}
                     className="d-flex justify-content-between"
                   >
-                    <h5 className="mt-1">U$S {item.price}</h5>
+                    <p className="">U$S {item.price}</p>
                     <button
                       type="button"
                       onClick={() => handleAddShopping(item.id)}
                       className="btn d-flex align-bottom"
                       style={{ float: "right", color: "white" }}
                     >
-                      <i className="fa fa-cart-plus"> Add to cart</i>
+                      <i className="fa fa-cart-plus" style={{ color: "white" }}>
+                        {" "}
+                        Add to cart
+                      </i>
                     </button>
                   </Card.Text>
                 </div>
