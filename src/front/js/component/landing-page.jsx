@@ -126,10 +126,10 @@ export const LandingPage = () => {
                     alt="..."
                     style={{ maxHeight: "15rem", borderColor: "#b2a97e" }}
                   />
-                  <div>
+                  <div className="d-flex justify-content-between mt-2">
                     <Card.Title
                       style={{
-                        color: "#bdb284",
+                        color: "white",
                         textDecoration: "none",
                         textAlign: "center",
                       }}
@@ -139,7 +139,7 @@ export const LandingPage = () => {
 
                     <Card.Text
                       style={{
-                        color: "#bdb284",
+                        color: "white",
                         fontSize: "0.9rem",
                         textAlign: "center",
                         fontStyle: "italic",
@@ -153,17 +153,17 @@ export const LandingPage = () => {
               <Card.Body>
                 <div className="mb-1">
                   <Card.Text
-                    style={{ color: "#bdb284", fontSize: "1.5rem" }}
+                    style={{ color: "white", fontSize: "1.5rem" }}
                     className="d-flex justify-content-between"
                   >
-                    <h5>U$S {item.price}</h5>
+                    <h5 className="mt-1">U$S {item.price}</h5>
                     <button
                       type="button"
                       onClick={() => handleAddShopping(item.id)}
                       className="btn d-flex align-bottom"
-                      style={{ float: "right", color: "#bdb284" }}
+                      style={{ float: "right", color: "white" }}
                     >
-                      <i className="fa fa-cart-plus"></i>
+                      <i className="fa fa-cart-plus"> Add to cart</i>
                     </button>
                   </Card.Text>
                 </div>
@@ -176,7 +176,7 @@ export const LandingPage = () => {
                       type="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
-                      style={{ float: "center", color: "#bdb284" }}
+                      style={{ float: "center", color: "white" }}
                     >
                       Share
                     </button>
@@ -234,7 +234,7 @@ export const LandingPage = () => {
                   <button
                     type="button"
                     className="btn align-bottom"
-                    style={{ color: "#bdb284" }}
+                    style={{ color: "white" }}
                     onClick={() => {
                       handleAddFavorites(item.id);
                     }}
@@ -375,7 +375,7 @@ export const LandingPage = () => {
                     <span
                       className="btn d-flex justify-content-end"
                       onClick={() => handleSweetAlert(item.id)}
-                      style={{ color: "#bdb284" }}
+                      style={{ color: "white" }}
                     >
                       <b>X</b>
                     </span>
