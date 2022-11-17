@@ -158,12 +158,13 @@ export const ProductDetail = () => {
               </div>
             </div>
           </div>
+          <Scoring />
         </Card>
 
         {/* termina la card */}
-        <div className="mt-5">
+        {/* <div className="mt-5">
           <Scoring />
-        </div>
+        </div> */}
         <div
           className="col-sm-12 col-md-12 col-lg-4 my-4 bg-dark text-white  h-110 h-md-50"
           id="product-carousel"
