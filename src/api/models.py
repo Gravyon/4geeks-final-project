@@ -133,7 +133,11 @@ class OrderHistory(db.Model):
 
     def serialize(self):
         return {
-            "id": self.id,
-            "id_shopping": self.id_shopping,
-            "id_user": self.id_user
+            # "id": self.id,
+            "id_shopping": self.id_shopping
+            # "id_user": self.id_user
         }
+
+    def serialize2(self):
+        shopping_list = Shopping.query.filter_by(id=self.id_shopping).first()
+        return shopping_list.serialize()

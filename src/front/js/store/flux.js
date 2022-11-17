@@ -144,6 +144,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({
           product: results,
         });
+        window.scrollTo(600, 600);
       },
       // fecht de los cuadros
       getProduct: async () => {
@@ -785,7 +786,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           // console.log(error.response.data.msg);
           if (error.response.status === 404) {
             setStore({
-              orderList: [],
+              orderList: {},
             });
           }
         }
@@ -820,31 +821,28 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
-      deleteOrder: async (shopping_id) => {
-        let store = getStore();
-        let user_id = store.userId;
+      // deleteOrder: async (shopping_id) => {
+      //   let store = getStore();
+      //   let user_id = store.userId;
 
-        try {
-          const response = await axios.delete(
-            process.env.BACKEND_URL + "/api/order",
-            {
-              data: {
-                id_shopping: shopping_id,
-                id_user: user_id,
-              },
-            }
-          );
-          // alert(response.data.msg);
-          console.log(response);
-
-          getActions().getOrder();
-          // console.log(store.orderList)
-
-          return;
-        } catch (error) {
-          console.log(error);
-        }
-      },
+      //   try {
+      //     const response = await axios.delete(
+      //       process.env.BACKEND_URL + "/api/order",
+      //       {
+      //         data: {
+      //           id_shopping: shopping_id,
+      //           id_user: user_id,
+      //         },
+      //       }
+      //     );
+      //     console.log(response);
+      //     Swal.fire(response.data.msg);
+      //     getActions().getOrder();
+      //     return;
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // },
     },
   };
 };

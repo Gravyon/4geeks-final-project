@@ -74,19 +74,32 @@ export const Profile = (props) => {
     });
   };
 
-  useEffect(() => {
-    if (store.userId != null) {
-      // console.log(store.userId)
-      actions.getFavorites();
-    }
-  }, [store.userId]);
+  // useEffect(() => {
+  //   if (store.userId != null) {
+  //     // console.log(store.userId)
+  //   }
+  // }, [store.userId]);
+
+  // useEffect(() => {
+  //   if (store.userId != null) {
+  //     // console.log(store.userId)
+  //   }
+  // }, [store.userId]);
 
   useEffect(() => {
     if (store.userId != null) {
-      // console.log(store.userId)
+      actions.getFavorites();
       actions.getOrder();
+      const getInfo = async () => {
+        let arrTotal = await actions.priceFilter();
+
+        actions.sumaTotal(arrTotal);
+      };
+      getInfo();
     }
   }, [store.userId]);
+
+  console.log(store.sum);
 
   return (
     <div className="container mx-auto d-flex">
@@ -251,7 +264,7 @@ export const Profile = (props) => {
                                 {store.orderList.length > 0 ? (
                                   store.orderList.map((item, id) => (
                                     <li
-                                      className="list-group-item border border-1 border border-dark"
+                                      className="list-group-item border border-1 border border-dark m-1"
                                       key={id}
                                       style={{
                                         background: "#212529",
@@ -260,21 +273,28 @@ export const Profile = (props) => {
                                     >
                                       <div className="d-flex justify-content-between">
                                         <div className="d-flex justify-content-start text-left w-25">
-                                          Name: {item?.name}
+                                          Order number: {id}
                                         </div>
                                         <div className="d-flex justify-content-start">
                                           <p className="mx-5">
-                                            Price: US${item?.price}
+                                            Total: U$S{store.sum}
+                                            {/* {() => {
+                                            store.orderList.map((item, id) => (
+                                              <p className="mx-5" key={id}>
+                                                Total: U$S + {item.store.sum}
+                                              </p>
+                                            ));
+                                          }} */}
                                           </p>
                                         </div>
-                                        <div className="d-flex justify-content-end">
+                                        {/* <div className="d-flex justify-content-end">
                                           <div className="mx-4">
                                             <p className="card-text">
                                               {scoreGenerator(item.score)}
                                             </p>
                                           </div>
-                                        </div>
-                                        <div className="d-flex justify-content-end">
+                                        </div> */}
+                                        {/* <div className="d-flex justify-content-end">
                                           <span
                                             className="btn btn-outline-light"
                                             onClick={() =>
@@ -284,7 +304,7 @@ export const Profile = (props) => {
                                           >
                                             <b>X</b>
                                           </span>
-                                        </div>
+                                        </div> */}
                                       </div>
                                     </li>
                                   ))
