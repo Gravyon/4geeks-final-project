@@ -184,39 +184,36 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       responseGoogle: async (response) => {
         // console.log(response);
+        const userObject = jwt_decode(response.credential);
         // //console.log(userObject);
         // localStorage.setItem("token", JSON.stringify(userObject));
         // console.log(userObject);
         // console.log(response.credential);
+        localStorage.setItem("token", response.credential);
+
         // localStorage.getItem("token");
         // console.log(accessToken);
         //  client.createIfNotExists(doc).then(() => {
         //    navigate('/', { replace: true });
         //  });
-        const userObject = jwt_decode(response.credential);
-        localStorage.setItem("token", response.credential);
 
         let results = await getActions().signup(
           userObject.name,
           userObject.email,
           userObject.given_name
         );
-        console.log(results)
         if (results === "User exists") {
           await getActions().login(userObject.email, userObject.given_name);
-          // No funciona bien
-          // window.location.href="/"
-          return true;
-        } else if (results === "New user created") {
+        } else {
           await getActions().signup(
             userObject.name,
             userObject.email,
             userObject.given_name
           );
-          return true;
-          // window.location.href="/"
         }
-        return false;
+        // console.log(results);
+
+        // return console.log("hola");
       },
       // funcion para Login
       login: async (email, password) => {
@@ -249,10 +246,10 @@ const getState = ({ getStore, getActions, setStore }) => {
               title: "Oops...",
               text:
                 error.response.data.msg +
-                "... redirecting to login...",
+                ". You'll be rediredted to the register page",
             });
             return error.response.data.msg;
-          } else if (error.response.data.msg === "Bad email or password") {
+          } else if (error.response.status === 401) {
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -458,11 +455,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           return response.data.msg;
         } catch (error) {
           // console.log(error);
-          if (error.response.data.msg === "User exists") {
-            swal(error.response.data.msg);
+          if (error.response.status === 409) {
             return error.response.data.msg;
-            // } else if (error.response.data.msg === 406) {
-            //   return error.response.data.msg;
+          } else if (error.response.status === 406) {
+            return error.response.data.msg;
           }
         }
       },
