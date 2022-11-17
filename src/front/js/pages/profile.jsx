@@ -223,12 +223,12 @@ export const Profile = (props) => {
                     <Tab.Pane eventKey="second">
                       <div>
                         <ListGroup>
-                          {/* <Tab.Pane eventKey="third">
+                          <Tab.Pane eventKey="third">
                             <div>
                               <div className="col-12 mx-auto my-4 h-75">
                                 <ol>
-                                  {store.listaOrden.length > 0 ? (
-                                    store.listaOrden.map((item, id) => (
+                                  {store.orderList.length > 0 ? (
+                                    store.orderList.map((item, id) => (
                                       <li
                                         className="list-group-item border border-1 border border-dark"
                                         key={id}
@@ -254,6 +254,17 @@ export const Profile = (props) => {
                                               <BsStar />
                                               <BsStar />
                                             </div>
+                                            {/* <div className="d-flex justify-content-end"> */}
+                                            <span
+                                              className="btn btn-outline-light"
+                                              onClick={() =>
+                                                actions.deleteShopping(item.id)
+                                              }
+                                              style={{ color: "#bdb284" }}
+                                            >
+                                              <b>X</b>
+                                            </span>
+                                            {/* </div> */}
                                           </div>
                                         </div>
                                       </li>
@@ -264,7 +275,7 @@ export const Profile = (props) => {
                                 </ol>
                               </div>
                             </div>
-                          </Tab.Pane> */}
+                          </Tab.Pane>
                           {/* <ListGroup.Item>Order number 1</ListGroup.Item>
                           <ListGroup.Item>Order number 2</ListGroup.Item>
                           <ListGroup.Item>Order number 3</ListGroup.Item>
