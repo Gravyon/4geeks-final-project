@@ -118,9 +118,6 @@ export const Login = () => {
                         clientId={`${process.env.GOOGLE_AUTH}`}
                       >
                         <GoogleLogin
-                          // onSuccess={() => {
-                          //   if (actions.responseGoogle) successLogin;
-                          // }}
                           // onSuccess funciona con una funcion dentro, por lo tanto es necesaria esta sintaxis
                           onSuccess={async(response)=>{
                               let result = await actions.responseGoogle(response)
