@@ -182,16 +182,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       responseGoogle: async (response) => {
-        // console.log(response);
-        // //console.log(userObject);
-        // localStorage.setItem("token", JSON.stringify(userObject));
-        // console.log(userObject);
-        // console.log(response.credential);
-        // localStorage.getItem("token");
-        // console.log(accessToken);
-        //  client.createIfNotExists(doc).then(() => {
-        //    navigate('/', { replace: true });
-        //  });
         const userObject = jwt_decode(response.credential);
         localStorage.setItem("token", response.credential);
 
@@ -203,8 +193,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log(results)
         if (results === "User exists") {
           await getActions().login(userObject.email, userObject.given_name);
-          // No funciona bien
-          // window.location.href="/"
           return true;
         } else if (results === "New user created") {
           await getActions().signup(
@@ -213,7 +201,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             userObject.given_name
           );
           return true;
-          // window.location.href="/"
         }
         return false;
       },
