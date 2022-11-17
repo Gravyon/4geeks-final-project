@@ -154,7 +154,6 @@ export const LandingPage = () => {
                   >
                     <i className="fa fa-cart-plus"></i>
                   </button>
-
                   {/* empieza el share */}
                   <br />
                   <div className="dropdown">
@@ -233,19 +232,21 @@ export const LandingPage = () => {
                     )}
                   </button>
                   <div>
-                    <button
-                      type="button"
-                      className="btn btn-outline-light"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                    >
-                      <img
-                        style={{ width: "25px" }}
-                        src="https://thumbs.dreamstime.com/b/editar-vector-de-icono-bot%C3%B3n-edici%C3%B3n-plano-moda-la-colecci%C3%B3n-interfaces-usuario-aislado-en-fondo-blanco-ilustraci%C3%B3n-vectorial-164827048.jpg"
-                        alt=""
-                      />
-                    </button>
-                    {/* empieza el modal de editar producto */}
+                    {store.auth ? (
+                      <button
+                        type="button"
+                        className="btn btn-outline-light"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                      >
+                        <img
+                          style={{ width: "25px" }}
+                          src="https://thumbs.dreamstime.com/b/editar-vector-de-icono-bot%C3%B3n-edici%C3%B3n-plano-moda-la-colecci%C3%B3n-interfaces-usuario-aislado-en-fondo-blanco-ilustraci%C3%B3n-vectorial-164827048.jpg"
+                          alt=""
+                        />
+                      </button>
+                    ) : null}{" "}
+                    {/* #### empieza el modal de editar producto #### */}
                     <div
                       className="modal fade"
                       id="exampleModal"
@@ -355,13 +356,15 @@ export const LandingPage = () => {
                     </div>
                   </div>
                   {/* termina el modal de editar producto */}
-                  <span
-                    className="btn btn-outline-light d-flex justify-content-end"
-                    onClick={() => handleSweetAlert(item.id)}
-                    style={{ color: "#bdb284" }}
-                  >
-                    <b>X</b>
-                  </span>
+                  {store.auth ? (
+                    <span
+                      className="btn btn-outline-light d-flex justify-content-end"
+                      onClick={() => handleSweetAlert(item.id)}
+                      style={{ color: "#bdb284" }}
+                    >
+                      <b>X</b>
+                    </span>
+                  ) : null}{" "}
                 </div>
               </Card.Body>
             </Card>

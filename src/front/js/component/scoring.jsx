@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 import "../../styles/scoring.css";
+import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export const Scoring = (props) => {
   const [score, setScore] = useState(null);
@@ -15,7 +17,7 @@ export const Scoring = (props) => {
     e.preventDefault();
     let onScored = await actions.createScore(comment, score, params.id);
     // let msj = await actions.login(email, password).response.data.msg;
-    alert(onScored.data.msg);
+    Swal.fire(onScored.data.msg);
 
     setComment("");
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import ReactDOM, { render } from "react-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Context } from "../store/appContext";
+import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export const PayPalCheckout = () => {
   const { actions, store } = useContext(Context);
@@ -38,7 +40,14 @@ export const PayPalCheckout = () => {
         onApprove={(data, actions) => {
           return actions.order.capture().then((details) => {
             const name = details.payer.name.given_name;
-            alert(`Transaction completed by ${name}`);
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: `Transaction completed by ${name}`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            // alert(`Transaction completed by ${name}`);
           });
         }}
       />
