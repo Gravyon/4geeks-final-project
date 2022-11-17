@@ -101,7 +101,7 @@ export const LandingPage = () => {
 
   return (
     <div className="container w-100">
-      <ImgCarousel />
+      <ImgCarousel className />
       <div className="container text-align-center my-4" id="h1Container">
         <h1 className="display-4 text-align-center">Find your art!</h1>
       </div>
@@ -117,7 +117,7 @@ export const LandingPage = () => {
                 background: "#212529",
                 margin: "auto",
                 fontFamily: "Roboto, sans-serif",
-                borderColor: "#b2a97e",
+                // borderColor: "#b2a97e",
                 borderRadius: "15px 15px",
               }}
             >
@@ -125,12 +125,12 @@ export const LandingPage = () => {
                 style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
               >
-                <Card.Body style={{ marginBottom: "-10%" }}>
+                <Card.Body style={{ marginBottom: "-10%", width: "100%" }}>
                   <img
                     src={item.url}
-                    className="img-fluid rounded p-1"
+                    className="img-fluid rounded p-1 w-100"
                     alt="..."
-                    style={{ maxHeight: "15rem", borderColor: "#b2a97e" }}
+                    style={{ maxHeight: "14rem", borderColor: "#b2a97e" }}
                   />
                   <div className="d-flex justify-content-between mt-2">
                     <Card.Title
@@ -181,7 +181,7 @@ export const LandingPage = () => {
                   <br />
                   <div className="dropdown">
                     <button
-                      className="btn  dropdown-toggle"
+                      className="btn"
                       type="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
@@ -190,7 +190,7 @@ export const LandingPage = () => {
                       <BsFillShareFill style={{ fontSize: "1.2rem" }} />
                     </button>
                     <ul
-                      className="dropdown-menu bg-transparent"
+                      className="dropdown-menu bg-transparent vw-100 m-auto"
                       style={{ minWidth: "15rem" }}
                     >
                       <li>
