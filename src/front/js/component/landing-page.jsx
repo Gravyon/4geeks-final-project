@@ -118,44 +118,55 @@ export const LandingPage = () => {
               <Link
                 style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
-                // onClick={() => actions.cambiaClassNameDetails(item.id)}
               >
-                <Card.Body>
+                <Card.Body style={{ marginBottom: "-10%" }}>
                   <img
                     src={item.url}
                     className="img-fluid rounded p-1"
                     alt="..."
-                    style={{ maxHeight: "12rem", borderColor: "#b2a97e" }}
+                    style={{ maxHeight: "15rem", borderColor: "#b2a97e" }}
                   />
-                  <div style={{ textAlign: "left", marginLeft: "25px" }}>
-                    <hr style={{ borderTop: "2px dotted #bdb284" }} />
+                  <div>
                     <Card.Title
-                      style={{ color: "#bdb284", textDecoration: "none" }}
+                      style={{
+                        color: "#bdb284",
+                        textDecoration: "none",
+                        textAlign: "center",
+                      }}
                     >
                       {item.name}
                     </Card.Title>
-                    {/* <hr style={{ borderTop: "2px dotted #bdb284" }} /> */}
-                    <Card.Text style={{ color: "#bdb284" }}>
+
+                    <Card.Text
+                      style={{
+                        color: "#bdb284",
+                        fontSize: "0.9rem",
+                        textAlign: "center",
+                      }}
+                    >
                       {item.category}
                     </Card.Text>
-                    <Card.Text style={{ color: "#bdb284" }}>
-                      Price: U$S {item.price}
-                    </Card.Text>
-                    <hr style={{ borderTop: "2px dotted #bdb284" }} />
                   </div>
                 </Card.Body>
               </Link>
               <Card.Body>
-                <div className="d-flex align-bottom justify-content-between ">
-                  <button
-                    type="button"
-                    onClick={() => handleAddShopping(item.id)}
-                    className="btn d-flex align-bottom"
-                    style={{ float: "right", color: "#bdb284" }}
+                <div className="mb-1">
+                  <Card.Text
+                    style={{ color: "#bdb284", fontSize: "1.5rem" }}
+                    className="d-flex justify-content-between"
                   >
-                    <i className="fa fa-cart-plus"></i>
-                  </button>
-
+                    <h5>U$S {item.price}</h5>
+                    <button
+                      type="button"
+                      onClick={() => handleAddShopping(item.id)}
+                      className="btn d-flex align-bottom"
+                      style={{ float: "right", color: "#bdb284" }}
+                    >
+                      <i className="fa fa-cart-plus"></i>
+                    </button>
+                  </Card.Text>
+                </div>
+                <div className="d-flex align-bottom justify-content-between ">
                   {/* empieza el share */}
                   <br />
                   <div className="dropdown">
