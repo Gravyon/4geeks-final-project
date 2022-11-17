@@ -286,7 +286,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           );
           //   console.log(response);
+          getActions().getProduct();
           getActions().mapfavorites();
+          getActions().comparingFavorites();
           return response;
         } catch (error) {
           // console.log(error);
@@ -374,6 +376,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           Swal.fire(response.data.msg);
           getActions().getFavorites();
+          getActions().comparingFavorites();
           return response;
         } catch (error) {
           console.log(error);
@@ -690,7 +693,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               score: score,
             }
           );
-          getActions().getProductDetail();
+
           console.log(response);
 
           return response;

@@ -23,6 +23,7 @@ import {
 } from "react-share";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
+import { ScrollRestoration } from "react-router-dom";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
