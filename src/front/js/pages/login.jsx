@@ -6,12 +6,16 @@ import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "../../styles/login.css";
-import { GoogleLogin, googleLogout, GoogleOAuthProvider } from "@react-oauth/google";
-import { FcGoogle } from 'react-icons/fc';
+import {
+  GoogleLogin,
+  googleLogout,
+  GoogleOAuthProvider,
+} from "@react-oauth/google";
+import { FcGoogle } from "react-icons/fc";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     email: Yup.string("Enter your email")
@@ -24,20 +28,20 @@ export const Login = () => {
   });
   const redirect = () => {
     navigate("/");
-  }
+  };
 
   const failedLogin = () => {
-    navigate("/login")
-    console.log('Failed');
-}
+    navigate("/login");
+    console.log("Failed");
+  };
 
-const successLogin = () => {
-    console.log('success');
+  const successLogin = () => {
+    console.log("success");
     navigate("/");
-}
- 
-    return (
-      <Formik
+  };
+
+  return (
+    <Formik
       //Valores iniciales
       initialValues={{ email: "", password: "" }}
       validationSchema={SignupSchema}
@@ -112,16 +116,12 @@ const successLogin = () => {
                     <div className="d-flex flex-row mt-3 mb-5">
                       <GoogleOAuthProvider
                         clientId={`${process.env.GOOGLE_AUTH}`}
-                        >
-                        <GoogleLogin 
-                          responseType="code"
-                          uxMode="redirect"
-                          redirectUri="https://3000-gravyon-4geeksfinalproj-z8epmg4v641.ws-us74.gitpod.io/"
-                          onSuccess={() => {
-                            if (actions.responseGoogle)
-                            successLogin
-                          }
-                          }
+                      >
+                        <GoogleLogin
+                          // onSuccess={() => {
+                          //   if (actions.responseGoogle) successLogin;
+                          // }}
+                          onSuccess={actions.responseGoogle}
                           onFailure={actions.responseGoogle}
                           cookiePolicy="single_host_origin"
                           // onClick={successLogin}
@@ -135,7 +135,7 @@ const successLogin = () => {
                           //     <FcGoogle className="" /> Sign in with google
                           //   </button>
                           // )}
-                        
+
                           // onSuccess={actions.responseGoogle}
                         />
                       </GoogleOAuthProvider>

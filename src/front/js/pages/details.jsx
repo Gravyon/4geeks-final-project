@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Scoring } from "../component/scoring.jsx";
 import { ProductCarousel } from "../component/product-carousel.jsx";
+
 import "../../styles/details.css";
 
 export const ProductDetail = () => {
@@ -14,6 +15,7 @@ export const ProductDetail = () => {
   useEffect(() => {
     actions.getProductDetail(params.id);
     actions.getProductRatings(params.id);
+    window.scrollTo(0, 0);
   }, [params.id]);
 
   let handleAddShopping = async (id) => {
