@@ -116,7 +116,7 @@ export const Login = () => {
                             </button>
                           )}
                           uxMode="redirect"
-                          redirectUri="https://3000-gravyon-4geeksfinalproj-ddmu1o4sofb.ws-us74.gitpod.io"
+                          redirectUri="https://3000-gravyon-4geeksfinalproj-i8z5nerke71.ws-us74.gitpod.io"
                           onSuccess={actions.responseGoogle}
                           onFailure={actions.responseGoogle}
                           cookiePolicy="single_host_origin"
