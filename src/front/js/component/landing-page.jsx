@@ -178,7 +178,6 @@ export const LandingPage = () => {
                 </div>
                 <div className="d-flex align-bottom justify-content-between ">
                   {/* empieza el share */}
-                  <br />
                   <div className="dropdown">
                     <button
                       className="btn"
@@ -187,10 +186,10 @@ export const LandingPage = () => {
                       aria-expanded="false"
                       style={{ float: "center", color: "white" }}
                     >
-                      <BsFillShareFill style={{ fontSize: "1.2rem" }} />
+                      <BsFillShareFill />
                     </button>
                     <ul
-                      className="dropdown-menu bg-transparent vw-100 m-auto"
+                      className="dropdown-menu bg-transparent border-0"
                       style={{ minWidth: "15rem" }}
                     >
                       <li>
