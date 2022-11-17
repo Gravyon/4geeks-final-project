@@ -194,7 +194,6 @@ const getState = ({
                 // console.log(userObject);
                 // console.log(response.credential);
                 localStorage.setItem("token", response.credential);
-
                 // localStorage.getItem("token");
                 // console.log(accessToken);
                 //  client.createIfNotExists(doc).then(() => {
@@ -208,13 +207,19 @@ const getState = ({
                 );
                 if (results === "User exists") {
                     await getActions().login(userObject.email, userObject.given_name);
+                    // No funciona bien
+                    // window.location.href="/"
+                    return true;
                 } else {
                     await getActions().signup(
                         userObject.name,
                         userObject.email,
                         userObject.given_name
                     );
+                    return true;
+                    // window.location.href="/"
                 }
+                return false;
                 // console.log(results);
 
                 // return console.log("hola");
@@ -449,10 +454,11 @@ const getState = ({
                     return response.data.msg;
                 } catch (error) {
                     // console.log(error);
-                    if (error.response.status === 409) {
+                    if (error.response.data.msg === "User exists") {
+                        swal(error.response.data.msg);
                         return error.response.data.msg;
-                    } else if (error.response.status === 406) {
-                        return error.response.data.msg;
+                        // } else if (error.response.data.msg === 406) {
+                        //   return error.response.data.msg;
                     }
                 }
             },

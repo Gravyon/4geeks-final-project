@@ -22,6 +22,19 @@ export const Login = () => {
       .max(50, "Too Long!")
       .required("Password required"),
   });
+  const redirect = () => {
+    navigate("/");
+  }
+
+  const failedLogin = () => {
+    navigate("/login")
+    console.log('Failed');
+}
+
+const successLogin = () => {
+    console.log('success');
+    navigate("/");
+}
  
     return (
       <Formik
@@ -99,21 +112,31 @@ export const Login = () => {
                     <div className="d-flex flex-row mt-3 mb-5">
                       <GoogleOAuthProvider
                         clientId={`${process.env.GOOGLE_AUTH}`}
-                      >
-                        <GoogleLogin
-                          render={(renderProps) => (
-                            <button
-                              type="button"
-                              className=""
-                              onClick={renderProps.onClick}
-                              disabled={renderProps.disabled}
-                            >
-                              <FcGoogle className="" /> Sign in with google
-                            </button>
-                          )}
-                          onSuccess={actions.responseGoogle}
+                        >
+                        <GoogleLogin 
+                          responseType="code"
+                          uxMode="redirect"
+                          redirectUri="https://3000-gravyon-4geeksfinalproj-z8epmg4v641.ws-us74.gitpod.io/"
+                          onSuccess={() => {
+                            if (actions.responseGoogle)
+                            successLogin
+                          }
+                          }
                           onFailure={actions.responseGoogle}
                           cookiePolicy="single_host_origin"
+                          // onClick={successLogin}
+                          // render={(renderProps) => (
+                          //   <button
+                          //     type="button"
+                          //     className=""
+                          //     onClick={renderProps.onClick}
+                          //     disabled={renderProps.disabled}
+                          //   >
+                          //     <FcGoogle className="" /> Sign in with google
+                          //   </button>
+                          // )}
+                        
+                          // onSuccess={actions.responseGoogle}
                         />
                       </GoogleOAuthProvider>
                     </div>

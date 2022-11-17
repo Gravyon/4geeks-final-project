@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from "react";
-
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
