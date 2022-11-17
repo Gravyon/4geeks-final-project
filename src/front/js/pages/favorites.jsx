@@ -71,6 +71,15 @@ export const Favorites = () => {
                           </p>
                         </div>
                       </div>
+                      <div className="d-flex justify-content-end">
+                        <span
+                          className="btn btn-outline-light"
+                          onClick={() => actions.eliminarFavoritos(item.id)}
+                          style={{ color: "#bdb284" }}
+                        >
+                          <b>X</b>
+                        </span>
+                      </div>
                     </div>
                   </li>
                 ))

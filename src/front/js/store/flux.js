@@ -183,19 +183,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       responseGoogle: async (response) => {
-        // console.log(response);
         const userObject = jwt_decode(response.credential);
-        // //console.log(userObject);
-        // localStorage.setItem("token", JSON.stringify(userObject));
-        // console.log(userObject);
-        // console.log(response.credential);
         localStorage.setItem("token", response.credential);
-
-        // localStorage.getItem("token");
-        // console.log(accessToken);
-        //  client.createIfNotExists(doc).then(() => {
-        //    navigate('/', { replace: true });
-        //  });
 
         let results = await getActions().signup(
           userObject.name,
@@ -204,16 +193,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
         if (results === "User exists") {
           await getActions().login(userObject.email, userObject.given_name);
-        } else {
+          return true;
+        } else if (results === "New user created") {
           await getActions().signup(
             userObject.name,
             userObject.email,
             userObject.given_name
           );
+          return true;
         }
-        // console.log(results);
-
-        // return console.log("hola");
+        return false;
       },
       // funcion para Login
       login: async (email, password) => {
@@ -801,7 +790,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
-      createOrder: async (product_id) => {
+      createOrder: async (shopping_id) => {
         let store = getStore();
 
         let user_id = store.userId;
@@ -811,7 +800,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const response = await axios.post(
             process.env.BACKEND_URL + "/api/order",
             {
-              id_products: product_id,
+              id_shopping: shopping_id,
               id_user: user_id,
             }
           );
@@ -820,7 +809,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           return response;
         } catch (error) {
           if (error.response.status === 404) {
-            getActions().eliminarFavoritos(product_id);
+            getActions().eliminarFavoritos(order_id);
           } else if (error.response.data.msg === "User is not logged in") {
             Swal.fire({
               icon: "error",
@@ -829,6 +818,31 @@ const getState = ({ getStore, getActions, setStore }) => {
             });
             return error.response.data.msg;
           }
+        }
+      },
+      deleteOrder: async (shopping_id) => {
+        let store = getStore();
+        let user_id = store.userId;
+
+        try {
+          const response = await axios.delete(
+            process.env.BACKEND_URL + "/api/order",
+            {
+              data: {
+                id_shopping: shopping_id,
+                id_user: user_id,
+              },
+            }
+          );
+          // alert(response.data.msg);
+          console.log(response);
+
+          getActions().getOrder();
+          // console.log(store.orderList)
+
+          return;
+        } catch (error) {
+          console.log(error);
         }
       },
     },

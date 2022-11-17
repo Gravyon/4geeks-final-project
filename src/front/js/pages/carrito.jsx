@@ -67,6 +67,15 @@ export const Carrito = () => {
                           </p>
                         </div>
                       </div>
+                      <div className="d-flex justify-content-end">
+                        <span
+                          className="btn btn-outline-light"
+                          onClick={() => actions.deleteShopping(item.id)}
+                          style={{ color: "#bdb284" }}
+                        >
+                          <b>X</b>
+                        </span>
+                      </div>
                     </div>
                   </li>
                   // )) : <p>Nothing to checkout</p>}

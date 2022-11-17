@@ -29,6 +29,22 @@ export const Profile = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
+  let scoreGenerator = (score) => {
+    if (score === 1) {
+      return "★";
+    } else if (score === 2) {
+      return "★★";
+    } else if (score === 3) {
+      return "★★★";
+    } else if (score === 4) {
+      return "★★★★";
+    } else if (score == 5) {
+      return "★★★★★";
+    } else {
+      return "No review";
+    }
+  };
+
   const updateUser = async (e) => {
     e.preventDefault();
     // console.log(profile.name, profile.email)
@@ -37,13 +53,6 @@ export const Profile = (props) => {
     setUsername("");
     setPassword("");
     setEmail("");
-    // onUpdateUser ? navigate("/") : null;
-    // if (userUpdate) {
-    //   navigate("/profile");
-    // } else {
-    // Swal.fire("An error ocurred")
-    //   navigate("/");
-    // }
   };
 
   const handleSweetAlert = () => {
@@ -69,6 +78,13 @@ export const Profile = (props) => {
     if (store.userId != null) {
       // console.log(store.userId)
       actions.getFavorites();
+    }
+  }, [store.userId]);
+
+  useEffect(() => {
+    if (store.userId != null) {
+      // console.log(store.userId)
+      actions.getOrder();
     }
   }, [store.userId]);
 
@@ -223,70 +239,75 @@ export const Profile = (props) => {
                     <Tab.Pane eventKey="second">
                       <div>
                         <ListGroup>
-                          <Tab.Pane eventKey="third">
-                            <div>
-                              <div className="col-12 mx-auto my-4 h-75">
-                                <ol>
-                                  {store.orderList.length > 0 ? (
-                                    store.orderList.map((item, id) => (
-                                      <li
-                                        className="list-group-item border border-1 border border-dark"
-                                        key={id}
-                                        style={{
-                                          background: "#212529",
-                                          color: "#908969",
-                                        }}
-                                      >
-                                        <div className="d-flex justify-content-between">
-                                          <div className="d-flex justify-content-start text-left w-25">
-                                            Name: {item?.name}
-                                          </div>
-                                          <div className="text-left">
-                                            <p className="mx-5 text-right">
-                                              Price: US${item?.price}
+                          <div
+                            className="container mt-5 vh-sm-auto vh-xl-100 vh-lg-100 mx-auto"
+                            style={{
+                              fontFamily: "Rajdhani, sans-serif",
+                              fontSize: "1.3rem",
+                            }}
+                          >
+                            <div className="col-12 mx-auto my-4 h-75">
+                              <ol className="h-75">
+                                {store.orderList.length > 0 ? (
+                                  store.orderList.map((item, id) => (
+                                    <li
+                                      className="list-group-item border border-1 border border-dark"
+                                      key={id}
+                                      style={{
+                                        background: "#212529",
+                                        color: "#908969",
+                                      }}
+                                    >
+                                      <div className="d-flex justify-content-between">
+                                        <div className="d-flex justify-content-start text-left w-25">
+                                          Name: {item?.name}
+                                        </div>
+                                        <div className="d-flex justify-content-start">
+                                          <p className="mx-5">
+                                            Price: US${item?.price}
+                                          </p>
+                                        </div>
+                                        <div className="d-flex justify-content-end">
+                                          <div className="mx-4">
+                                            <p className="card-text">
+                                              {scoreGenerator(item.score)}
                                             </p>
                                           </div>
-                                          <div className="d-flex justify-content-end">
-                                            <div className="mx-4">
-                                              <BsStarFill />
-                                              <BsStarFill />
-                                              <BsStarHalf />
-                                              <BsStar />
-                                              <BsStar />
-                                            </div>
-                                            {/* <div className="d-flex justify-content-end"> */}
-                                            <span
-                                              className="btn btn-outline-light"
-                                              onClick={() =>
-                                                actions.deleteShopping(item.id)
-                                              }
-                                              style={{ color: "#bdb284" }}
-                                            >
-                                              <b>X</b>
-                                            </span>
-                                            {/* </div> */}
-                                          </div>
                                         </div>
-                                      </li>
-                                    ))
-                                  ) : (
-                                    <p>No tienes ninguna orden</p>
-                                  )}
-                                </ol>
-                              </div>
+                                        <div className="d-flex justify-content-end">
+                                          <span
+                                            className="btn btn-outline-light"
+                                            onClick={() =>
+                                              actions.deleteOrder(item.id)
+                                            }
+                                            style={{ color: "#bdb284" }}
+                                          >
+                                            <b>X</b>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  ))
+                                ) : (
+                                  <p>Order History is empty</p>
+                                )}
+                              </ol>
                             </div>
-                          </Tab.Pane>
-                          {/* <ListGroup.Item>Order number 1</ListGroup.Item>
-                          <ListGroup.Item>Order number 2</ListGroup.Item>
-                          <ListGroup.Item>Order number 3</ListGroup.Item>
-                          <ListGroup.Item>Order number 4</ListGroup.Item>
-                          <ListGroup.Item>Order number 5</ListGroup.Item> */}
+                          </div>
+
+                          {/* <ListGroup.Item>Order number 5</ListGroup.Item> */}
                         </ListGroup>
                       </div>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
-                      <div>
-                        <div className="col-12">
+                      <div
+                        className="container mt-5 vh-100 "
+                        style={{
+                          fontFamily: "Rajdhani, sans-serif",
+                          fontSize: "1.3rem",
+                        }}
+                      >
+                        <div className="col-12 mx-auto my-4 h-75">
                           <ol className="h-75">
                             {store.listaFavoritos.length > 0 ? (
                               store.listaFavoritos.map((item, id) => (
