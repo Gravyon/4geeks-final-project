@@ -26,6 +26,19 @@ export const Login = () => {
       .max(50, "Too Long!")
       .required("Password required"),
   });
+  const redirect = () => {
+    navigate("/");
+  };
+
+  const failedLogin = () => {
+    navigate("/login");
+    console.log("Failed");
+  };
+
+  const successLogin = () => {
+    console.log("success");
+    navigate("/");
+  };
 
   return (
     <Formik
@@ -105,20 +118,26 @@ export const Login = () => {
                         clientId={`${process.env.GOOGLE_AUTH}`}
                       >
                         <GoogleLogin
-                          render={(renderProps) => (
-                            <button
-                              type="button"
-                              className=""
-                              onClick={renderProps.onClick}
-                              disabled={renderProps.disabled}
-                            >
-                              <FcGoogle className="" /> Sign in with google
-                            </button>
-                          )}
-                          uxMode="redirect"
-                          redirectUri="https://3000-gravyon-4geeksfinalproj-i8z5nerke71.ws-us74.gitpod.io"
-                          onSuccess={actions.responseGoogle}
-                          onFailure={actions.responseGoogle}
+                          // onSuccess={() => {
+                          //   if (actions.responseGoogle) successLogin;
+                          // }}
+                          // onSuccess funciona con una funcion dentro, por lo tanto es necesaria esta sintaxis
+                          onSuccess={async(response)=>{
+                              let result = await actions.responseGoogle(response)
+                              if (result){
+                                successLogin()
+                                navigate("/")
+                              }
+                            }
+                          }
+                          onFailure={async(response)=>{
+                            let result = await actions.responseGoogle(response)
+                            if (!result){
+                              failedLogin()
+                              navigate("/login")
+                            }
+                          }
+                        }
                           cookiePolicy="single_host_origin"
                         />
                       </GoogleOAuthProvider>
