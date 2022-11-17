@@ -181,8 +181,10 @@ def create_user():
     user_query = User.query.filter_by(email=body["email"]).first()
     print(user_query)
     encrypted_pass = current_app.bcrypt.generate_password_hash(body["password"]).decode('utf-8')
+    # if username == "":
+    #     return jsonify({"msg": "Username can't be empty"}), 406
     if username == "":
-        return jsonify({"msg": "Username can't be empty"}), 406
+        return jsonify({"msg": "Invalid username"}), 406
     if email == "":
         return jsonify({"msg": "Email can't be empty"}), 406
     if password == "":
@@ -198,7 +200,7 @@ def create_user():
         username=body["username"],
         password=encrypted_pass,
         email=body["email"])
-        print(new_user)
+        print(new_user.serialize())
         # Flask command to add a new entry
         db.session.add(new_user)
         # Flask command to commit the database, saving the changes
@@ -248,23 +250,41 @@ def delete_user(user_id):
 def modify_user(user_id):
     body = json.loads(request.data)
     user = User.query.filter_by(id=user_id).first()
-    email_exists = User.query.filter_by(email=body["email"]).all()
-    username_exists = User.query.filter_by(username=body["username"]).all()
-    print(email_exists)
-    # If user exists, modifies it with new inputs
     if user is None:
         return jsonify({"msg": "User doesn't exist"}), 404
-    if email_exists:
-        return jsonify({"msg": "Email already taken"}), 401
-    if username_exists:
-        return jsonify({"msg": "Username already taken"}), 409
+
+    if "email" in body:
+        email_exists = User.query.filter_by(email=body["email"]).all()
+        if email_exists:
+            return jsonify({"msg": "Email already taken"}), 409 
+        else:
+            user.email = body["email"] 
 
     if "username" in body:
-        user.username = body["username"]
-    if "email" in body:
-        user.email = body["email"] 
+        username_exists = User.query.filter_by(username=body["username"]).all()
+        if username_exists:
+            return jsonify({"msg": "Username already taken"}), 409
+        else:
+            user.username = body["username"]
+
+    print(user.serialize())
+    # If user exists, modifies it with new inputs
+    
+    # if "username" in body:
+    #     user.username = body["username"]
+    # if "email" in body:
+    #     user.email = body["email"] 
     if "password" in body:
-        user.password = body["password"]   
+        encrypted_pass = current_app.bcrypt.generate_password_hash(body["password"]).decode('utf-8')
+        user.password = encrypted_pass   
+    if "name" in body:
+        user.name = body["name"]   
+    if "lastname" in body:
+        user.lastname = body["lastname"]   
+    if "seller" in body:
+        user.seller = body["seller"]   
+    if "admin" in body:
+        user.admin = body["admin"]   
     db.session.commit()
     return jsonify({"msg": "User updated successfully"}), 200
 

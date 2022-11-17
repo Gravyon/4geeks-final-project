@@ -90,7 +90,7 @@ export const NavbarPrincipal = () => {
                   Favorites
                 </Nav.Link>
               ) : null}{" "}
-              {store.auth ? (
+              {store.admin ? (
                 <Nav.Link href="/upload-img" style={{ color: "#bdb284" }}>
                   Create product
                 </Nav.Link>
