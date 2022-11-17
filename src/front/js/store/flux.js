@@ -11,18 +11,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       product: [],
       productDetail: {},
       products: [],
-
       listaFavoritos: [],
       shoppingList: [],
       orderList: [],
-
+      admin: false,
+      seller: false,
       productId: null,
       userId: null,
       auth: false,
       registered: false,
       profile: {},
       priceList: [],
-      // productIdList: [],
       sum: 0,
       classNameDetails: "btn btn-outline-light align-bottom",
       avgScore: null,
@@ -74,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       //Update user info function
-      updateUser: async (email, username, password) => {
+      updateUser: async (email, username, password, name, lastname) => {
         let store = getStore();
         let user_id = store.userId;
         // userId = store.profile.user.id
@@ -85,6 +84,8 @@ const getState = ({ getStore, getActions, setStore }) => {
               email: email,
               username: username,
               password: password,
+              name: name,
+              lastname: lastname,
             }
           );
           Swal.fire({
@@ -192,6 +193,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           userObject.email,
           userObject.given_name
         );
+        console.log(results);
         if (results === "User exists") {
           await getActions().login(userObject.email, userObject.given_name);
           return true;
@@ -215,15 +217,31 @@ const getState = ({ getStore, getActions, setStore }) => {
               password: password,
             }
           );
-
+          if (response.data.user.admin) {
+            setStore({
+              admin: true,
+              auth: true,
+              userId: response.data.user.id,
+            });
+          } else if (response.data.user.seller) {
+            setStore({
+              seller: true,
+              auth: true,
+              userId: response.data.user.id,
+            });
+          } else {
+            setStore({
+              auth: true,
+              userId: response.data.user.id,
+            });
+          }
           localStorage.setItem("token", response.data.msg);
           // console.log(response.data.msg);
           // console.log(response);
           // console.log(response.data.user.id);
-          setStore({
-            auth: true,
-            userId: response.data.user.id,
-          });
+          console.log(response.data.user.admin);
+          console.log(response.data.user.seller);
+          console.log(response.data.user);
           // console.log(response.status);
           return response.data.msg;
         } catch (error) {
@@ -234,12 +252,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             Swal.fire({
               icon: "error",
               title: "Oops...",
-              text:
-                error.response.data.msg +
-                ". You'll be rediredted to the register page",
+              text: error.response.data.msg + "... redirecting to login...",
             });
             return error.response.data.msg;
-          } else if (error.response.status === 401) {
+          } else if (error.response.data.msg === "Bad email or password") {
             Swal.fire({
               icon: "error",
               title: "Oops...",
@@ -445,10 +461,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           return response.data.msg;
         } catch (error) {
           // console.log(error);
-          if (error.response.status === 409) {
+          if (error.response.data.msg === "User exists") {
+            swal(error.response.data.msg);
             return error.response.data.msg;
-          } else if (error.response.status === 406) {
-            return error.response.data.msg;
+            // } else if (error.response.data.msg === 406) {
+            //   return error.response.data.msg;
           }
         }
       },

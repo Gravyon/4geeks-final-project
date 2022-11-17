@@ -7,6 +7,10 @@ class User(db.Model):
     username = db.Column(db.String(250), nullable=False)
     password = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(250), nullable=False)
+    name = db.Column(db.String(250), nullable=True)
+    lastname = db.Column(db.String(250), nullable=True)
+    seller = db.Column(db.Boolean, unique=False, default=False)
+    admin = db.Column(db.Boolean, unique=False, default=False)
     favorites = db.relationship('Favorites', backref='user', cascade="all, delete-orphan", lazy=True)
     reviews = db.relationship('Review', backref='user', cascade="all, delete-orphan", lazy=True)
     shopping = db.relationship('Shopping', backref='user', cascade="all, delete-orphan", lazy=True)
@@ -19,7 +23,11 @@ class User(db.Model):
         return {
             "id": self.id,
             "username": self.username,
-            "email": self.email
+            "email": self.email,
+            "name": self.name,
+            "lastname": self.lastname,
+            "seller": self.seller,
+            "admin": self.admin,
             # do not serialize the password, its a security breach
         }
 

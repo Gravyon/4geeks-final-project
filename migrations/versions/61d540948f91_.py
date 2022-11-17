@@ -1,14 +1,8 @@
 """empty message
 
-<<<<<<<< HEAD:migrations/versions/4338cdf9fe98_.py
-Revision ID: 4338cdf9fe98
+Revision ID: 61d540948f91
 Revises: 
-Create Date: 2022-11-15 19:48:13.636453
-========
-Revision ID: dcf72949b393
-Revises: 
-Create Date: 2022-11-16 14:46:28.400528
->>>>>>>> d8ac18b6ccac8c752e0bab9105d03592d920b953:migrations/versions/dcf72949b393_.py
+Create Date: 2022-11-17 14:45:19.481094
 
 """
 from alembic import op
@@ -16,11 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< HEAD:migrations/versions/4338cdf9fe98_.py
-revision = '4338cdf9fe98'
-========
-revision = 'dcf72949b393'
->>>>>>>> d8ac18b6ccac8c752e0bab9105d03592d920b953:migrations/versions/dcf72949b393_.py
+revision = '61d540948f91'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,6 +32,10 @@ def upgrade():
     sa.Column('username', sa.String(length=250), nullable=False),
     sa.Column('password', sa.String(length=250), nullable=False),
     sa.Column('email', sa.String(length=250), nullable=False),
+    sa.Column('name', sa.String(length=250), nullable=True),
+    sa.Column('lastname', sa.String(length=250), nullable=True),
+    sa.Column('seller', sa.Boolean(), nullable=True),
+    sa.Column('admin', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('favorites',
