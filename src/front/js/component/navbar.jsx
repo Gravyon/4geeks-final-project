@@ -23,7 +23,7 @@ export const NavbarPrincipal = () => {
   // };
 
   const handleInput = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setSearch(e.target.value);
     console.log(e.target.value);
     if (e.target.value === "") {
