@@ -6,12 +6,16 @@ import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "../../styles/login.css";
-import { GoogleLogin, googleLogout, GoogleOAuthProvider } from "@react-oauth/google";
-import { FcGoogle } from 'react-icons/fc';
+import {
+  GoogleLogin,
+  googleLogout,
+  GoogleOAuthProvider,
+} from "@react-oauth/google";
+import { FcGoogle } from "react-icons/fc";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     email: Yup.string("Enter your email")
@@ -22,9 +26,9 @@ export const Login = () => {
       .max(50, "Too Long!")
       .required("Password required"),
   });
- 
-    return (
-      <Formik
+
+  return (
+    <Formik
       //Valores iniciales
       initialValues={{ email: "", password: "" }}
       validationSchema={SignupSchema}
@@ -111,6 +115,8 @@ export const Login = () => {
                               <FcGoogle className="" /> Sign in with google
                             </button>
                           )}
+                          uxMode="redirect"
+                          redirectUri="https://3000-gravyon-4geeksfinalproj-ddmu1o4sofb.ws-us74.gitpod.io"
                           onSuccess={actions.responseGoogle}
                           onFailure={actions.responseGoogle}
                           cookiePolicy="single_host_origin"

@@ -288,7 +288,9 @@ const getState = ({
                         }
                     );
                     //   console.log(response);
+                    getActions().getProduct();
                     getActions().mapfavorites();
+                    getActions().comparingFavorites();
                     return response;
                 } catch (error) {
                     // console.log(error);
@@ -374,6 +376,7 @@ const getState = ({
                     );
                     Swal.fire(response.data.msg);
                     getActions().getFavorites();
+                    getActions().comparingFavorites();
                     return response;
                 } catch (error) {
                     console.log(error);
