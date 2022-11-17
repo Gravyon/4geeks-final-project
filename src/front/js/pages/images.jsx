@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
 import { useState } from "react";
 import { Context } from "../store/appContext";
+import Nav from "react-bootstrap/Nav";
 
 export const SubirImagenes = () => {
   const { store, actions } = useContext(Context);
@@ -55,69 +56,86 @@ export const SubirImagenes = () => {
   };
 
   return (
-    <div className="container mt-5 vh-100">
-      <h1>Upload your work of art</h1>
-      <div className="col-5 mx-auto my-5">
-        <Form
-          onSubmit={handleSubmit}
-          style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "1.2rem" }}
-        >
-          <FormGroup>
-            <Label for="exampleName">Name</Label>
-            <Input
-              id="exampleName"
-              name="name"
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-            />
-            <Label for="exampleCategory">Category</Label>
-            <Input
-              id="exampleCategory"
-              name="category"
-              type="text"
-              onChange={(e) => setCategory(e.target.value)}
-              value={category}
-            />
-            <Label for="examplePrice">Price</Label>
-            <Input
-              id="examplePrice"
-              name="price"
-              type="number"
-              onChange={(e) => setPrice(e.target.value)}
-              value={price}
-            />
-            <Label for="exampleDescription">Description</Label>
-            <Input
-              id="exampleDescription"
-              name="price"
-              type="text"
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-            />
-            <Label for="exampleFile">File</Label>
-            <Input
-              id="exampleFile"
-              name="file"
-              type="file"
-              onChange={(e) => {
-                uploadImage(e);
-                setUrl(e.target.value);
-              }}
-
-              // onChange={(e) => setUrl(e.target.value)}
-              // value={url}
-            />
-            <Button
-              className="btn btn-outline-light my-3"
-              type="submit"
-              style={{ color: "#bdb284" }}
+    <>
+      {store.auth ? (
+        <div className="container mt-5 vh-100">
+          <h1>Upload your work of art</h1>
+          <div className="col-5 mx-auto my-5">
+            <Form
+              onSubmit={handleSubmit}
+              style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "1.2rem" }}
             >
-              Submit
-            </Button>
-          </FormGroup>
-        </Form>
-      </div>
-    </div>
+              <FormGroup>
+                <Label for="exampleName">Name</Label>
+                <Input
+                  id="exampleName"
+                  name="name"
+                  type="text"
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                />
+                <Label for="exampleCategory">Category</Label>
+                <Input
+                  id="exampleCategory"
+                  name="category"
+                  type="text"
+                  onChange={(e) => setCategory(e.target.value)}
+                  value={category}
+                />
+                <Label for="examplePrice">Price</Label>
+                <Input
+                  id="examplePrice"
+                  name="price"
+                  type="number"
+                  onChange={(e) => setPrice(e.target.value)}
+                  value={price}
+                />
+                <Label for="exampleDescription">Description</Label>
+                <Input
+                  id="exampleDescription"
+                  name="price"
+                  type="text"
+                  onChange={(e) => setDescription(e.target.value)}
+                  value={description}
+                />
+                <Label for="exampleFile">File</Label>
+                <Input
+                  id="exampleFile"
+                  name="file"
+                  type="file"
+                  onChange={(e) => {
+                    uploadImage(e);
+                    setUrl(e.target.value);
+                  }}
+
+                  // onChange={(e) => setUrl(e.target.value)}
+                  // value={url}
+                />
+                <Button
+                  className="btn btn-outline-light my-3"
+                  type="submit"
+                  style={{ color: "#bdb284" }}
+                >
+                  Submit
+                </Button>
+              </FormGroup>
+            </Form>
+          </div>
+        </div>
+      ) : (
+        <div className="d-flex vh-auto vh-100 text-center justify-content-center ">
+          <div>
+            <h1>Not logged in...</h1>
+            <Nav.Link
+              className="bg-dark"
+              style={{ color: "#bdb284" }}
+              href="/login"
+            >
+              Go to login
+            </Nav.Link>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
