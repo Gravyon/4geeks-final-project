@@ -31,9 +31,9 @@ export const Scoring = (props) => {
   };
 
   return (
-    <form onSubmit={handleScore} className="bg-dark mb-3 mt-3 pt-3">
-      <h3 style={{ color: "#908969", textAlign: "center" }}>Review product</h3>
-      <div className="container d-xl-inline-flex d-lg-inline-flex justify-content-between bg-dark mt-3 mb-4 pb-3">
+    <form onSubmit={handleScore} className="bg-dark">
+      <h4 style={{ color: "#908969", textAlign: "center" }}>Review product</h4>
+      <div className="container d-xl-inline-flex d-lg-inline-flex justify-content-between bg-dark">
         <div className="col-sm-12 col-md-12 col-lg-2">
           <p className="clasificacion" id="pClasification">
             <input

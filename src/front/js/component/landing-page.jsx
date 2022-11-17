@@ -21,10 +21,16 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import { BsFillHeartFill, BsHeart, BsFillBrushFill } from "react-icons/bs";
+import {
+  BsFillHeartFill,
+  BsHeart,
+  BsFillBrushFill,
+  BsFillShareFill,
+} from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
 import { ScrollRestoration } from "react-router-dom";
+import { FaShareAlt } from "react-icons/fa";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
@@ -95,7 +101,7 @@ export const LandingPage = () => {
 
   return (
     <div className="container w-100">
-      <ImgCarousel />
+      <ImgCarousel className />
       <div className="container text-align-center my-4" id="h1Container">
         <h1 className="display-4 text-align-center">Find your art!</h1>
       </div>
@@ -111,7 +117,7 @@ export const LandingPage = () => {
                 background: "#212529",
                 margin: "auto",
                 fontFamily: "Roboto, sans-serif",
-                borderColor: "#b2a97e",
+                // borderColor: "#b2a97e",
                 borderRadius: "15px 15px",
               }}
             >
@@ -119,12 +125,12 @@ export const LandingPage = () => {
                 style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
               >
-                <Card.Body style={{ marginBottom: "-10%" }}>
+                <Card.Body style={{ marginBottom: "-10%", width: "100%" }}>
                   <img
                     src={item.url}
-                    className="img-fluid rounded p-1"
+                    className="img-fluid rounded p-1 w-100"
                     alt="..."
-                    style={{ maxHeight: "15rem", borderColor: "#b2a97e" }}
+                    style={{ maxHeight: "14rem", borderColor: "#b2a97e" }}
                   />
                   <div className="d-flex justify-content-between mt-2">
                     <Card.Title
@@ -153,35 +159,37 @@ export const LandingPage = () => {
               <Card.Body>
                 <div className="mb-1">
                   <Card.Text
-                    style={{ color: "white", fontSize: "1.5rem" }}
+                    style={{ color: "white", fontSize: "1.4rem" }}
                     className="d-flex justify-content-between"
                   >
-                    <h5 className="mt-1">U$S {item.price}</h5>
+                    <p className="">U$S {item.price}</p>
                     <button
                       type="button"
                       onClick={() => handleAddShopping(item.id)}
                       className="btn d-flex align-bottom"
                       style={{ float: "right", color: "white" }}
                     >
-                      <i className="fa fa-cart-plus"> Add to cart</i>
+                      <i className="fa fa-cart-plus" style={{ color: "white" }}>
+                        {" "}
+                        Add to cart
+                      </i>
                     </button>
                   </Card.Text>
                 </div>
                 <div className="d-flex align-bottom justify-content-between ">
                   {/* empieza el share */}
-                  <br />
                   <div className="dropdown">
                     <button
-                      className="btn  dropdown-toggle"
+                      className="btn"
                       type="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                       style={{ float: "center", color: "white" }}
                     >
-                      Share
+                      <BsFillShareFill />
                     </button>
                     <ul
-                      className="dropdown-menu bg-transparent"
+                      className="dropdown-menu bg-transparent border-0"
                       style={{ minWidth: "15rem" }}
                     >
                       <li>
