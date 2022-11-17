@@ -424,6 +424,20 @@ def get_order():
     print(results)
     return jsonify(results), 200
 
+@api.route('/user/<int:id_user>/order', methods=['GET'])
+def get_order_by_user(id_user):
+    ###########################
+    # Get user order list
+    ###########################
+    order = OrderHistory.query.filter_by(id_user=id_user).all()
+    print(order)
+    results = list(map(lambda x: x.serialize(), order))
+
+    if results == []:
+      return  jsonify({"msg": "Your cart is empty"}), 404
+    print(results)
+    return jsonify({"user_id": order[0].id_user,"results": results}), 200
+
 @api.route('/order', methods=['POST'])
 def create_order():
     ###########################

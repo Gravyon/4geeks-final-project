@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       listaFavoritos: [],
       shoppingList: [],
+      orderList: [],
 
       productId: null,
       userId: null,
@@ -772,6 +773,59 @@ const getState = ({ getStore, getActions, setStore }) => {
               icon: "error",
               title: "Oops...",
               text: error.response.data.msg,
+            });
+            return error.response.data.msg;
+          }
+        }
+      },
+      // Funciones de Order
+      getOrder: async () => {
+        let store = getStore();
+        let user_id = store.userId;
+
+        try {
+          const response = await axios.get(
+            process.env.BACKEND_URL + "/api/user/" + user_id + "/order"
+          );
+
+          setStore({
+            orderList: response.data.results,
+          });
+          return store.orderList;
+        } catch (error) {
+          // console.log(error.response.data.msg);
+          if (error.response.status === 404) {
+            setStore({
+              orderList: [],
+            });
+          }
+        }
+      },
+      createOrder: async (product_id) => {
+        let store = getStore();
+
+        let user_id = store.userId;
+        console.log(user_id);
+
+        try {
+          const response = await axios.post(
+            process.env.BACKEND_URL + "/api/order",
+            {
+              id_products: product_id,
+              id_user: user_id,
+            }
+          );
+
+          getActions().getOrder();
+          return response;
+        } catch (error) {
+          if (error.response.status === 404) {
+            getActions().eliminarFavoritos(product_id);
+          } else if (error.response.data.msg === "User is not logged in") {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: error.response.data.msg + "... redirecting to login...",
             });
             return error.response.data.msg;
           }
