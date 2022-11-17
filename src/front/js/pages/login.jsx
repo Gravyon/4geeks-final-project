@@ -118,40 +118,27 @@ export const Login = () => {
                         clientId={`${process.env.GOOGLE_AUTH}`}
                       >
                         <GoogleLogin
-<<<<<<< HEAD
                           // onSuccess={() => {
                           //   if (actions.responseGoogle) successLogin;
                           // }}
-=======
-                          render={(renderProps) => (
-                            <button
-                              type="button"
-                              className=""
-                              onClick={renderProps.onClick}
-                              disabled={renderProps.disabled}
-                            >
-                              <FcGoogle className="" /> Sign in with google
-                            </button>
-                          )}
-                          uxMode="redirect"
-                          redirectUri="https://3000-gravyon-4geeksfinalproj-i8z5nerke71.ws-us74.gitpod.io"
->>>>>>> f997e523ec9f33b36c61bf8b82c2a30791428cf5
-                          onSuccess={actions.responseGoogle}
-                          onFailure={actions.responseGoogle}
+                          // onSuccess funciona con una funcion dentro, por lo tanto es necesaria esta sintaxis
+                          onSuccess={async(response)=>{
+                              let result = await actions.responseGoogle(response)
+                              if (result){
+                                successLogin()
+                                navigate("/")
+                              }
+                            }
+                          }
+                          onFailure={async(response)=>{
+                            let result = await actions.responseGoogle(response)
+                            if (!result){
+                              failedLogin()
+                              navigate("/login")
+                            }
+                          }
+                        }
                           cookiePolicy="single_host_origin"
-                          // onClick={successLogin}
-                          // render={(renderProps) => (
-                          //   <button
-                          //     type="button"
-                          //     className=""
-                          //     onClick={renderProps.onClick}
-                          //     disabled={renderProps.disabled}
-                          //   >
-                          //     <FcGoogle className="" /> Sign in with google
-                          //   </button>
-                          // )}
-
-                          // onSuccess={actions.responseGoogle}
                         />
                       </GoogleOAuthProvider>
                     </div>
