@@ -21,7 +21,8 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import { BsFillHeartFill, BsHeart } from "react-icons/bs";
+import { BsFillHeartFill, BsHeart, BsFillBrushFill } from "react-icons/bs";
+import { AiFillEdit } from "react-icons/ai";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
 import { ScrollRestoration } from "react-router-dom";
 
@@ -109,60 +110,73 @@ export const LandingPage = () => {
                 width: "18rem",
                 background: "#212529",
                 margin: "auto",
-                fontFamily: "Rajdhani, sans-serif",
+                fontFamily: "Roboto, sans-serif",
                 borderColor: "#b2a97e",
-                borderRadius: "15px 50px",
+                borderRadius: "15px 15px",
               }}
             >
               <Link
                 style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
-                // onClick={() => actions.cambiaClassNameDetails(item.id)}
               >
-                <Card.Body>
+                <Card.Body style={{ marginBottom: "-10%" }}>
                   <img
                     src={item.url}
                     className="img-fluid rounded p-1"
                     alt="..."
-                    style={{ maxHeight: "12rem", borderColor: "#b2a97e" }}
+                    style={{ maxHeight: "15rem", borderColor: "#b2a97e" }}
                   />
-                  <div style={{ textAlign: "left", marginLeft: "25px" }}>
-                    <hr style={{ borderTop: "2px dotted #bdb284" }} />
+                  <div className="d-flex justify-content-between mt-2">
                     <Card.Title
-                      style={{ color: "#bdb284", textDecoration: "none" }}
+                      style={{
+                        color: "white",
+                        textDecoration: "none",
+                        textAlign: "center",
+                      }}
                     >
-                      Name: {item.name}
+                      {item.name}
                     </Card.Title>
-                    <hr style={{ borderTop: "2px dotted #bdb284" }} />
-                    <Card.Text style={{ color: "#bdb284" }}>
-                      Category: {item.category}
+
+                    <Card.Text
+                      style={{
+                        color: "white",
+                        fontSize: "0.9rem",
+                        textAlign: "center",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      {item.category}
                     </Card.Text>
-                    <Card.Text style={{ color: "#bdb284" }}>
-                      Price: U$S {item.price}
-                    </Card.Text>
-                    <hr style={{ borderTop: "2px dotted #bdb284" }} />
                   </div>
                 </Card.Body>
               </Link>
               <Card.Body>
-                <div className="d-flex align-bottom justify-content-between ">
-                  <button
-                    type="button"
-                    onClick={() => handleAddShopping(item.id)}
-                    className="btn btn-outline-light d-flex align-bottom"
-                    style={{ float: "right", color: "#bdb284" }}
+                <div className="mb-1">
+                  <Card.Text
+                    style={{ color: "white", fontSize: "1.5rem" }}
+                    className="d-flex justify-content-between"
                   >
-                    <i className="fa fa-cart-plus"></i>
-                  </button>
+                    <h5 className="mt-1">U$S {item.price}</h5>
+                    <button
+                      type="button"
+                      onClick={() => handleAddShopping(item.id)}
+                      className="btn d-flex align-bottom"
+                      style={{ float: "right", color: "white" }}
+                    >
+                      <i className="fa fa-cart-plus"> Add to cart</i>
+                    </button>
+                  </Card.Text>
+                </div>
+                <div className="d-flex align-bottom justify-content-between ">
                   {/* empieza el share */}
                   <br />
                   <div className="dropdown">
                     <button
-                      className="btn btn-outline-light dropdown-toggle"
+                      className="btn  dropdown-toggle"
                       type="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
-                      style={{ float: "center", color: "#bdb284" }}
+                      style={{ float: "center", color: "white" }}
                     >
                       Share
                     </button>
@@ -219,8 +233,8 @@ export const LandingPage = () => {
                   {/* termina el share */}
                   <button
                     type="button"
-                    className="btn btn-outline-light align-bottom"
-                    style={{ color: "#bdb284" }}
+                    className="btn align-bottom"
+                    style={{ color: "white" }}
                     onClick={() => {
                       handleAddFavorites(item.id);
                     }}
@@ -235,18 +249,19 @@ export const LandingPage = () => {
                     {store.auth ? (
                       <button
                         type="button"
-                        className="btn btn-outline-light"
+                        className="btn"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                       >
-                        <img
+                        {/* <img
                           style={{ width: "25px" }}
                           src="https://thumbs.dreamstime.com/b/editar-vector-de-icono-bot%C3%B3n-edici%C3%B3n-plano-moda-la-colecci%C3%B3n-interfaces-usuario-aislado-en-fondo-blanco-ilustraci%C3%B3n-vectorial-164827048.jpg"
                           alt=""
-                        />
+                        /> */}
+                        <AiFillEdit className="text-white" />
                       </button>
                     ) : null}{" "}
-                    {/* #### empieza el modal de editar producto #### */}
+                    {/* empieza el modal de editar producto */}
                     <div
                       className="modal fade"
                       id="exampleModal"
@@ -358,9 +373,9 @@ export const LandingPage = () => {
                   {/* termina el modal de editar producto */}
                   {store.auth ? (
                     <span
-                      className="btn btn-outline-light d-flex justify-content-end"
+                      className="btn d-flex justify-content-end"
                       onClick={() => handleSweetAlert(item.id)}
-                      style={{ color: "#bdb284" }}
+                      style={{ color: "white" }}
                     >
                       <b>X</b>
                     </span>
