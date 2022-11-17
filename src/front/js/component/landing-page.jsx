@@ -110,9 +110,9 @@ export const LandingPage = () => {
                 width: "18rem",
                 background: "#212529",
                 margin: "auto",
-                fontFamily: "Rajdhani, sans-serif",
+                fontFamily: "Roboto, sans-serif",
                 borderColor: "#b2a97e",
-                borderRadius: "15px 50px",
+                borderRadius: "15px 15px",
               }}
             >
               <Link
@@ -142,6 +142,7 @@ export const LandingPage = () => {
                         color: "#bdb284",
                         fontSize: "0.9rem",
                         textAlign: "center",
+                        fontStyle: "italic",
                       }}
                     >
                       {item.category}
