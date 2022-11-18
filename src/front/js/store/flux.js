@@ -751,8 +751,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         url,
         productId
       ) => {
-        let store = getStore();
-        // const price = parseInt(price);
         // let product_id = store.productId;
         // userId = store.profile.user.id
         console.log(productId);

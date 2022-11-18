@@ -57,6 +57,16 @@ export const Favorites = () => {
                   >
                     <div className="d-flex justify-content-between">
                       <div className="d-flex justify-content-start text-left w-25">
+                        <img
+                          src={item.url}
+                          className="img-fluid rounded p-1 w-100 mx-1"
+                          alt="..."
+                          style={{
+                            maxHeight: "3rem",
+                            maxWidth: "3rem",
+                            borderColor: "#b2a97e",
+                          }}
+                        />
                         Name: {item?.name}
                       </div>
                       <div className="text-left">

@@ -70,7 +70,7 @@ export const LandingPage = () => {
   const [price, setPrice] = useState("");
   const [url, setUrl] = useState("");
 
-  const updateProduct = (e, name, description, category, price, url, id) => {
+  const edit = (e, name, description, category, price, url) => {
     actions.updateProduct(name, description, category, price, url);
 
     setName("");
@@ -162,7 +162,7 @@ export const LandingPage = () => {
                     style={{ color: "white", fontSize: "1.4rem" }}
                     className="d-flex justify-content-between"
                   >
-                    <p className="">U$S {item.price}</p>
+                    U$S {item.price}
                     <button
                       type="button"
                       onClick={() => handleAddShopping(item.id)}
@@ -298,7 +298,7 @@ export const LandingPage = () => {
                               <form
                                 onSubmit={(e) => {
                                   e.preventDefault();
-                                  actions.updateProduct(
+                                  edit(
                                     name,
                                     description,
                                     category,
