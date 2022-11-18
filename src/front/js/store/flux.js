@@ -148,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           product: results,
         });
         // Funciona para que la barra de busqueda mueva la pantalla a donde se encuentran los productos
-        window.scrollTo(600, 600);
+        window.scrollTo(0, 600);
       },
 
       // fetch de los productos
@@ -404,7 +404,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           );
           // Sweet alert con los datos del fetch
-          // Swal.fire(response.data.msg);
+          Swal.fire(response.data.msg);
           // Llama las funciones respectivas
           getActions().getFavorites();
           getActions().comparingFavorites();
@@ -479,7 +479,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           // Si usuario exitste
           if (error.response.data.msg === "User exists") {
-            // swal(error.response.data.msg);
+            swal(error.response.data.msg);
             return error.response.data.msg;
           }
         }
@@ -741,37 +741,31 @@ const getState = ({ getStore, getActions, setStore }) => {
         category,
         price,
         url,
-        product_id
+        productId
       ) => {
         // Llama a store
-        // let store = getStore();
-        // let product_id = store.productId;
-        console.log(product_id);
-        console.log(name, description, category, price, url);
+        let store = getStore();
         try {
           const response = await axios.put(
-            process.env.BACKEND_URL + "/api/product/" + product_id,
+            process.env.BACKEND_URL + "/api/product/" + productId,
             {
-              name: name,
-              description: description,
-              category: category,
-              price: price,
-              url: url,
+              name,
+              description,
+              category,
+              price,
+              url,
             }
           );
           // Respues de ok
-          console.log("HOLAAAAAA");
-          console.log(response);
-          if (response.data.msg === "Product updated successfully") {
+          if (response.status === 200) {
             Swal.fire(response.data.msg);
             getActions().getProduct();
-            return true;
+            return response;
           }
-          console.log("HOLAAAAAA");
         } catch (error) {
           // Log de error
           console.log(error);
-          if (response.data.msg === "Product not found") {
+          if (error.response.status === 404) {
             Swal.fire({
               icon: "error",
               title: "Oops...",
