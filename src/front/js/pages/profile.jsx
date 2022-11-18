@@ -89,13 +89,13 @@ export const Profile = (props) => {
   useEffect(() => {
     if (store.userId != null) {
       actions.getFavorites();
-      actions.getOrder();
-      const getInfo = async () => {
-        let arrTotal = await actions.priceFilter();
+      // actions.getOrder();
+      // const getInfo = async () => {
+      //   let arrTotal = await actions.priceFilter();
 
-        actions.sumaTotal(arrTotal);
-      };
-      getInfo();
+      //   actions.sumaTotal(arrTotal);
+      // };
+      // getInfo();
     }
   }, [store.userId]);
 
@@ -122,7 +122,7 @@ export const Profile = (props) => {
                         Your info
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
+                    {/* <Nav.Item>
                       <Nav.Link
                         eventKey="second"
                         className="btn btn-dark m-2"
@@ -130,7 +130,7 @@ export const Profile = (props) => {
                       >
                         Order history
                       </Nav.Link>
-                    </Nav.Item>
+                    </Nav.Item> */}
                     <Nav.Item>
                       <Nav.Link
                         eventKey="third"
@@ -249,10 +249,10 @@ export const Profile = (props) => {
                         <Link style={{ color: "#bdb284" }}></Link>
                       </div>
                     </Tab.Pane>
-                    <Tab.Pane eventKey="second">
-                      <div>
-                        <ListGroup>
-                          <div
+                    {/*<Tab.Pane eventKey="second">
+                       <div> 
+                         <ListGroup> 
+                           <div
                             className="container mt-5 vh-sm-auto vh-xl-100 vh-lg-100 mx-auto"
                             style={{
                               fontFamily: "Rajdhani, sans-serif",
@@ -278,23 +278,23 @@ export const Profile = (props) => {
                                         <div className="d-flex justify-content-start">
                                           <p className="mx-5">
                                             Total: U$S{store.sum}
-                                            {/* {() => {
+                                             {() => {
                                             store.orderList.map((item, id) => (
                                               <p className="mx-5" key={id}>
                                                 Total: U$S + {item.store.sum}
                                               </p>
                                             ));
-                                          }} */}
+                                          }} 
                                           </p>
                                         </div>
-                                        {/* <div className="d-flex justify-content-end">
+                                         <div className="d-flex justify-content-end">
                                           <div className="mx-4">
                                             <p className="card-text">
                                               {scoreGenerator(item.score)}
                                             </p>
                                           </div>
-                                        </div> */}
-                                        {/* <div className="d-flex justify-content-end">
+                                        </div>
+                                        <div className="d-flex justify-content-end">
                                           <span
                                             className="btn btn-outline-light"
                                             onClick={() =>
@@ -304,7 +304,7 @@ export const Profile = (props) => {
                                           >
                                             <b>X</b>
                                           </span>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </li>
                                   ))
@@ -315,10 +315,10 @@ export const Profile = (props) => {
                             </div>
                           </div>
 
-                          {/* <ListGroup.Item>Order number 5</ListGroup.Item> */}
+                          <ListGroup.Item>Order number 5</ListGroup.Item> 
                         </ListGroup>
                       </div>
-                    </Tab.Pane>
+                    </Tab.Pane>*/}
                     <Tab.Pane eventKey="third">
                       <div
                         className="container mt-5 vh-100 "
