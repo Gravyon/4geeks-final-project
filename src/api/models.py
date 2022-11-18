@@ -137,7 +137,7 @@ class Shopping(db.Model):
 
 class OrderHistory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    id_shopping = db.Column(db.ARRAY(db.Integer),  db.ForeignKey('shopping.id'), nullable=False)
+    id_shopping = db.Column(db.Integer,  db.ForeignKey('shopping.id'), nullable=False)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id') , nullable=False)
 
     def __repr__(self):
@@ -151,6 +151,6 @@ class OrderHistory(db.Model):
         }
 
     def serialize2(self):
-        arr_shopping_list=list(map(lambda item: item.id_shopping, self.shopping))
+        # arr_shopping_list=list(map(lambda item: item.id_shopping, self.shopping))
         shopping_list = Shopping.query.filter_by(id=self.id_shopping).first()
         return shopping_list.serialize()
