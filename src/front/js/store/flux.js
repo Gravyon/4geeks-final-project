@@ -7,6 +7,7 @@ import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
+    // Store se utiliza para sincronizar y persistir los datos en toda la aplicacion
     store: {
       product: [],
       productDetail: {},
@@ -22,7 +23,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       profile: {},
       priceList: [],
       sum: 0,
-      classNameDetails: "btn btn-outline-light align-bottom",
       avgScore: null,
       productRating: [],
       comments: [],
