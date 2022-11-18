@@ -254,7 +254,7 @@ export const LandingPage = () => {
                     )}
                   </button>
                   <div>
-                    {store.auth ? (
+                    {store.admin ? (
                       <button
                         type="button"
                         className="btn"
@@ -379,7 +379,7 @@ export const LandingPage = () => {
                     </div>
                   </div>
                   {/* termina el modal de editar producto */}
-                  {store.auth ? (
+                  {store.admin ? (
                     <span
                       className="btn d-flex justify-content-end"
                       onClick={() => handleSweetAlert(item.id)}

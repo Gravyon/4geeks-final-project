@@ -22,6 +22,8 @@ export const Profile = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
   const params = useParams();
   let auth = store.auth;
   let navigate = useNavigate();
@@ -32,11 +34,13 @@ export const Profile = (props) => {
   const updateUser = async (e) => {
     e.preventDefault();
     // console.log(profile.name, profile.email)
-    await actions.updateUser(email, username, password);
+    await actions.updateUser(email, username, password, name, lastname);
     // let onUpdateUser = await actions.updateUser(username, password);
     setUsername("");
     setPassword("");
     setEmail("");
+    setName("");
+    setLastname("");
     // onUpdateUser ? navigate("/") : null;
     // if (userUpdate) {
     //   navigate("/profile");
@@ -155,7 +159,7 @@ export const Profile = (props) => {
                                   <form onSubmit={updateUser}>
                                     <ListGroup>
                                       <ListGroup.Item className="bg-dark text-white">
-                                        Type your email:{" "}
+                                        Change your email:{" "}
                                         <Form.Control
                                           type="email"
                                           // placeholder="{profile.email}"
@@ -187,6 +191,30 @@ export const Profile = (props) => {
                                             setPassword(e.target.value)
                                           }
                                           value={password}
+                                          required
+                                        />
+                                      </ListGroup.Item>
+                                      <ListGroup.Item className="bg-dark text-white">
+                                        name:{" "}
+                                        <Form.Control
+                                          type="text"
+                                          // placeholder="Change your name"
+                                          onChange={(e) =>
+                                            setName(e.target.value)
+                                          }
+                                          value={name}
+                                          required
+                                        />
+                                      </ListGroup.Item>
+                                      <ListGroup.Item className="bg-dark text-white">
+                                        Lastname:{" "}
+                                        <Form.Control
+                                          type="text"
+                                          // placeholder="Change your lastname"
+                                          onChange={(e) =>
+                                            setLastname(e.target.value)
+                                          }
+                                          value={lastname}
                                           required
                                         />
                                       </ListGroup.Item>
@@ -222,16 +250,13 @@ export const Profile = (props) => {
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
                       <div>
-                        <ListGroup>
-                          {/* <Tab.Pane eventKey="third">
+                        <ListGroup >
+                          <Tab.Pane eventKey="third">
                             <div>
                               <div className="col-12 mx-auto my-4 h-75">
                                 <ol>
-                                  {store.listaOrden.length > 0 ? (
-                                    store.listaOrden.map((item, id) => (
                                       <li
                                         className="list-group-item border border-1 border border-dark"
-                                        key={id}
                                         style={{
                                           background: "#212529",
                                           color: "#908969",
@@ -239,11 +264,10 @@ export const Profile = (props) => {
                                       >
                                         <div className="d-flex justify-content-between">
                                           <div className="d-flex justify-content-start text-left w-25">
-                                            Name: {item?.name}
+
                                           </div>
                                           <div className="text-left">
                                             <p className="mx-5 text-right">
-                                              Price: US${item?.price}
                                             </p>
                                           </div>
                                           <div className="d-flex justify-content-end">
@@ -257,19 +281,15 @@ export const Profile = (props) => {
                                           </div>
                                         </div>
                                       </li>
-                                    ))
-                                  ) : (
-                                    <p>No tienes ninguna orden</p>
-                                  )}
                                 </ol>
                               </div>
                             </div>
-                          </Tab.Pane> */}
-                          {/* <ListGroup.Item>Order number 1</ListGroup.Item>
+                          </Tab.Pane>
+                          <ListGroup.Item>Order number 1</ListGroup.Item>
                           <ListGroup.Item>Order number 2</ListGroup.Item>
                           <ListGroup.Item>Order number 3</ListGroup.Item>
                           <ListGroup.Item>Order number 4</ListGroup.Item>
-                          <ListGroup.Item>Order number 5</ListGroup.Item> */}
+                          <ListGroup.Item>Order number 5</ListGroup.Item>
                         </ListGroup>
                       </div>
                     </Tab.Pane>
