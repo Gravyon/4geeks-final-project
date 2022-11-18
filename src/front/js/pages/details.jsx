@@ -162,25 +162,44 @@ export const ProductDetail = () => {
         </Card>
 
         {/* termina la card */}
-        {/* <div className="mt-5">
-          <Scoring />
-        </div> */}
+
         <div
-          className="col-sm-12 col-md-12 col-lg-4 my-4 bg-dark text-white  h-110 h-md-50"
+          // className="col-sm-12 col-md-12 col-lg-4 my-4 bg-dark text-white  h-110 h-md-50"
+          className="row bg-dark"
           id="product-carousel"
+          style={{
+            width: "100%",
+            margin: "auto",
+            marginTop: "3%",
+            marginBottom: "3%",
+          }}
         >
-          <div>
+          <div className="col-7 bg-dark h-100 text-white my-4 border border-5 border-dark rounded-4">
+            <div>
+              <h3 className="text-center">Comments:</h3>
+              <div className="scrolleable">
+                <ul className="list-group">
+                  {" "}
+                  {store.comments.length > 0 ? (
+                    store.comments.map((item) => (
+                      <li className="my-3">'{item}'</li>
+                    ))
+                  ) : (
+                    <p>No comments for this product</p>
+                  )}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="col-5 bg-dark">
             <h2 className="text-white my-4" style={{ textAlign: "center" }}>
               Related products:
             </h2>
+            <ProductCarousel />
           </div>
-          <ProductCarousel />
         </div>
       </div>
-      <div
-        className="my-4 border border-5 border-dark rounded-4"
-        style={{ width: "80%", margin: "auto" }}
-      >
+      {/* <div className="my-4 border border-5 border-dark rounded-4">
         <div>
           <h3 className="text-center">Comments:</h3>
           <div className="scrolleable">
@@ -194,7 +213,7 @@ export const ProductDetail = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
