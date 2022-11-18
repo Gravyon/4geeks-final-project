@@ -101,9 +101,13 @@ export const LandingPage = () => {
 
   return (
     <div className="container w-100">
-      <ImgCarousel className />
+      <ImgCarousel className="bg-dark" />
       <div className="container text-align-center my-4" id="h1Container">
         <h1 className="display-4 text-align-center">Find your art!</h1>
+        <p className="fst-italic">
+          “Color is the place where our brain and the universe meet.”{" "}
+          <small className="fw-bold">Paul Klee</small>
+        </p>
       </div>
 
       <div className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-sm-center justify-content-lg-between w-100 ">
@@ -176,7 +180,7 @@ export const LandingPage = () => {
                     </button>
                   </Card.Text>
                 </div>
-                <div className="d-flex align-bottom justify-content-between ">
+                <div className="d-flex align-bottom justify-content-between mx-auto ">
                   {/* empieza el share */}
                   <div className="dropdown">
                     <button
@@ -261,11 +265,6 @@ export const LandingPage = () => {
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                       >
-                        {/* <img
-                          style={{ width: "25px" }}
-                          src="https://thumbs.dreamstime.com/b/editar-vector-de-icono-bot%C3%B3n-edici%C3%B3n-plano-moda-la-colecci%C3%B3n-interfaces-usuario-aislado-en-fondo-blanco-ilustraci%C3%B3n-vectorial-164827048.jpg"
-                          alt=""
-                        /> */}
                         <AiFillEdit className="text-white" />
                       </button>
                     ) : null}{" "}
