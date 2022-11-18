@@ -12,6 +12,12 @@
 
 @media only screen and (min-width: 992px) {
     img {
+        width: 992px;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    img {
         width: 1300px;
     }
 }
