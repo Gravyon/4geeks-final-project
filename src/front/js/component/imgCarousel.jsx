@@ -7,6 +7,8 @@ import {
   CarouselCaption,
 } from "reactstrap";
 
+import "../../styles/imgCarousel.css";
+
 const items = [
   {
     src: "https://res.cloudinary.com/dgqyqqtk4/image/upload/v1668795950/proyecto-final/slide_img_2_dt7jgc.png",
@@ -69,6 +71,7 @@ export const ImgCarousel = (args) => {
       previous={previous}
       {...args}
       className="w-100 bg-dark"
+      style={{ margin: "auto" }}
     >
       <CarouselIndicators
         items={items}
