@@ -70,8 +70,8 @@ export const LandingPage = () => {
   const [price, setPrice] = useState("");
   const [url, setUrl] = useState("");
 
-  const updateProduct = (e, name, description, category, price, url, id) => {
-    actions.updateProduct(name, description, category, price, url);
+  const edit = async (name, description, category, price, url) => {
+    await actions.updateProduct(name, description, category, price, url);
 
     setName("");
     setDescription("");
@@ -298,7 +298,7 @@ export const LandingPage = () => {
                               <form
                                 onSubmit={(e) => {
                                   e.preventDefault();
-                                  actions.updateProduct(
+                                  edit(
                                     name,
                                     description,
                                     category,
