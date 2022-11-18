@@ -47,7 +47,7 @@ export const LandingPage = () => {
 
   let handleAddFavorites = async (id) => {
     let msj = await actions.createFavorite(id);
-    console.log(msj);
+    // console.log(msj);
     if (msj === "User is not logged in") {
       navigate("/login");
     }
@@ -70,8 +70,8 @@ export const LandingPage = () => {
   const [price, setPrice] = useState("");
   const [url, setUrl] = useState("");
 
-  const updateProduct = (e, name, description, category, price, url, id) => {
-    actions.updateProduct(name, description, category, price, url);
+  const edit = async (name, description, category, price, url) => {
+    await actions.updateProduct(name, description, category, price, url);
 
     setName("");
     setDescription("");
@@ -125,10 +125,10 @@ export const LandingPage = () => {
                 style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
               >
-                <Card.Body style={{ marginBottom: "-10%", width: "100%" }}>
+                <Card.Body style={{ marginBottom: "-10%" }}>
                   <img
                     src={item.url}
-                    className="img-fluid rounded p-1 w-100"
+                    className="img-fluid rounded p-1 "
                     alt="..."
                     style={{ maxHeight: "14rem", borderColor: "#b2a97e" }}
                   />
@@ -162,7 +162,7 @@ export const LandingPage = () => {
                     style={{ color: "white", fontSize: "1.4rem" }}
                     className="d-flex justify-content-between"
                   >
-                    <p className="">U$S {item.price}</p>
+                    U$S {item.price}
                     <button
                       type="button"
                       onClick={() => handleAddShopping(item.id)}
@@ -298,7 +298,7 @@ export const LandingPage = () => {
                               <form
                                 onSubmit={(e) => {
                                   e.preventDefault();
-                                  actions.updateProduct(
+                                  edit(
                                     name,
                                     description,
                                     category,
