@@ -47,7 +47,7 @@ export const LandingPage = () => {
 
   let handleAddFavorites = async (id) => {
     let msj = await actions.createFavorite(id);
-    console.log(msj);
+    // console.log(msj);
     if (msj === "User is not logged in") {
       navigate("/login");
     }
@@ -162,7 +162,7 @@ export const LandingPage = () => {
                     style={{ color: "white", fontSize: "1.4rem" }}
                     className="d-flex justify-content-between"
                   >
-                    <p className="">U$S {item.price}</p>
+                    U$S {item.price}
                     <button
                       type="button"
                       onClick={() => handleAddShopping(item.id)}

@@ -4,12 +4,7 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Scoring } from "../component/scoring.jsx";
 import { ProductCarousel } from "../component/product-carousel.jsx";
-import {
-  BsFillHeartFill,
-  BsHeart,
-  BsFillBrushFill,
-  BsFillShareFill,
-} from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
 import Card from "react-bootstrap/Card";
 
 import "../../styles/details.css";
@@ -22,18 +17,12 @@ export const ProductDetail = () => {
   useEffect(() => {
     actions.getProductDetail(params.id);
     actions.getProductRatings(params.id);
+
     window.scrollTo(0, 0);
-    if (store.userId != null) {
-      actions.mapfavorites();
-      actions.comparingFavorites();
-    }
+
+    // actions.mapfavorites();
+    actions.comparingFavorites();
   }, [params.id, store.userId]);
-  // useEffect(() => {
-  //   if (store.userId != null) {
-  //     actions.mapfavorites();
-  //     actions.comparingFavorites();
-  //   }
-  // }, [store.userId]);
 
   let handleAddShopping = async (id) => {
     //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
@@ -47,7 +36,7 @@ export const ProductDetail = () => {
   let handleAddFavorites = async (id) => {
     //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
     let msj = await actions.createFavorite(id);
-    console.log(msj);
+
     if (msj === "User is not logged in") {
       navigate("/login");
     }
@@ -76,6 +65,7 @@ export const ProductDetail = () => {
         id="product-details"
         style={{ width: "90%" }}
       >
+        {/* Comienza la card */}
         <Card className="bg-dark">
           <div
             className="card mb-3 bg-dark text-white"
@@ -145,7 +135,7 @@ export const ProductDetail = () => {
                             handleAddFavorites(store.productDetail.id);
                           }}
                         >
-                          {store.favoriteItem.includes(params.id) ? (
+                          {store.favoriteItem.includes(parseInt(params.id)) ? (
                             store.favoriteHeart
                           ) : (
                             <BsHeart />
@@ -164,7 +154,6 @@ export const ProductDetail = () => {
         {/* termina la card */}
 
         <div
-          // className="col-sm-12 col-md-12 col-lg-4 my-4 bg-dark text-white  h-110 h-md-50"
           className="row bg-dark"
           id="product-carousel"
           style={{
@@ -188,7 +177,12 @@ export const ProductDetail = () => {
                   {store.comments.length > 0 ? (
                     store.comments.map((item, index) => (
                       <div key={index}>
-                        <li className="my-3">{item}</li>
+                        <li
+                          className="my-3"
+                          style={{ fontFamily: "Roboto, sans-serif" }}
+                        >
+                          {item}
+                        </li>
                         <hr style={{ borderTop: "2px #bdb284" }} />
                       </div>
                     ))
@@ -216,21 +210,6 @@ export const ProductDetail = () => {
           </div>
         </div>
       </div>
-      {/* <div className="my-4 border border-5 border-dark rounded-4">
-        <div>
-          <h3 className="text-center">Comments:</h3>
-          <div className="scrolleable">
-            <ul className="list-group">
-              {" "}
-              {store.comments.length > 0 ? (
-                store.comments.map((item) => <li className="my-3">'{item}'</li>)
-              ) : (
-                <p>No comments for this product</p>
-              )}
-            </ul>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
