@@ -477,33 +477,33 @@ def create_order():
     # Standard response to request with error code 200 (success)
     return jsonify({"msg": "New order created"}), 200
 
-# @api.route('/order', methods=['DELETE'])
-# def delete_order():
-#     ###########################
-#     # Delete order
-#     ###########################
-#     # Load data from postman or input
-#     body = json.loads(request.data)
-#     print(body)
-#     user = request.json['id_user']
-#     product = request.json['id_shopping']
-#     print(user, product)
-#     # favorite_query = Favorites.query.filter_by(id=body["id"]).first()
-#     user_query = User.query.filter_by(id=body["id_user"]).first()
+@api.route('/order', methods=['DELETE'])
+def delete_order():
+    ###########################
+    # Delete order
+    ###########################
+    # Load data from postman or input
+    body = json.loads(request.data)
+    print(body)
+    user = request.json['id_user']
+    product = request.json['id_shopping']
+    print(user, product)
+    # favorite_query = Favorites.query.filter_by(id=body["id"]).first()
+    user_query = User.query.filter_by(id=body["id_user"]).first()
     
-#     print(user_query)
-#     if user_query:
-#         product_query = OrderHistory.query.filter_by(id_user=body["id_user"]).filter_by(id_shopping=body["id_shopping"]).first()
-#         if product_query:
+    print(user_query)
+    if user_query:
+        product_query = OrderHistory.query.filter_by(id_user=body["id_user"]).filter_by(id_shopping=body["id_shopping"]).first()
+        if product_query:
             
-#             db.session.delete(product_query)
-#             db.session.commit()
-#             return jsonify({"msg": "The product was deleted from your cart"}), 200
+            db.session.delete(product_query)
+            db.session.commit()
+            return jsonify({"msg": "The product was deleted from your cart"}), 200
             
-#         elif product is None:
-#             return jsonify({"msg": "Product not found"}), 404
+        elif product is None:
+            return jsonify({"msg": "Product not found"}), 404
 
-#     return jsonify({"msg": "Something went wrong"}), 400
+    return jsonify({"msg": "Something went wrong"}), 400
 
 ###########################
 # Favorites DELETE query
