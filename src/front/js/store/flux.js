@@ -145,6 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({
           product: results,
         });
+        window.scrollTo(600, 600);
       },
       // fecht de los cuadros
       getProduct: async () => {
@@ -217,9 +218,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           );
           setStore({
-              auth: true,
-              userId: response.data.user.id,
-            });
+            auth: true,
+            userId: response.data.user.id,
+          });
           localStorage.setItem("token", response.data.msg);
           // console.log(response.data.msg);
           // console.log(response);
@@ -468,7 +469,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
             }
           );
-          console.log(response.data.user)
+          console.log(response.data.user);
           if (response.data.user.admin) {
             setStore({
               admin: true,
@@ -487,7 +488,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               userId: response.data.user.id,
             });
           }
-          console.log(response.data.user)
+          console.log(response.data.user);
           // setStore({
           //   auth: response.data.status,
           //   userId: response.data.user.id,
