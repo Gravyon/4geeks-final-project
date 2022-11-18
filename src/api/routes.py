@@ -90,7 +90,8 @@ def get_products():
     ###########################
     products = Products.query.all()
     print(products)
-    results = list(map(lambda x: x.serialize(), products))
+    results = list(map(lambda x: x.serialize(), products ))
+    results.sort(key=lambda x:x[1])
     return jsonify(results), 200
 
 @api.route('/product/<int:product_id>', methods=['GET'])

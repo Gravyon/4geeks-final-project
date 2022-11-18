@@ -131,6 +131,12 @@ export const Profile = (props) => {
                     <Tab.Pane eventKey="first">
                       <div>
                         <div className="user-profile">
+                        <div className="p-2">
+                            <h5>Name: {profile.name}</h5>
+                          </div>
+                          <div className="p-2">
+                            <h5>Lastname: {profile.lastname}</h5>
+                          </div>
                           <div className="p-2">
                             <h5>Username: {profile.username}</h5>
                           </div>
