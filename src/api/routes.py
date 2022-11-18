@@ -552,7 +552,7 @@ def create_review():
         # Flask command to commit the database, saving the changes
         db.session.commit()
         # Standard response to request with error code 200 (success)
-        return jsonify({"msg": "New review created for this product"}), 200
+        return jsonify({"msg": "Thanks for your review!"}), 200
     if user_query is None:
         return jsonify({"msg": "User doesn't exist"}), 404
     
