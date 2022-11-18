@@ -68,6 +68,9 @@ class Products(db.Model):
             avg_score = 0
 
             return avg_score
+
+    
+
 class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_user = db.Column(db.Integer,  db.ForeignKey('user.id'), nullable=False )

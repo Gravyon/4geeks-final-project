@@ -125,10 +125,10 @@ export const LandingPage = () => {
                 style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
               >
-                <Card.Body style={{ marginBottom: "-10%", width: "100%" }}>
+                <Card.Body style={{ marginBottom: "-10%" }}>
                   <img
                     src={item.url}
-                    className="img-fluid rounded p-1 w-100"
+                    className="img-fluid rounded p-1 "
                     alt="..."
                     style={{ maxHeight: "14rem", borderColor: "#b2a97e" }}
                   />
