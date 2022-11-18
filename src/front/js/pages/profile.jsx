@@ -167,13 +167,13 @@ export const Profile = (props) => {
                     <Tab.Pane eventKey="first">
                       <div>
                         <div className="user-profile">
-                          <div className="p-2">
+                          <div className="p-2 border-bottom border-end border-dark mb-3">
                             <h5>Username: {profile.username}</h5>
                           </div>
-                          <div className="p-2">
+                          <div className="p-2 border-bottom border-end border-dark mb-3">
                             <h5>Email: {profile.email}</h5>
                           </div>
-                          <div className="p-2">
+                          <div className="p-2 border-bottom border-end border-dark mb-3">
                             <h5>Password: ********</h5>
                           </div>
                           <div>

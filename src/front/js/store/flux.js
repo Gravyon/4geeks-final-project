@@ -479,7 +479,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         } catch (error) {
           // Si usuario exitste
           if (error.response.data.msg === "User exists") {
-            swal(error.response.data.msg);
+            // swal(error.response.data.msg);
             return error.response.data.msg;
           }
         }
