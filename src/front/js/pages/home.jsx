@@ -16,7 +16,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="vh-auto p-3 w-100 ">
+    <div className="vh-auto p-3 w-100">
       <div className="container text-center w-100">
         <LandingPage />
       </div>
