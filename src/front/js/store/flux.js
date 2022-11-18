@@ -146,6 +146,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
         window.scrollTo(600, 600);
       },
+
       // fecht de los cuadros
       getProduct: async () => {
         try {
