@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { PayPalCheckout } from "../component/checkout-paypal.jsx";
 import "../../styles/favorites.css";
 
 export const Carrito = () => {
@@ -80,6 +81,7 @@ export const Carrito = () => {
                 <Link style={{ color: "#bdb284" }} to={"/checkout"}>
                   Checkout
                 </Link>
+                {/* <PayPalCheckout /> */}
               </button>
             </div>
           </div>
