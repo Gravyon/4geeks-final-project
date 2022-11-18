@@ -56,16 +56,6 @@ export const Favorites = () => {
                     style={{ background: "#212529", color: "#908969" }}
                   >
                     <div className="d-flex justify-content-between">
-                      {/* <img
-                        src={item.url}
-                        className="img-fluid rounded p-1 w-100"
-                        alt="..."
-                        style={{
-                          maxHeight: "3rem",
-                          maxWidth: "3rem",
-                          borderColor: "#b2a97e",
-                        }}
-                      /> */}
                       <div className="d-flex justify-content-start text-left w-25">
                         Name: {item?.name}
                       </div>
@@ -80,15 +70,15 @@ export const Favorites = () => {
                             {scoreGenerator(item.score)}
                           </p>
                         </div>
-                      </div>
-                      <div className="d-flex justify-content-end">
-                        <span
-                          className="btn btn-outline-light"
-                          onClick={() => actions.eliminarFavoritos(item.id)}
-                          style={{ color: "#bdb284" }}
-                        >
-                          <b>X</b>
-                        </span>
+                        <div className="d-flex justify-content-end">
+                          <span
+                            className="btn btn-outline-light"
+                            onClick={() => actions.eliminarFavoritos(item.id)}
+                            style={{ color: "#bdb284" }}
+                          >
+                            <b>X</b>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </li>

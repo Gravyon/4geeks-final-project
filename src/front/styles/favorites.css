@@ -9,3 +9,9 @@
         font-size: 1.2rem;
     }
 }
+
+@media only screen and (min-width: 300px) {
+    div {
+        font-size: 0.8rem;
+    }
+}

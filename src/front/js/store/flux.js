@@ -13,7 +13,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       products: [],
       listaFavoritos: [],
       shoppingList: [],
-      orderList: [],
       admin: false,
       seller: false,
       productId: null,
@@ -790,81 +789,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
-      // // Funciones de Order
-      // getOrder: async () => {
-      //   let store = getStore();
-      //   let user_id = store.userId;
-
-      //   try {
-      //     const response = await axios.get(
-      //       process.env.BACKEND_URL + "/api/user/" + user_id + "/order"
-      //     );
-
-      //     setStore({
-      //       orderList: response.data.results,
-      //     });
-      //     return store.orderList;
-      //   } catch (error) {
-      //     // console.log(error.response.data.msg);
-      //     if (error.response.status === 404) {
-      //       setStore({
-      //         orderList: {},
-      //       });
-      //     }
-      //   }
-      // },
-      // createOrder: async (shopping_id) => {
-      //   let store = getStore();
-
-      //   let user_id = store.userId;
-      //   console.log(user_id);
-
-      //   try {
-      //     const response = await axios.post(
-      //       process.env.BACKEND_URL + "/api/order",
-      //       {
-      //         id_shopping: shopping_id,
-      //         id_user: user_id,
-      //       }
-      //     );
-
-      //     getActions().getOrder();
-      //     return response;
-      //   } catch (error) {
-      //     if (error.response.status === 404) {
-      //       getActions().eliminarFavoritos(order_id);
-      //     } else if (error.response.data.msg === "User is not logged in") {
-      //       Swal.fire({
-      //         icon: "error",
-      //         title: "Oops...",
-      //         text: error.response.data.msg + "... redirecting to login...",
-      //       });
-      //       return error.response.data.msg;
-      //     }
-      //   }
-      // },
-      // deleteOrder: async (shopping_id) => {
-      //   let store = getStore();
-      //   let user_id = store.userId;
-
-      //   try {
-      //     const response = await axios.delete(
-      //       process.env.BACKEND_URL + "/api/order",
-      //       {
-      //         data: {
-      //           id_shopping: shopping_id,
-      //           id_user: user_id,
-      //         },
-      //       }
-      //     );
-      //     console.log(response);
-      //     Swal.fire(response.data.msg);
-      //     getActions().getOrder();
-      //     return;
-      //   } catch (error) {
-      //     console.log(error);
-      //   }
-      // },
     },
   };
 };

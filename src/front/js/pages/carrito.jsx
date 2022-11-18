@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { PayPalCheckout } from "../component/checkout-paypal.jsx";
 import "../../styles/favorites.css";
 
 export const Carrito = () => {
@@ -54,6 +55,16 @@ export const Carrito = () => {
                     style={{ background: "#212529", color: "#908969" }}
                   >
                     <div className="d-flex justify-content-between">
+                      <img
+                        src={item.url}
+                        className="img-fluid rounded p-1 w-100"
+                        alt="..."
+                        style={{
+                          maxHeight: "3rem",
+                          maxWidth: "3rem",
+                          borderColor: "#b2a97e",
+                        }}
+                      />
                       <div className="d-flex justify-content-start text-left w-25">
                         Name: {item?.name}
                       </div>
@@ -89,6 +100,7 @@ export const Carrito = () => {
                 <Link style={{ color: "#bdb284" }} to={"/checkout"}>
                   Checkout
                 </Link>
+                {/* <PayPalCheckout /> */}
               </button>
             </div>
           </div>
