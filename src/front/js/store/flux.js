@@ -215,24 +215,10 @@ const getState = ({ getStore, getActions, setStore }) => {
               password: password,
             }
           );
-          if (response.data.user.admin) {
-            setStore({
-              admin: true,
+          setStore({
               auth: true,
               userId: response.data.user.id,
             });
-          } else if (response.data.user.seller) {
-            setStore({
-              seller: true,
-              auth: true,
-              userId: response.data.user.id,
-            });
-          } else {
-            setStore({
-              auth: true,
-              userId: response.data.user.id,
-            });
-          }
           localStorage.setItem("token", response.data.msg);
           // console.log(response.data.msg);
           // console.log(response);
@@ -481,11 +467,30 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
             }
           );
-
-          setStore({
-            auth: response.data.status,
-            userId: response.data.user.id,
-          });
+          console.log(response.data.user)
+          if (response.data.user.admin) {
+            setStore({
+              admin: true,
+              auth: true,
+              userId: response.data.user.id,
+            });
+          } else if (response.data.user.seller) {
+            setStore({
+              seller: true,
+              auth: true,
+              userId: response.data.user.id,
+            });
+          } else {
+            setStore({
+              auth: true,
+              userId: response.data.user.id,
+            });
+          }
+          console.log(response.data.user)
+          // setStore({
+          //   auth: response.data.status,
+          //   userId: response.data.user.id,
+          // });
           console.log(auth);
           return;
         } catch (error) {
