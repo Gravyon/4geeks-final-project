@@ -101,7 +101,7 @@ export const LandingPage = () => {
 
   return (
     <div className="container w-100">
-      <ImgCarousel className />
+      <ImgCarousel className="bg-dark" />
       <div className="container text-align-center my-4" id="h1Container">
         <h1 className="display-4 text-align-center">Find your art!</h1>
       </div>
