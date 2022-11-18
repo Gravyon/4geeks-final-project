@@ -174,15 +174,18 @@ export const ProductDetail = () => {
             marginBottom: "3%",
           }}
         >
-          <div className="col-7 bg-dark h-100 text-white my-4 border border-5 border-dark rounded-4">
+          <div className="col-sm-12 col-md-7 bg-dark text-white ">
             <div>
-              <h3 className="text-center">Comments:</h3>
-              <div className="scrolleable">
+              <h3 className="text-center mt-3">Reviews:</h3>
+              <div className="scrolleable col-10 m-auto">
                 <ul className="list-group">
                   {" "}
                   {store.comments.length > 0 ? (
                     store.comments.map((item) => (
-                      <li className="my-3">'{item}'</li>
+                      <div>
+                        <li className="my-3">{item}</li>
+                        <hr style={{ borderTop: "2px #bdb284" }} />
+                      </div>
                     ))
                   ) : (
                     <p>No comments for this product</p>
@@ -191,7 +194,7 @@ export const ProductDetail = () => {
               </div>
             </div>
           </div>
-          <div className="col-5 bg-dark">
+          <div className="col-sm-12 col-md-5 bg-dark">
             <h2 className="text-white my-4" style={{ textAlign: "center" }}>
               Related products:
             </h2>
