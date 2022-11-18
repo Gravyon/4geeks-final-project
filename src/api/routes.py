@@ -23,13 +23,13 @@ def login():
     # Query to get user info
     user = User.query.filter_by(email=email).first()
     ## If "user" query brings no data, then user doesn't exist
+    if user is None:
+        return jsonify({"msg":"User doesn't exist"}), 404
 
     encrypted_pass = current_app.bcrypt.check_password_hash(user.password, password)
 
-    if user is None:
-        return jsonify({"msg":"User doesn't exist"}), 404
     # Compared email and password, if one of them is not correct then it rejects the login attempt
-    elif email != user.email or not encrypted_pass:
+    if email != user.email or not encrypted_pass:
         return jsonify({"msg": "Bad email or password"}), 401
     # Grants a token if login was successful
     else:

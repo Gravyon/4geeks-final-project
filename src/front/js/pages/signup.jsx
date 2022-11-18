@@ -38,7 +38,7 @@ export const SignUp = () => {
           values.email,
           values.password
         );
-        if (onSignUp === "User email already exists") {
+        if (onSignUp === "User exists") {
           swal("User email already exists, redirecting to login");
           navigate("/login");
         } else if (onSignUp === "New user created") {
