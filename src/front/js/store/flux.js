@@ -7,6 +7,7 @@ import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
+    // Store se utiliza para sincronizar y persistir los datos en toda la aplicacion
     store: {
       product: [],
       productDetail: {},
@@ -22,7 +23,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       profile: {},
       priceList: [],
       sum: 0,
-      classNameDetails: "btn btn-outline-light align-bottom",
       avgScore: null,
       productRating: [],
       comments: [],
@@ -33,20 +33,8 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
     actions: {
       // Profile
-      // Profile
-      // cambiaClassNameDetails: (id) => {
-      //     let store = getStore();
-      //     if (store.classNameDetails == "btn btn-outline-light align-bottom") {
-      //         setStore({
-      //             classNameDetails: "btn btn-light align-bottom",
-      //         });
-      //     } else {
-      //         setStore({
-      //             classNameDetails: "btn btn-outline-light align-bottom",
-      //         });
-      //     }
-      // },
       userProfile: async () => {
+        // Busca si existe un token
         const userToken = localStorage.getItem("token");
         try {
           const response = await axios.get(
@@ -57,6 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
             }
           );
+          // Log de informacion, ya no se utliza
           // console.log(data)
           setStore({
             profile: response.data.user,
@@ -64,6 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           //   console.log(response.data);
           return true;
         } catch (error) {
+          // Codigo de error standard
           // console.log(error);
           if (error.code === "ERR_BAD_REQUEST") {
             // console.log(error.response.data.msg);
@@ -73,6 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       //Update user info function
       updateUser: async (email, username, password, name, lastname) => {
+        // Se trae store para tener los datos de usuario por id
         let store = getStore();
         let user_id = store.userId;
         // userId = store.profile.user.id
@@ -87,6 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               lastname: lastname,
             }
           );
+          // Sweet alert
           Swal.fire({
             position: "top",
             icon: "success",
@@ -96,6 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
           console.log(response);
         } catch (error) {
+          // Codigos de error y sus alertas respectivas
           // console.log(error);
           if (error.response.status === 401) {
             Swal.fire({
@@ -123,9 +116,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
+      // Filtra de busqueda para la barra de busqueda en landing page
+      // Se toma un valor por parametro, lo cual es lo que el usuario ingresa en la barra
       filterSearch: (searchValue) => {
+        // Se trae store para luego setear el array filtrado
         let store = getStore();
+        // Se declara results para que se guarde lo filtrado a partir de los datos
+        // que traiga el array de productos de la base de datos
         let results = store.product.filter((item) => {
+          // Un if con dos condiciones OR
+          // Uno es para que busque por nombre y el otro por descripcion del producto
+          // Si cualquier valor que se pase, se cumple, entonces se muestran los resultados
           if (
             item.name
               .toString()
@@ -136,33 +137,36 @@ const getState = ({ getStore, getActions, setStore }) => {
               .toLowerCase()
               .includes(searchValue.toLowerCase())
           ) {
+            // Console log para ver que trae
             console.log(item);
+            // Retorna item
             return item;
           }
         });
-
+        // Setea el array de producto con los resultados filtrados
         setStore({
           product: results,
         });
+        // Funciona para que la barra de busqueda mueva la pantalla a donde se encuentran los productos
         window.scrollTo(600, 600);
       },
-      
-      // fecht de los cuadros
+
+      // fetch de los productos
       getProduct: async () => {
         try {
           const response = await fetch(
             process.env.BACKEND_URL + "/api/product"
           ); //ir a buscar
           const data = await response.json();
-
+          // Setea store con los datos que trae
           setStore({
             product: data,
           }); //promesa 2
         } catch (err) {
+          // Log de error standard
           console.log(err);
         }
-
-        // fecht de los detalles
+        // fetch de los detalles
       },
       // funcion para obtener detalles de los cuadros
       getProductDetail: async (id) => {
@@ -173,6 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           const data = await response.json();
           // console.log(data);
+          // Setea store con los datos que se traigan
           setStore({
             productDetail: data,
             productId: data.id,
@@ -184,30 +189,45 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(err);
         }
       },
+      // Funcion de google login
       responseGoogle: async (response) => {
+        // Se guarda en userObject lo que traiga google
+        // Se utiliza jwt_decode para descifrar el token de google
         const userObject = jwt_decode(response.credential);
+        // Guarda el token en local storage
         localStorage.setItem("token", response.credential);
-
+        // Se declara results y se le asigna la funciona de signup
+        // Luego los datos de google se pasan a la funciona de signup
         let results = await getActions().signup(
           userObject.name,
           userObject.email,
           userObject.given_name
         );
+        // Log auxiliar de results
         console.log(results);
+        // Si el usuario existe entonces hace login en vez de signup
         if (results === "User exists") {
           await getActions().login(userObject.email, userObject.given_name);
+          // Retorna true, esto se utliza para saber que tipo de respues se da
+          // Y luego se utiliza en el componente de login, especificamente en google login
           return true;
-        } else if (results === "New user created") {
+        }
+        // Si la respuesta es que se creo un nuevo usuario, entonces se pasan los datos y se crea el usuario
+        else if (results === "New user created") {
           await getActions().signup(
             userObject.name,
             userObject.email,
             userObject.given_name
           );
+          // Retorna true, esto se utliza para saber que tipo de respues se da
+          // Y luego se utiliza en el componente de login, especificamente en google login
           return true;
         }
+        // Por default retorna true en caso de que no entre en ningun if
         return false;
       },
       // funcion para Login
+      // Se pasa email y password, son requeridos
       login: async (email, password) => {
         try {
           const response = await axios.post(
@@ -217,23 +237,37 @@ const getState = ({ getStore, getActions, setStore }) => {
               password: password,
             }
           );
-          setStore({
+          // Setea store con el id de usuario y auth se vuelve true para darle accesso
+          // Condiones para determinar el nivel de acceso del usuario
+          // Si es admin
+          if (response.data.user.admin) {
+            setStore({
+              admin: true,
               auth: true,
               userId: response.data.user.id,
             });
+            // Si es vendedor, no esta implementado pero queda como lujo
+          } else if (response.data.user.seller) {
+            setStore({
+              seller: true,
+              auth: true,
+              userId: response.data.user.id,
+            });
+            // Si no es vendedor ni admin entonces se le da acceso standard
+          } else {
+            setStore({
+              auth: true,
+              userId: response.data.user.id,
+            });
+          }
+          // Guarda el token en local storage segun los datos del fetch
           localStorage.setItem("token", response.data.msg);
-          // console.log(response.data.msg);
-          // console.log(response);
-          // console.log(response.data.user.id);
-          console.log(response.data.user.admin);
-          console.log(response.data.user.seller);
-          console.log(response.data.user);
-          // console.log(response.status);
           return response.data.msg;
         } catch (error) {
+          // Este error es practicamente inutil como un log, por lo tanto se comenta para no saturar la consola
           // console.log(error);
           // console.log(error.response.status);
-
+          // Alertas segun el error de respuesta
           if (error.response.status === 404) {
             Swal.fire({
               icon: "error",
@@ -253,8 +287,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       //  Funcion para logout
-
       logout: () => {
+        // Simplemente saca el token y auth se vuelve false
         localStorage.removeItem("token");
         setStore({
           auth: false,
@@ -264,12 +298,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       //Funcion para crear favoritos
       createFavorite: async (product_id) => {
+        // Se llama store
         let store = getStore();
+        // La funciona de mapeo de favoritos
         getActions().mapfavorites();
-
+        // Instancia de id de usuario
         let user_id = store.userId;
         // console.log(user_id);
-
         try {
           const response = await axios.post(
             process.env.BACKEND_URL + "/api/favorites",
@@ -279,6 +314,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           );
           //   console.log(response);
+          // Se llaman las funciones respectivas
           getActions().getProduct();
           getActions().mapfavorites();
           getActions().comparingFavorites();
@@ -303,19 +339,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
-
       //funcion para mapear los favoritos por usuuario:
-
       mapfavorites: async () => {
+        // Se llama store
         let store = getStore();
         await getActions().getFavorites();
-        // console.log(store.listaFavoritos);
-        // let favoriteItem;
+        // Setea store
         setStore({
           favoriteItem: store.listaFavoritos.map((item) => item.id),
         });
-        // console.log(store.favoriteItem); //array de las id de los productos agregados a favoritos por el user
+        //array de las id de los productos agregados a favoritos por el user
+        // console.log(store.favoriteItem);
       },
+      // Mapeo de productos por id
       mapProductId: async () => {
         let store = getStore();
         await getActions().getProduct();
@@ -326,12 +362,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
         // console.log(store.productsIds); //array de las id de todos los productos
       },
-
+      // Funciona para comparar favoritos
+      // Es para colorear el corazon de favoritos si el boton fue presionado
       comparingFavorites: async (productId) => {
         let store = getStore();
         await getActions().mapfavorites(); // store.favoriteItem
         await getActions().mapProductId(); // store.productsIds
-
+        // For para que se comparen los arrays
         for (let i = 0; i < store.productsIds.length; i++) {
           let element = store.productsIds[i];
           if (store.favoriteItem.includes(element)) {
@@ -351,12 +388,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
-
       // Funcion para eliminar favoritos en la base de datos
       eliminarFavoritos: async (product_id) => {
+        // Se llama store
         let store = getStore();
         let user_id = store.userId;
-
         try {
           const response = await axios.delete(
             process.env.BACKEND_URL + "/api/favorites",
@@ -367,7 +403,9 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
             }
           );
+          // Sweet alert con los datos del fetch
           Swal.fire(response.data.msg);
+          // Llama las funciones respectivas
           getActions().getFavorites();
           getActions().comparingFavorites();
           return response;
@@ -375,27 +413,23 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
         }
       },
-
       //funcion para obtener todos los favoritos de un usuario
-
       getFavorites: async () => {
+        // Llama store
         let store = getStore();
         let user_id = store.userId;
-        // console.log(user_id)
 
         try {
           const response = await axios.get(
             process.env.BACKEND_URL + "/api/user/" + user_id + "/favorites"
           );
-          // console.log(response.data.results);
-
+          // Setea store
           setStore({
             listaFavoritos: response.data.results,
-            // userId: response.user_id
           });
         } catch (error) {
-          // console.log(error);
-          // console.log(error.response.data.msg);
+          // El log de este error en inutil por que no es preciso
+          // Si no tiene favoritos entonces se vacia la lista
           if (error.response.status === 404) {
             setStore({
               listaFavoritos: [],
@@ -403,9 +437,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
-
       // funcion para crear productos
-
+      // Se pasan los datos respectivos por parametro
       createProduct: async (name, description, category, url, price) => {
         try {
           const response = await axios.post(
@@ -423,6 +456,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       //Funcion para registrarse como usuario
+      // Se pasan los valores respectivos
       signup: async (username, email, password) => {
         try {
           const response = await axios.post(
@@ -436,29 +470,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           if (response.data.msg === "New user created") {
             getActions().login(email, password);
+            // Setea store para declarar al usuario como registrado
             setStore({
               registered: true,
             });
           }
-
-          // console.log(response);
-          // console.log(response.status);
-          // console.log(response.data.msg);
           return response.data.msg;
         } catch (error) {
-          // console.log(error);
+          // Si usuario exitste
           if (error.response.data.msg === "User exists") {
             swal(error.response.data.msg);
             return error.response.data.msg;
-            // } else if (error.response.data.msg === 406) {
-            //   return error.response.data.msg;
           }
         }
       },
-
       //Funcion para validar el Token y mantener al usuario registrado
-
       validToken: async () => {
+        // Guarda el token de local storage en un variable para que persista
         let accessToken = localStorage.getItem("token");
         try {
           const response = await axios.get(
@@ -469,7 +497,6 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
             }
           );
-          console.log(response.data.user)
           if (response.data.user.admin) {
             setStore({
               admin: true,
@@ -488,12 +515,6 @@ const getState = ({ getStore, getActions, setStore }) => {
               userId: response.data.user.id,
             });
           }
-          console.log(response.data.user)
-          // setStore({
-          //   auth: response.data.status,
-          //   userId: response.data.user.id,
-          // });
-          console.log(auth);
           return;
         } catch (error) {
           if (error.code === "ERR_BAD_REQUEST") {
@@ -506,11 +527,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       // funcion para agregar productos al carrito
       createShopping: async (product_id) => {
+        // Se llama a store
         let store = getStore();
-
         let user_id = store.userId;
-        console.log(user_id);
-
         try {
           const response = await axios.post(
             process.env.BACKEND_URL + "/api/shopping",
@@ -519,10 +538,11 @@ const getState = ({ getStore, getActions, setStore }) => {
               id_user: user_id,
             }
           );
-
+          // Llama al carrito
           getActions().getShopping();
           return response;
         } catch (error) {
+          // Mensajes de error
           if (error.response.status === 404) {
             getActions().eliminarFavoritos(product_id);
           } else if (error.response.data.msg === "User is not logged in") {
@@ -535,10 +555,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
-
       //funcion para eliminar productos del carrito
-
       deleteShopping: async (product_id) => {
+        // Se llama a store
         let store = getStore();
         let user_id = store.userId;
 
@@ -552,24 +571,18 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
             }
           );
-          // alert(response.data.msg);
-          console.log(response);
-
+          // Se llama a la funcion de traer shopping
           getActions().getShopping();
-          // console.log(store.shoppingList)
-
           return;
         } catch (error) {
           console.log(error);
         }
       },
-
       // funcion para obtener todos los productos agregados al carrito
-
       getShopping: async () => {
+        // Se llama a store
         let store = getStore();
         let user_id = store.userId;
-
         try {
           const response = await axios.get(
             process.env.BACKEND_URL + "/api/user/" + user_id + "/shopping"
@@ -588,6 +601,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
+      // Funciona de cambiar password, utliza mailtrap para enviar una nueva password generada aleatoriamente
       changePassword: async (email) => {
         try {
           const response = await axios.post(
@@ -596,7 +610,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               email: email,
             }
           );
-
+          // Respues de ok
           if (response.status === 200) {
             swal("Your password has been sent to your email");
           }
@@ -607,20 +621,18 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       //funcion para pbtener un array con los precios de los elementos del carrito:
-
       priceFilter: async () => {
+        // Se llama a store
         let store = getStore();
         await getActions().getShopping();
-
+        // Setea en store el precio y se convierte a int para que sea un numero
         setStore({
           priceList: store.shoppingList.map((item) => parseInt(item.price)),
         });
 
         return store.priceList;
       },
-
       //funcion para sumar las los precios del carrito:
-
       sumaTotal: (arr) => {
         let store = getStore();
 
@@ -634,11 +646,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           sum: sumTotal,
         });
       },
-
+      // Funcion de borrar cuenta
       eliminarCuenta: async () => {
+        // Llama a store
         let store = getStore();
         let user_id = store.userId;
-
         try {
           const response = await axios.delete(
             process.env.BACKEND_URL + "/api/user/" + user_id,
@@ -660,10 +672,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
-
+      // Funcion de borrar producto
       deleteProduct: async (product_id) => {
+        // Llama a store
         let store = getStore();
-
         try {
           const response = await axios.delete(
             process.env.BACKEND_URL + "/api/product/" + product_id,
@@ -673,29 +685,20 @@ const getState = ({ getStore, getActions, setStore }) => {
               },
             }
           );
-          // Swal.fire(response.data.msg);
-          console.log(response);
-          // console.log(store.shoppingList)
+          // Llama a la fucnion de obtener productos
           getActions().getProduct();
-
           return;
         } catch (error) {
           console.log(error);
         }
       },
-
       //funcion para crear review de productos:
       createScore: async (comment, score, product_id) => {
+        // Llama a store
         let store = getStore();
         let user_id = store.userId;
-
-        console.log(typeof user_id);
-        console.log(typeof product_id);
-        console.log(typeof comment);
-        console.log(typeof score);
-
+        // Convierte al id de producto en un numero
         product_id = parseInt(product_id);
-        console.log(typeof product_id);
         try {
           const response = await axios.post(
             process.env.BACKEND_URL + "/api/review",
@@ -706,23 +709,13 @@ const getState = ({ getStore, getActions, setStore }) => {
               score: score,
             }
           );
-
-          console.log(response);
-
           return response;
         } catch (error) {
-          // if (error.response.status === 404) {
-          //     getActions().eliminarFavoritos(product_id);
-          // } else if (error.response.data === "User is not logged in") {
-          //     alert(
-          //         error.response.data + ". You'll be rediredted to the login page"
-          //     );
-          //     return error.response.data;
-          // }
+          // Error standard en un log
           console.log(error);
         }
       },
-
+      // Funcion de puntaje de productos
       getProductRatings: async (id) => {
         let store = getStore();
         try {
@@ -730,19 +723,18 @@ const getState = ({ getStore, getActions, setStore }) => {
             process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
           );
           const data = await response.json();
-          // console.log(data);
-
+          // Setea store
           setStore({
             comments: data.map((item) => item.comment),
           });
-
-          // console.log(store.comments);
           return store.comments;
         } catch (error) {
+          // Log de error
           console.log(error);
         }
       },
-
+      // Funcion para actualizar productos
+      // Se pasa los parametros necesarios
       updateProduct: async (
         name,
         description,
@@ -751,12 +743,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         url,
         productId
       ) => {
+        // Llama a store
         let store = getStore();
-        // const price = parseInt(price);
-        // let product_id = store.productId;
-        // userId = store.profile.user.id
-        console.log(productId);
-        console.log(name, description, category, price, url);
         try {
           const response = await axios.put(
             process.env.BACKEND_URL + "/api/product/" + productId,
@@ -768,18 +756,15 @@ const getState = ({ getStore, getActions, setStore }) => {
               url,
             }
           );
-
+          // Respues de ok
           if (response.status === 200) {
             Swal.fire(response.data.msg);
             getActions().getProduct();
             return response;
           }
-
-          console.log(response);
-          // return true;
         } catch (error) {
+          // Log de error
           console.log(error);
-
           if (error.response.status === 404) {
             Swal.fire({
               icon: "error",
@@ -793,5 +778,4 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
   };
 };
-
 export default getState;
