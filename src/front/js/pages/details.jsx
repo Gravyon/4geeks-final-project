@@ -158,7 +158,7 @@ export const ProductDetail = () => {
               </div>
             </div>
           </div>
-          <Scoring />
+          {store.auth ? <Scoring /> : null}
         </Card>
 
         {/* termina la card */}
@@ -174,27 +174,44 @@ export const ProductDetail = () => {
             marginBottom: "3%",
           }}
         >
-          <div className="col-7 bg-dark h-100 text-white my-4 border border-5 border-dark rounded-4">
+          <div className="col-sm-12 col-md-7 bg-dark text-white ">
             <div>
-              <h3 className="text-center">Comments:</h3>
-              <div className="scrolleable">
+              <h3
+                className="text-center mt-3"
+                style={{ fontFamily: "Roboto, sans-serif" }}
+              >
+                Reviews:
+              </h3>
+              <div className="scrolleable col-10 m-auto">
                 <ul className="list-group">
                   {" "}
                   {store.comments.length > 0 ? (
-                    store.comments.map((item) => (
-                      <li className="my-3">'{item}'</li>
+                    store.comments.map((item, index) => (
+                      <div key={index}>
+                        <li className="my-3">{item}</li>
+                        <hr style={{ borderTop: "2px #bdb284" }} />
+                      </div>
                     ))
                   ) : (
-                    <p>No comments for this product</p>
+                    <div className="mt-5">
+                      <hr style={{ borderTop: "2px #bdb284" }} />
+                      <p className="text-muted text-center ">
+                        No comments for this product
+                      </p>
+                      <hr style={{ borderTop: "2px #bdb284" }} />
+                    </div>
                   )}
                 </ul>
               </div>
             </div>
           </div>
-          <div className="col-5 bg-dark">
-            <h2 className="text-white my-4" style={{ textAlign: "center" }}>
+          <div className="col-sm-12 col-md-5 bg-dark">
+            <h3
+              className="text-white my-4"
+              style={{ textAlign: "center", fontFamily: "Roboto, sans-serif" }}
+            >
               Related products:
-            </h2>
+            </h3>
             <ProductCarousel />
           </div>
         </div>

@@ -4,6 +4,12 @@
     }
 }
 
+@media only screen and (min-width: 300px) {
+    div {
+        font-size: 0.8rem;
+    }
+}
+
 @media only screen and (min-width: 992px) {
     div {
         font-size: 1.2rem;
