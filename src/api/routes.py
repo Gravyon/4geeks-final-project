@@ -90,8 +90,7 @@ def get_products():
     ###########################
     products = Products.query.all()
     print(products)
-    results = list(map(lambda x: x.serialize(), products ))
-    results.sort(key=lambda x:x[1])
+    results = list(map(lambda x: x.serialize(), products))
     return jsonify(results), 200
 
 @api.route('/product/<int:product_id>', methods=['GET'])
@@ -553,7 +552,7 @@ def create_review():
         # Flask command to commit the database, saving the changes
         db.session.commit()
         # Standard response to request with error code 200 (success)
-        return jsonify({"msg": "Thanks for your review!"}), 200
+        return jsonify({"msg": "New review created for this product"}), 200
     if user_query is None:
         return jsonify({"msg": "User doesn't exist"}), 404
     

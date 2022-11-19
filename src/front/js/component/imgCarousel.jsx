@@ -7,21 +7,23 @@ import {
   CarouselCaption,
 } from "reactstrap";
 
+import "../../styles/imgCarousel.css";
+
 const items = [
   {
-    src: "https://res.cloudinary.com/dgqyqqtk4/image/upload/v1667834167/proyecto-final/4_m9v4mu.png",
+    src: "https://res.cloudinary.com/dgqyqqtk4/image/upload/v1668795950/proyecto-final/slide_img_2_dt7jgc.png",
     // altText: "Slide 1",
     // caption: "Slide 1",
     key: 1,
   },
   {
-    src: "https://res.cloudinary.com/dgqyqqtk4/image/upload/v1667834246/proyecto-final/7_dlkw8y.png",
+    src: "https://res.cloudinary.com/dgqyqqtk4/image/upload/v1668796489/proyecto-final/slide_img_3_aew03x.png",
     // altText: "Slide 2",
     // caption: "Slide 2",
     key: 2,
   },
   {
-    src: "https://res.cloudinary.com/dgqyqqtk4/image/upload/v1667834289/proyecto-final/5_leovz9.png",
+    src: "https://res.cloudinary.com/dgqyqqtk4/image/upload/v1668797422/proyecto-final/slide_img_4_xjx1kb.png",
     // altText: "Slide 3",
     // caption: "Slide 3",
     key: 3,
@@ -68,7 +70,8 @@ export const ImgCarousel = (args) => {
       next={next}
       previous={previous}
       {...args}
-      className="w-75 m-auto"
+      className="w-100 bg-dark"
+      style={{ margin: "auto" }}
     >
       <CarouselIndicators
         items={items}
