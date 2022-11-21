@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -6,13 +6,9 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 export const SignUp = () => {
-  // definimos los estados
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [username, setUsername] = useState("");
   const { actions } = useContext(Context);
   let navigate = useNavigate();
-
+  // Yup para validar campos
   const SignupSchema = Yup.object().shape({
     username: Yup.string("Enter your username")
       .min(2, "Username should be of minimum 8 characters length")

@@ -147,6 +147,7 @@ def delete_product(product_id):
 @api.route('/product/<int:product_id>', methods=['PUT'])
 def modify_product(product_id):
     body = json.loads(request.data)
+    # product = Products.query.filter_by(id=product_id).order_by(id=product_id).first()
     product = Products.query.filter_by(id=product_id).first()
     # If product exists, modifies it with new inputs
     if product is None:
@@ -444,6 +445,20 @@ def get_order():
     print(results)
     return jsonify(results), 200
 
+@api.route('/user/<int:id_user>/order', methods=['GET'])
+def get_order_by_user(id_user):
+    ###########################
+    # Get user order list
+    ###########################
+    order = OrderHistory.query.filter_by(id_user=id_user).all()
+    print(order)
+    results = list(map(lambda x: x.serialize2(), order))
+
+    if results == []:
+      return  jsonify({"msg": "Your cart is empty"}), 404
+    print(results)
+    return jsonify({"id": order[0].id,"results": results}), 200
+
 @api.route('/order', methods=['POST'])
 def create_order():
     ###########################
@@ -461,6 +476,34 @@ def create_order():
     db.session.commit()
     # Standard response to request with error code 200 (success)
     return jsonify({"msg": "New order created"}), 200
+
+@api.route('/order', methods=['DELETE'])
+def delete_order():
+    ###########################
+    # Delete order
+    ###########################
+    # Load data from postman or input
+    body = json.loads(request.data)
+    print(body)
+    user = request.json['id_user']
+    product = request.json['id_shopping']
+    print(user, product)
+    # favorite_query = Favorites.query.filter_by(id=body["id"]).first()
+    user_query = User.query.filter_by(id=body["id_user"]).first()
+    
+    print(user_query)
+    if user_query:
+        product_query = OrderHistory.query.filter_by(id_user=body["id_user"]).filter_by(id_shopping=body["id_shopping"]).first()
+        if product_query:
+            
+            db.session.delete(product_query)
+            db.session.commit()
+            return jsonify({"msg": "The product was deleted from your cart"}), 200
+            
+        elif product is None:
+            return jsonify({"msg": "Product not found"}), 404
+
+    return jsonify({"msg": "Something went wrong"}), 400
 
 ###########################
 # Favorites DELETE query

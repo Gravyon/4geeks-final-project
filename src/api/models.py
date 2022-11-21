@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.dialects.postgresql import ARRAY
 
 db = SQLAlchemy()
 
@@ -148,3 +149,8 @@ class OrderHistory(db.Model):
             "id_shopping": self.id_shopping,
             "id_user": self.id_user
         }
+
+    def serialize2(self):
+        # arr_shopping_list=list(map(lambda item: item.id_shopping, self.shopping))
+        shopping_list = Shopping.query.filter_by(id=self.id_shopping).first()
+        return shopping_list.serialize()

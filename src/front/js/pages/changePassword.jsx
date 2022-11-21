@@ -1,21 +1,11 @@
 import React from "react";
-import { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+
 export const ChangePassword = () => {
-  const { store, actions } = useContext(Context);
-
-  // const [email, setEmail] = useState("");
-  let navigate = useNavigate();
-
-  // const doSubmit = (e) => {
-  //   e.preventDefault();
-  //   let changePassword = actions.changePassword(email);
-  //   setEmail("");
-  //   changePassword ? navigate("/") : null;
-  // };
+  const { actions } = useContext(Context);
   const SignupSchema = Yup.object().shape({
     email: Yup.string("Enter your email")
       .email("Enter a valid email")
@@ -29,18 +19,8 @@ export const ChangePassword = () => {
       validationSchema={SignupSchema}
       // Declara onSubmit y se le pasan los valores del campo dentro, anotandolos con "values"
       onSubmit={ (values, {resetForm} ) => {
-      // let changePassword = actions.changePassword(values.email);
+        // Por ahora el password se devuelve encriptado por el registro/login
       actions.changePassword(values.email);
-      // if (changePassword === "Your password has been sent to your email") {
-      //   return <div className="position-relative position-absolute top-50 start-50 translate-middle">
-      //       <h1>Email sent</h1>
-      //       <p className="mb-0" style={{ color: "#bdb284" }}>
-      //         <Link to="/" className="text-white-50 fw-bold">
-      //           Back home
-      //         </Link>
-      //       </p>
-      //     </div>
-      // }
       resetForm({values: ""})
     }
   }

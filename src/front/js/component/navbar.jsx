@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
@@ -6,24 +6,18 @@ import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../img/logo1.png";
-import { BsSearch } from "react-icons/bs";
 import "../../styles/navbar.css";
 
 export const NavbarPrincipal = () => {
   const { store, actions } = useContext(Context);
-  const [product, setProduct] = useState([]);
   const [search, setSearch] = useState("");
-
-  // const queryGet = () => {
-  //   console.log(store.product);
-  // };
 
   const handleInput = (e) => {
     // e.preventDefault();
+    // Se utiliza para la barra buscadora
+    // Simplemente se guarda en search lo que el usuario escribe y se le pasa a la funcion de filterSearch en flux
     setSearch(e.target.value);
     console.log(e.target.value);
     if (e.target.value === "") {
@@ -35,13 +29,12 @@ export const NavbarPrincipal = () => {
 
   useEffect(() => {
     if (store.userId != null) {
-      // console.log(store.userId)
       actions.getShopping();
     }
   }, [store.userId]);
 
   let navigate = useNavigate();
-
+  // Controla el logout de usuario, simplemente llama a logout de flux
   const doLogout = () => {
     //false
     let onLogged = actions.logout();
@@ -51,7 +44,6 @@ export const NavbarPrincipal = () => {
       navigate("/login");
     }
   };
-  // es lo mismo a poner !onLogged ? history.push("/login"):null;
 
   return (
     <div className="sticky-sm-top" id="navbar">
@@ -98,7 +90,6 @@ export const NavbarPrincipal = () => {
               <Nav.Link href="/contactus" style={{ color: "#bdb284" }}>
                 Contact us
               </Nav.Link>
-              {/* <Nav.Link href="/login">Login</Nav.Link> */}{" "}
             </Nav>
             <Form className="d-flex d-sm-none d-md-inline">
               <Form.Control
@@ -108,9 +99,6 @@ export const NavbarPrincipal = () => {
                 className="me-2"
                 aria-label="Search"
               />
-              {/* <Button variant="outline-ligth" style={{ color: "#bdb284" }}>
-                <BsSearch />
-              </Button> */}
             </Form>
             {!store.auth ? (
               <Nav.Link href="/login" style={{ color: "#bdb284" }}>
@@ -143,21 +131,6 @@ export const NavbarPrincipal = () => {
                 <span className="badge">{store.shoppingList.length}</span>
               </Link>
             ) : null}
-            {/* <ul className="dropdown-menu">
-              {store.shoppingList.map((item, id) => (
-                <li className="p-2" key={id}>
-                  {item}
-                  <button
-                    type="button"
-                    onClick={() => actions.deleteShopping(item.id)}
-                    className="btn "
-                    style={{ float: "right" }}
-                  >
-                    <i className="fa fa-trash"></i>
-                  </button>
-                </li>
-              ))}
-            </ul> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

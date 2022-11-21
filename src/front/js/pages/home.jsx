@@ -1,10 +1,7 @@
-import PropTypes from "prop-types";
-import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-
 import "../../styles/home.css";
-
 import { LandingPage } from "../component/landing-page.jsx";
 
 export const Home = () => {

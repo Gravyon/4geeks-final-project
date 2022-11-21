@@ -30,7 +30,6 @@ export const Login = () => {
     console.log("success");
     navigate("/");
   };
-
   return (
     <Formik
       //Valores iniciales
@@ -40,6 +39,7 @@ export const Login = () => {
       onSubmit={async (values) => {
         // Esto se guarda en una variable para atrapar lo que la funcion de flux tira
         let onLogged = await actions.login(values.email, values.password);
+        // Condiciones segun la respuesta de flux
         if (onLogged === "User doesn't exist") {
           navigate("/signup");
         } else if (onLogged.msg === "Bad email or password") {
@@ -110,7 +110,7 @@ export const Login = () => {
                         clientId={`${process.env.GOOGLE_AUTH}`}
                       >
                         <GoogleLogin
-                          // onSuccess funciona con una funcion dentro, por lo tanto es necesaria esta sintaxis
+                          // onSuccess funciona con una funcion dentro, por lo tanto es necesaria esta sintaxis de arrow function
                           onSuccess={async (response) => {
                             let result = await actions.responseGoogle(response);
                             if (result) {

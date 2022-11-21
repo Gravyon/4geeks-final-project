@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
-import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
@@ -9,11 +8,7 @@ import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import Navbar from "react-bootstrap/Navbar";
-import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
-import swal from "sweetalert";
 import Swal from "sweetalert2";
 import "../../styles/favorites.css";
 
@@ -24,30 +19,37 @@ export const Profile = (props) => {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
-  const params = useParams();
   let auth = store.auth;
-  let navigate = useNavigate();
   let profile = store.profile;
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
+  let scoreGenerator = (score) => {
+    // Maneja las califcaciones de productos
+    if (score === 1) {
+      return "★";
+    } else if (score === 2) {
+      return "★★";
+    } else if (score === 3) {
+      return "★★★";
+    } else if (score === 4) {
+      return "★★★★";
+    } else if (score == 5) {
+      return "★★★★★";
+    } else {
+      return "No review";
+    }
+  };
+
   const updateUser = async (e) => {
     e.preventDefault();
-    // console.log(profile.name, profile.email)
+    // Se llama a updateUser de flux
     await actions.updateUser(email, username, password, name, lastname);
-    // let onUpdateUser = await actions.updateUser(username, password);
     setUsername("");
     setPassword("");
     setEmail("");
     setName("");
     setLastname("");
-    // onUpdateUser ? navigate("/") : null;
-    // if (userUpdate) {
-    //   navigate("/profile");
-    // } else {
-    // Swal.fire("An error ocurred")
-    //   navigate("/");
-    // }
   };
 
   const handleSweetAlert = () => {
@@ -71,7 +73,6 @@ export const Profile = (props) => {
 
   useEffect(() => {
     if (store.userId != null) {
-      // console.log(store.userId)
       actions.getFavorites();
     }
   }, [store.userId]);
@@ -99,15 +100,6 @@ export const Profile = (props) => {
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link
-                        eventKey="second"
-                        className="btn btn-dark m-2"
-                        style={{ color: "#bdb284" }}
-                      >
-                        Order history
-                      </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link
                         eventKey="third"
                         className="btn btn-dark m-2"
                         style={{ color: "#bdb284" }}
@@ -115,15 +107,16 @@ export const Profile = (props) => {
                         Your favorites
                       </Nav.Link>
                     </Nav.Item>
-                    {/* <Nav.Item>
+                    <Nav.Item>
                       <Nav.Link
-                        eventKey="fourth"
+                        eventKey="second"
                         className="btn btn-dark m-2"
                         style={{ color: "#bdb284" }}
                       >
-                        Admin personal info
+                      {/* Agregado pero no funciona, seria para el cuarto sprint */}
+                        Your orders
                       </Nav.Link>
-                    </Nav.Item> */}
+                    </Nav.Item>
                   </Nav>
                 </Col>
                 <Col sm={8}>
@@ -131,19 +124,13 @@ export const Profile = (props) => {
                     <Tab.Pane eventKey="first">
                       <div>
                         <div className="user-profile">
-                        <div className="p-2">
-                            <h5>Name: {profile.name}</h5>
-                          </div>
-                          <div className="p-2">
-                            <h5>Lastname: {profile.lastname}</h5>
-                          </div>
-                          <div className="p-2">
+                          <div className="p-2 border-bottom border-end border-dark mb-3">
                             <h5>Username: {profile.username}</h5>
                           </div>
-                          <div className="p-2">
+                          <div className="p-2 border-bottom border-end border-dark mb-3">
                             <h5>Email: {profile.email}</h5>
                           </div>
-                          <div className="p-2">
+                          <div className="p-2 border-bottom border-end border-dark mb-3">
                             <h5>Password: ********</h5>
                           </div>
                           <div>
@@ -168,7 +155,6 @@ export const Profile = (props) => {
                                         Change your email:{" "}
                                         <Form.Control
                                           type="email"
-                                          // placeholder="{profile.email}"
                                           onChange={(e) =>
                                             setEmail(e.target.value)
                                           }
@@ -180,7 +166,6 @@ export const Profile = (props) => {
                                         Change your username:{" "}
                                         <Form.Control
                                           type="text"
-                                          // placeholder="Change your username"
                                           onChange={(e) =>
                                             setUsername(e.target.value)
                                           }
@@ -192,7 +177,6 @@ export const Profile = (props) => {
                                         Password:{" "}
                                         <Form.Control
                                           type="password"
-                                          // placeholder="Change your password"
                                           onChange={(e) =>
                                             setPassword(e.target.value)
                                           }
@@ -204,7 +188,6 @@ export const Profile = (props) => {
                                         name:{" "}
                                         <Form.Control
                                           type="text"
-                                          // placeholder="Change your name"
                                           onChange={(e) =>
                                             setName(e.target.value)
                                           }
@@ -216,7 +199,6 @@ export const Profile = (props) => {
                                         Lastname:{" "}
                                         <Form.Control
                                           type="text"
-                                          // placeholder="Change your lastname"
                                           onChange={(e) =>
                                             setLastname(e.target.value)
                                           }
@@ -243,8 +225,6 @@ export const Profile = (props) => {
                         <Button
                           className="mt-2 p-2 d-flex"
                           type="button"
-                          // href={"/"}
-                          // data-bs-toggle="modal"
                           variant="dark"
                           style={{ color: "#bdb284" }}
                           onClick={() => handleSweetAlert()}
@@ -261,47 +241,41 @@ export const Profile = (props) => {
                             <div>
                               <div className="col-12 mx-auto my-4 h-75">
                                 <ol>
-                                      <li
-                                        className="list-group-item border border-1 border border-dark"
-                                        style={{
-                                          background: "#212529",
-                                          color: "#908969",
-                                        }}
-                                      >
-                                        <div className="d-flex justify-content-between">
-                                          <div className="d-flex justify-content-start text-left w-25">
-
-                                          </div>
-                                          <div className="text-left">
-                                            <p className="mx-5 text-right">
-                                            </p>
-                                          </div>
-                                          <div className="d-flex justify-content-end">
-                                            <div className="mx-4">
-                                              <BsStarFill />
-                                              <BsStarFill />
-                                              <BsStarHalf />
-                                              <BsStar />
-                                              <BsStar />
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </li>
+                                  <li
+                                    className="list-group-item border border-1 border border-dark"
+                                    style={{
+                                      background: "#212529",
+                                      color: "#908969",
+                                    }}
+                                  >
+                                    <div className="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-start text-left w-25"></div>
+                                      <div className="text-left">
+                                        <p className="mx-5 text-right"></p>
+                                      </div>
+                                    </div>
+                                  </li>
                                 </ol>
                               </div>
                             </div>
                           </Tab.Pane>
-                          <ListGroup.Item>Order number 1</ListGroup.Item>
-                          <ListGroup.Item>Order number 2</ListGroup.Item>
-                          <ListGroup.Item>Order number 3</ListGroup.Item>
-                          <ListGroup.Item>Order number 4</ListGroup.Item>
-                          <ListGroup.Item>Order number 5</ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">Order number 1</ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">Order number 2</ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">Order number 3</ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">Order number 4</ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">Order number 5</ListGroup.Item>
                         </ListGroup>
                       </div>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
-                      <div>
-                        <div className="col-12">
+                      <div
+                        className="container mt-5 vh-100 "
+                        style={{
+                          fontFamily: "Rajdhani, sans-serif",
+                          fontSize: "1.3rem",
+                        }}
+                      >
+                        <div className="col-12 mx-auto my-4 h-75">
                           <ol className="h-75">
                             {store.listaFavoritos.length > 0 ? (
                               store.listaFavoritos.map((item, id) => (
@@ -315,7 +289,17 @@ export const Profile = (props) => {
                                 >
                                   <div className="d-flex justify-content-between">
                                     <div className="d-flex justify-content-start text-left w-25">
-                                      {item?.name}
+                                      <img
+                                        src={item.url}
+                                        className="img-fluid rounded p-1 w-100 mx-1"
+                                        alt="..."
+                                        style={{
+                                          maxHeight: "3rem",
+                                          maxWidth: "3rem",
+                                          borderColor: "#b2a97e",
+                                        }}
+                                      />
+                                      Name: {item?.name}
                                     </div>
                                     <div className="text-left">
                                       <p className="mx-5 text-right">
@@ -343,41 +327,7 @@ export const Profile = (props) => {
                           </ol>
                         </div>
                       </div>
-                    </Tab.Pane>
-                    {/* <Tab.Pane eventKey="fourth">
-                      <div>
-                        <ListGroup>
-                          <ListGroup.Item>
-                            Change email:{" "}
-                            <Form.Control
-                              type="email"
-                              placeholder="Change your email"
-                            />
-                          </ListGroup.Item>
-                          <ListGroup.Item>
-                            Address:{" "}
-                            <Form.Control
-                              type="text"
-                              placeholder="Change your address"
-                            />
-                          </ListGroup.Item>
-                          <ListGroup.Item>
-                            Phone number:{" "}
-                            <Form.Control
-                              type="text"
-                              placeholder="Change your phone number"
-                            />
-                          </ListGroup.Item>
-                          <ListGroup.Item>
-                            Passport:{" "}
-                            <Form.Control
-                              type="text"
-                              placeholder="Change your passport"
-                            />
-                          </ListGroup.Item>
-                        </ListGroup>
-                      </div>
-                    </Tab.Pane> */}
+                    </Tab.Pane>                  
                   </Tab.Content>
                 </Col>
               </Row>
