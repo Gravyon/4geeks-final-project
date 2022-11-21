@@ -28,7 +28,7 @@ export const ProductDetail = () => {
   let handleAddShopping = async (id) => {
     //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
     let msj = await actions.createShopping(id);
-    console.log(msj);
+
     if (msj === "User is not logged in") {
       navigate("/login");
     }
