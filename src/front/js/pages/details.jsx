@@ -261,7 +261,7 @@ export const ProductDetail = () => {
                   </div>
                   <div className="card-footer align-bottom h-50 ">
                     <div className="buttonsCarritoYFavorito">
-                      <div className="d-md-grid gap-md-2 d-sm-flex justify-sm-conten-between">
+                      <div className="d-md-grid gap-md-2">
                         <button
                           className="btn btn-light d-flex justify-content-sm-between justify-content-md-center btn-sm-sm btnCarrito"
                           type="button"
