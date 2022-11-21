@@ -310,7 +310,6 @@ export const LandingPage = () => {
                                     onChange={(e) => setName(e.target.value)}
                                     value={name}
                                   />
-
                                   <label>Change the description: </label>
                                   <input
                                     className="m-3 d-flex justify-content-between"
@@ -320,7 +319,6 @@ export const LandingPage = () => {
                                     }
                                     value={description}
                                   />
-
                                   <label>Change the category: </label>
                                   <input
                                     className="m-3 d-flex justify-content-between"
@@ -330,7 +328,6 @@ export const LandingPage = () => {
                                     }
                                     value={category}
                                   />
-
                                   <label>Change the price: </label>
                                   <input
                                     className="m-3 d-flex justify-content-between"
@@ -338,7 +335,6 @@ export const LandingPage = () => {
                                     onChange={(e) => setPrice(e.target.value)}
                                     value={price}
                                   />
-
                                   <label>Change the url: </label>
                                   <input
                                     className="m-3 d-flex justify-content-between"

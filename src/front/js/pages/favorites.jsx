@@ -29,7 +29,7 @@ export const Favorites = () => {
     } else if (score == 5) {
       return "★★★★★";
     } else {
-      return "No review";
+      return "No rvw";
     }
   };
 
@@ -43,60 +43,58 @@ export const Favorites = () => {
             fontSize: "1.3rem",
           }}
         >
-          <div className="w-25 mx-auto">
+          <div className="w-25">
             <h1>Favorites </h1>
           </div>
-          <div className="col-12 mx-auto my-4 h-75">
-            <ol className="h-75">
-              {store.listaFavoritos.length > 0 ? (
-                store.listaFavoritos.map((item) => (
-                  <li
-                    className="list-group-item border border-1 border border-dark"
-                    key={item.id}
-                    style={{ background: "#212529", color: "#908969" }}
-                  >
-                    <div className="d-flex justify-content-between">
-                      <div className="d-flex justify-content-start text-left w-25">
-                        <img
-                          src={item.url}
-                          className="img-fluid rounded p-1 w-100 mx-1"
-                          alt="..."
-                          style={{
-                            maxHeight: "3rem",
-                            maxWidth: "3rem",
-                            borderColor: "#b2a97e",
-                          }}
-                        />
-                        Name: {item?.name}
-                      </div>
-                      <div className="text-left">
-                        <p className="mx-5 text-right">
-                          Price: US${item?.price}
+          <div className="col-12 my-4 h-75">
+            {/* <ol className="h-75 m-0"> */}
+            {store.listaFavoritos.length > 0 ? (
+              store.listaFavoritos.map((item) => (
+                <li
+                  className="list-group-item border border-1 border border-dark"
+                  key={item.id}
+                  style={{ background: "#212529", color: "#908969" }}
+                >
+                  <div className="d-flex justify-content-between">
+                    <div className="d-flex justify-content-start text-left w-25">
+                      <img
+                        src={item.url}
+                        className="img-fluid rounded p-1 w-100 mx-1"
+                        alt="..."
+                        style={{
+                          maxHeight: "3rem",
+                          maxWidth: "3rem",
+                          borderColor: "#b2a97e",
+                        }}
+                      />
+                      {item?.name}
+                    </div>
+                    <div className="text-left">
+                      <p className="mx-5 text-right">US${item?.price}</p>
+                    </div>
+                    <div className="d-flex justify-content-end">
+                      <div className="mx-4">
+                        <p className="card-text">
+                          {scoreGenerator(item.score)}
                         </p>
                       </div>
                       <div className="d-flex justify-content-end">
-                        <div className="mx-4">
-                          <p className="card-text">
-                            {scoreGenerator(item.score)}
-                          </p>
-                        </div>
-                        <div className="d-flex justify-content-end">
-                          <span
-                            className="btn btn-outline-light"
-                            onClick={() => actions.eliminarFavoritos(item.id)}
-                            style={{ color: "#bdb284" }}
-                          >
-                            <b>X</b>
-                          </span>
-                        </div>
+                        <span
+                          className="btn btn-outline-light favoritesList"
+                          onClick={() => actions.eliminarFavoritos(item.id)}
+                          style={{ color: "#bdb284" }}
+                        >
+                          <b>X</b>
+                        </span>
                       </div>
                     </div>
-                  </li>
-                ))
-              ) : (
-                <p>No tienes ningun favorito</p>
-              )}
-            </ol>
+                  </div>
+                </li>
+              ))
+            ) : (
+              <p>No tienes ningun favorito</p>
+            )}
+            {/* </ol> */}
           </div>
         </div>
       ) : (

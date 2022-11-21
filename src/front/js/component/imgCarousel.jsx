@@ -70,8 +70,8 @@ export const ImgCarousel = (args) => {
       next={next}
       previous={previous}
       {...args}
-      className="w-100 bg-dark"
-      style={{ margin: "auto" }}
+      className="bg-dark"
+      style={{ margin: "auto", maxWidth: "100%" }}
     >
       <CarouselIndicators
         items={items}
@@ -79,7 +79,7 @@ export const ImgCarousel = (args) => {
         onClickHandler={goToIndex}
       />
       {slides}
-      <CarouselControl
+      {/* <CarouselControl
         direction="prev"
         directionText="Previous"
         onClickHandler={previous}
@@ -88,7 +88,7 @@ export const ImgCarousel = (args) => {
         direction="next"
         directionText="Next"
         onClickHandler={next}
-      />
+      /> */}
     </Carousel>
   );
 };
