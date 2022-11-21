@@ -37,10 +37,10 @@ export const Checkout = () => {
       {store.auth ? (
         <div className="container d-flex justify-content-center vh-100">
           <div className="vh-100 col mt-5">
-            <h2>¿Donde quieres recibir tu compra?</h2>
-            <div className="col-sm-12 col-md-6">
+            <h2>Medios de pago:</h2>
+            <div className="col-sm-12 col-md-6 mx-auto">
               <form className="row g-2" onSubmit={doSubmit}>
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <label
                     htmlFor="exampleName"
                     className="form-label opacity-50"
@@ -138,16 +138,16 @@ export const Checkout = () => {
                     onChange={(e) => setCellphone(e.target.value)}
                     value={cellphone}
                   />
-                </div>
+                </div> */}
                 <br />
-                <h5>¿Como vas a pagar?</h5>
+                {/* <h5>¿Como vas a pagar?</h5> */}
                 <br />
                 <hr />
                 <div className="col-12">
                   <PayPalCheckout />
                 </div>
 
-                <Link to={""}>
+                {/* <Link to={""}>
                   <button
                     //   onClick={}
                     type="button"
@@ -156,7 +156,7 @@ export const Checkout = () => {
                   >
                     Submit
                   </button>
-                </Link>
+                </Link> */}
               </form>
             </div>
           </div>
