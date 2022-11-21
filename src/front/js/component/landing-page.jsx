@@ -150,7 +150,6 @@ export const LandingPage = () => {
                     >
                       <i className="fa fa-cart-plus" style={{ color: "white" }}>
                         {" "}
-                        Add to cart
                       </i>
                     </button>
                   </Card.Text>

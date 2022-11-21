@@ -13,44 +13,42 @@ export const Scoring = (props) => {
 
   const { store, actions } = useContext(Context);
 
-  // const handleScore = async (e) => {
-  //   e.preventDefault();
-  //   let onScored = await actions.createScore(comment, score, params.id);
-  //   Swal.fire(onScored.data.msg);
-  //   setComment("");
-  //   navigate("/product-detail/" + params.id);
-  // };
-
-  const handleScore = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, send it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const onScored = actions.createScore(comment, score, params.id);
-        Swal.fire("Sended!", "Your file has been sended.", "success");
-        // if (response.data.msg === "Product updated successfully") {
-        navigate("/product-detail/" + params.id);
-        // }
-        // e.preventDefault();
-        // const borrar = actions.eliminarCuenta();
-        console.log(onScored);
-        // setComment("");
-      }
-    });
-    // Swal.fire(onScored.data.msg);
+  const handleScore = async (e) => {
+    e.preventDefault();
+    let onScored = await actions.createScore(comment, score, params.id);
+    Swal.fire(onScored.data.msg);
+    setComment("");
+    navigate("/product-detail/" + params.id);
   };
 
+  // const handleScore = () => {
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, send it!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       // const enviar = async (e) => {
+  //       const onScored = actions.createScore(comment, score, params.id);
+  //       Swal.fire("Sended!", "Your file has been sended.", "success");
+  //       // if (response.data.msg === "Product updated successfully") {
+  //       navigate("/product-detail/" + params.id);
+  //       // }
+  //       // e.preventDefault();
+  //       // const borrar = actions.eliminarCuenta();
+  //       console.log(onScored);
+  //       // setComment("");
+  //     }
+  //   });
+  //   // Swal.fire(onScored.data.msg);
+  // };
+
   return (
-    <form
-      // onSubmit={handleScore}
-      className="bg-dark"
-    >
+    <form onSubmit={handleScore} className="bg-dark">
       <h4 style={{ color: "white", textAlign: "center" }}>Review product</h4>
       <div className="container d-xl-inline-flex d-lg-inline-flex justify-content-between bg-dark">
         <div className="col-sm-12 col-md-12 col-lg-2">
@@ -61,7 +59,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="5"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio1">★</label>
             <input
@@ -70,7 +67,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="4"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio2">★</label>
             <input
@@ -79,7 +75,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="3"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio3">★</label>
             <input
@@ -88,7 +83,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="2"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio4">★</label>
             <input
@@ -97,7 +91,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="1"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio5">★</label>
           </p>
@@ -110,19 +103,13 @@ export const Scoring = (props) => {
             rows="2"
             onChange={(e) => setComment(e.target.value)}
             value={comment}
-            required
-            placeholder="Leave your review"
           ></textarea>
         </div>
         <div
           className="col-sm-12 col-md-12 col-lg-2 mt-sm-2 mt-md-0 mt-lg-0"
           id="buttonSubmit"
         >
-          <button
-            className="btn btn-outline-light"
-            type="submit"
-            onClick={() => handleScore()}
-          >
+          <button className="btn btn-outline-light" type="submit">
             Submit
           </button>
         </div>
