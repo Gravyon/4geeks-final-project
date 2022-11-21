@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext} from "react";
 import { Context } from "../store/appContext";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import "../../styles/scoring.css";
-import swal from "sweetalert";
 import Swal from "sweetalert2";
 
 export const Scoring = (props) => {
@@ -16,18 +15,8 @@ export const Scoring = (props) => {
   const handleScore = async (e) => {
     e.preventDefault();
     let onScored = await actions.createScore(comment, score, params.id);
-    // let msj = await actions.login(email, password).response.data.msg;
     Swal.fire(onScored.data.msg);
-
     setComment("");
-
-    // if (onLogged === "User doesn't exist") {
-    //   navigate("/signup");
-    // } else if (onLogged.msg === "Bad email or password") {
-    //   navigate("/login");
-    // } else {
-    //   navigate("/");
-    // }
   };
 
   return (

@@ -1,12 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext} from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Component } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import { PayPalCheckout } from "../component/checkout-paypal.jsx";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 
 export const Checkout = () => {
@@ -17,7 +13,6 @@ export const Checkout = () => {
   const [departamento, setDepartamento] = useState("");
   const [datos, setDatos] = useState("");
   const [cellphone, setCellphone] = useState("");
-
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -144,97 +139,10 @@ export const Checkout = () => {
                     value={cellphone}
                   />
                 </div>
-
-                {/* <div className="input-group col-4">
-            <div className="input-group-text ">
-              <input
-                className="form-check-input mt-0 "
-                type="radio"
-                //   value={}
-                aria-label="Radio button for following text input"
-              />
-            </div>
-            <label
-              htmlFor="exampleInputRadious1"
-              className="form-control"
-              aria-label="Text input with radio button"
-            >
-              Recibir la compra en mi casa
-            </label>
-          </div> */}
                 <br />
-                {/* <div className="input-group">
-            <div className="input-group-text">
-              <input
-                className="form-check-input mt-0"
-                type="radio"
-                //   value={}
-                aria-label="Radio button for following text input"
-              />
-            </div>
-            <label
-              htmlFor="exampleInputRadious1"
-              className="form-control"
-              aria-label="Text input with radio button"
-            >
-              Retirar la compra en el local
-            </label>
-          </div> */}
                 <h5>¿Como vas a pagar?</h5>
-                {/* <div className="input-group">
-            <div className="input-group-text">
-              <input
-                className="form-check-input mt-0"
-                type="radio"
-                //   value={}
-                aria-label="Radio button for following text input"
-              />
-            </div>
-            <label
-              htmlFor="exampleInputRadious1"
-              className="form-control"
-              aria-label="Text input with radio button"
-            >
-              Tarjeta de Credito
-            </label>
-          </div> */}
                 <br />
-                {/* <div className="input-group">
-            <div className="input-group-text">
-              <input
-                className="form-check-input mt-0"
-                type="radio"
-                //   value={}
-                aria-label="Radio button for following text input"
-              />
-            </div>
-            <label
-              htmlFor="exampleInputRadious1"
-              className="form-control"
-              aria-label="Text input with radio button"
-            >
-              Tarjeta de Debito
-            </label>
-          </div> */}
                 <hr />
-                {/* <div className="input-group">
-            <div className="input-group-text">
-              <input
-                className="form-check-input mt-0"
-                type="radio"
-                //   value={}
-                aria-label="Radio button for following text input"
-              />
-            </div>
-            <label
-              htmlFor="exampleInputRadious1"
-              className="form-control"
-              aria-label="Text input with radio button"
-            >
-              Efectivo en redes de cobranza
-            </label>
-            
-          </div> */}
                 <div className="col-12">
                   <PayPalCheckout />
                 </div>
