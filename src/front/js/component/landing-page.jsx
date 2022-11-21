@@ -31,7 +31,6 @@ import {
 import { ImgCarousel } from "../component/imgCarousel.jsx";
 import { ScrollRestoration } from "react-router-dom";
 import { FaShareAlt } from "react-icons/fa";
-import "../../styles/landingPage.css";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
@@ -112,14 +111,11 @@ export const LandingPage = () => {
         </p>
       </div>
 
-      <div
-        className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-sm-center justify-content-lg-between w-100 "
-        style={{ fontFamily: "Dosis, sans-serif" }}
-      >
+      <div className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-sm-center justify-content-lg-between w-100 ">
         {store.product.length > 0 ? (
           store.product.map((item) => (
             <Card
-              className="mx-1 my-4 itemCards"
+              className="mx-1 my-4"
               key={item.id}
               style={{
                 width: "18rem",
@@ -127,26 +123,19 @@ export const LandingPage = () => {
                 margin: "auto",
                 fontFamily: "Roboto, sans-serif",
                 // borderColor: "#b2a97e",
-                borderRadius: "10px 10px",
+                borderRadius: "15px 15px",
               }}
             >
               <Link
-                style={{
-                  textDecoration: "none",
-                  fontFamily: "Dosis, sans-serif",
-                }}
+                style={{ textDecoration: "none" }}
                 to={"/product-detail/" + item.id}
               >
                 <Card.Body style={{ marginBottom: "-10%" }}>
                   <img
                     src={item.url}
-                    className="img-fluid "
+                    className="img-fluid rounded p-1 "
                     alt="..."
-                    style={{
-                      maxHeight: "13rem",
-                      borderColor: "#b2a97e",
-                      maxWidth: "13rem",
-                    }}
+                    style={{ maxHeight: "14rem", borderColor: "#b2a97e" }}
                   />
                   <div className="d-flex justify-content-between mt-2">
                     <Card.Title
@@ -154,7 +143,6 @@ export const LandingPage = () => {
                         color: "white",
                         textDecoration: "none",
                         textAlign: "center",
-                        fontFamily: "Dosis, sans-serif",
                       }}
                     >
                       {item.name}
@@ -166,7 +154,6 @@ export const LandingPage = () => {
                         fontSize: "0.9rem",
                         textAlign: "center",
                         fontStyle: "italic",
-                        fontFamily: "Dosis, sans-serif",
                       }}
                     >
                       {item.category}
@@ -177,11 +164,7 @@ export const LandingPage = () => {
               <Card.Body>
                 <div className="mb-1">
                   <Card.Text
-                    style={{
-                      color: "white",
-                      fontSize: "1.4rem",
-                      fontFamily: "Dosis, sans-serif",
-                    }}
+                    style={{ color: "white", fontSize: "1.4rem" }}
                     className="d-flex justify-content-between"
                   >
                     U$S {item.price}
@@ -193,11 +176,12 @@ export const LandingPage = () => {
                     >
                       <i className="fa fa-cart-plus" style={{ color: "white" }}>
                         {" "}
+                        Add to cart
                       </i>
                     </button>
                   </Card.Text>
                 </div>
-                <div className="d-flex align-bottom justify-content-center mx-auto ">
+                <div className="d-flex align-bottom justify-content-between mx-auto ">
                   {/* empieza el share */}
                   <div className="dropdown">
                     <button
@@ -326,7 +310,6 @@ export const LandingPage = () => {
                                     onChange={(e) => setName(e.target.value)}
                                     value={name}
                                   />
-
                                   <label>Change the description: </label>
                                   <input
                                     className="m-3 d-flex justify-content-between"
@@ -336,7 +319,6 @@ export const LandingPage = () => {
                                     }
                                     value={description}
                                   />
-
                                   <label>Change the category: </label>
                                   <input
                                     className="m-3 d-flex justify-content-between"
@@ -346,7 +328,6 @@ export const LandingPage = () => {
                                     }
                                     value={category}
                                   />
-
                                   <label>Change the price: </label>
                                   <input
                                     className="m-3 d-flex justify-content-between"
@@ -354,7 +335,6 @@ export const LandingPage = () => {
                                     onChange={(e) => setPrice(e.target.value)}
                                     value={price}
                                   />
-
                                   <label>Change the url: </label>
                                   <input
                                     className="m-3 d-flex justify-content-between"

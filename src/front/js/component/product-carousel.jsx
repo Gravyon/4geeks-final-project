@@ -60,7 +60,7 @@ export const ProductCarousel = () => {
               alt={item.altText}
             />
 
-            <h5 className="card-title text-center">{item.name}</h5>
+            {/* <p className="card-title text-center">{item.name}</p> */}
           </div>
         </Link>
       </CarouselItem>
