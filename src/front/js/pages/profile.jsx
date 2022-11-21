@@ -31,6 +31,22 @@ export const Profile = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
+  let scoreGenerator = (score) => {
+    if (score === 1) {
+      return "★";
+    } else if (score === 2) {
+      return "★★";
+    } else if (score === 3) {
+      return "★★★";
+    } else if (score === 4) {
+      return "★★★★";
+    } else if (score == 5) {
+      return "★★★★★";
+    } else {
+      return "No review";
+    }
+  };
+
   const updateUser = async (e) => {
     e.preventDefault();
     // console.log(profile.name, profile.email)
@@ -69,12 +85,32 @@ export const Profile = (props) => {
     });
   };
 
+  // useEffect(() => {
+  //   if (store.userId != null) {
+  //     // console.log(store.userId)
+  //   }
+  // }, [store.userId]);
+
+  // useEffect(() => {
+  //   if (store.userId != null) {
+  //     // console.log(store.userId)
+  //   }
+  // }, [store.userId]);
+
   useEffect(() => {
     if (store.userId != null) {
-      // console.log(store.userId)
       actions.getFavorites();
+      // actions.getOrder();
+      // const getInfo = async () => {
+      //   let arrTotal = await actions.priceFilter();
+
+      //   actions.sumaTotal(arrTotal);
+      // };
+      // getInfo();
     }
   }, [store.userId]);
+
+  console.log(store.sum);
 
   return (
     <div className="container mx-auto d-flex">
@@ -97,7 +133,7 @@ export const Profile = (props) => {
                         Your info
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
+                    {/* <Nav.Item>
                       <Nav.Link
                         eventKey="second"
                         className="btn btn-dark m-2"
@@ -105,7 +141,7 @@ export const Profile = (props) => {
                       >
                         Order history
                       </Nav.Link>
-                    </Nav.Item>
+                    </Nav.Item> */}
                     <Nav.Item>
                       <Nav.Link
                         eventKey="third"
@@ -131,13 +167,13 @@ export const Profile = (props) => {
                     <Tab.Pane eventKey="first">
                       <div>
                         <div className="user-profile">
-                          <div className="p-2">
+                          <div className="p-2 border-bottom border-end border-dark mb-3">
                             <h5>Username: {profile.username}</h5>
                           </div>
-                          <div className="p-2">
+                          <div className="p-2 border-bottom border-end border-dark mb-3">
                             <h5>Email: {profile.email}</h5>
                           </div>
-                          <div className="p-2">
+                          <div className="p-2 border-bottom border-end border-dark mb-3">
                             <h5>Password: ********</h5>
                           </div>
                           <div>
@@ -250,37 +286,25 @@ export const Profile = (props) => {
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
                       <div>
-                        <ListGroup >
+                        <ListGroup>
                           <Tab.Pane eventKey="third">
                             <div>
                               <div className="col-12 mx-auto my-4 h-75">
                                 <ol>
-                                      <li
-                                        className="list-group-item border border-1 border border-dark"
-                                        style={{
-                                          background: "#212529",
-                                          color: "#908969",
-                                        }}
-                                      >
-                                        <div className="d-flex justify-content-between">
-                                          <div className="d-flex justify-content-start text-left w-25">
-
-                                          </div>
-                                          <div className="text-left">
-                                            <p className="mx-5 text-right">
-                                            </p>
-                                          </div>
-                                          <div className="d-flex justify-content-end">
-                                            <div className="mx-4">
-                                              <BsStarFill />
-                                              <BsStarFill />
-                                              <BsStarHalf />
-                                              <BsStar />
-                                              <BsStar />
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </li>
+                                  <li
+                                    className="list-group-item border border-1 border border-dark"
+                                    style={{
+                                      background: "#212529",
+                                      color: "#908969",
+                                    }}
+                                  >
+                                    <div className="d-flex justify-content-between">
+                                      <div className="d-flex justify-content-start text-left w-25"></div>
+                                      <div className="text-left">
+                                        <p className="mx-5 text-right"></p>
+                                      </div>
+                                    </div>
+                                  </li>
                                 </ol>
                               </div>
                             </div>
@@ -293,9 +317,16 @@ export const Profile = (props) => {
                         </ListGroup>
                       </div>
                     </Tab.Pane>
+
                     <Tab.Pane eventKey="third">
-                      <div>
-                        <div className="col-12">
+                      <div
+                        className="container mt-5 vh-100 "
+                        style={{
+                          fontFamily: "Rajdhani, sans-serif",
+                          fontSize: "1.3rem",
+                        }}
+                      >
+                        <div className="col-12 mx-auto my-4 h-75">
                           <ol className="h-75">
                             {store.listaFavoritos.length > 0 ? (
                               store.listaFavoritos.map((item, id) => (
@@ -309,7 +340,17 @@ export const Profile = (props) => {
                                 >
                                   <div className="d-flex justify-content-between">
                                     <div className="d-flex justify-content-start text-left w-25">
-                                      {item?.name}
+                                      <img
+                                        src={item.url}
+                                        className="img-fluid rounded p-1 w-100 mx-1"
+                                        alt="..."
+                                        style={{
+                                          maxHeight: "3rem",
+                                          maxWidth: "3rem",
+                                          borderColor: "#b2a97e",
+                                        }}
+                                      />
+                                      Name: {item?.name}
                                     </div>
                                     <div className="text-left">
                                       <p className="mx-5 text-right">
