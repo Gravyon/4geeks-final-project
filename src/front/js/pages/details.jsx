@@ -20,11 +20,9 @@ export const ProductDetail = () => {
   useEffect(() => {
     actions.getProductDetail(params.id);
     actions.getProductRatings(params.id);
-    // actions.updateProduct(params.id);
 
     window.scrollTo(0, 0);
 
-    // actions.mapfavorites();
     actions.comparingFavorites();
   }, [params.id, store.userId]);
 
@@ -71,7 +69,6 @@ export const ProductDetail = () => {
   const [url, setUrl] = useState("");
 
   const edit = async (id) => {
-    // console.log(edit());
     let response = await actions.updateProduct(
       name,
       description,
@@ -261,9 +258,9 @@ export const ProductDetail = () => {
                   </div>
                   <div className="card-footer align-bottom h-50 ">
                     <div className="buttonsCarritoYFavorito">
-                      <div className="d-md-grid gap-md-2 divButtons">
+                      <div className="d-grid gap-2 ">
                         <button
-                          className="btn btn-light d-flex justify-content-sm-between justify-content-md-center btn-sm-sm btnCarrito"
+                          className="btn btn-light d-flex  justify-content-center btn-sm-sm "
                           type="button"
                           onClick={() =>
                             handleAddShopping(store.productDetail.id)
@@ -273,12 +270,6 @@ export const ProductDetail = () => {
                             className="fa fa-cart-plus "
                             style={{ fontSize: "1.2rem" }}
                           ></i>
-                          {/* <p
-                            className="btnCarrito"
-                            style={{ fontSize: "1rem" }}
-                          >
-                            Add to cart
-                          </p> */}
                         </button>
                         <button
                           className="btn btn-light"

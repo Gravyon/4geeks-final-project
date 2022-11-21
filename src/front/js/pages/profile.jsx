@@ -113,7 +113,7 @@ export const Profile = (props) => {
                         className="btn btn-dark m-2"
                         style={{ color: "#bdb284" }}
                       >
-                      {/* Agregado pero no funciona, seria para el cuarto sprint */}
+                        {/* Agregado pero no funciona, seria para el cuarto sprint */}
                         Your orders
                       </Nav.Link>
                     </Nav.Item>
@@ -236,7 +236,7 @@ export const Profile = (props) => {
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
                       <div>
-                        <ListGroup >
+                        <ListGroup>
                           <Tab.Pane eventKey="third">
                             <div>
                               <div className="col-12 mx-auto my-4 h-75">
@@ -259,11 +259,21 @@ export const Profile = (props) => {
                               </div>
                             </div>
                           </Tab.Pane>
-                          <ListGroup.Item className="bg-dark text-white">Order number 1</ListGroup.Item>
-                          <ListGroup.Item className="bg-dark text-white">Order number 2</ListGroup.Item>
-                          <ListGroup.Item className="bg-dark text-white">Order number 3</ListGroup.Item>
-                          <ListGroup.Item className="bg-dark text-white">Order number 4</ListGroup.Item>
-                          <ListGroup.Item className="bg-dark text-white">Order number 5</ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">
+                            Order number 1
+                          </ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">
+                            Order number 2
+                          </ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">
+                            Order number 3
+                          </ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">
+                            Order number 4
+                          </ListGroup.Item>
+                          <ListGroup.Item className="bg-dark text-white">
+                            Order number 5
+                          </ListGroup.Item>
                         </ListGroup>
                       </div>
                     </Tab.Pane>
@@ -299,11 +309,11 @@ export const Profile = (props) => {
                                           borderColor: "#b2a97e",
                                         }}
                                       />
-                                      Name: {item?.name}
+                                      {item?.name}
                                     </div>
                                     <div className="text-left">
                                       <p className="mx-5 text-right">
-                                        US${item?.price}{" "}
+                                        US$ {item?.price}{" "}
                                       </p>
                                     </div>
 
@@ -327,7 +337,7 @@ export const Profile = (props) => {
                           </ol>
                         </div>
                       </div>
-                    </Tab.Pane>                  
+                    </Tab.Pane>
                   </Tab.Content>
                 </Col>
               </Row>

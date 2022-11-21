@@ -1,11 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import PropTypes from "prop-types";
+
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
-import { PayPalCheckout } from "../component/checkout-paypal.jsx";
+
 import "../../styles/favorites.css";
 
 export const Carrito = () => {
@@ -13,12 +11,10 @@ export const Carrito = () => {
 
   useEffect(() => {
     if (store.userId != null) {
-      // console.log(store.userId)
       actions.getShopping();
     }
   }, [store.userId]);
 
-  // console.log(store.shoppingList);
   let scoreGenerator = (score) => {
     if (score === 1) {
       return "★";
@@ -46,7 +42,6 @@ export const Carrito = () => {
             <h1>My Cart </h1>
           </div>
           <div className="col-12 mx-auto my-4 h-75">
-            {/* <ol className="h-75"> */}
             {store.shoppingList.length > 0 ? (
               store.shoppingList.map((item, id) => (
                 <li
@@ -89,18 +84,16 @@ export const Carrito = () => {
                     </div>
                   </div>
                 </li>
-                // )) : <p>Nothing to checkout</p>}
               ))
             ) : (
               <p>Cart is empty</p>
             )}
-            {/* </ol> */}
+
             <div className="mx-auto my-3">
               <button className="btn btn-dark ">
                 <Link style={{ color: "#bdb284" }} to={"/checkout"}>
                   Checkout
                 </Link>
-                {/* <PayPalCheckout /> */}
               </button>
             </div>
           </div>
