@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,9 @@ import { Scoring } from "../component/scoring.jsx";
 import { ProductCarousel } from "../component/product-carousel.jsx";
 import { BsHeart } from "react-icons/bs";
 import Card from "react-bootstrap/Card";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
+import { AiFillEdit } from "react-icons/ai";
 
 import "../../styles/details.css";
 
@@ -17,6 +20,7 @@ export const ProductDetail = () => {
   useEffect(() => {
     actions.getProductDetail(params.id);
     actions.getProductRatings(params.id);
+    // actions.updateProduct(params.id);
 
     window.scrollTo(0, 0);
 
@@ -57,6 +61,35 @@ export const ProductDetail = () => {
   } else {
     scoreTotal = "Product has no review";
   }
+
+  // empieza la funcion para editar producto
+
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [url, setUrl] = useState("");
+
+  const edit = async (id) => {
+    // console.log(edit());
+    let response = await actions.updateProduct(
+      name,
+      description,
+      category,
+      price,
+      url,
+      id
+    );
+    setName("");
+    setDescription("");
+    setCategory("");
+    setPrice("");
+    setUrl("");
+
+    if (response.data.msg === "Product updated successfully") {
+      navigate("/product-detail/" + params.id);
+    }
+  };
 
   return (
     <div>
@@ -111,7 +144,121 @@ export const ProductDetail = () => {
                       </p>
                     )}
                   </div>
+                  <div>
+                    {store.admin ? (
+                      <button
+                        type="button"
+                        className="btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                      >
+                        <AiFillEdit className="text-white" />
+                      </button>
+                    ) : null}{" "}
+                    {/* empieza el modal de editar producto */}
+                    <div
+                      className="modal fade"
+                      id="exampleModal"
+                      tabIndex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog">
+                        <div className="modal-content bg-dark text-white">
+                          <div className="modal-header">
+                            <h1
+                              className="modal-title fs-5"
+                              id="exampleModalLabel"
+                            >
+                              Modify your product
+                            </h1>
+                            <button
+                              type="button"
+                              className="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div className="modal-body">
+                            <div className="modal-body">
+                              <form
+                                onSubmit={() => {
+                                  console.log(params.id);
+                                  edit(params.id);
+                                }}
+                              >
+                                <label>
+                                  <label>Change the name: </label>
+                                  <input
+                                    className="m-3 d-flex justify-content-between"
+                                    type="text"
+                                    onChange={(e) => setName(e.target.value)}
+                                    value={name}
+                                  />
 
+                                  <label>Change the description: </label>
+                                  <input
+                                    className="m-3 d-flex justify-content-between"
+                                    type="text"
+                                    onChange={(e) =>
+                                      setDescription(e.target.value)
+                                    }
+                                    value={description}
+                                  />
+
+                                  <label>Change the category: </label>
+                                  <input
+                                    className="m-3 d-flex justify-content-between"
+                                    type="text"
+                                    onChange={(e) =>
+                                      setCategory(e.target.value)
+                                    }
+                                    value={category}
+                                  />
+
+                                  <label>Change the price: </label>
+                                  <input
+                                    className="m-3 d-flex justify-content-between"
+                                    type="number"
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    value={price}
+                                    required
+                                  />
+
+                                  <label>Change the url: </label>
+                                  <input
+                                    className="m-3 d-flex justify-content-between"
+                                    type="text"
+                                    onChange={(e) => setUrl(e.target.value)}
+                                    value={url}
+                                  />
+                                </label>
+                                <br />
+                                <Button
+                                  data-dismiss="form"
+                                  type="submit"
+                                  color="dark"
+                                  className="border border-white"
+                                >
+                                  Save changes
+                                </Button>{" "}
+                              </form>
+                            </div>
+                          </div>
+                          <div className="modal-footer">
+                            <button
+                              type="button"
+                              className="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* termina el modal de editar producto */}
+                  </div>
                   <div className="card-footer align-bottom h-50 ">
                     <div className="buttonsCarritoYFavorito">
                       <div className="d-md-grid gap-md-2 d-sm-flex justify-sm-conten-between">
