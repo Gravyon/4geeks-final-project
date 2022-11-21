@@ -16,6 +16,12 @@
     }
 }
 
+@media only screen and (min-width: 1100px) {
+    img {
+        width: 1100px;
+    }
+}
+
 @media only screen and (min-width: 1300px) {
     img {
         width: 1300px;

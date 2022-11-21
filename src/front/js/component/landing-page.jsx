@@ -110,7 +110,10 @@ export const LandingPage = () => {
         </p>
       </div>
 
-      <div className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-sm-center justify-content-lg-between w-100 ">
+      <div
+        className="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-sm-center justify-content-lg-between w-100 "
+        style={{ fontFamily: "Dosis, sans-serif" }}
+      >
         {store.product.length > 0 ? (
           store.product.map((item) => (
             <Card
@@ -122,17 +125,20 @@ export const LandingPage = () => {
                 margin: "auto",
                 fontFamily: "Roboto, sans-serif",
                 // borderColor: "#b2a97e",
-                borderRadius: "15px 15px",
+                borderRadius: "10px 10px",
               }}
             >
               <Link
-                style={{ textDecoration: "none" }}
+                style={{
+                  textDecoration: "none",
+                  fontFamily: "Dosis, sans-serif",
+                }}
                 to={"/product-detail/" + item.id}
               >
                 <Card.Body style={{ marginBottom: "-10%" }}>
                   <img
                     src={item.url}
-                    className="img-fluid rounded p-1 "
+                    className="img-fluid "
                     alt="..."
                     style={{ maxHeight: "14rem", borderColor: "#b2a97e" }}
                   />
@@ -142,6 +148,7 @@ export const LandingPage = () => {
                         color: "white",
                         textDecoration: "none",
                         textAlign: "center",
+                        fontFamily: "Dosis, sans-serif",
                       }}
                     >
                       {item.name}
@@ -153,6 +160,7 @@ export const LandingPage = () => {
                         fontSize: "0.9rem",
                         textAlign: "center",
                         fontStyle: "italic",
+                        fontFamily: "Dosis, sans-serif",
                       }}
                     >
                       {item.category}
@@ -163,7 +171,11 @@ export const LandingPage = () => {
               <Card.Body>
                 <div className="mb-1">
                   <Card.Text
-                    style={{ color: "white", fontSize: "1.4rem" }}
+                    style={{
+                      color: "white",
+                      fontSize: "1.4rem",
+                      fontFamily: "Dosis, sans-serif",
+                    }}
                     className="d-flex justify-content-between"
                   >
                     U$S {item.price}
@@ -175,12 +187,11 @@ export const LandingPage = () => {
                     >
                       <i className="fa fa-cart-plus" style={{ color: "white" }}>
                         {" "}
-                        Add to cart
                       </i>
                     </button>
                   </Card.Text>
                 </div>
-                <div className="d-flex align-bottom justify-content-between mx-auto ">
+                <div className="d-flex align-bottom justify-content-center mx-auto ">
                   {/* empieza el share */}
                   <div className="dropdown">
                     <button
