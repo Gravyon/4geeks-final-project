@@ -709,6 +709,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               score: score,
             }
           );
+
           return response;
         } catch (error) {
           // Error standard en un log
@@ -745,24 +746,25 @@ const getState = ({ getStore, getActions, setStore }) => {
       ) => {
         // Llama a store
         let store = getStore();
-        console.log();
+        console.log(productId);
         try {
           const response = await axios.put(
             process.env.BACKEND_URL + "/api/product/" + productId,
             {
-              name,
-              description,
-              category,
-              price,
-              url,
+              name: name,
+              description: description,
+              category: category,
+              price: price,
+              url: url,
             }
           );
           // Respues de ok
           if (response.status === 200) {
             Swal.fire(response.data.msg);
-            getActions().getProduct();
+            getActions().getProductDetail();
             return response;
           }
+          getActions().getProductDetail();
         } catch (error) {
           // Log de error
           console.log(error);
