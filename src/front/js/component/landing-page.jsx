@@ -3,8 +3,8 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
+// import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+// import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
@@ -27,7 +27,7 @@ import {
   BsFillBrushFill,
   BsFillShareFill,
 } from "react-icons/bs";
-import { AiFillEdit } from "react-icons/ai";
+// import { AiFillEdit } from "react-icons/ai";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
 import { ScrollRestoration } from "react-router-dom";
 import { FaShareAlt } from "react-icons/fa";
@@ -63,24 +63,24 @@ export const LandingPage = () => {
     }
   };
 
-  // empieza la funcion para editar producto
+  // // empieza la funcion para editar producto
 
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [url, setUrl] = useState("");
+  // const [name, setName] = useState("");
+  // const [category, setCategory] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [url, setUrl] = useState("");
 
-  const edit = async (id) => {
-    // console.log(edit());
-    await actions.updateProduct(name, description, category, price, url, id);
+  // const edit = async (id) => {
+  //   // console.log(edit());
+  //   await actions.updateProduct(name, description, category, price, url, id);
 
-    setName("");
-    setDescription("");
-    setCategory("");
-    setPrice("");
-    setUrl("");
-  };
+  //   setName("");
+  //   setDescription("");
+  //   setCategory("");
+  //   setPrice("");
+  //   setUrl("");
+  // };
 
   const handleSweetAlert = (id) => {
     //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
@@ -274,7 +274,7 @@ export const LandingPage = () => {
                       <BsHeart />
                     )}
                   </button>
-                  <div>
+                  {/* <div>
                     {store.admin ? (
                       <button
                         type="button"
@@ -284,8 +284,8 @@ export const LandingPage = () => {
                       >
                         <AiFillEdit className="text-white" />
                       </button>
-                    ) : null}{" "}
-                    {/* empieza el modal de editar producto */}
+                    ) : null}{" "} */}
+                  {/* empieza el modal de editar producto
                     <div
                       className="modal fade"
                       id="exampleModal"
@@ -387,8 +387,9 @@ export const LandingPage = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  {/* termina el modal de editar producto */}
+                  termina el modal de editar producto */}
+                  {/* </div> */}
+                  {/* </div> */}
                   {store.admin ? (
                     <span
                       className="btn d-flex justify-content-end"
