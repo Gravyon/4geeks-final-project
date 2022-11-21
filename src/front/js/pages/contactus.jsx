@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, ValidationError } from "@formspree/react";
+import { useForm} from "@formspree/react";
 import Iframe from "react-iframe";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -21,6 +21,7 @@ export const ContactUs = () => {
   });
 
   //handleSubmit tiene su propia logica, por lo tanto al submit se le tiene que pasar esa funcion para que sea enviado
+  // Tal vez seria posible hacerlo con funcion flecha pero es mas simple de esta forma
   const [state, handleSubmit] = useForm(process.env.CONTACT_FORM);
   if (state.succeeded) {
     return (
