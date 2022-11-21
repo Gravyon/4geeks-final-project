@@ -261,7 +261,7 @@ export const ProductDetail = () => {
                   </div>
                   <div className="card-footer align-bottom h-50 ">
                     <div className="buttonsCarritoYFavorito">
-                      <div className="d-md-grid gap-md-2 d-sm-flex justify-sm-conten-between">
+                      <div className="d-md-grid gap-md-2 d-sm-flex justify-content-sm-between">
                         <button
                           className="btn btn-light d-flex justify-content-sm-between justify-content-md-center btn-sm-sm btnCarritoFavorito"
                           type="button"
@@ -274,14 +274,14 @@ export const ProductDetail = () => {
                             style={{ fontSize: "1.2rem" }}
                           ></i>
                           <p
-                            className="btnCarrito"
-                            style={{ fontSize: "1rem" }}
+                            className="btnCarritoP"
+                            // style={{ fontSize: "0.5rem" }}
                           >
                             Add to cart
                           </p>
                         </button>
                         <button
-                          className="btn btn-light"
+                          className="btn btn-light btnCarritoFavorito"
                           type="button"
                           onClick={() => {
                             handleAddFavorites(store.productDetail.id);

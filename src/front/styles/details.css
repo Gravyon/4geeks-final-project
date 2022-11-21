@@ -35,8 +35,12 @@ input[type="radio"]:checked~label {
         font-size: 0.7rem !important;
     }
 
+    .btnCarritoP {
+        font-size: 0rem !important;
+    }
+
     .btnCarritoFavorito {
-        max-width: 3rem;
-        max-height: 3rem;
+        max-width: 2rem;
+        max-height: 2rem;
     }
 }
