@@ -7,12 +7,12 @@ import Nav from "react-bootstrap/Nav";
 
 export const Checkout = () => {
   const { store, actions } = useContext(Context);
-  // definimos los estados
-  const [address, setAddress] = useState("");
-  const [nombre, setNombre] = useState("");
-  const [departamento, setDepartamento] = useState("");
-  const [datos, setDatos] = useState("");
-  const [cellphone, setCellphone] = useState("");
+  // definimos los estados:
+  // const [address, setAddress] = useState("");
+  // const [nombre, setNombre] = useState("");
+  // const [departamento, setDepartamento] = useState("");
+  // const [datos, setDatos] = useState("");
+  // const [cellphone, setCellphone] = useState("");
   let navigate = useNavigate();
 
   useEffect(() => {

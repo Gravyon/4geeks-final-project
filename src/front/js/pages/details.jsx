@@ -20,11 +20,9 @@ export const ProductDetail = () => {
   useEffect(() => {
     actions.getProductDetail(params.id);
     actions.getProductRatings(params.id);
-    // actions.updateProduct(params.id);
 
     window.scrollTo(0, 0);
 
-    // actions.mapfavorites();
     actions.comparingFavorites();
   }, [params.id, store.userId]);
 
@@ -71,7 +69,6 @@ export const ProductDetail = () => {
   const [url, setUrl] = useState("");
 
   const edit = async (id) => {
-    // console.log(edit());
     let response = await actions.updateProduct(
       name,
       description,
@@ -273,12 +270,6 @@ export const ProductDetail = () => {
                             className="fa fa-cart-plus "
                             style={{ fontSize: "1.2rem" }}
                           ></i>
-                          {/* <p
-                            className="btnCarrito"
-                            style={{ fontSize: "1rem" }}
-                          >
-                            Add to cart
-                          </p> */}
                         </button>
                         <button
                           className="btn btn-light"
