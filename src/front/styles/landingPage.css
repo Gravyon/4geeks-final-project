@@ -1,7 +1,7 @@
-@media only screen and (min-width: 300px) {
+@media only screen and (min-width: 200px) {
     .itemCards {
         width: 14rem !important;
-        font-size: 0.6rem !important;
+        font-size: 0.8rem !important;
         justify-content: center !important;
         margin: auto !important;
         margin-top: 3% !important;

@@ -39,7 +39,7 @@ export const Carrito = () => {
     <>
       {store.auth ? (
         <div
-          className="container mt-5 vh-sm-auto vh-xl-100 vh-lg-100 mx-auto"
+          className="container mt-5 vh-sm-auto vh-xl-100 vh-lg-100 min-vh-100 mx-auto"
           style={{ fontFamily: "Rajdhani, sans-serif", fontSize: "1.3rem" }}
         >
           <div className="w-100 mx-auto">
