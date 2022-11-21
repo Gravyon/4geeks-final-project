@@ -52,18 +52,10 @@ export const PayPalCheckout = () => {
                 showConfirmButton: false,
                 timer: 1500,
               });
-              // alert(`Transaction completed by ${name}`);
-              console.log(actions.order.capture());
-              console.log(details.status);
 
-              // {
-              //   details.status === "COMPLETED" ? navigate("/") : null;
-              // }
-              console.log(store.shoppingList);
               {
                 details.status === "COMPLETED"
                   ? store.shoppingList.map((item) => {
-                      console.log(item.id);
                       eliminarProducto(item.id);
                       navigate("/carrito");
                       // <div>
