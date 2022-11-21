@@ -20,6 +20,10 @@ export const Checkout = () => {
 
   let navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const doSubmit = (e) => {
     e.preventDefault();
     let delivery = actions.signup(

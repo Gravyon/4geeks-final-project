@@ -1,23 +1,31 @@
 @media only screen and (min-width: 600px) {
     div {
-        font-size: 0.91rem;
+        font-size: 0.91rem !important;
     }
 }
 
 @media only screen and (min-width: 300px) {
     div {
-        font-size: 0.8rem;
+        font-size: 0.7rem !important;
+    }
+
+    .favoritesList {
+        max-width: 0.2rem !important;
+        max-height: 2em;
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
     }
 }
 
 @media only screen and (min-width: 992px) {
     div {
-        font-size: 1.2rem;
+        font-size: 1.2rem !important;
     }
 }
 
-@media only screen and (min-width: 300px) {
+/* @media only screen and (min-width: 300px) {
     div {
-        font-size: 0.8rem;
+        font-size: 0.8rem !important;
     }
-}
+} */

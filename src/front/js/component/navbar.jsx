@@ -143,21 +143,6 @@ export const NavbarPrincipal = () => {
                 <span className="badge">{store.shoppingList.length}</span>
               </Link>
             ) : null}
-            {/* <ul className="dropdown-menu">
-              {store.shoppingList.map((item, id) => (
-                <li className="p-2" key={id}>
-                  {item}
-                  <button
-                    type="button"
-                    onClick={() => actions.deleteShopping(item.id)}
-                    className="btn "
-                    style={{ float: "right" }}
-                  >
-                    <i className="fa fa-trash"></i>
-                  </button>
-                </li>
-              ))}
-            </ul> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
