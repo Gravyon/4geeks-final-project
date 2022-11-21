@@ -338,8 +338,7 @@ def get_favorites_by_user(id_user):
     favorites = Favorites.query.filter_by(id_user=id_user).all()
     print(favorites)
     results = list(map(lambda x: x.serialize2(), favorites))
-    if (id_user is None):
-        return  jsonify({"msg": "User is not logged in or doesn't exist"}), 400
+
     if (results == []):
       return  jsonify({"msg": "You don't have favorites"}), 404
     print(results)
