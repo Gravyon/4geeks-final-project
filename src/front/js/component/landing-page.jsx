@@ -31,6 +31,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
 import { ScrollRestoration } from "react-router-dom";
 import { FaShareAlt } from "react-icons/fa";
+import "../../styles/landingPage.css";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
@@ -117,7 +118,7 @@ export const LandingPage = () => {
         {store.product.length > 0 ? (
           store.product.map((item) => (
             <Card
-              className="mx-1 my-4"
+              className="mx-1 my-4 itemCards"
               key={item.id}
               style={{
                 width: "18rem",
