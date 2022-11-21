@@ -38,7 +38,7 @@ export const Checkout = () => {
         <div className="container d-flex justify-content-center vh-100">
           <div className="vh-100 col mt-5">
             <h2>¿Donde quieres recibir tu compra?</h2>
-            <div className="col-6">
+            <div className="col-sm-12 col-md-6">
               <form className="row g-2" onSubmit={doSubmit}>
                 <div className="col-md-6">
                   <label
