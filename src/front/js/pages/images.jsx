@@ -3,6 +3,7 @@ import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
 import { useState } from "react";
 import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
+import Swal from "sweetalert2";
 
 export const SubirImagenes = () => {
   const { store, actions } = useContext(Context);
@@ -31,6 +32,7 @@ export const SubirImagenes = () => {
     setUrl("");
     setDescription("");
     setPrice("");
+    Swal.fire("Product Created");
   };
 
   const uploadImage = async (e) => {
