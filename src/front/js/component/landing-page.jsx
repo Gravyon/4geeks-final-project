@@ -3,12 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-// import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-// import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
-import swal from "sweetalert";
 import Swal from "sweetalert2";
-import PropTypes from "prop-types";
-import ListGroup from "react-bootstrap/ListGroup";
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -29,8 +24,6 @@ import {
 } from "react-icons/bs";
 // import { AiFillEdit } from "react-icons/ai";
 import { ImgCarousel } from "../component/imgCarousel.jsx";
-import { ScrollRestoration } from "react-router-dom";
-import { FaShareAlt } from "react-icons/fa";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
@@ -61,25 +54,6 @@ export const LandingPage = () => {
       navigate("/login");
     }
   };
-
-  // // empieza la funcion para editar producto
-
-  // const [name, setName] = useState("");
-  // const [category, setCategory] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [url, setUrl] = useState("");
-
-  // const edit = async (id) => {
-  //   // console.log(edit());
-  //   await actions.updateProduct(name, description, category, price, url, id);
-
-  //   setName("");
-  //   setDescription("");
-  //   setCategory("");
-  //   setPrice("");
-  //   setUrl("");
-  // };
 
   const handleSweetAlert = (id) => {
     //esta funcion es para hacer que si el usuario no esta logueado al momento de querer agregar un favorito, que lo redireccione a la pagina de login
@@ -258,118 +232,6 @@ export const LandingPage = () => {
                       <BsHeart />
                     )}
                   </button>
-                  {/* <div>
-                    {store.admin ? (
-                      <button
-                        type="button"
-                        className="btn"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                      >
-                        <AiFillEdit className="text-white" />
-                      </button>
-                    ) : null}{" "} */}
-                  {/* empieza el modal de editar producto
-                    <div
-                      className="modal fade"
-                      id="exampleModal"
-                      tabIndex="-1"
-                      aria-labelledby="exampleModalLabel"
-                      aria-hidden="true"
-                    >
-                      <div className="modal-dialog">
-                        <div className="modal-content bg-dark text-white">
-                          <div className="modal-header">
-                            <h1
-                              className="modal-title fs-5"
-                              id="exampleModalLabel"
-                            >
-                              Modify your product
-                            </h1>
-                            <button
-                              type="button"
-                              className="btn-close"
-                              data-bs-dismiss="modal"
-                              aria-label="Close"
-                            ></button>
-                          </div>
-                          <div className="modal-body">
-                            <div className="modal-body">
-                              <form
-                                onSubmit={(e) => {
-                                  console.log(item.id);
-                                  e.preventDefault();
-                                  edit(item.id);
-                                }}
-                              >
-                                <label>
-                                  <label>Change the name: </label>
-                                  <input
-                                    className="m-3 d-flex justify-content-between"
-                                    type="text"
-                                    onChange={(e) => setName(e.target.value)}
-                                    value={name}
-                                  />
-                                  <label>Change the description: </label>
-                                  <input
-                                    className="m-3 d-flex justify-content-between"
-                                    type="text"
-                                    onChange={(e) =>
-                                      setDescription(e.target.value)
-                                    }
-                                    value={description}
-                                  />
-                                  <label>Change the category: </label>
-                                  <input
-                                    className="m-3 d-flex justify-content-between"
-                                    type="text"
-                                    onChange={(e) =>
-                                      setCategory(e.target.value)
-                                    }
-                                    value={category}
-                                  />
-                                  <label>Change the price: </label>
-                                  <input
-                                    className="m-3 d-flex justify-content-between"
-                                    type="number"
-                                    onChange={(e) => setPrice(e.target.value)}
-                                    value={price}
-                                  />
-                                  <label>Change the url: </label>
-                                  <input
-                                    className="m-3 d-flex justify-content-between"
-                                    type="text"
-                                    onChange={(e) => setUrl(e.target.value)}
-                                    value={url}
-                                  />
-                                </label>
-                                <br />
-                                <Button
-                                  data-dismiss="form"
-                                  type="submit"
-                                  color="dark"
-                                  className="border border-white"
-                                >
-                                  Save changes
-                                </Button>{" "}
-                              </form>
-                            </div>
-                          </div>
-                          <div className="modal-footer">
-                            <button
-                              type="button"
-                              className="btn btn-secondary"
-                              data-bs-dismiss="modal"
-                            >
-                              Close
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  termina el modal de editar producto */}
-                  {/* </div> */}
-                  {/* </div> */}
                   {store.admin ? (
                     <span
                       className="btn d-flex justify-content-end"
