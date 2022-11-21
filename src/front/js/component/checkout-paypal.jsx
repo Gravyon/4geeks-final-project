@@ -20,7 +20,7 @@ export const PayPalCheckout = () => {
   }, [store.userId]);
 
   console.log(store.sum);
-
+  console.log(process.env.PAYPAL_SANDBOX_CLIENT_ID);
   return (
     <PayPalScriptProvider
       options={{ "client-id": process.env.PAYPAL_SANDBOX_CLIENT_ID }}

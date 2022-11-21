@@ -1,6 +1,6 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import {  useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "../../styles/scoring.css";
 import Swal from "sweetalert2";
 
@@ -9,18 +9,48 @@ export const Scoring = (props) => {
   const [comment, setComment] = useState("");
 
   const params = useParams();
+  const navigate = useNavigate();
 
   const { store, actions } = useContext(Context);
 
-  const handleScore = async (e) => {
-    e.preventDefault();
-    let onScored = await actions.createScore(comment, score, params.id);
-    Swal.fire(onScored.data.msg);
-    setComment("");
+  // const handleScore = async (e) => {
+  //   e.preventDefault();
+  //   let onScored = await actions.createScore(comment, score, params.id);
+  //   Swal.fire(onScored.data.msg);
+  //   setComment("");
+  //   navigate("/product-detail/" + params.id);
+  // };
+
+  const handleScore = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, send it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const onScored = actions.createScore(comment, score, params.id);
+        Swal.fire("Sended!", "Your file has been sended.", "success");
+        // if (response.data.msg === "Product updated successfully") {
+        navigate("/product-detail/" + params.id);
+        // }
+        // e.preventDefault();
+        // const borrar = actions.eliminarCuenta();
+        console.log(onScored);
+        // setComment("");
+      }
+    });
+    // Swal.fire(onScored.data.msg);
   };
 
   return (
-    <form onSubmit={handleScore} className="bg-dark">
+    <form
+      // onSubmit={handleScore}
+      className="bg-dark"
+    >
       <h4 style={{ color: "white", textAlign: "center" }}>Review product</h4>
       <div className="container d-xl-inline-flex d-lg-inline-flex justify-content-between bg-dark">
         <div className="col-sm-12 col-md-12 col-lg-2">
@@ -81,7 +111,11 @@ export const Scoring = (props) => {
           className="col-sm-12 col-md-12 col-lg-2 mt-sm-2 mt-md-0 mt-lg-0"
           id="buttonSubmit"
         >
-          <button className="btn btn-outline-light" type="submit">
+          <button
+            className="btn btn-outline-light"
+            type="submit"
+            onClick={() => handleScore()}
+          >
             Submit
           </button>
         </div>
