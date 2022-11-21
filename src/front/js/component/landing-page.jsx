@@ -142,7 +142,11 @@ export const LandingPage = () => {
                     src={item.url}
                     className="img-fluid "
                     alt="..."
-                    style={{ maxHeight: "14rem", borderColor: "#b2a97e" }}
+                    style={{
+                      maxHeight: "13rem",
+                      borderColor: "#b2a97e",
+                      maxWidth: "13rem",
+                    }}
                   />
                   <div className="d-flex justify-content-between mt-2">
                     <Card.Title
