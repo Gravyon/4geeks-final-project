@@ -10,7 +10,6 @@ import {
   LinkedinIcon,
   TwitterIcon,
   WhatsappIcon,
-  InstapaperShareButton,
 } from "react-share";
 
 export const Footer = () => {

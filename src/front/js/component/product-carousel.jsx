@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import {
   Carousel,

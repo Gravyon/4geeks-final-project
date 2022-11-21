@@ -3,6 +3,7 @@ import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
 import { useState } from "react";
 import { Context } from "../store/appContext";
 import Nav from "react-bootstrap/Nav";
+import Swal from "sweetalert2";
 
 export const SubirImagenes = () => {
   const { store, actions } = useContext(Context);
@@ -13,7 +14,7 @@ export const SubirImagenes = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   let [url, setUrl] = useState("");
-
+  // aaa
   const handleSubmit = async (e) => {
     e.preventDefault();
     let onUploaded = await actions.createProduct(
@@ -31,6 +32,7 @@ export const SubirImagenes = () => {
     setUrl("");
     setDescription("");
     setPrice("");
+    Swal.fire("Product Created");
   };
 
   const uploadImage = async (e) => {
@@ -58,8 +60,13 @@ export const SubirImagenes = () => {
   return (
     <>
       {store.auth ? (
-        <div className="container mt-5 vh-100">
-          <h1>Upload your work of art</h1>
+        <div
+          className="container mt-5 card bg-dark text-white my-5 mx-auto pt-3"
+          style={{ maxWidth: "700px" }}
+        >
+          <h1 className="fw-bold text-uppercase" style={{ color: "#bdb284" }}>
+            Upload your work of art
+          </h1>
           <div className="col-5 mx-auto my-5">
             <Form
               onSubmit={handleSubmit}
@@ -115,10 +122,12 @@ export const SubirImagenes = () => {
                   // onChange={(e) => setUrl(e.target.value)}
                   // value={url}
                 />
+                <div d-flex justify-content-center></div>
                 <Button
-                  className="btn btn-outline-light my-3"
+                  className="btn btn-outline-light btn-lg mx-2 px-5 mt-4"
                   type="submit"
                   style={{ color: "#bdb284" }}
+                  color="white"
                 >
                   Submit
                 </Button>

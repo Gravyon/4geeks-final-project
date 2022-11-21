@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
-import ReactDOM, { render } from "react-dom";
+import React, { useEffect, useContext } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Context } from "../store/appContext";
-import swal from "sweetalert";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 

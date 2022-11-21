@@ -1,6 +1,6 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import {  useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "../../styles/scoring.css";
 import Swal from "sweetalert2";
 
@@ -9,6 +9,7 @@ export const Scoring = (props) => {
   const [comment, setComment] = useState("");
 
   const params = useParams();
+  const navigate = useNavigate();
 
   const { store, actions } = useContext(Context);
 
@@ -17,7 +18,34 @@ export const Scoring = (props) => {
     let onScored = await actions.createScore(comment, score, params.id);
     Swal.fire(onScored.data.msg);
     setComment("");
+    navigate("/product-detail/" + params.id);
   };
+
+  // const handleScore = () => {
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, send it!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       // const enviar = async (e) => {
+  //       const onScored = actions.createScore(comment, score, params.id);
+  //       Swal.fire("Sended!", "Your file has been sended.", "success");
+  //       // if (response.data.msg === "Product updated successfully") {
+  //       navigate("/product-detail/" + params.id);
+  //       // }
+  //       // e.preventDefault();
+  //       // const borrar = actions.eliminarCuenta();
+  //       console.log(onScored);
+  //       // setComment("");
+  //     }
+  //   });
+  //   // Swal.fire(onScored.data.msg);
+  // };
 
   return (
     <form onSubmit={handleScore} className="bg-dark">
@@ -31,7 +59,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="5"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio1">★</label>
             <input
@@ -40,7 +67,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="4"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio2">★</label>
             <input
@@ -49,7 +75,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="3"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio3">★</label>
             <input
@@ -58,7 +83,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="2"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio4">★</label>
             <input
@@ -67,7 +91,6 @@ export const Scoring = (props) => {
               name="estrellas"
               value="1"
               onClick={(e) => setScore(parseInt(e.target.value))}
-              required
             />
             <label htmlFor="radio5">★</label>
           </p>
@@ -80,8 +103,6 @@ export const Scoring = (props) => {
             rows="2"
             onChange={(e) => setComment(e.target.value)}
             value={comment}
-            required
-            placeholder="Leave your review"
           ></textarea>
         </div>
         <div
