@@ -30,7 +30,7 @@ input[type="radio"]:checked~label {
     overflow-y: auto;
 }
 
-@media only screen and (min-width: 300px) {
+/* @media only screen and (min-width: 300px) {
     .btnCarrito {
         font-size: 0.7rem !important;
     }
@@ -43,4 +43,4 @@ input[type="radio"]:checked~label {
         max-width: 2rem;
         max-height: 2rem;
     }
-}
+} */

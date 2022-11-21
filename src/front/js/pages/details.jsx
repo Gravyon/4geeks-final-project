@@ -261,27 +261,27 @@ export const ProductDetail = () => {
                   </div>
                   <div className="card-footer align-bottom h-50 ">
                     <div className="buttonsCarritoYFavorito">
-                      <div className="d-md-grid gap-md-2 d-sm-flex justify-content-sm-between">
+                      <div className="d-md-grid gap-md-2 d-sm-flex justify-sm-conten-between">
                         <button
-                          className="btn btn-light d-flex justify-content-sm-between justify-content-md-center btn-sm-sm btnCarritoFavorito"
+                          className="btn btn-light d-flex justify-content-sm-between justify-content-md-center btn-sm-sm btnCarrito"
                           type="button"
                           onClick={() =>
                             handleAddShopping(store.productDetail.id)
                           }
                         >
                           <i
-                            className="fa fa-cart-plus btnCarrito "
+                            className="fa fa-cart-plus "
                             style={{ fontSize: "1.2rem" }}
                           ></i>
-                          <p
-                            className="btnCarritoP"
-                            // style={{ fontSize: "0.5rem" }}
+                          {/* <p
+                            className="btnCarrito"
+                            style={{ fontSize: "1rem" }}
                           >
                             Add to cart
-                          </p>
+                          </p> */}
                         </button>
                         <button
-                          className="btn btn-light btnCarritoFavorito"
+                          className="btn btn-light"
                           type="button"
                           onClick={() => {
                             handleAddFavorites(store.productDetail.id);
