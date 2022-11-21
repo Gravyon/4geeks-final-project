@@ -378,13 +378,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                 favoriteHeart: <BsFillHeartFill />,
               });
             }
-            // console.log(store.favoriteHeart);
+            console.log(store.favoriteHeart);
           } else {
             // console.log(element);
             setStore({
               favoriteHeart: <BsHeart />,
             });
-            // console.log(store.favoriteHeart);
+            console.log(store.favoriteHeart);
           }
         }
       },
