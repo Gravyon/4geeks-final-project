@@ -1,4 +1,4 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -14,6 +14,10 @@ export const Checkout = () => {
   const [datos, setDatos] = useState("");
   const [cellphone, setCellphone] = useState("");
   let navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const doSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +35,7 @@ export const Checkout = () => {
   return (
     <>
       {store.auth ? (
-        <div className="container d-flex justify-content-center">
+        <div className="container d-flex justify-content-center vh-100">
           <div className="vh-100 col mt-5">
             <h2>¿Donde quieres recibir tu compra?</h2>
             <div className="col-6">

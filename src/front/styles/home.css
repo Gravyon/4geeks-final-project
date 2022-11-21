@@ -40,13 +40,13 @@ body,
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.carousel-control-prev {
+/* .carousel-control-prev {
     left: -150px;
 }
 
 .carousel-control-next {
     right: -150px;
-}
+} */
 
 .carousel-indicators {
     bottom: -20px;
