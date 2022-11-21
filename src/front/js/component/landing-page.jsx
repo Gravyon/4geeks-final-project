@@ -71,8 +71,9 @@ export const LandingPage = () => {
   const [price, setPrice] = useState("");
   const [url, setUrl] = useState("");
 
-  const edit = async (name, description, category, price, url) => {
-    await actions.updateProduct(name, description, category, price, url);
+  const edit = async (id) => {
+    // console.log(edit());
+    await actions.updateProduct(name, description, category, price, url, id);
 
     setName("");
     setDescription("");
@@ -308,15 +309,9 @@ export const LandingPage = () => {
                             <div className="modal-body">
                               <form
                                 onSubmit={(e) => {
+                                  console.log(item.id);
                                   e.preventDefault();
-                                  edit(
-                                    name,
-                                    description,
-                                    category,
-                                    parseInt(price),
-                                    url,
-                                    item.id
-                                  );
+                                  edit(item.id);
                                 }}
                               >
                                 <label>

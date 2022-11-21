@@ -73,6 +73,7 @@ export const SubirImagenes = () => {
                   type="text"
                   onChange={(e) => setName(e.target.value)}
                   value={name}
+                  required
                 />
                 <Label for="exampleCategory">Category</Label>
                 <Input
@@ -81,6 +82,7 @@ export const SubirImagenes = () => {
                   type="text"
                   onChange={(e) => setCategory(e.target.value)}
                   value={category}
+                  required
                 />
                 <Label for="examplePrice">Price</Label>
                 <Input
@@ -89,6 +91,7 @@ export const SubirImagenes = () => {
                   type="number"
                   onChange={(e) => setPrice(e.target.value)}
                   value={price}
+                  required
                 />
                 <Label for="exampleDescription">Description</Label>
                 <Input
@@ -97,6 +100,7 @@ export const SubirImagenes = () => {
                   type="text"
                   onChange={(e) => setDescription(e.target.value)}
                   value={description}
+                  required
                 />
                 <Label for="exampleFile">File</Label>
                 <Input
