@@ -147,8 +147,8 @@ def delete_product(product_id):
 @api.route('/product/<int:product_id>', methods=['PUT'])
 def modify_product(product_id):
     body = json.loads(request.data)
-    product = Products.query.filter_by(id=product_id).order_by(id=product_id).first()
-    # product = Products.query.filter_by(id=product_id).first()
+    # product = Products.query.filter_by(id=product_id).order_by(id=product_id).first()
+    product = Products.query.filter_by(id=product_id).first()
     # If product exists, modifies it with new inputs
     if product is None:
         return json({"msg": "Product not found"}), 404

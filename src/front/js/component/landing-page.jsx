@@ -297,6 +297,7 @@ export const LandingPage = () => {
                             <div className="modal-body">
                               <form
                                 onSubmit={(e) => {
+                                  console.log(item.id);
                                   e.preventDefault();
                                   edit(item.id);
                                 }}

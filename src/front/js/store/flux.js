@@ -745,6 +745,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       ) => {
         // Llama a store
         let store = getStore();
+        console.log();
         try {
           const response = await axios.put(
             process.env.BACKEND_URL + "/api/product/" + productId,
@@ -775,6 +776,51 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         }
       },
+      // updateProduct: async (
+      //   name,
+      //   description,
+      //   category,
+      //   price,
+      //   url,
+      //   product_id
+      // ) => {
+      //   // Llama a store
+      //   let store = getStore();
+      //   // let prodcut_id = store.productId;
+      //   // console.log(prodcut_id);
+
+      //   // console.log(store.productId);
+      //   console.log(product_id);
+      //   try {
+      //     const response = await axios.put(
+      //       process.env.BACKEND_URL + "/api/product/" + product_id,
+      //       {
+      //         name: name,
+      //         description: description,
+      //         category: category,
+      //         price: price,
+      //         url: url,
+      //       }
+      //     );
+      //     // Respues de ok
+      //     if (response.status === 200) {
+      //       Swal.fire(response.data.msg);
+      //       getActions().getProduct();
+      //       return response;
+      //     }
+      //   } catch (error) {
+      //     // Log de error
+      //     console.log(error);
+      //     if (error.response.status === 404) {
+      //       Swal.fire({
+      //         icon: "error",
+      //         title: "Oops...",
+      //         text: error.response.data.msg,
+      //       });
+      //       return error.response.data.msg;
+      //     }
+      //   }
+      // },
     },
   };
 };
