@@ -329,7 +329,7 @@ export const ProductDetail = () => {
                           style={{ fontFamily: "Roboto, sans-serif" }}
                         >
                           {item}
-                          <p>{item.name}</p>
+                          {/* <p>{item.name} {item.score}</p> */}
                         </li>
                         <hr style={{ borderTop: "2px #bdb284" }} />
                       </div>
