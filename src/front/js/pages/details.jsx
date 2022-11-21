@@ -6,8 +6,7 @@ import { Scoring } from "../component/scoring.jsx";
 import { ProductCarousel } from "../component/product-carousel.jsx";
 import { BsHeart } from "react-icons/bs";
 import Card from "react-bootstrap/Card";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { FormGroup, Label, Input, FormText, Form, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import { AiFillEdit } from "react-icons/ai";
 
 import "../../styles/details.css";
@@ -20,6 +19,7 @@ export const ProductDetail = () => {
   useEffect(() => {
     actions.getProductDetail(params.id);
     actions.getProductRatings(params.id);
+
     // actions.updateProduct(params.id);
 
     window.scrollTo(0, 0);
@@ -329,6 +329,7 @@ export const ProductDetail = () => {
                           style={{ fontFamily: "Roboto, sans-serif" }}
                         >
                           {item}
+                          <p>{item.name}</p>
                         </li>
                         <hr style={{ borderTop: "2px #bdb284" }} />
                       </div>
