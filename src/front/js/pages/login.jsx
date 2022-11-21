@@ -1,21 +1,15 @@
 import React from "react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "../../styles/login.css";
-import {
-  GoogleLogin,
-  googleLogout,
-  GoogleOAuthProvider,
-} from "@react-oauth/google";
-import { FcGoogle } from "react-icons/fc";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
 export const Login = () => {
-  const { store, actions } = useContext(Context);
-  const [user, setUser] = useState({});
+  const {actions } = useContext(Context);
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     email: Yup.string("Enter your email")
@@ -26,15 +20,12 @@ export const Login = () => {
       .max(50, "Too Long!")
       .required("Password required"),
   });
-  const redirect = () => {
-    navigate("/");
-  };
-
+  // Se llama cuando falla el login por google
   const failedLogin = () => {
     navigate("/login");
     console.log("Failed");
   };
-
+  // Se llama cuando pasa el login por google
   const successLogin = () => {
     console.log("success");
     navigate("/");
@@ -47,6 +38,7 @@ export const Login = () => {
       validationSchema={SignupSchema}
       // Declara onSubmit y se le pasan los valores del login dentro, anotandolos con values
       onSubmit={async (values) => {
+        // Esto se guarda en una variable para atrapar lo que la funcion de flux tira
         let onLogged = await actions.login(values.email, values.password);
         if (onLogged === "User doesn't exist") {
           navigate("/signup");
@@ -119,22 +111,20 @@ export const Login = () => {
                       >
                         <GoogleLogin
                           // onSuccess funciona con una funcion dentro, por lo tanto es necesaria esta sintaxis
-                          onSuccess={async(response)=>{
-                              let result = await actions.responseGoogle(response)
-                              if (result){
-                                successLogin()
-                                navigate("/")
-                              }
+                          onSuccess={async (response) => {
+                            let result = await actions.responseGoogle(response);
+                            if (result) {
+                              successLogin();
+                              navigate("/");
                             }
-                          }
-                          onFailure={async(response)=>{
-                            let result = await actions.responseGoogle(response)
-                            if (!result){
-                              failedLogin()
-                              navigate("/login")
+                          }}
+                          onFailure={async (response) => {
+                            let result = await actions.responseGoogle(response);
+                            if (!result) {
+                              failedLogin();
+                              navigate("/login");
                             }
-                          }
-                        }
+                          }}
                           cookiePolicy="single_host_origin"
                         />
                       </GoogleOAuthProvider>
