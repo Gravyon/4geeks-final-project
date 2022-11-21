@@ -9,7 +9,8 @@
         font-size: 0.7rem !important;
     }
 
-    .favoritesList {
+    .favoritesList,
+    .cartList {
         max-width: 0.2rem !important;
         max-height: 2em;
         text-align: center !important;
