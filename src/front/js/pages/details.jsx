@@ -261,9 +261,9 @@ export const ProductDetail = () => {
                   </div>
                   <div className="card-footer align-bottom h-50 ">
                     <div className="buttonsCarritoYFavorito">
-                      <div className="d-md-grid gap-md-2 divButtons">
+                      <div className="d-grid gap-2 ">
                         <button
-                          className="btn btn-light d-flex justify-content-sm-between justify-content-md-center btn-sm-sm btnCarrito"
+                          className="btn btn-light d-flex  justify-content-center btn-sm-sm "
                           type="button"
                           onClick={() =>
                             handleAddShopping(store.productDetail.id)

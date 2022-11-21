@@ -44,3 +44,22 @@ input[type="radio"]:checked~label {
         max-height: 2rem;
     }
 } */
+
+@media only screen and (max-width: 400px) {
+    .divButtons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+/* @media only screen and (min-width: 600px) {
+    .divButtons {
+        font-size: large;
+    }
+
+    .btnCarrito,
+    .btnFavorite {
+        display: grid;
+        width: 200px;
+    }
+} */
