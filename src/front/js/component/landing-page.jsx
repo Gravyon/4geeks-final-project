@@ -182,7 +182,7 @@ export const LandingPage = () => {
                       <li>
                         <FacebookShareButton
                           url={
-                            "https://3000-gravyon-4geeksfinalproj-ddmu1o4sofb.ws-us77.gitpod.io/product-detail/" +
+                            "https://casa-arte.herokuapp.com/product-detail/" +
                             item.id
                           }
                         >
