@@ -9,6 +9,10 @@
         font-size: 0.7rem !important;
     }
 
+    .swal2-icon-content {
+        font-size: 3rem !important;
+    }
+
     .favoritesList,
     .cartList {
         max-width: 0.2rem !important;
