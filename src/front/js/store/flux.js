@@ -136,6 +136,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             item.description
               .toString()
               .toLowerCase()
+              .includes(searchValue.toLowerCase()) ||
+            item.category
+              .toString()
+              .toLowerCase()
               .includes(searchValue.toLowerCase())
           ) {
             // Console log para ver que trae
