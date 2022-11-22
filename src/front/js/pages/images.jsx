@@ -32,7 +32,7 @@ export const SubirImagenes = () => {
     setUrl("");
     setDescription("");
     setPrice("");
-    Swal.fire("Product Created");
+    Swal.fire({ text: "Product Created", confirmButtonColor: "#000000" });
   };
 
   const uploadImage = async (e) => {

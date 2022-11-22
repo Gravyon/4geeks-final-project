@@ -35,8 +35,11 @@ export const Checkout = () => {
   return (
     <>
       {store.auth ? (
-        <div className="container d-flex justify-content-center vh-100">
-          <div className="vh-100 col mt-5">
+        <div
+          className="container d-flex justify-content-center vh-100"
+          style={{ maxHeight: "50%", top: "0", zIndex: "-1000" }}
+        >
+          <div className="h-auto col mt-5">
             <h2>Medios de pago:</h2>
             <div className="col-sm-12 col-md-6 mx-auto">
               <form className="row g-2" onSubmit={doSubmit}>

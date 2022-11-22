@@ -114,7 +114,11 @@ export const LandingPage = () => {
                     src={item.url}
                     className="img-fluid rounded p-1 "
                     alt="..."
-                    style={{ maxHeight: "14rem", borderColor: "#b2a97e" }}
+                    style={{
+                      maxHeight: "14rem",
+                      borderColor: "#b2a97e",
+                      maxWidth: "14rem",
+                    }}
                   />
                   <div className="d-flex justify-content-between mt-2">
                     <Card.Title
