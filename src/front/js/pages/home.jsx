@@ -11,7 +11,6 @@ export const Home = () => {
   useEffect(() => {
     actions.getProduct(params.id);
   }, []);
-// Hola
   return (
     <div className="vh-auto p-3 w-100">
       <div className="container text-center w-100">
