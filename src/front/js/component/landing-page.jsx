@@ -222,10 +222,10 @@ export const LandingPage = () => {
                     className="btn align-bottom"
                     style={{ color: "white" }}
                     onClick={() => {
-                      handleAddFavorites(item.id);
+                      handleAddFavorites(item?.id);
                     }}
                   >
-                    {store.favoriteItem.includes(item.id) ? (
+                    {store.favoriteItem?.includes(item.id) ? (
                       store.favoriteHeart
                     ) : (
                       <BsHeart />
