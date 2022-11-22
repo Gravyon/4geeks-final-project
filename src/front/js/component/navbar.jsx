@@ -97,7 +97,7 @@ export const NavbarPrincipal = () => {
             </Nav>
             <Form
               className="d-flex d-sm-none d-md-inline"
-              onClick={() => window.scrollTo(0, 600)}
+              onClick={() => window.scrollTo(0, 550)}
             >
               <Form.Control
                 onChange={handleInput}
