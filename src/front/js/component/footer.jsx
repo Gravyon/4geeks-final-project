@@ -17,42 +17,22 @@ export const Footer = () => {
     <footer className=" bg-dark text-center text-white w-100 d-flex-inline align-items-end mt-100vh ">
       <div className="p-4 pb-0 ">
         <section className="mb-4 col-3 d-flex justify-content-between mx-auto">
-          <FacebookShareButton
-            url={
-              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-            }
-          >
+          <FacebookShareButton url={"https://casa-arte.herokuapp.com"}>
             <FacebookIcon size={32} round={true} />
           </FacebookShareButton>
 
-          <TwitterShareButton
-            url={
-              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-            }
-          >
+          <TwitterShareButton url={"https://casa-arte.herokuapp.com"}>
             <TwitterIcon size={32} round={true} />
           </TwitterShareButton>
 
-          <WhatsappShareButton
-            url={
-              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-            }
-          >
+          <WhatsappShareButton url={"https://casa-arte.herokuapp.com"}>
             <WhatsappIcon size={32} round={true} />
           </WhatsappShareButton>
-          <LinkedinShareButton
-            url={
-              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-            }
-          >
+          <LinkedinShareButton url={"https://casa-arte.herokuapp.com"}>
             <LinkedinIcon size={32} round={true} />
           </LinkedinShareButton>
 
-          <EmailShareButton
-            url={
-              "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io"
-            }
-          >
+          <EmailShareButton url={"https://casa-arte.herokuapp.com"}>
             <EmailIcon size={32} round={true} />
           </EmailShareButton>
         </section>

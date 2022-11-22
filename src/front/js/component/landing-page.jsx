@@ -182,7 +182,7 @@ export const LandingPage = () => {
                       <li>
                         <FacebookShareButton
                           url={
-                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            "https://3000-gravyon-4geeksfinalproj-ddmu1o4sofb.ws-us77.gitpod.io/product-detail/" +
                             item.id
                           }
                         >
@@ -191,7 +191,7 @@ export const LandingPage = () => {
                         <TwitterShareButton
                           className="m-3"
                           url={
-                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            "https://casa-arte.herokuapp.com/product-detail/" +
                             item.id
                           }
                         >
@@ -199,7 +199,7 @@ export const LandingPage = () => {
                         </TwitterShareButton>
                         <WhatsappShareButton
                           url={
-                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            "https://casa-arte.herokuapp.com/product-detail/" +
                             item.id
                           }
                         >
@@ -208,7 +208,7 @@ export const LandingPage = () => {
                         <LinkedinShareButton
                           className="m-3"
                           url={
-                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            "https://casa-arte.herokuapp.com/product-detail/" +
                             item.id
                           }
                         >
@@ -216,7 +216,7 @@ export const LandingPage = () => {
                         </LinkedinShareButton>
                         <EmailShareButton
                           url={
-                            "https://3000-gravyon-4geeksfinalproj-40ui9bwpmd5.ws-us74.gitpod.io/product-detail/" +
+                            "https://casa-arte.herokuapp.com/product-detail/" +
                             item.id
                           }
                         >
