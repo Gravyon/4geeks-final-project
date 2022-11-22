@@ -46,6 +46,18 @@ export const Scoring = (props) => {
   //   });
   //   // Swal.fire(onScored.data.msg);
   // };
+  let scoreTotal;
+
+  if (store.productDetail.score === null) {
+    scoreTotal = "";
+  }
+
+  const scoreVacio = () => {
+    if (scoreTotal === "") {
+      return Swal.fire("Please, select the score");
+    }
+    console.log("funciona");
+  };
 
   return (
     <form onSubmit={handleScore} className="bg-dark">
@@ -59,6 +71,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="5"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio1">★</label>
             <input
@@ -67,6 +80,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="4"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio2">★</label>
             <input
@@ -75,6 +89,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="3"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio3">★</label>
             <input
@@ -83,6 +98,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="2"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio4">★</label>
             <input
@@ -91,6 +107,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="1"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio5">★</label>
           </p>
@@ -103,13 +120,20 @@ export const Scoring = (props) => {
             rows="2"
             onChange={(e) => setComment(e.target.value)}
             value={comment}
+            required
           ></textarea>
         </div>
         <div
           className="col-sm-12 col-md-12 col-lg-2 mt-sm-2 mt-md-0 mt-lg-0"
           id="buttonSubmit"
         >
-          <button className="btn btn-outline-light" type="submit">
+          <button
+            className="btn btn-outline-light"
+            type="submit"
+            onClick={() => {
+              scoreVacio();
+            }}
+          >
             Submit
           </button>
         </div>
