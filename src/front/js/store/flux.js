@@ -722,10 +722,12 @@ const getState = ({ getStore, getActions, setStore }) => {
             process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
           );
           const data = await response.json();
+          console.log(data);
           // Setea store
           setStore({
-            comments: data.map((item) => item.comment),
+            comments: data.map((item) => item),
           });
+          console.log(store.comments);
           return store.comments;
         } catch (error) {
           // Log de error
