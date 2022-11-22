@@ -287,8 +287,8 @@ export const Profile = (props) => {
                       >
                         <div className="col-12 mx-auto my-4 h-75">
                           <ol className="h-75">
-                            {store.listaFavoritos.length > 0 ? (
-                              store.listaFavoritos.map((item, id) => (
+                            {store.listaFavoritos?.length > 0 ? (
+                              store.listaFavoritos?.map((item, id) => (
                                 <li
                                   className="list-group-item border border-1 border border-dark"
                                   key={id}

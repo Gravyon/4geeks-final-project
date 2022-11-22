@@ -59,6 +59,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="5"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio1">★</label>
             <input
@@ -67,6 +68,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="4"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio2">★</label>
             <input
@@ -75,6 +77,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="3"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio3">★</label>
             <input
@@ -83,6 +86,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="2"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio4">★</label>
             <input
@@ -91,6 +95,7 @@ export const Scoring = (props) => {
               name="estrellas"
               value="1"
               onClick={(e) => setScore(parseInt(e.target.value))}
+              required
             />
             <label htmlFor="radio5">★</label>
           </p>

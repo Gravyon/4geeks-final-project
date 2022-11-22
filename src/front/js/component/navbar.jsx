@@ -46,9 +46,13 @@ export const NavbarPrincipal = () => {
   };
 
   return (
-    <div className="sticky-sm-top" id="navbar">
+    <div
+      className="position-sticky top-0 z-index-10 "
+      id="navbar"
+      style={{ zIndex: "10" }}
+    >
       <Navbar
-        className="sticky-top"
+        className="navbar"
         bg="dark"
         variant="dark"
         expand="lg"
@@ -91,7 +95,10 @@ export const NavbarPrincipal = () => {
                 Contact us
               </Nav.Link>
             </Nav>
-            <Form className="d-flex d-sm-none d-md-inline">
+            <Form
+              className="d-flex d-sm-none d-md-inline"
+              onClick={() => window.scrollTo(0, 600)}
+            >
               <Form.Control
                 onChange={handleInput}
                 type="search"

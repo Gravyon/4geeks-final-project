@@ -47,7 +47,7 @@ export const PayPalCheckout = () => {
                 position: "top",
                 icon: "success",
                 title: `Transaction completed by ${name}`,
-                showConfirmButton: false,
+
                 timer: 3000,
               });
 

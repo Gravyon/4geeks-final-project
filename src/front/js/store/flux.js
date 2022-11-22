@@ -119,6 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // Filtra de busqueda para la barra de busqueda en landing page
       // Se toma un valor por parametro, lo cual es lo que el usuario ingresa en la barra
       filterSearch: (searchValue) => {
+        // window.scrollTo(0, 600);
         // Se trae store para luego setear el array filtrado
         let store = getStore();
         // Se declara results para que se guarde lo filtrado a partir de los datos
@@ -148,7 +149,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           product: results,
         });
         // Funciona para que la barra de busqueda mueva la pantalla a donde se encuentran los productos
-        window.scrollTo(0, 600);
       },
 
       // fetch de los productos
@@ -272,7 +272,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             Swal.fire({
               icon: "error",
               title: "Oops...",
-              text: error.response.data.msg + "... redirecting to login...",
+              confirmButtonColor: "#000000",
+              text: error.response.data.msg + "... redirecting to signup...",
             });
             return error.response.data.msg;
           } else if (error.response.data.msg === "Bad email or password") {
@@ -334,6 +335,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               text:
                 error.response.data.msg +
                 ". You'll be rediredted to the login page",
+              confirmButtonColor: "#000000",
             });
             return error.response.data.msg;
           }
@@ -402,7 +404,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           );
           // Sweet alert con los datos del fetch
-          Swal.fire(response.data.msg);
+          Swal.fire({ text: response.data.msg, confirmButtonColor: "#000000" });
           // Llama las funciones respectivas
           getActions().getFavorites();
           getActions().comparingFavorites();
