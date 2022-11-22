@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import Swal from "sweetalert2";
 
 export const SignUp = () => {
   const { actions } = useContext(Context);
@@ -35,7 +36,10 @@ export const SignUp = () => {
           values.password
         );
         if (onSignUp === "User exists") {
-          swal("User email already exists, redirecting to login");
+          Swal.fire({
+            text: "User email already exists, redirecting to login",
+            confirmButtonColor: "#000000",
+          });
           navigate("/login");
         } else if (onSignUp === "New user created") {
           navigate("/");
