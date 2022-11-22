@@ -152,7 +152,7 @@ export const ProductDetail = () => {
                     </p>
                     <p className="card-text h-sm-10 productDescription">
                       <small className="text-muted productDescription">
-                        Product description: {store.productDetail.description}
+                      {store.productDetail.description}
                       </small>
                     </p>
                     <p className="card-text">USD {store.productDetail.price}</p>
