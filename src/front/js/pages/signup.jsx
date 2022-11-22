@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -9,6 +9,10 @@ import Swal from "sweetalert2";
 export const SignUp = () => {
   const { actions } = useContext(Context);
   let navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // Yup para validar campos
   const SignupSchema = Yup.object().shape({
     username: Yup.string("Enter your username")

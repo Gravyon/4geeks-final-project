@@ -549,6 +549,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             Swal.fire({
               icon: "error",
               title: "Oops...",
+              confirmButtonColor: "#000000",
               text: error.response.data.msg + "... redirecting to login...",
             });
             return error.response.data.msg;

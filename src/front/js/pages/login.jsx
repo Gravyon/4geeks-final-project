@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
@@ -9,8 +9,13 @@ import "../../styles/login.css";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
 export const Login = () => {
-  const {actions } = useContext(Context);
+  const { actions } = useContext(Context);
   let navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const SignupSchema = Yup.object().shape({
     email: Yup.string("Enter your email")
       .email("Enter a valid email")
