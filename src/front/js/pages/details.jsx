@@ -142,14 +142,19 @@ export const ProductDetail = () => {
                   </div>
                   <div>
                     {store.admin ? (
-                      <button
-                        type="button"
-                        className="btn"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                      >
-                        <AiFillEdit className="text-white" />
-                      </button>
+                      <div className="d-flex justify-content-end">
+                        <button
+                          type="button"
+                          className="btn btn-light d-flex  justify-content-center btn-sm-sm mx-3"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                          style={{
+                            fontSize: "1.2rem",
+                          }}
+                        >
+                          <AiFillEdit className="" />
+                        </button>
+                      </div>
                     ) : null}{" "}
                     {/* empieza el modal de editar producto */}
                     <div
@@ -176,7 +181,7 @@ export const ProductDetail = () => {
                             ></button>
                           </div>
                           <div className="modal-body">
-                            <div className="modal-body">
+                            <div className="modal-body d-flex justify-content-center">
                               <form
                                 onSubmit={() => {
                                   console.log(params.id);
@@ -231,14 +236,16 @@ export const ProductDetail = () => {
                                   />
                                 </label>
                                 <br />
-                                <Button
-                                  data-dismiss="form"
-                                  type="submit"
-                                  color="dark"
-                                  className="border border-white"
-                                >
-                                  Save changes
-                                </Button>{" "}
+                                <div className="d-flex justify-content-center">
+                                  <Button
+                                    data-dismiss="form"
+                                    type="submit"
+                                    color="dark"
+                                    className="border border-white"
+                                  >
+                                    Save changes
+                                  </Button>{" "}
+                                </div>
                               </form>
                             </div>
                           </div>
@@ -260,7 +267,7 @@ export const ProductDetail = () => {
                     <div className="buttonsCarritoYFavorito">
                       <div className="d-grid gap-2 ">
                         <button
-                          className="btn btn-light d-flex  justify-content-center btn-sm-sm "
+                          className="btn btn-light d-flex justify-content-center btn-sm-sm"
                           type="button"
                           onClick={() =>
                             handleAddShopping(store.productDetail.id)
@@ -324,8 +331,24 @@ export const ProductDetail = () => {
                           className="my-3"
                           style={{ fontFamily: "Roboto, sans-serif" }}
                         >
-                          {item}
-                          {/* <p>{item.name} {item.score}</p> */}
+                          <img
+                            style={{ width: "2rem", height: "2rem" }}
+                            src="https://cdn.pixabay.com/photo/2019/08/11/18/59/icon-4399701_960_720.png"
+                            alt=""
+                            className="m-2"
+                          />
+                          {item.comment}
+                          <div
+                            className="m-2 d-flex justify-content-end"
+                            style={{
+                              color: "white",
+                              fontSize: "0.9rem",
+                              textAlign: "center",
+                              fontStyle: "italic",
+                            }}
+                          >
+                            {item.score} stars
+                          </div>
                         </li>
                         <hr style={{ borderTop: "2px #bdb284" }} />
                       </div>
