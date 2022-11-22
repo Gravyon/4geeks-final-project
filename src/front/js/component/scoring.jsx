@@ -103,6 +103,7 @@ export const Scoring = (props) => {
             rows="2"
             onChange={(e) => setComment(e.target.value)}
             value={comment}
+            required
           ></textarea>
         </div>
         <div

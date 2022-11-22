@@ -8,6 +8,7 @@ import { BsHeart } from "react-icons/bs";
 import Card from "react-bootstrap/Card";
 import { Button } from "reactstrap";
 import { AiFillEdit } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 import "../../styles/details.css";
 
@@ -331,6 +332,12 @@ export const ProductDetail = () => {
                         <li
                           className="my-3"
                           style={{ fontFamily: "Roboto, sans-serif" }}
+                          // onClick={() => {
+                          //   if ((scoreTotal = "Product has no review")) {
+                          //     return Swal.fire("Please, select the score");
+                          //   }
+                          //   console.log("cancwladooooo");
+                          // }}
                         >
                           <img
                             style={{ width: "2rem", height: "2rem" }}

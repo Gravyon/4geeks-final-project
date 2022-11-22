@@ -722,12 +722,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             process.env.BACKEND_URL + "/api/product/" + id + "/reviews"
           );
           const data = await response.json();
-          console.log(data);
           // Setea store
           setStore({
             comments: data.map((item) => item),
           });
-          console.log(store.comments);
           return store.comments;
         } catch (error) {
           // Log de error
@@ -746,7 +744,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       ) => {
         // Llama a store
         let store = getStore();
-        console.log(productId);
         try {
           const response = await axios.put(
             process.env.BACKEND_URL + "/api/product/" + productId,
