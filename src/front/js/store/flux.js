@@ -346,7 +346,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         await getActions().getFavorites();
         // Setea store
         setStore({
-          favoriteItem: store.listaFavoritos.map((item) => item.id),
+          favoriteItem: store.listaFavoritos?.map((item) => item.id),
         });
         //array de las id de los productos agregados a favoritos por el user
         // console.log(store.favoriteItem);
@@ -371,7 +371,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         // For para que se comparen los arrays
         for (let i = 0; i < store.productsIds.length; i++) {
           let element = store.productsIds[i];
-          if (store.favoriteItem.includes(element)) {
+          if (store.favoriteItem?.includes(element)) {
             // console.log(element);
             for (element in store.favoriteItem) {
               setStore({
