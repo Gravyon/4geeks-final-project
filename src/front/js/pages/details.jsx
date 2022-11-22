@@ -9,7 +9,6 @@ import Card from "react-bootstrap/Card";
 import { Button } from "reactstrap";
 import { AiFillEdit } from "react-icons/ai";
 import Swal from "sweetalert2";
-
 import "../../styles/details.css";
 
 export const ProductDetail = () => {

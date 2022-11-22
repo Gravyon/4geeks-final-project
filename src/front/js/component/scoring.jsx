@@ -47,6 +47,12 @@ export const Scoring = (props) => {
   //   // Swal.fire(onScored.data.msg);
   // };
 
+  const scoreVacio = () => {
+    if ((scoreTotal = "Product has no review")) {
+      return Swal.fire("Please, select the score");
+    }
+  };
+
   return (
     <form onSubmit={handleScore} className="bg-dark">
       <h4 style={{ color: "white", textAlign: "center" }}>Review product</h4>
@@ -115,7 +121,11 @@ export const Scoring = (props) => {
           className="col-sm-12 col-md-12 col-lg-2 mt-sm-2 mt-md-0 mt-lg-0"
           id="buttonSubmit"
         >
-          <button className="btn btn-outline-light" type="submit">
+          <button
+            className="btn btn-outline-light"
+            type="submit"
+            onClick={scoreVacio()}
+          >
             Submit
           </button>
         </div>
