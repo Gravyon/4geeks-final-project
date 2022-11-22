@@ -59,6 +59,30 @@ export const ProductDetail = () => {
     scoreTotal = "Product has no review";
   }
 
+  // let scorePersonal;
+
+  const getScorePersonal = (score) => {
+    if (score === 1) {
+      return <p className="text-warning">★</p>;
+      console.log("funciona");
+    } else if (score === 2) {
+      return <p className="text-warning">★★</p>;
+      console.log("funciona");
+    } else if (score === 3) {
+      return <p className="text-warning">★★★</p>;
+      console.log("funciona");
+    } else if (score === 4) {
+      return <p className="text-warning">★★★★</p>;
+      console.log("funciona");
+    } else if (score === 5) {
+      return <p className="text-warning">★★★★★</p>;
+      console.log("funciona");
+    } else {
+      return <p className="text-warning">No rvw</p>;
+      console.log("funciona");
+    }
+  };
+
   // empieza la funcion para editar producto
 
   const [name, setName] = useState("");
@@ -347,7 +371,7 @@ export const ProductDetail = () => {
                               fontStyle: "italic",
                             }}
                           >
-                            {item.score} stars
+                            {getScorePersonal(item.score)}
                           </div>
                         </li>
                         <hr style={{ borderTop: "2px #bdb284" }} />
