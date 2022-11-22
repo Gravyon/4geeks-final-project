@@ -119,6 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // Filtra de busqueda para la barra de busqueda en landing page
       // Se toma un valor por parametro, lo cual es lo que el usuario ingresa en la barra
       filterSearch: (searchValue) => {
+        window.scrollTo(0, 600);
         // Se trae store para luego setear el array filtrado
         let store = getStore();
         // Se declara results para que se guarde lo filtrado a partir de los datos
@@ -148,7 +149,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           product: results,
         });
         // Funciona para que la barra de busqueda mueva la pantalla a donde se encuentran los productos
-        window.scrollTo(0, 600);
       },
 
       // fetch de los productos
