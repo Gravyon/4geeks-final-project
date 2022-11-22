@@ -48,8 +48,8 @@ export const Favorites = () => {
           </div>
           <div className="col-12 my-4 h-75">
             {/* <ol className="h-75 m-0"> */}
-            {store.listaFavoritos.length > 0 ? (
-              store.listaFavoritos.map((item) => (
+            {store.listaFavoritos?.length > 0 ? (
+              store.listaFavoritos?.map((item) => (
                 <li
                   className="list-group-item border border-1 border border-dark"
                   key={item.id}
