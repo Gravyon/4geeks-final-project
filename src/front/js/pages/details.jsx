@@ -278,7 +278,7 @@ export const ProductDetail = () => {
                             handleAddFavorites(store.productDetail.id);
                           }}
                         >
-                          {store.favoriteItem.includes(parseInt(params.id)) ? (
+                          {store.favoriteItem?.includes(parseInt(params.id)) ? (
                             store.favoriteHeart
                           ) : (
                             <BsHeart />
