@@ -46,6 +46,18 @@ export const Scoring = (props) => {
   //   });
   //   // Swal.fire(onScored.data.msg);
   // };
+  let scoreTotal;
+
+  if (store.productDetail.score === null) {
+    scoreTotal = "";
+  }
+
+  const scoreVacio = () => {
+    if (scoreTotal === "") {
+      return Swal.fire("Please, select the score");
+    }
+    console.log("funciona");
+  };
 
   return (
     <form onSubmit={handleScore} className="bg-dark">
@@ -115,7 +127,13 @@ export const Scoring = (props) => {
           className="col-sm-12 col-md-12 col-lg-2 mt-sm-2 mt-md-0 mt-lg-0"
           id="buttonSubmit"
         >
-          <button className="btn btn-outline-light" type="submit">
+          <button
+            className="btn btn-outline-light"
+            type="submit"
+            onClick={() => {
+              scoreVacio();
+            }}
+          >
             Submit
           </button>
         </div>
