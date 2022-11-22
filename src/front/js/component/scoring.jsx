@@ -46,11 +46,17 @@ export const Scoring = (props) => {
   //   });
   //   // Swal.fire(onScored.data.msg);
   // };
+  let scoreTotal;
+
+  if (store.productDetail.score === null) {
+    scoreTotal = "";
+  }
 
   const scoreVacio = () => {
-    if ((scoreTotal = "Product has no review")) {
+    if (scoreTotal === "") {
       return Swal.fire("Please, select the score");
     }
+    console.log("funciona");
   };
 
   return (
@@ -124,7 +130,9 @@ export const Scoring = (props) => {
           <button
             className="btn btn-outline-light"
             type="submit"
-            onClick={scoreVacio()}
+            onClick={() => {
+              scoreVacio();
+            }}
           >
             Submit
           </button>
