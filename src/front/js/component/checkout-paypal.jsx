@@ -24,11 +24,15 @@ export const PayPalCheckout = () => {
   const eliminarProducto = (id) => actions.deleteShopping(id);
 
   return (
-    <div>
+    <div
+      className="h-auto"
+      style={{ maxHeight: "50%", top: "0", zIndex: "-100" }}
+    >
       <PayPalScriptProvider
         options={{ "client-id": process.env.PAYPAL_SANDBOX_CLIENT_ID }}
       >
         <PayPalButtons
+          // style={{ maxHeight: "50%", top: "0", zIndex: "-10" }}
           createOrder={(data, actions) => {
             return actions.order.create({
               purchase_units: [
