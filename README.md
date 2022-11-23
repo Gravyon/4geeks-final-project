@@ -9,6 +9,7 @@
 - Integrated with Pipenv for package managing.
 - Deployment with Heroku
 - SQLAlchemy integration for database abstraction.
+- And many more...
 
 ### Components
 
