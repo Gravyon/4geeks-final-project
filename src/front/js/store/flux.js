@@ -1,9 +1,7 @@
-import React from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 import jwt_decode from "jwt-decode";
-import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -378,13 +376,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         for (let i = 0; i < store.productsIds.length; i++) {
           let element = store.productsIds[i];
           if (store.favoriteItem?.includes(element)) {
-            console.log(store.favoriteHeart)
             // console.log(element);
             for (element in store.favoriteItem) {
               setStore({
                 favoriteHeart: true,
               });
-              console.log(store.favoriteHeart)
             }
           } else {
             // console.log(element);
@@ -392,7 +388,6 @@ const getState = ({ getStore, getActions, setStore }) => {
               favoriteHeart: false,
             });
           }
-          console.log(store.favoriteHeart)
         }
       },
       // Funcion para eliminar favoritos en la base de datos

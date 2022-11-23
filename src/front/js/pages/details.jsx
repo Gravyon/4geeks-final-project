@@ -4,12 +4,13 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Scoring } from "../component/scoring.jsx";
 import { ProductCarousel } from "../component/product-carousel.jsx";
-import { BsHeart } from "react-icons/bs";
+import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import Card from "react-bootstrap/Card";
 import { Button } from "reactstrap";
 import { AiFillEdit } from "react-icons/ai";
 import Swal from "sweetalert2";
 import "../../styles/details.css";
+
 
 export const ProductDetail = () => {
   const { store, actions } = useContext(Context);
@@ -311,7 +312,7 @@ export const ProductDetail = () => {
                           }}
                         >
                           {store.favoriteItem?.includes(parseInt(params.id)) ? (
-                            store.favoriteHeart
+                            <BsFillHeartFill />
                           ) : (
                             <BsHeart />
                           )}
