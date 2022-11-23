@@ -29,7 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       favoriteItem: [], //contiene las id de los productos favoritos
       productsIds: [],
       faved: false,
-      favoriteHeart: <BsHeart />,
+      favoriteHeart: false,
     },
     actions: {
       // Profile
@@ -382,14 +382,14 @@ const getState = ({ getStore, getActions, setStore }) => {
             // console.log(element);
             for (element in store.favoriteItem) {
               setStore({
-                favoriteHeart: <BsFillHeartFill />,
+                favoriteHeart: true,
               });
               console.log(store.favoriteHeart)
             }
           } else {
             // console.log(element);
             setStore({
-              favoriteHeart: <BsHeart />,
+              favoriteHeart: false,
             });
           }
           console.log(store.favoriteHeart)
