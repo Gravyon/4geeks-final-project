@@ -378,11 +378,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         for (let i = 0; i < store.productsIds.length; i++) {
           let element = store.productsIds[i];
           if (store.favoriteItem?.includes(element)) {
+            console.log(store.favoriteHeart)
             // console.log(element);
             for (element in store.favoriteItem) {
               setStore({
                 favoriteHeart: <BsFillHeartFill />,
               });
+              console.log(store.favoriteHeart)
             }
           } else {
             // console.log(element);
@@ -390,6 +392,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               favoriteHeart: <BsHeart />,
             });
           }
+          console.log(store.favoriteHeart)
         }
       },
       // Funcion para eliminar favoritos en la base de datos
