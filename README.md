@@ -2,6 +2,8 @@
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-flask-hello.git)
 
+![alt text](https://i.imgur.com/BioYZ0s.png)
+
 - React.js front end and python/flask backend for your web application.
 - Extensive documentation [here](https://start.4geeksacademy.com/).
 - Integrated with Pipenv for package managing.
