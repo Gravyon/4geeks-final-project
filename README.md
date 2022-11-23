@@ -37,6 +37,6 @@
 - signup.jsx
 
 ### Made by 
-- [Daniel](https://github.com/Gravyon).
-- [Herman](https://github.com/hermanbayron).
-- [Laura](https://github.com/lauramagallanes).
+- [Daniel](https://www.linkedin.com/in/daniel-martinez-779a1224a/).
+- [Herman](https://www.linkedin.com/in/herman-gonzalez-61b236257/).
+- [Laura](https://www.linkedin.com/in/laura-magallanes-4025b6212/).
