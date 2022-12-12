@@ -20,7 +20,6 @@
 - navbar.jsx
 - product-carousel.jsx
 - scoring.jsx
-- scrollToTop.js
 
 ### Views (Components)
 
