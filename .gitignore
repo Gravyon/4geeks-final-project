@@ -11,6 +11,14 @@ php_errorlog
 !.gitpod.Dockerfile
 !.gitpod.yml
 
+# do not ignore gitpod and render files
+!.gitpod.Dockerfile
+!Dockerfile.render
+!.gitpod.yml
+!render.yml
+!.render-buildpacks.json
+
+
 # track webpack configs (i.e. do NOT ignore it)
 !composer.json
 !webpack.config.js

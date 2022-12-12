@@ -21,6 +21,7 @@ flask-jwt-extended = "*"
 shell = "*"
 flask-mail = "*"
 flask-bcrypt = "*"
+typing-extensions = "*"
 
 [requires]
 python_version = "3.8"
