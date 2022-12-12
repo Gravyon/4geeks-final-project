@@ -7,7 +7,7 @@
 - React.js
 - Python/Flask
 - Pipenv and NPM for package management
-- Deployment with Heroku
+- Deployment with Heroku/Render
 - SQLAlchemy integration for database abstraction.
 - And many more...
 
